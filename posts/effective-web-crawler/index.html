@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+  <link href="https://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.98.0" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Practical Tips on Writing an Effective Web Crawler &middot; Guanlan Dai</title>
+  <meta name="description" content="" />
+
+  
+  <link type="text/css" rel="stylesheet" href="http://rmmod.com/css/print.css" media="print">
+  <link type="text/css" rel="stylesheet" href="http://rmmod.com/css/poole.css">
+  <link type="text/css" rel="stylesheet" href="http://rmmod.com/css/syntax.css">
+  <link type="text/css" rel="stylesheet" href="http://rmmod.com/css/hyde.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://rmmod.com/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="http://rmmod.com/favicon.png">
+
+  
+  
+</head>
+
+  <body class=" ">
+  <aside class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="http://rmmod.com/"><h1>Guanlan Dai</h1></a>
+      <p class="lead">
+       Site Lead of China @Kong, formerly @Cloudflare. I&#39;m particularly interested in Distributed Systems, Web Performance and Scalability, Data, Artificial Intelligence and Network Security. 
+      </p>
+    </div>
+
+    <nav>
+      <ul class="sidebar-nav">
+        <li><a href="http://rmmod.com/">Home</a> </li>
+        <li><a href="http://rmmod.com/post"> Blog </a></li><li><a href="http://rmmod.com/"> Home </a></li><li><a href="http://rmmod.com/contact"> Contact </a></li>
+      </ul>
+    </nav>
+
+    <p>&copy; 2022. All rights reserved. </p>
+  </div>
+</aside>
+
+    <main class="content container">
+    <div class="post">
+  <h1>Practical Tips on Writing an Effective Web Crawler</h1>
+  <time datetime=2013-02-19T02:44:30Z class="post-date">Tue, Feb 19, 2013</time>
+  <p>A web crawler is a hard-working bot to gather information or index the pages on the Internet. It starts at some seeds URLs and finds every hyperlink on each page, and then crawler will visit those hyperlinks recursively.</p>
+<h3 id="1-choose-an-ideal-programming-language">1. Choose an Ideal Programming Language</h3>
+<p>Here is a ranking of popular languages on developing web crawlers (based on result numbers of relative repositories host on Github on February, 2013): <a href="http://162.243.134.226/wp-content/uploads/2013/02/1.jpg"><img src="http://162.243.134.226/wp-content/uploads/2013/02/1.jpg" alt="1"></a>   Python or Ruby probably is a wise choice, the mainly speed limit of web crawler is network latency not CPU, so choose Python or Ruby as a language to develop a web crawler will make life easier. Python provide some standard libraries, they are very useful, such like urllib, httplib and regex, those libraries can handle lots of work. Python also has plenty of valuable third-party libraries worth a try: <strong><a href="http://scrapy.org/">scrapy</a></strong>, a web scraping framework. <strong><a href="http://urllib3.readthedocs.org/en/latest/">urllib3</a></strong>, a Python HTTP library with thread-safe connection pooling, file post support. <strong><a href="http://greenlet.readthedocs.org/">greenlet</a></strong>, a Lightweight concurrent programming framework. <em><strong><a href="http://twistedmatrix.com/">twisted</a></strong></em>, an <strong>event-driven networking engine.</strong>  </p>
+<h3 id="2-reading-some-simple-open-source-projects">2. Reading Some Simple Open-source Projects</h3>
+<p>You need to figure out how exactly does a crawler works. Here is a very simple crawler written in Python, in 10 lines of code. [python] import re, urllib crawled_urls = set() def crawl(url): for new_url in re.findall(&lsquo;&lsquo;&lsquo;href=[&quot;&rsquo;](.[^&quot;&rsquo;]+)[&quot;&rsquo;]&rsquo;&rsquo;&rsquo;, urllib.urlopen(url).read()): if new_url not in crawled_urls: print new_url crawled_urls.add(new_url) if __name__ == &ldquo;__main__&rdquo;: url = &lsquo;<a href="http://www.yahoo.com/'">http://www.yahoo.com/'</a> crawl(url) [/python] Crawler usually needs to keep track of which URLs need to be crawled, and which URLs has already crawled (to avoid the infinite loop). Other simple projects: <a href="http://code.google.com/p/python-crawler/"><strong>Python Crawler</strong></a>, a very simple crawler using Berkeley DB to store results. <a href="https://github.com/bbrodriges/pholcidae"><strong>pholcidae</strong></a>, a tiny Python module allows you to write your own crawl spider fast and easy.</p>
+<h3 id="3choosing-the-right-data-structure">3.Choosing the Right Data Structure</h3>
+<p>Choosing a proper data structure will make your crawler efficiently. Queue or Stack is a good choice to store the URLs need be crawled, Hash table or R-B tree seems proper for tracking the crawled URLs, it provide a fast speed to search. Search Time Complexity: Hash table O(1), R-B Tree O(log n) But what if your crawler needs to deal with tons of URLs your memory is not enough? Try to store the checksum of URL string, if it still not enough, you may need to use the Cache algorithms (such like LRU) to dump some URLs into the disk.</p>
+<h3 id="4-multithreading-and-asynchronous">4. Multithreading and Asynchronous</h3>
+<p>If you crawling sites from different servers, using multithreading or asynchronous mechanism will save you lots of time. Remember keep your crawler thread-safe, you need a thread-safe queue to share the results and a thread controller to handle threads. Asynchronous is a event-based mechanism will make your crawler enter a while loop, when an events triggers (some resources become available), your crawler will wake up to do deal with this event (usually by execute callback function), Asynchronous can improve throughput, latency of your crawler. <em>Related Resources:</em> <a href="http://www.andreas-hess.info/programming/webcrawler/index.html#AnotherWebcrawler"><em>How to write a multi-threaded webcrawler</em></a>, Andreas Hess</p>
+<h3 id="5-http-persistent-connections">5. HTTP Persistent Connections</h3>
+<p>Every time sends an HTTP request you need to open a TCP socket connection, when you finish request, this socket will be closed. When you crawl lots of pages on a same server, you will open and close the socket again and again. The overhead cost is quite a big problem. [code]Connection: Keep-Alive[/code] Use this header in your HTTP request to tell the server your client support keep-alive. Your code also should be modified accordingly.</p>
+<h3 id="6-efficient-regular-expressions">6. Efficient Regular Expressions</h3>
+<p>You should really figure out how the regex works, a good regex really makes a difference in performance. When your web crawlers parsing the information of the HTTP response, the same regex will execute frequently. Compile a regex need little more time in the beginning, but it will run faster when you use it. Notice if you are using Python (or .NET), it will automatically compile and cache the regexs, but it may still be worthwhile to manually do it, you can give it a proper name after compiling a regex, it will make your code more readable. If you want parser even faster, you probably need to write a parser by yourself. Related Resources: <a href="http://www.amazon.com/Mastering-Regular-Expressions-Jeffrey-Friedl/dp/0596528124">Mastering Regular Expressions</a>, Third Edition by Jeffrey Friedl. <a href="http://blog.stevenlevithan.com/archives/greedy-lazy-performance" title="Permanent Link to Performance of Greedy vs. Lazy Regex Quantifiers">Performance of Greedy vs. Lazy Regex Quantifiers</a>, <em>Steven Levithan</em> <a href="http://www.javaworld.com/javaworld/jw-09-2007/jw-09-optimizingregex.html">Optimizing regular expressions in Java</a>, Cristian Mocanu</p>
+
+</div>
+
+
+    </main>
+
+    
+      
+    
+  </body>
+</html>

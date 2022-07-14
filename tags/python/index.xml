@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Python on Guanlan Dai</title>
+    <link>http://rmmod.com/tags/python/</link>
+    <description>Recent content in Python on Guanlan Dai</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© Guanlan Dai</copyright>
+    <lastBuildDate>Mon, 19 Nov 2012 17:25:54 +0000</lastBuildDate><atom:link href="http://rmmod.com/tags/python/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>How to use Python like Lisp</title>
+      <link>http://rmmod.com/posts/how-to-use-python-like-lisp-comments/</link>
+      <pubDate>Mon, 19 Nov 2012 17:25:54 +0000</pubDate>
+      
+      <guid>http://rmmod.com/posts/how-to-use-python-like-lisp-comments/</guid>
+      <description>squarel - Nov 3, 2012Cool man!
+Cool
+Если у семьи появилась потребность в мгновенном займе, мы рекомендуем обратить внимание на возможность online займов. Сейчас 1000 рублей займ онлайн срочно на карту очень пользуются спросом и уже смогли заполучить интерес у целевой аудитории. Если вы желаете узнать больше данных касаемо онлайн займов, кликните «анкор» сюда. На creditseq.ru вы имеете шанс получить мгновенно срочно взять онлайн займ через интернет . Веб-портал подтверждает 98% анкет.</description>
+    </item>
+    
+    <item>
+      <title>How to use Python like Lisp</title>
+      <link>http://rmmod.com/posts/how-to-use-python-like-lisp/</link>
+      <pubDate>Mon, 19 Nov 2012 17:25:54 +0000</pubDate>
+      
+      <guid>http://rmmod.com/posts/how-to-use-python-like-lisp/</guid>
+      <description>Lisp has some very effective way to get jobs done, this article give you a direct way to use Python like Lisp.``` cons = lambda el, lst: (el, lst)
+mklist = lambda *args: reduce(lambda lst, el: cons(el, lst), reversed(args), None) car = lambda lst: lst[0] if lst else lst
+cdr = lambda lst: lst[1] if lst else lst nth = lambda n, lst: nth(n-1, cdr(lst)) if n ]]&amp;gt; 0 else car(lst)</description>
+    </item>
+    
+  </channel>
+</rss>

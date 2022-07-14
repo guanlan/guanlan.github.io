@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+  <link href="https://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.98.0" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>How to use Python like Lisp &middot; Guanlan Dai</title>
+  <meta name="description" content="" />
+
+  
+  <link type="text/css" rel="stylesheet" href="http://rmmod.com/css/print.css" media="print">
+  <link type="text/css" rel="stylesheet" href="http://rmmod.com/css/poole.css">
+  <link type="text/css" rel="stylesheet" href="http://rmmod.com/css/syntax.css">
+  <link type="text/css" rel="stylesheet" href="http://rmmod.com/css/hyde.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://rmmod.com/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="http://rmmod.com/favicon.png">
+
+  
+  
+</head>
+
+  <body class=" ">
+  <aside class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="http://rmmod.com/"><h1>Guanlan Dai</h1></a>
+      <p class="lead">
+       Site Lead of China @Kong, formerly @Cloudflare. I&#39;m particularly interested in Distributed Systems, Web Performance and Scalability, Data, Artificial Intelligence and Network Security. 
+      </p>
+    </div>
+
+    <nav>
+      <ul class="sidebar-nav">
+        <li><a href="http://rmmod.com/">Home</a> </li>
+        <li><a href="http://rmmod.com/post"> Blog </a></li><li><a href="http://rmmod.com/"> Home </a></li><li><a href="http://rmmod.com/contact"> Contact </a></li>
+      </ul>
+    </nav>
+
+    <p>&copy; 2022. All rights reserved. </p>
+  </div>
+</aside>
+
+    <main class="content container">
+    <div class="post">
+  <h1>How to use Python like Lisp</h1>
+  <time datetime=2012-11-19T17:25:54Z class="post-date">Mon, Nov 19, 2012</time>
+  <p>Lisp has some very effective way to get jobs done, this article give you a direct way to use Python like Lisp.```
+cons = lambda el, lst: (el, lst)</p>
+<pre tabindex="0"><code>mklist = lambda *args: reduce(lambda lst, el: cons(el, lst), reversed(args), None) 
+</code></pre><p>car = lambda lst: lst[0] if lst else lst</p>
+<pre tabindex="0"><code>cdr = lambda lst: lst[1] if lst else lst 
+</code></pre><p>nth = lambda n, lst: nth(n-1, cdr(lst)) if n ]]&gt; 0 else car(lst)</p>
+<pre tabindex="0"><code>length = lambda lst, count=0: length(cdr(lst), count+1) if lst else count
+</code></pre><p>begin = lambda *args: args[-1]</p>
+<pre tabindex="0"><code>display = lambda lst: begin(w(&#34;%s &#34; % car(lst)), display(cdr(lst))) if lst else w(&#34;niln&#34;)
+```where `w = sys.stdout.write````
+foldr = lambda f, i: lambda s: reduce(f, s, i)
+</code></pre><p>foldl = reduce</p>
+<pre tabindex="0"><code></code></pre><p>mapcar = map</p>
+<pre tabindex="0"><code>
+Pay attention about the speed when you use Python, here is a benchmarks for 5 languages:
+
+ from [The Great Computer Language Shootout](http://www.bagley.org/~doug/shootout/).
+
+Test
+
+Lisp
+
+Java
+
+Python
+
+Perl
+
+C++
+
+hash access
+
+1.06
+
+3.23
+
+4.01
+
+1.85
+
+1.00
+
+exception handling
+
+0.01
+
+0.90
+
+1.54
+
+1.73
+
+1.00
+
+Legend
+
+sum numbers from file
+
+7.54
+
+2.63
+
+8.34
+
+2.49
+
+1.00
+
+\&gt; 100 x C++
+
+reverse lines
+
+1.61
+
+1.22
+
+1.38
+
+1.25
+
+1.00
+
+50-100 x C++
+
+matrix multiplication
+
+3.30
+
+8.90
+
+278.00
+
+226.00
+
+1.00
+
+10-50 x C++
+
+heapsort
+
+1.67
+
+7.00
+
+84.42
+
+75.67
+
+1.00
+
+5-10 x C++
+
+array access
+
+1.75
+
+6.83
+
+141.08
+
+127.25
+
+1.00
+
+2-5 x C++
+
+list processing
+
+0.93
+
+20.47
+
+20.33
+
+11.27
+
+1.00
+
+1-2 x C++
+
+object instantiation
+
+1.32
+
+2.39
+
+49.11
+
+89.21
+
+1.00
+
+&lt; 1 x C++
+
+word count
+
+0.73
+
+4.61
+
+2.57
+
+1.64
+
+1.00
+
+**Median**
+
+1.67
+
+4.61
+
+20.33
+
+11.27
+
+1.00
+
+**25% to 75%**
+
+0.93 to 1.67
+
+2.63 to 7.00
+
+2.57 to 84.42
+
+1.73 to 89.21
+
+1.00 to 1.00
+
+**Range**
+
+0.01 to 7.54
+
+0.90 to 20.47
+
+1.38 to 278
+
+1.25 to 226
+
+1.00 to 1.00
+
+Relative Resource: _[Python for Lisp Programmers](http://norvig.com/python-lisp.html)_    by _[Peter Norvig](http://www.norvig.com/)_
+</code></pre>
+</div>
+
+
+    </main>
+
+    
+      
+    
+  </body>
+</html>

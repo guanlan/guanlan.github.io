@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on Guanlan Dai</title>
+    <link>http://rmmod.com/tags/</link>
+    <description>Recent content in Tags on Guanlan Dai</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>© Guanlan Dai</copyright>
+    <lastBuildDate>Fri, 03 Nov 2017 00:38:57 +0000</lastBuildDate><atom:link href="http://rmmod.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Resume</title>
+      <link>http://rmmod.com/tags/resume/</link>
+      <pubDate>Fri, 03 Nov 2017 00:38:57 +0000</pubDate>
+      
+      <guid>http://rmmod.com/tags/resume/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Networking</title>
+      <link>http://rmmod.com/tags/networking/</link>
+      <pubDate>Tue, 19 Feb 2013 02:44:30 +0000</pubDate>
+      
+      <guid>http://rmmod.com/tags/networking/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Lisp</title>
+      <link>http://rmmod.com/tags/lisp/</link>
+      <pubDate>Sun, 03 Feb 2013 02:39:54 +0000</pubDate>
+      
+      <guid>http://rmmod.com/tags/lisp/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Python</title>
+      <link>http://rmmod.com/tags/python/</link>
+      <pubDate>Mon, 19 Nov 2012 17:25:54 +0000</pubDate>
+      
+      <guid>http://rmmod.com/tags/python/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Uncategorized</title>
+      <link>http://rmmod.com/tags/uncategorized/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://rmmod.com/tags/uncategorized/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
