@@ -1,33 +1,17 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Networking on Guanlan Dai</title>
-    <link>http://rmmod.com/tags/networking/</link>
-    <description>Recent content in Networking on Guanlan Dai</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <copyright>© Guanlan Dai</copyright>
-    <lastBuildDate>Tue, 19 Feb 2013 02:44:30 +0000</lastBuildDate><atom:link href="http://rmmod.com/tags/networking/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Practical Tips on Writing an Effective Web Crawler</title>
-      <link>http://rmmod.com/posts/effective-web-crawler-comments/</link>
-      <pubDate>Tue, 19 Feb 2013 02:44:30 +0000</pubDate>
-      
-      <guid>http://rmmod.com/posts/effective-web-crawler-comments/</guid>
-      <description>squarel - Feb 6, 2013好文章支持一下～
-受教啊技术牛~
-Здравствуйте! Если вы испытываете проблемы с потенцией, или же ваша девушка не получает оргазм, не переживайте у вашей проблемы есть решение! Интернет - аптека поможет вам преодолеть это быстро и безопасно. В нашей аптеке вы можете купить дженерик сиалис, а так же женскую виагру и купить виагру поштучно в москве по самым низким ценам в РФ! Если вы быстро заканчиваете половой акт то вам подойдет препараты для продления полового акта.</description>
-    </item>
-    
-    <item>
-      <title>Practical Tips on Writing an Effective Web Crawler</title>
-      <link>http://rmmod.com/posts/effective-web-crawler/</link>
-      <pubDate>Tue, 19 Feb 2013 02:44:30 +0000</pubDate>
-      
-      <guid>http://rmmod.com/posts/effective-web-crawler/</guid>
-      <description>A web crawler is a hard-working bot to gather information or index the pages on the Internet. It starts at some seeds URLs and finds every hyperlink on each page, and then crawler will visit those hyperlinks recursively.
-1. Choose an Ideal Programming Language Here is a ranking of popular languages on developing web crawlers (based on result numbers of relative repositories host on Github on February, 2013):  Python or Ruby probably is a wise choice, the mainly speed limit of web crawler is network latency not CPU, so choose Python or Ruby as a language to develop a web crawler will make life easier.</description>
-    </item>
-    
-  </channel>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Networking - Tag - Guanlan Dai</title>
+        <link>https://rmmod.com/tags/networking/</link>
+        <description>Networking - Tag - Guanlan Dai</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>hackertian@gmail.com (guanlan)</managingEditor>
+            <webMaster>hackertian@gmail.com (guanlan)</webMaster><lastBuildDate>Tue, 19 Feb 2013 02:44:30 &#43;0000</lastBuildDate><atom:link href="https://rmmod.com/tags/networking/" rel="self" type="application/rss+xml" /><item>
+    <title>Practical Tips on Writing an Effective Web Crawler</title>
+    <link>https://rmmod.com/effective-web-crawler/</link>
+    <pubDate>Tue, 19 Feb 2013 02:44:30 &#43;0000</pubDate>
+    <author>guanlan</author>
+    <guid>https://rmmod.com/effective-web-crawler/</guid>
+    <description><![CDATA[A web crawler is a hard-working bot to gather information or index the pages on the Internet. It starts at some seeds URLs and finds every hyperlink on each page, and then crawler will visit those hyperlinks recursively.
+1. Choose an Ideal Programming Language Here is a ranking of popular languages on developing web crawlers (based on result numbers of relative repositories host on Github on February, 2013):  Python or Ruby probably is a wise choice, the mainly speed limit of web crawler is network latency not CPU, so choose Python or Ruby as a language to develop a web crawler will make life easier.]]></description>
+</item>
+</channel>
 </rss>

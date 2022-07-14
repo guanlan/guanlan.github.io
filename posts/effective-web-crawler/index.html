@@ -1,58 +1,105 @@
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<!doctype html>
+<html lang="en">
 <head>
-  <link href="https://gmpg.org/xfn/11" rel="profile">
-  <meta http-equiv="content-type" content="text/html; charset=utf-8">
-  <meta name="generator" content="Hugo 0.98.0" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practical Tips on Writing an Effective Web Crawler &middot; Guanlan Dai</title>
 
-  
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
 
-  <title>Practical Tips on Writing an Effective Web Crawler &middot; Guanlan Dai</title>
-  <meta name="description" content="" />
+    <meta name="generator" content="Hugo 0.98.0" />
+    <meta name="twitter:card" content="summary">
+    
+    <meta name="twitter:title" content="Practical Tips on Writing an Effective Web Crawler &middot; Guanlan Dai">
+    <meta name="twitter:description" content="">
 
-  
-  <link type="text/css" rel="stylesheet" href="http://rmmod.com/css/print.css" media="print">
-  <link type="text/css" rel="stylesheet" href="http://rmmod.com/css/poole.css">
-  <link type="text/css" rel="stylesheet" href="http://rmmod.com/css/syntax.css">
-  <link type="text/css" rel="stylesheet" href="http://rmmod.com/css/hyde.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Practical Tips on Writing an Effective Web Crawler &middot; Guanlan Dai">
+    <meta property="og:description" content="">
 
+    <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:400,700|Oxygen:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.6.0/pure-min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/pure/0.6.0/grids-responsive-min.css">
 
-  
-  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://rmmod.com/apple-touch-icon-144-precomposed.png">
-  <link rel="shortcut icon" href="http://rmmod.com/favicon.png">
+    <link rel="stylesheet" href='http://rmmod.com/css/all.min.css'>
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
 
-  
-  
+    <link rel="alternate" type="application/rss+xml" title="Guanlan Dai" href='http://rmmod.com/index.xml' />
 </head>
+<body>
 
-  <body class=" ">
-  <aside class="sidebar">
-  <div class="container sidebar-sticky">
-    <div class="sidebar-about">
-      <a href="http://rmmod.com/"><h1>Guanlan Dai</h1></a>
-      <p class="lead">
-       Site Lead of China @Kong, formerly @Cloudflare. I&#39;m particularly interested in Distributed Systems, Web Performance and Scalability, Data, Artificial Intelligence and Network Security. 
-      </p>
+
+<div id="layout" class="pure-g">
+    <div class="sidebar pure-u-1 pure-u-md-1-4">
+    <div class="header">
+        <hgroup>
+            <h1 class="brand-title"><a href="http://rmmod.com/">Guanlan Dai</a></h1>
+            <h2 class="brand-tagline"> Site Lead of China @Kong </h2>
+        </hgroup>
+
+        <nav class="nav">
+            <ul class="nav-list">
+                
+                <li class="nav-item">
+                    <a class="pure-button" href="https://twitter.com/guanlandai">
+                        <i class="fa fa-twitter"></i> Twitter
+                    </a>
+                </li>
+                
+                
+                <li class="nav-item">
+                    <a class="pure-button" href="https://github.com/guanlan">
+                        <i class="fa fa-github-alt"></i> Github
+                    </a>
+                </li>
+                
+                
+                
+                <li class="nav-item">
+                    <a class="pure-button" href="https://www.linkedin.com/in/guanlandai">
+                        <i class="fa fa-linkedin"></i> LinkedIn
+                    </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a class="pure-button" href='http://rmmod.com/index.xml'>
+                        <i class="fa fa-rss"></i> rss
+                    </a>
+                </li>
+            </ul>
+        </nav>
     </div>
+</div>
 
-    <nav>
-      <ul class="sidebar-nav">
-        <li><a href="http://rmmod.com/">Home</a> </li>
-        <li><a href="http://rmmod.com/post"> Blog </a></li><li><a href="http://rmmod.com/"> Home </a></li><li><a href="http://rmmod.com/contact"> Contact </a></li>
-      </ul>
-    </nav>
 
-    <p>&copy; 2022. All rights reserved. </p>
-  </div>
-</aside>
+    <div class="content pure-u-1 pure-u-md-3-4">
+        <div>
+            
+            <div class="posts">
+                <h1 class="content-subhead">19 Feb 2013, 02:44</h1>
+                <section class="post">
+                    <header class="post-header">
 
-    <main class="content container">
-    <div class="post">
-  <h1>Practical Tips on Writing an Effective Web Crawler</h1>
-  <time datetime=2013-02-19T02:44:30Z class="post-date">Tue, Feb 19, 2013</time>
-  <p>A web crawler is a hard-working bot to gather information or index the pages on the Internet. It starts at some seeds URLs and finds every hyperlink on each page, and then crawler will visit those hyperlinks recursively.</p>
+                        <a href="http://rmmod.com/posts/effective-web-crawler/" class="post-title">Practical Tips on Writing an Effective Web Crawler</a>
+
+                        <p class="post-meta">
+                            
+                            
+                        </p>
+                    </header>
+                    
+                    <div class="post-share">
+                        <div class="post-share-links">
+                            <h4 style="">Share</h4>
+                            
+                            
+                            
+                            
+                        </div>
+                    </div>
+                    
+                    <div class="post-description">
+                        <p>A web crawler is a hard-working bot to gather information or index the pages on the Internet. It starts at some seeds URLs and finds every hyperlink on each page, and then crawler will visit those hyperlinks recursively.</p>
 <h3 id="1-choose-an-ideal-programming-language">1. Choose an Ideal Programming Language</h3>
 <p>Here is a ranking of popular languages on developing web crawlers (based on result numbers of relative repositories host on Github on February, 2013): <a href="http://162.243.134.226/wp-content/uploads/2013/02/1.jpg"><img src="http://162.243.134.226/wp-content/uploads/2013/02/1.jpg" alt="1"></a>   Python or Ruby probably is a wise choice, the mainly speed limit of web crawler is network latency not CPU, so choose Python or Ruby as a language to develop a web crawler will make life easier. Python provide some standard libraries, they are very useful, such like urllib, httplib and regex, those libraries can handle lots of work. Python also has plenty of valuable third-party libraries worth a try: <strong><a href="http://scrapy.org/">scrapy</a></strong>, a web scraping framework. <strong><a href="http://urllib3.readthedocs.org/en/latest/">urllib3</a></strong>, a Python HTTP library with thread-safe connection pooling, file post support. <strong><a href="http://greenlet.readthedocs.org/">greenlet</a></strong>, a Lightweight concurrent programming framework. <em><strong><a href="http://twistedmatrix.com/">twisted</a></strong></em>, an <strong>event-driven networking engine.</strong>  </p>
 <h3 id="2-reading-some-simple-open-source-projects">2. Reading Some Simple Open-source Projects</h3>
@@ -66,13 +113,34 @@
 <h3 id="6-efficient-regular-expressions">6. Efficient Regular Expressions</h3>
 <p>You should really figure out how the regex works, a good regex really makes a difference in performance. When your web crawlers parsing the information of the HTTP response, the same regex will execute frequently. Compile a regex need little more time in the beginning, but it will run faster when you use it. Notice if you are using Python (or .NET), it will automatically compile and cache the regexs, but it may still be worthwhile to manually do it, you can give it a proper name after compiling a regex, it will make your code more readable. If you want parser even faster, you probably need to write a parser by yourself. Related Resources: <a href="http://www.amazon.com/Mastering-Regular-Expressions-Jeffrey-Friedl/dp/0596528124">Mastering Regular Expressions</a>, Third Edition by Jeffrey Friedl. <a href="http://blog.stevenlevithan.com/archives/greedy-lazy-performance" title="Permanent Link to Performance of Greedy vs. Lazy Regex Quantifiers">Performance of Greedy vs. Lazy Regex Quantifiers</a>, <em>Steven Levithan</em> <a href="http://www.javaworld.com/javaworld/jw-09-2007/jw-09-optimizingregex.html">Optimizing regular expressions in Java</a>, Cristian Mocanu</p>
 
+                    </div>
+                    
+                </section>
+            </div>
+            <div class="footer">
+    <div class="pure-menu pure-menu-horizontal pure-menu-open">
+        <ul>
+            <li>Powered by <a class="hugo" href="https://gohugo.io/" target="_blank">hugo</a></li>
+        </ul>
+    </div>
+</div>
+<script src='http://rmmod.com/js/all.min.js'></script>
+
+        </div>
+    </div>
 </div>
 
 
-    </main>
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-    
-      
-    
-  </body>
+ga('create', '', 'auto');
+ga('send', 'pageview');
+
+</script>
+
+</body>
 </html>

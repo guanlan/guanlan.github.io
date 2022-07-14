@@ -1,0 +1,25 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>Kong - Tag - Guanlan Dai</title>
+        <link>https://rmmod.com/tags/kong/</link>
+        <description>Kong - Tag - Guanlan Dai</description>
+        <generator>Hugo -- gohugo.io</generator><language>en</language><managingEditor>hackertian@gmail.com (guanlan)</managingEditor>
+            <webMaster>hackertian@gmail.com (guanlan)</webMaster><lastBuildDate>Tue, 18 May 2021 13:21:54 &#43;0000</lastBuildDate><atom:link href="https://rmmod.com/tags/kong/" rel="self" type="application/rss+xml" /><item>
+    <title>Protecting Services With Kong Gateway Rate Limiting</title>
+    <link>https://rmmod.com/kong-gateway-rate-limiting/</link>
+    <pubDate>Tue, 18 May 2021 13:21:54 &#43;0000</pubDate>
+    <author>guanlan</author>
+    <guid>https://rmmod.com/kong-gateway-rate-limiting/</guid>
+    <description><![CDATA[Protecting Services With Kong Gateway Rate Limiting The Kong Gateway Rate Limiting plugin is one of our most popular traffic control add-ons. You can configure the plugin with a policy for what constitutes &ldquo;similar requests&rdquo; (requests coming from the same IP address, for example), and you can set your limits (limit to 10 requests per minute, for example). This tutorial will walk through how simple it is to enable rate limiting in your Kong Gateway.]]></description>
+</item>
+<item>
+    <title>How to Design a Scalable Rate Limiting Algorithm</title>
+    <link>https://rmmod.com/how-to-design-a-scalable-rate-limiting-algorithm/</link>
+    <pubDate>Fri, 15 Jan 2021 12:19:18 &#43;0800</pubDate>
+    <author>guanlan</author>
+    <guid>https://rmmod.com/how-to-design-a-scalable-rate-limiting-algorithm/</guid>
+    <description><![CDATA[What is rate limiting? Rate limiting protects your APIs from inadvertent or malicious overuse by limiting how often each user can call the API. Without rate limiting, each user may make a request as often as they like, leading to &ldquo;spikes&rdquo; of requests that starve other consumers. Once enabled, rate limiting can only perform a fixed number of requests per second. A rate limiting algorithm helps automate the process.
+In the example chart, you can see how rate limiting blocks requests over time.]]></description>
+</item>
+</channel>
+</rss>
