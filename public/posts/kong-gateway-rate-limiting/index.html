@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en-us">
-    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>Protecting Services With Kong Gateway Rate Limiting - Guanlan Dai</title><meta name="Description" content="Guanlan Dai"><meta property="og:url" content="http://localhost:1313/posts/kong-gateway-rate-limiting/">
+        <title>Protecting Services With Kong Gateway Rate Limiting - Guanlan Dai</title><meta name="Description" content="This is my cool site"><meta property="og:url" content="https://rmmod.com/posts/kong-gateway-rate-limiting/">
   <meta property="og:site_name" content="Guanlan Dai">
   <meta property="og:title" content="Protecting Services With Kong Gateway Rate Limiting">
   <meta property="og:description" content="The Kong Gateway Rate Limiting plugin is one of our most popular traffic control add-ons. You can configure the plugin with a policy for what constitutes “similar requests” (requests coming from the same IP address, for example), and you can set your limits (limit to 10 requests per minute, for example). This tutorial will walk through how simple it is to enable rate limiting in your Kong Gateway.">
@@ -19,13 +19,13 @@
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="Protecting Services With Kong Gateway Rate Limiting">
   <meta name="twitter:description" content="The Kong Gateway Rate Limiting plugin is one of our most popular traffic control add-ons. You can configure the plugin with a policy for what constitutes “similar requests” (requests coming from the same IP address, for example), and you can set your limits (limit to 10 requests per minute, for example). This tutorial will walk through how simple it is to enable rate limiting in your Kong Gateway.">
-      <meta name="twitter:site" content="@guanlandai">
-<meta name="application-name" content="Guanlan Dai">
-<meta name="apple-mobile-web-app-title" content="Guanlan Dai"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<meta name="application-name" content="My cool site">
+<meta name="apple-mobile-web-app-title" content="My cool site">
+<meta name="referrer" content="no-referrer" /><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://localhost:1313/posts/kong-gateway-rate-limiting/" /><link rel="prev" href="http://localhost:1313/posts/how-to-design-a-scalable-rate-limiting-algorithm/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://rmmod.com/posts/kong-gateway-rate-limiting/" /><link rel="prev" href="https://rmmod.com/posts/how-to-design-a-scalable-rate-limiting-algorithm/" /><link rel="next" href="https://rmmod.com/posts/rust-based-router-kong-gateway/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.7.2/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.7.2/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
@@ -33,9 +33,9 @@
         "inLanguage": "en-us",
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "http:\/\/localhost:1313\/posts\/kong-gateway-rate-limiting\/"
-        },"genre": "posts","keywords": "Kong, Rate Limiting","wordcount":  1898 ,
-        "url": "http:\/\/localhost:1313\/posts\/kong-gateway-rate-limiting\/","datePublished": "2021-05-18T00:00:00+00:00","dateModified": "2021-05-18T00:00:00+00:00","publisher": {
+            "@id": "https:\/\/rmmod.com\/posts\/kong-gateway-rate-limiting\/"
+        },"genre": "posts","keywords": "Kong, Rate Limiting","wordcount":  1922 ,
+        "url": "https:\/\/rmmod.com\/posts\/kong-gateway-rate-limiting\/","datePublished": "2021-05-18T00:00:00+00:00","dateModified": "2021-05-18T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
                 "@type": "Person",
@@ -43,7 +43,7 @@
             },"description": ""
     }
     </script></head>
-    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
 
         <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
     <div class="header-wrapper">
@@ -51,18 +51,7 @@
             <a href="/" title="Guanlan Dai">Guanlan Dai</a>
         </div>
         <div class="menu">
-            <div class="menu-inner"><a class="menu-item" href="/"> Home </a><a class="menu-item" href="/about/"> About </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
-                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
-                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
-                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
-                        </a>
-                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
-                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
-                        </a>
-                        <span class="search-button search-loading" id="search-loading-desktop">
-                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
-                        </span>
-                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+            <div class="menu-inner"><a class="menu-item" href="/"> Home </a><a class="menu-item" href="/about/"> About </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
                     <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
                 </a></div>
         </div>
@@ -77,39 +66,18 @@
                 <span></span><span></span><span></span>
             </div>
         </div>
-        <div class="menu" id="menu-mobile"><div class="search-wrapper">
-                    <div class="search mobile" id="search-mobile">
-                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
-                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
-                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
-                        </a>
-                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
-                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
-                        </a>
-                        <span class="search-button search-loading" id="search-loading-mobile">
-                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
-                        </span>
-                    </div>
-                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
-                        Cancel
-                    </a>
-                </div><a class="menu-item" href="/" title="">Home</a><a class="menu-item" href="/about/" title="">About</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/" title="">Home</a><a class="menu-item" href="/about/" title="">About</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
                 <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
             </a></div>
     </div>
-</header><div class="search-dropdown desktop">
-        <div id="search-dropdown-desktop"></div>
-    </div>
-    <div class="search-dropdown mobile">
-        <div id="search-dropdown-mobile"></div>
-    </div><main class="main">
+</header><main class="main">
                 <div class="container"><div class="toc" id="toc-auto">
             <h2 class="toc-title">Contents</h2>
             <div class="toc-content" id="toc-content-auto"></div>
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Protecting Services With Kong Gateway Rate Limiting</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>guanlan</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2021-05-18">2021-05-18</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1898 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;9 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2021-05-18">2021-05-18</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1922 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;10 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -151,59 +119,59 @@
 Want to set up rate limiting for your API gateway with clicks instead of code? <a href="https://konghq.com/kong-konnect" target="_blank" rel="noopener noreffer ">Try Konnect for free &raquo;</a></p>
 <h2 id="create-a-nodejs-express-api-server">Create a Node.js Express API Server</h2>
 <p>To get started, we&rsquo;ll create a simple API server with a single endpoint that listens for a GET request and responds with &ldquo;hello world.&rdquo; At the command line, create a project folder and initialize a Node.js application:</p>
-<div class="details admonition example open">
-        <div class="details-summary admonition-title">
-            <i class="icon fas fa-list-ol fa-fw" aria-hidden="true"></i>Create Project Folder<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
-        </div>
-        <div class="details-content">
-            <div class="admonition-content"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>~/$  mkdir project
-</span></span><span style="display:flex;"><span>~/$  cd project
-</span></span><span style="display:flex;"><span>~/project$  yarn init
-</span></span><span style="display:flex;"><span>// Accept all defaults
-</span></span></code></pre></div></div>
-        </div>
-    </div>
+<div class="admonition example">
+  <p class="admonition-title">Create Project Folder</p>
+  <div>
+```bash
+~/$  mkdir project
+~/$  cd project
+~/project$  yarn init
+// Accept all defaults
+```
+</div>
+</div>
+
 <p>Then, we&rsquo;ll add Express, which is the only package we&rsquo;ll need:</p>
-<div class="details admonition example open">
-        <div class="details-summary admonition-title">
-            <i class="icon fas fa-list-ol fa-fw" aria-hidden="true"></i>Install Express<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
-        </div>
-        <div class="details-content">
-            <div class="admonition-content"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>~/project$  yarn add express
-</span></span></code></pre></div></div>
-        </div>
-    </div>
+<div class="admonition example">
+  <p class="admonition-title">Install Express</p>
+  <div>
+```bash
+~/project$  yarn add express
+```
+</div>
+</div>
+
 <p>Lastly, let&rsquo;s create a simple server with our &ldquo;hello world&rdquo; endpoint. In your project folder, create an index.js file with these contents:</p>
-<div class="details admonition example open">
-        <div class="details-summary admonition-title">
-            <i class="icon fas fa-list-ol fa-fw" aria-hidden="true"></i>Node.js Server Code<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
-        </div>
-        <div class="details-content">
-            <div class="admonition-content"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#75715e">/* PATH: ~/project/index.js
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e">*/</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">express</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#39;express&#39;</span>)
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">server</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">express</span>()
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">port</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">3000</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">server</span>.<span style="color:#a6e22e">get</span>(<span style="color:#e6db74">&#39;/&#39;</span>, (<span style="color:#a6e22e">req</span>, <span style="color:#a6e22e">res</span>) =&gt; {
-</span></span><span style="display:flex;"><span> <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">headers</span>)
-</span></span><span style="display:flex;"><span> <span style="color:#a6e22e">res</span>.<span style="color:#a6e22e">status</span>(<span style="color:#ae81ff">200</span>).<span style="color:#a6e22e">send</span>(<span style="color:#e6db74">&#39;Hello world!&#39;</span>)
-</span></span><span style="display:flex;"><span>})
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">server</span>.<span style="color:#a6e22e">listen</span>(<span style="color:#a6e22e">port</span>, () =&gt; {
-</span></span><span style="display:flex;"><span> <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">`Server is listening on http://localhost:</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">port</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>)
-</span></span><span style="display:flex;"><span>})
-</span></span></code></pre></div></div>
-        </div>
-    </div>
+<div class="admonition example">
+  <p class="admonition-title">Node.js Server Code</p>
+  <div>
+```js
+/* PATH: ~/project/index.js
+*/
+const express = require('express')
+const server = express()
+const port = 3000
+server.get('/', (req, res) => {
+ console.log(req.headers)
+ res.status(200).send('Hello world!')
+})
+server.listen(port, () => {
+ console.log(`Server is listening on http://localhost:${port}`)
+})
+```
+</div>
+</div>
+
 <p>Now, spin up your server:</p>
-<div class="details admonition example open">
-        <div class="details-summary admonition-title">
-            <i class="icon fas fa-list-ol fa-fw" aria-hidden="true"></i>Start Server<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
-        </div>
-        <div class="details-content">
-            <div class="admonition-content"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>~/project$  node index.js
-</span></span></code></pre></div></div>
-        </div>
-    </div>
+<div class="admonition example">
+  <p class="admonition-title">Start Server</p>
+  <div>
+```bash
+~/project$  node index.js
+```
+</div>
+</div>
+
 <p>In your browser, you can visit http://localhost:3000. Here&rsquo;s what you should see:</p>
 <p><img
         class="lazyload"
@@ -228,91 +196,91 @@ Want to set up rate limiting for your API gateway with clicks instead of code? 
 <p>Next, we&rsquo;ll <a href="https://konghq.com/install" target="_blank" rel="noopener noreffer ">install Kong Gateway</a> to sit in front of our API server. These steps will vary depending on your local environment.</p>
 <p>Simple usage of the Rate Limiting plugin supports configuring Kong in DB-less mode with a declarative configuration. That means, instead of sending configurations to Kong Gateway one step at a time, with those configurations stored in a database, we can use a single declarative .yml file for specifying our entire Kong configuration.</p>
 <p>After installing Kong, we generate a starter .yml file:</p>
-<p><div class="details admonition example open">
-        <div class="details-summary admonition-title">
-            <i class="icon fas fa-list-ol fa-fw" aria-hidden="true"></i>Generate Kong Configuration File<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
-        </div>
-        <div class="details-content">
-            <div class="admonition-content"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>~/project$  kong config init
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>~/project$  tree  -L  <span style="color:#ae81ff">1</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>.
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>├──  index.js
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>├──  kong.yml
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>├──  node_modules
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>├──  package.json
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>└──  yarn.lock
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#ae81ff">1</span>  directory,  <span style="color:#ae81ff">4</span>  files
-</span></span></code></pre></div></div>
-        </div>
-    </div>
+<p><div class="admonition example">
+  <p class="admonition-title">Generate Kong Configuration File</p>
+  <div>
+```bash
+~/project$  kong config init
+
+~/project$  tree  -L  1
+
+.
+
+├──  index.js
+
+├──  kong.yml
+
+├──  node_modules
+
+├──  package.json
+
+└──  yarn.lock
+
+1  directory,  4  files
+```
+</div>
+</div>
+
 We&rsquo;ll come back to that kong.yml file in a moment.</p>
 <p>Now, let&rsquo;s tell Kong where to look for that declarative configuration file upon startup. In /etc/kong, there is a kong.conf.default file that we&rsquo;ll need to copy as kong.conf and then edit:</p>
-<div class="details admonition example open">
-        <div class="details-summary admonition-title">
-            <i class="icon fas fa-list-ol fa-fw" aria-hidden="true"></i>Copy Kong Configuration File<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
-        </div>
-        <div class="details-content">
-            <div class="admonition-content"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>~/project$  cd  /etc/kong
-</span></span><span style="display:flex;"><span>/etc/kong$  sudo su
-</span></span><span style="display:flex;"><span>root:/etc/kong$  cp kong.conf.default kong.conf
-</span></span></code></pre></div></div>
-        </div>
-    </div>
+<div class="admonition example">
+  <p class="admonition-title">Copy Kong Configuration File</p>
+  <div>
+```bash
+~/project$  cd  /etc/kong
+/etc/kong$  sudo su
+root:/etc/kong$  cp kong.conf.default kong.conf
+```
+</div>
+</div>
+
 <p>Next, we edit the kong.conf file. You&rsquo;ll likely need root privileges to do this. There are two edits that we need to make:</p>
-<div class="details admonition example open">
-        <div class="details-summary admonition-title">
-            <i class="icon fas fa-list-ol fa-fw" aria-hidden="true"></i>Kong Configuration<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
-        </div>
-        <div class="details-content">
-            <div class="admonition-content"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-lua" data-lang="lua"><span style="display:flex;"><span><span style="color:#f92672">#</span> PATH: <span style="color:#f92672">/</span>etc<span style="color:#f92672">/</span>kong<span style="color:#f92672">/</span>kong.conf
-</span></span><span style="display:flex;"><span><span style="color:#f92672">#</span> line <span style="color:#f92672">~</span><span style="color:#ae81ff">839</span>: Uncomment this line <span style="color:#f92672">and</span> set to off
-</span></span><span style="display:flex;"><span>database  <span style="color:#f92672">=</span>  off
-</span></span><span style="display:flex;"><span><span style="color:#f92672">#</span> line <span style="color:#f92672">~</span><span style="color:#ae81ff">1023</span>, Uncomment this line. Set to absolute path to kong.yml
-</span></span><span style="display:flex;"><span>declarative_config  <span style="color:#f92672">=</span>  <span style="color:#f92672">/</span>PATH<span style="color:#f92672">/</span>TO<span style="color:#f92672">/</span>YOUR<span style="color:#f92672">/</span>project<span style="color:#f92672">/</span>kong.yml
-</span></span></code></pre></div></div>
-        </div>
-    </div>
+<div class="admonition example">
+  <p class="admonition-title">Kong Configuration</p>
+  <div>
+```lua
+# PATH: /etc/kong/kong.conf
+# line ~839: Uncomment this line and set to off
+database  =  off
+# line ~1023, Uncomment this line. Set to absolute path to kong.yml
+declarative_config  =  /PATH/TO/YOUR/project/kong.yml
+```
+</div>
+</div>
+
 <h2 id="configure-kong-gateway-with-our-service-and-routes">Configure Kong Gateway With Our Service and Routes</h2>
 <p>Before we start up Kong, let&rsquo;s edit the declarative configuration file generated in our project folder. It should look like this:</p>
-<div class="details admonition example open">
-        <div class="details-summary admonition-title">
-            <i class="icon fas fa-list-ol fa-fw" aria-hidden="true"></i>YAML Configuration<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
-        </div>
-        <div class="details-content">
-            <div class="admonition-content"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># PATH: ~/project/kong.yml</span>
-</span></span><span style="display:flex;"><span> 
-</span></span><span style="display:flex;"><span><span style="color:#f92672">_format_version</span>: <span style="color:#e6db74">&#34;2.1&#34;</span>
-</span></span><span style="display:flex;"><span> 
-</span></span><span style="display:flex;"><span><span style="color:#f92672">services</span>:
-</span></span><span style="display:flex;"><span>- <span style="color:#f92672">name</span>: <span style="color:#ae81ff">my-api-server</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">url</span>: <span style="color:#ae81ff">http://localhost:3000/</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">routes</span>:
-</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">api-routes</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">paths</span>:
-</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">/api</span>
-</span></span></code></pre></div></div>
-        </div>
-    </div>
+<div class="admonition example">
+  <p class="admonition-title">YAML Configuration</p>
+  <div>
+```yaml
+# PATH: ~/project/kong.yml
+ 
+_format_version: "2.1"
+ 
+services:
+- name: my-api-server
+  url: http://localhost:3000/
+  routes:
+  - name: api-routes
+    paths:
+    - /api
+```
+</div>
+</div>
+
 <p>Let&rsquo;s walk through what this configuration does. After setting the syntax version (2.1), we configure a new upstream service for which Kong will serve as an API gateway. Our service, which we name my-api-server, listens for requests at the URL http://localhost:3000. </p>
 <p>We associate a route (arbitrarily named api-routes) for our service with the path /api. Kong Gateway will listen for requests to /api, and then route those requests to our API server at http://localhost:3000.</p>
 <p>With our declarative configuration file in place, we start Kong:</p>
-<div class="details admonition example open">
-        <div class="details-summary admonition-title">
-            <i class="icon fas fa-list-ol fa-fw" aria-hidden="true"></i>Start Kong<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
-        </div>
-        <div class="details-content">
-            <div class="admonition-content"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>~/project$  sudo kong start
-</span></span></code></pre></div></div>
-        </div>
-    </div>
+<div class="admonition example">
+  <p class="admonition-title">Start Kong</p>
+  <div>
+```bash
+~/project$  sudo kong start
+```
+</div>
+</div>
+
 <p>Now, in Insomnia, we send a GET request through Kong Gateway, which listens at http://localhost:8000, to the /api path:</p>
 <p><img
         class="lazyload"
@@ -325,46 +293,46 @@ We&rsquo;ll come back to that kong.yml file in a moment.</p>
 <p>Note that, by sending our request to port 8000, we are going <em>through</em> Kong Gateway to get to our API server.</p>
 <h2 id="add-the-kong-gateway-rate-limiting-plugin">Add the Kong Gateway Rate Limiting Plugin</h2>
 <p>Now that we have Kong Gateway sitting in front of our API server, we&rsquo;ll add in the Rate Limiting Plugin and test it out. We will need to add a few lines to our kong.yml declarative configuration file:</p>
-<div class="details admonition example open">
-        <div class="details-summary admonition-title">
-            <i class="icon fas fa-list-ol fa-fw" aria-hidden="true"></i>Rate Limiting Configuration<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
-        </div>
-        <div class="details-content">
-            <div class="admonition-content"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># PATH: ~/project/kong.yml</span>
-</span></span><span style="display:flex;"><span> 
-</span></span><span style="display:flex;"><span><span style="color:#f92672">_format_version</span>: <span style="color:#e6db74">&#34;2.1&#34;</span>
-</span></span><span style="display:flex;"><span> 
-</span></span><span style="display:flex;"><span><span style="color:#f92672">services</span>:
-</span></span><span style="display:flex;"><span>- <span style="color:#f92672">name</span>: <span style="color:#ae81ff">my-api-server</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">url</span>: <span style="color:#ae81ff">http://localhost:3000/</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">routes</span>:
-</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">api-routes</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">paths</span>:
-</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">/api</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">plugins</span>:
-</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">rate-limiting</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">config</span>:
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">minute</span>: <span style="color:#ae81ff">5</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">hour</span>: <span style="color:#ae81ff">12</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">policy</span>: <span style="color:#ae81ff">local</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">limit_by</span>: <span style="color:#ae81ff">header</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">header_name</span>: <span style="color:#ae81ff">x-api-key</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">policy</span>:  <span style="color:#ae81ff">local</span>
-</span></span></code></pre></div></div>
-        </div>
-    </div>
+<div class="admonition example">
+  <p class="admonition-title">Rate Limiting Configuration</p>
+  <div>
+```yaml
+# PATH: ~/project/kong.yml
+ 
+_format_version: "2.1"
+ 
+services:
+- name: my-api-server
+  url: http://localhost:3000/
+  routes:
+  - name: api-routes
+    paths:
+    - /api
+  plugins:
+  - name: rate-limiting
+    config:
+      minute: 5
+      hour: 12
+      policy: local
+      limit_by: header
+      header_name: x-api-key
+      policy:  local
+```
+</div>
+</div>
+
 <p>We&rsquo;ve added the entire plugins section underneath our my-api-server service. We specify the name of the plugin, rate-limiting. This name is <em>not</em> arbitrary but refers to the actual rate-limiting plugin in the Kong package.</p>
 <p>In this first run, we&rsquo;ve configured the plugin with minute: 5, which allows for up to five requests per minute. We&rsquo;ve also added hour : 12, which limits the requests per hour to 12. We&rsquo;re using the local policy, which has to do with how Kong will store and increment request counts. We&rsquo;ll talk about this policy configuration more below.</p>
 <p>Let&rsquo;s restart Kong:</p>
-<div class="details admonition example open">
-        <div class="details-summary admonition-title">
-            <i class="icon fas fa-list-ol fa-fw" aria-hidden="true"></i>Restart Kong<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
-        </div>
-        <div class="details-content">
-            <div class="admonition-content"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>~/project$  sudo kong restart
-</span></span></code></pre></div></div>
-        </div>
-    </div>
+<div class="admonition example">
+  <p class="admonition-title">Restart Kong</p>
+  <div>
+```bash
+~/project$  sudo kong restart
+```
+</div>
+</div>
+
 <p>Now, back in Insomnia, we test out sending some requests to our API endpoint. If you send a request every few seconds, you&rsquo;ll see that the first five requests received a 200 OK response. However, if you exceed five requests within a minute:</p>
 <p><img
         class="lazyload"
@@ -382,31 +350,31 @@ We&rsquo;ll come back to that kong.yml file in a moment.</p>
 <h3 id="rate-limiting-similar-requests">Rate Limiting &ldquo;Similar&rdquo; Requests</h3>
 <p>We&rsquo;ve configured Kong to count (and limit) requests to our server in our simple use case so far. More likely, we&rsquo;ll want to apply our rate limits to <em>similar</em> requests. By &ldquo;similar,&rdquo; we might mean &ldquo;coming from the same IP address&rdquo; or &ldquo;using the same API key.&rdquo;</p>
 <p>For example, let&rsquo;s say that all users of our API server need to send requests with a unique API key set in headers as x-api-key. We can configure Kong to apply its rate limits on a per-API-key basis as follows:</p>
-<div class="details admonition example open">
-        <div class="details-summary admonition-title">
-            <i class="icon fas fa-list-ol fa-fw" aria-hidden="true"></i>Per-API-Key Rate Limiting<i class="details-icon fas fa-angle-right fa-fw" aria-hidden="true"></i>
-        </div>
-        <div class="details-content">
-            <div class="admonition-content"><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># PATH: ~/project/kong.yml</span>
-</span></span><span style="display:flex;"><span> 
-</span></span><span style="display:flex;"><span><span style="color:#f92672">_format_version</span>: <span style="color:#e6db74">&#34;2.1&#34;</span>
-</span></span><span style="display:flex;"><span> 
-</span></span><span style="display:flex;"><span><span style="color:#f92672">services</span>:
-</span></span><span style="display:flex;"><span>- <span style="color:#f92672">name</span>: <span style="color:#ae81ff">my-api-server</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">url</span>: <span style="color:#ae81ff">http://localhost:3000/</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">routes</span>:
-</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">api-routes</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">paths</span>:
-</span></span><span style="display:flex;"><span>    - <span style="color:#ae81ff">/api</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">plugins</span>:
-</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">rate-limiting</span>
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">config</span>:
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">minute</span>: <span style="color:#ae81ff">5</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">hour</span>: <span style="color:#ae81ff">12</span>
-</span></span><span style="display:flex;"><span>      <span style="color:#f92672">policy</span>: <span style="color:#ae81ff">local</span>
-</span></span></code></pre></div></div>
-        </div>
-    </div>
+<div class="admonition example">
+  <p class="admonition-title">Per-API-Key Rate Limiting</p>
+  <div>
+```yaml
+# PATH: ~/project/kong.yml
+ 
+_format_version: "2.1"
+ 
+services:
+- name: my-api-server
+  url: http://localhost:3000/
+  routes:
+  - name: api-routes
+    paths:
+    - /api
+  plugins:
+  - name: rate-limiting
+    config:
+      minute: 5
+      hour: 12
+      policy: local
+```
+</div>
+</div>
+
 <p>If we change the x-api-key to a different value (for example, user2), we immediately get 200 OK responses:</p>
 <p><img
         class="lazyload"
@@ -437,7 +405,7 @@ We&rsquo;ll come back to that kong.yml file in a moment.</p>
         <div class="post-info-line">
             <div class="post-info-md"></div>
             <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="http://localhost:1313/posts/kong-gateway-rate-limiting/" data-title="Protecting Services With Kong Gateway Rate Limiting" data-via="guanlandai" data-hashtags="Kong,Rate Limiting"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://localhost:1313/posts/kong-gateway-rate-limiting/" data-hashtag="Kong"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="http://localhost:1313/posts/kong-gateway-rate-limiting/" data-title="Protecting Services With Kong Gateway Rate Limiting"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://localhost:1313/posts/kong-gateway-rate-limiting/" data-title="Protecting Services With Kong Gateway Rate Limiting"><i data-svg-src="/lib/simple-icons/icons/line.min.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://localhost:1313/posts/kong-gateway-rate-limiting/" data-title="Protecting Services With Kong Gateway Rate Limiting"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+                <span><a href="javascript:void(0);" title="Share on X" data-sharer="x" data-url="https://rmmod.com/posts/kong-gateway-rate-limiting/" data-title="Protecting Services With Kong Gateway Rate Limiting" data-via="guanlandai" data-hashtags="Kong,Rate Limiting"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Threads" data-sharer="threads" data-url="https://rmmod.com/posts/kong-gateway-rate-limiting/" data-title="Protecting Services With Kong Gateway Rate Limiting"><i class="fab fa-threads fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://rmmod.com/posts/kong-gateway-rate-limiting/" data-hashtag="Kong"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://rmmod.com/posts/kong-gateway-rate-limiting/" data-title="Protecting Services With Kong Gateway Rate Limiting"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://rmmod.com/posts/kong-gateway-rate-limiting/" data-title="Protecting Services With Kong Gateway Rate Limiting"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@14.9.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://rmmod.com/posts/kong-gateway-rate-limiting/" data-title="Protecting Services With Kong Gateway Rate Limiting"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Diaspora" data-sharer="diaspora" data-url="https://rmmod.com/posts/kong-gateway-rate-limiting/" data-title="Protecting Services With Kong Gateway Rate Limiting" data-description=""><i class="fab fa-diaspora fa-fw" aria-hidden="true"></i></a><a href="https://t.me/share/url?url=https%3a%2f%2frmmod.com%2fposts%2fkong-gateway-rate-limiting%2f&amp;text=Protecting%20Services%20With%20Kong%20Gateway%20Rate%20Limiting" target="_blank" title="Share on Telegram"><i class="fab fa-telegram fa-fw" aria-hidden="true"></i></a></span>
             </div>
         </div>
     </div>
@@ -449,18 +417,22 @@ We&rsquo;ll come back to that kong.yml file in a moment.</p>
         </section>
     </div>
 
-    <div class="post-nav"><a href="/posts/how-to-design-a-scalable-rate-limiting-algorithm/" class="prev" rel="prev" title="How to Design a Scalable Rate Limiting Algorithm"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>How to Design a Scalable Rate Limiting Algorithm</a></div>
+    <div class="post-nav"><a href="/posts/how-to-design-a-scalable-rate-limiting-algorithm/" class="prev" rel="prev" title="How to Design a Scalable Rate Limiting Algorithm"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>How to Design a Scalable Rate Limiting Algorithm</a>
+            <a href="/posts/rust-based-router-kong-gateway/" class="next" rel="next" title="Deep Dive into Kong Gateway&#39;s New Rust-Based Router">Deep Dive into Kong Gateway's New Rust-Based Router<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
 </div>
 </article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">2012 - 2025 guanlan | CC BY-NC 4.0</div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"></div>
+        <div class="footer-container"><div class="footer-line">Guanlan Dai | CC BY-NC 4.0</div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2009 - 2025</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Guanlan Dai</a></span></div>
         </div>
     </footer></div>
 
         <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
                 <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
-            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+            </a>
+        </div>
+
+        <div id="fixed-buttons-hidden"><a href="#" id="view-comments" class="fixed-button" title="View Comments">
                 <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
             </a>
-        </div><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"search":{"highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+        </div><script src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.2/sharer.min.js"></script><script>window.config={"comment":{}};</script><script src="/js/theme.min.js"></script></body>
 </html>

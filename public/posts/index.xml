@@ -3,7 +3,18 @@
         <title>All Posts - Guanlan Dai</title>
         <link>https://rmmod.com/posts/</link>
         <description>All Posts | Guanlan Dai</description>
-        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 18 May 2021 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://rmmod.com/posts/" rel="self" type="application/rss+xml" /><item>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Thu, 18 Jul 2024 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://rmmod.com/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>Deep Dive into Kong Gateway&#39;s New Rust-Based Router</title>
+    <link>https://rmmod.com/posts/rust-based-router-kong-gateway/</link>
+    <pubDate>Thu, 18 Jul 2024 00:00:00 &#43;0000</pubDate>
+    <author>guanlan</author>
+    <guid>https://rmmod.com/posts/rust-based-router-kong-gateway/</guid>
+    <description><![CDATA[<h2 id="what-is-the-expressions-router">What is the Expressions Router?</h2>
+<p>The router component in the Kong Gateway is a crucial element for traffic handling, allowing the definition of specific matching rules to identify and process client requests. As a core component of the gateway, the router plays a vital role in ensuring the functionality, flexibility, security as well as performance of the gateway.</p>
+<p></p>
+<p>In the 3.0 version update of the Kong API Gateway, the routing system was completely rewritten in Rust — a memory-safe and efficient language. A concise DSL (Domain Specific Language) was designed to define routing rules efficiently, called the &ldquo;Expressions Router.&rdquo; The new design reduced the routing construction time by 75% when handling up to 10,000 routing rules, significantly decreasing from 20 seconds to 5 seconds.</p>]]></description>
+</item>
+<item>
     <title>Protecting Services With Kong Gateway Rate Limiting</title>
     <link>https://rmmod.com/posts/kong-gateway-rate-limiting/</link>
     <pubDate>Tue, 18 May 2021 00:00:00 &#43;0000</pubDate>
@@ -62,12 +73,10 @@
     <guid>https://rmmod.com/posts/how-to-use-python-like-lisp/</guid>
     <description><![CDATA[<p>Lisp has some very effective way to get jobs done, this article give you a direct way to use Python like Lisp.```
 cons = lambda el, lst: (el, lst)</p>
-<pre tabindex="0"><code>mklist = lambda *args: reduce(lambda lst, el: cons(el, lst), reversed(args), None) 
-</code></pre><p>car = lambda lst: lst[0] if lst else lst</p>
-<pre tabindex="0"><code>cdr = lambda lst: lst[1] if lst else lst 
-</code></pre><p>nth = lambda n, lst: nth(n-1, cdr(lst)) if n ]]&gt; 0 else car(lst)</p>
-<pre tabindex="0"><code>length = lambda lst, count=0: length(cdr(lst), count+1) if lst else count
-</code></pre><p>begin = lambda *args: args[-1]</p>]]></description>
+<pre><code class="">mklist = lambda *args: reduce(lambda lst, el: cons(el, lst), reversed(args), None) </code></pre>
+<p>car = lambda lst: lst[0] if lst else lst</p>
+<pre><code class="">cdr = lambda lst: lst[1] if lst else lst </code></pre>
+<p>nth = lambda n, lst: nth(n-1, cdr(lst)) if n ]]&gt; 0 else car(lst)</p>]]></description>
 </item>
 </channel>
 </rss>

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en-us">
-    <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>How to Design a Scalable Rate Limiting Algorithm - Guanlan Dai</title><meta name="Description" content="Guanlan Dai"><meta property="og:url" content="http://localhost:1313/posts/how-to-design-a-scalable-rate-limiting-algorithm/">
+        <title>How to Design a Scalable Rate Limiting Algorithm - Guanlan Dai</title><meta name="Description" content="This is my cool site"><meta property="og:url" content="https://rmmod.com/posts/how-to-design-a-scalable-rate-limiting-algorithm/">
   <meta property="og:site_name" content="Guanlan Dai">
   <meta property="og:title" content="How to Design a Scalable Rate Limiting Algorithm">
   <meta property="og:description" content="What is rate limiting? Rate limiting protects your APIs from inadvertent or malicious overuse by limiting how often each user can call the API. Without rate limiting, each user may make a request as often as they like, leading to “spikes” of requests that starve other consumers. Once enabled, rate limiting can only perform a fixed number of requests per second. A rate limiting algorithm helps automate the process.">
@@ -19,13 +19,13 @@
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="How to Design a Scalable Rate Limiting Algorithm">
   <meta name="twitter:description" content="What is rate limiting? Rate limiting protects your APIs from inadvertent or malicious overuse by limiting how often each user can call the API. Without rate limiting, each user may make a request as often as they like, leading to “spikes” of requests that starve other consumers. Once enabled, rate limiting can only perform a fixed number of requests per second. A rate limiting algorithm helps automate the process.">
-      <meta name="twitter:site" content="@guanlandai">
-<meta name="application-name" content="Guanlan Dai">
-<meta name="apple-mobile-web-app-title" content="Guanlan Dai"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<meta name="application-name" content="My cool site">
+<meta name="apple-mobile-web-app-title" content="My cool site">
+<meta name="referrer" content="no-referrer" /><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="http://localhost:1313/posts/how-to-design-a-scalable-rate-limiting-algorithm/" /><link rel="prev" href="http://localhost:1313/posts/effective-web-crawler/" /><link rel="next" href="http://localhost:1313/posts/kong-gateway-rate-limiting/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="/lib/fontawesome-free/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-        <noscript><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"></noscript><link rel="preload" href="/lib/animate/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-        <noscript><link rel="stylesheet" href="/lib/animate/animate.min.css"></noscript><script type="application/ld+json">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://rmmod.com/posts/how-to-design-a-scalable-rate-limiting-algorithm/" /><link rel="prev" href="https://rmmod.com/posts/effective-web-crawler/" /><link rel="next" href="https://rmmod.com/posts/kong-gateway-rate-limiting/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.7.2/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.7.2/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
@@ -33,9 +33,9 @@
         "inLanguage": "en-us",
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "http:\/\/localhost:1313\/posts\/how-to-design-a-scalable-rate-limiting-algorithm\/"
+            "@id": "https:\/\/rmmod.com\/posts\/how-to-design-a-scalable-rate-limiting-algorithm\/"
         },"genre": "posts","keywords": "Kong, Rate Limiting","wordcount":  2453 ,
-        "url": "http:\/\/localhost:1313\/posts\/how-to-design-a-scalable-rate-limiting-algorithm\/","datePublished": "2021-01-15T12:19:18+08:00","dateModified": "2021-01-15T12:19:18+08:00","publisher": {
+        "url": "https:\/\/rmmod.com\/posts\/how-to-design-a-scalable-rate-limiting-algorithm\/","datePublished": "2021-01-15T12:19:18+08:00","dateModified": "2021-01-15T12:19:18+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
                 "@type": "Person",
@@ -43,7 +43,7 @@
             },"description": ""
     }
     </script></head>
-    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
 
         <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
     <div class="header-wrapper">
@@ -51,18 +51,7 @@
             <a href="/" title="Guanlan Dai">Guanlan Dai</a>
         </div>
         <div class="menu">
-            <div class="menu-inner"><a class="menu-item" href="/"> Home </a><a class="menu-item" href="/about/"> About </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
-                        <input type="text" placeholder="Search titles or contents..." id="search-input-desktop">
-                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="Search">
-                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
-                        </a>
-                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="Clear">
-                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
-                        </a>
-                        <span class="search-button search-loading" id="search-loading-desktop">
-                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
-                        </span>
-                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+            <div class="menu-inner"><a class="menu-item" href="/"> Home </a><a class="menu-item" href="/about/"> About </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
                     <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
                 </a></div>
         </div>
@@ -77,32 +66,11 @@
                 <span></span><span></span><span></span>
             </div>
         </div>
-        <div class="menu" id="menu-mobile"><div class="search-wrapper">
-                    <div class="search mobile" id="search-mobile">
-                        <input type="text" placeholder="Search titles or contents..." id="search-input-mobile">
-                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="Search">
-                            <i class="fas fa-search fa-fw" aria-hidden="true"></i>
-                        </a>
-                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="Clear">
-                            <i class="fas fa-times-circle fa-fw" aria-hidden="true"></i>
-                        </a>
-                        <span class="search-button search-loading" id="search-loading-mobile">
-                            <i class="fas fa-spinner fa-fw fa-spin" aria-hidden="true"></i>
-                        </span>
-                    </div>
-                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
-                        Cancel
-                    </a>
-                </div><a class="menu-item" href="/" title="">Home</a><a class="menu-item" href="/about/" title="">About</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/" title="">Home</a><a class="menu-item" href="/about/" title="">About</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
                 <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
             </a></div>
     </div>
-</header><div class="search-dropdown desktop">
-        <div id="search-dropdown-desktop"></div>
-    </div>
-    <div class="search-dropdown mobile">
-        <div id="search-dropdown-mobile"></div>
-    </div><main class="main">
+</header><main class="main">
                 <div class="container"><div class="toc" id="toc-auto">
             <h2 class="toc-title">Contents</h2>
             <div class="toc-content" id="toc-content-auto"></div>
@@ -281,51 +249,51 @@
 <p>You can quickly <a href="https://konghq.com/install#kong-gateway" target="_blank" rel="noopener noreffer ">try Kong Gateway</a> on one of your dev machines to test it out. My favorite way to get started is to use the <a href="https://getkong.org/install/aws-cloudformation" target="_blank" rel="noopener noreffer ">AWS cloud formation template</a> since I get a pre-configured dev machine in just a few clicks. Just choose one of the HVM options, and set your instance sizes to use t2.micro as these are affordable for testing. Then ssh into a command line on your new instance for the next step.</p>
 <h3 id="adding-an-api-on-kong-gateway">Adding an API on Kong Gateway</h3>
 <p>The next step is <a href="https://konghq.com/blog/set-up-kong-gateway" target="_blank" rel="noopener noreffer ">adding an API</a> on Kong Gateway using the admin API, which can be done by setting up a Route and a Service entity. We will use <a href="https://httpbin.org/" target="_blank" rel="noopener noreffer ">httpbin</a>, a free testing service for APIs, as our example upstream service,. The get URL will mirror back my request data as JSON. We also assume Kong Gateway is running on the local system at the default ports.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>curl  -i  -X  POST
-</span></span><span style="display:flex;"><span>  --url http://localhost:8001/services/
-</span></span><span style="display:flex;"><span>  --data  <span style="color:#e6db74">&#39;name=httpbin
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  --data &#39;</span>url<span style="color:#f92672">=</span>http://httpbin.org/get<span style="color:#e6db74">&#39;
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">curl  -i  -X  POST
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  --url http://localhost:8001/services/httpbin/routes
-</span></span></span><span style="display:flex;"><span><span style="color:#e6db74">  --data  &#39;</span>paths<span style="color:#f92672">[]=</span>/test<span style="color:#960050;background-color:#1e0010">&#39;</span>
-</span></span></code></pre></div><p>Now Kong Gateway is aware that every request sent to &ldquo;/test&rdquo; should be proxied to httpbin. We can make the following request to Kong Gateway on its proxy port to test it:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>curl http://localhost:8000/test
-</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;args&#34;</span>:  <span style="color:#f92672">{}</span>,
-</span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;headers&#34;</span>:  <span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;Accept&#34;</span>:  <span style="color:#e6db74">&#34;*/*&#34;</span>,
-</span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;Connection&#34;</span>:  <span style="color:#e6db74">&#34;close&#34;</span>,
-</span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;Host&#34;</span>:  <span style="color:#e6db74">&#34;httpbin.org&#34;</span>,
-</span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;User-Agent&#34;</span>:  <span style="color:#e6db74">&#34;curl/7.51.0&#34;</span>,
-</span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;X-Forwarded-Host&#34;</span>:  <span style="color:#e6db74">&#34;localhost&#34;</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>,
-</span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;origin&#34;</span>:  <span style="color:#e6db74">&#34;localhost, 52.89.171.202&#34;</span>,
-</span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;url&#34;</span>:  <span style="color:#e6db74">&#34;http://localhost/get&#34;</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
-</span></span></code></pre></div><p>It&rsquo;s alive! Kong Gateway received the request and proxied it to httpbin, which has mirrored back the headers for my request and my origin IP address.</p>
+<pre><code class="bash">curl  -i  -X  POST
+  --url http://localhost:8001/services/
+  --data  &#39;name=httpbin
+  --data &#39;url=http://httpbin.org/get&#39;
+
+curl  -i  -X  POST
+  --url http://localhost:8001/services/httpbin/routes
+  --data  &#39;paths[]=/test&#39;</code></pre>
+<p>Now Kong Gateway is aware that every request sent to &ldquo;/test&rdquo; should be proxied to httpbin. We can make the following request to Kong Gateway on its proxy port to test it:</p>
+<pre><code class="bash">curl http://localhost:8000/test
+{
+&#34;args&#34;:  {},
+&#34;headers&#34;:  {
+&#34;Accept&#34;:  &#34;*/*&#34;,
+&#34;Connection&#34;:  &#34;close&#34;,
+&#34;Host&#34;:  &#34;httpbin.org&#34;,
+&#34;User-Agent&#34;:  &#34;curl/7.51.0&#34;,
+&#34;X-Forwarded-Host&#34;:  &#34;localhost&#34;
+},
+&#34;origin&#34;:  &#34;localhost, 52.89.171.202&#34;,
+&#34;url&#34;:  &#34;http://localhost/get&#34;
+}</code></pre>
+<p>It&rsquo;s alive! Kong Gateway received the request and proxied it to httpbin, which has mirrored back the headers for my request and my origin IP address.</p>
 <h3 id="adding-basic-rate-limiting">Adding Basic Rate-Limiting</h3>
 <p>Let&rsquo;s go ahead and protect it from an excessive number of requests by adding the rate-limiting functionality using the community edition <a href="https://getkong.org/plugins/rate-limiting" target="_blank" rel="noopener noreffer ">Rate-Limiting plugin</a>, with a limit of 5 requests per minute from every consumer:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>curl  -i  -X  POST http://localhost:8001/services/httpbin/plugins/
-</span></span><span style="display:flex;"><span>-d  <span style="color:#e6db74">&#34;name=rate-limiting&#34;</span>
-</span></span><span style="display:flex;"><span>-d  <span style="color:#e6db74">&#34;config.minute=5&#34;</span>
-</span></span></code></pre></div><p>If we now make more than five requests, Kong Gateway will respond with the following error message:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>curl http://localhost:8000/test
-</span></span><span style="display:flex;"><span><span style="color:#f92672">{</span>
-</span></span><span style="display:flex;"><span><span style="color:#e6db74">&#34;message&#34;</span>:<span style="color:#e6db74">&#34;API rate limit exceeded&#34;</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
-</span></span></code></pre></div><p>Looking good! We have added an API on Kong Gateway, and we added rate-limiting in just two HTTP requests to the admin API.</p>
+<pre><code class="bash">curl  -i  -X  POST http://localhost:8001/services/httpbin/plugins/
+-d  &#34;name=rate-limiting&#34;
+-d  &#34;config.minute=5&#34;</code></pre>
+<p>If we now make more than five requests, Kong Gateway will respond with the following error message:</p>
+<pre><code class="bash">curl http://localhost:8000/test
+{
+&#34;message&#34;:&#34;API rate limit exceeded&#34;
+}</code></pre>
+<p>Looking good! We have added an API on Kong Gateway, and we added rate-limiting in just two HTTP requests to the admin API.</p>
 <p>It defaults to rate limiting by IP address using fixed windows and synchronizes across all nodes in your cluster using your default datastore. For other options, including rate limiting per consumer or using another datastore like Redis, please see the <a href="https://getkong.org/plugins/rate-limiting" target="_blank" rel="noopener noreffer ">documentation</a>.</p>
 <p>For a more detailed tutorial, check out <a href="https://konghq.com/blog/kong-gateway-rate-limiting" target="_blank" rel="noopener noreffer ">Protecting Services With Kong Gateway Rate Limiting &raquo;</a></p>
 <h2 id="better-performance-with-advanced-rate-limiting-and-konnect">Better performance with advanced rate limiting and Konnect</h2>
 <p>The <a href="https://docs.konghq.com/hub/kong-inc/rate-limiting-advanced" target="_blank" rel="noopener noreffer ">Advanced Rate Limiting plugin</a> adds support for the sliding window algorithm for better control and performance. The sliding window prevents your API from being overloaded near window boundaries, as explained in the sections above. For low latency, it uses an in-memory table of the counters and can synchronize across the cluster using asynchronous or synchronous updates. This gives the latency of local thresholds and is scalable across your entire cluster.</p>
 <p>The first step is <a href="https://konghq.com/kong-konnect" target="_blank" rel="noopener noreffer ">start a free trial of Konnect</a>. You can then configure the rate limit, the window size in seconds, and how often to sync the counter values. It&rsquo;s straightforward to use, and you can get this robust control with a simple API call:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>curl  -i  -X  POST http://localhost:8001/services/httpbin/plugins
-</span></span><span style="display:flex;"><span>-d  <span style="color:#e6db74">&#34;name=rate-limiting&#34;</span>
-</span></span><span style="display:flex;"><span>-d  <span style="color:#e6db74">&#34;config.limit=5&#34;</span>
-</span></span><span style="display:flex;"><span>-d  <span style="color:#e6db74">&#34;config.window_size=60&#34;</span>
-</span></span><span style="display:flex;"><span>-d  <span style="color:#e6db74">&#34;config.sync_rate=10&#34;</span>
-</span></span></code></pre></div><p>The enterprise edition also supports Redis Sentinel, which makes Redis highly available and more fault-tolerant. You can read more in the <a href="https://docs.konghq.com/hub/kong-inc/rate-limiting" target="_blank" rel="noopener noreffer ">rate limiting plugin documentation</a>.</p>
+<pre><code class="bash">curl  -i  -X  POST http://localhost:8001/services/httpbin/plugins
+-d  &#34;name=rate-limiting&#34;
+-d  &#34;config.limit=5&#34;
+-d  &#34;config.window_size=60&#34;
+-d  &#34;config.sync_rate=10&#34;</code></pre>
+<p>The enterprise edition also supports Redis Sentinel, which makes Redis highly available and more fault-tolerant. You can read more in the <a href="https://docs.konghq.com/hub/kong-inc/rate-limiting" target="_blank" rel="noopener noreffer ">rate limiting plugin documentation</a>.</p>
 <p>Other features include an admin GUI, more security features like role-based access control, analytics and professional support. If you&rsquo;re interested in learning more about the Enterprise edition, just <a href="https://konghq.com/contact" target="_blank" rel="noopener noreffer ">contact</a> Kong&rsquo;s sales team to <a href="https://konghq.com/request-demo" target="_blank" rel="noopener noreffer ">request a demo</a>.</p>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
@@ -336,7 +304,7 @@
         <div class="post-info-line">
             <div class="post-info-md"></div>
             <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="http://localhost:1313/posts/how-to-design-a-scalable-rate-limiting-algorithm/" data-title="How to Design a Scalable Rate Limiting Algorithm" data-via="guanlandai" data-hashtags="Kong,Rate Limiting"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="http://localhost:1313/posts/how-to-design-a-scalable-rate-limiting-algorithm/" data-hashtag="Kong"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="http://localhost:1313/posts/how-to-design-a-scalable-rate-limiting-algorithm/" data-title="How to Design a Scalable Rate Limiting Algorithm"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="http://localhost:1313/posts/how-to-design-a-scalable-rate-limiting-algorithm/" data-title="How to Design a Scalable Rate Limiting Algorithm"><i data-svg-src="/lib/simple-icons/icons/line.min.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="http://localhost:1313/posts/how-to-design-a-scalable-rate-limiting-algorithm/" data-title="How to Design a Scalable Rate Limiting Algorithm"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+                <span><a href="javascript:void(0);" title="Share on X" data-sharer="x" data-url="https://rmmod.com/posts/how-to-design-a-scalable-rate-limiting-algorithm/" data-title="How to Design a Scalable Rate Limiting Algorithm" data-via="guanlandai" data-hashtags="Kong,Rate Limiting"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Threads" data-sharer="threads" data-url="https://rmmod.com/posts/how-to-design-a-scalable-rate-limiting-algorithm/" data-title="How to Design a Scalable Rate Limiting Algorithm"><i class="fab fa-threads fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://rmmod.com/posts/how-to-design-a-scalable-rate-limiting-algorithm/" data-hashtag="Kong"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://rmmod.com/posts/how-to-design-a-scalable-rate-limiting-algorithm/" data-title="How to Design a Scalable Rate Limiting Algorithm"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://rmmod.com/posts/how-to-design-a-scalable-rate-limiting-algorithm/" data-title="How to Design a Scalable Rate Limiting Algorithm"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@14.9.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://rmmod.com/posts/how-to-design-a-scalable-rate-limiting-algorithm/" data-title="How to Design a Scalable Rate Limiting Algorithm"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Diaspora" data-sharer="diaspora" data-url="https://rmmod.com/posts/how-to-design-a-scalable-rate-limiting-algorithm/" data-title="How to Design a Scalable Rate Limiting Algorithm" data-description=""><i class="fab fa-diaspora fa-fw" aria-hidden="true"></i></a><a href="https://t.me/share/url?url=https%3a%2f%2frmmod.com%2fposts%2fhow-to-design-a-scalable-rate-limiting-algorithm%2f&amp;text=How%20to%20Design%20a%20Scalable%20Rate%20Limiting%20Algorithm" target="_blank" title="Share on Telegram"><i class="fab fa-telegram fa-fw" aria-hidden="true"></i></a></span>
             </div>
         </div>
     </div>
@@ -353,14 +321,17 @@
 </div>
 </article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">2012 - 2025 guanlan | CC BY-NC 4.0</div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"></div>
+        <div class="footer-container"><div class="footer-line">Guanlan Dai | CC BY-NC 4.0</div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2009 - 2025</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Guanlan Dai</a></span></div>
         </div>
     </footer></div>
 
         <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
                 <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
-            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+            </a>
+        </div>
+
+        <div id="fixed-buttons-hidden"><a href="#" id="view-comments" class="fixed-button" title="View Comments">
                 <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
             </a>
-        </div><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/lunr/lunr.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"search":{"highlightTag":"em","maxResultLength":10,"noResultsFound":"No results found","snippetLength":30}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+        </div><script src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.2/sharer.min.js"></script><script>window.config={"comment":{}};</script><script src="/js/theme.min.js"></script></body>
 </html>

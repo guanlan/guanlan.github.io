@@ -20,7 +20,7 @@
       <link>https://rmmod.com/posts/how-to-use-python-like-lisp/</link>
       <pubDate>Mon, 19 Nov 2012 00:00:00 +0000</pubDate>
       <guid>https://rmmod.com/posts/how-to-use-python-like-lisp/</guid>
-      <description>&lt;p&gt;Lisp has some very effective way to get jobs done, this article give you a direct way to use Python like Lisp.```&#xA;cons = lambda el, lst: (el, lst)&lt;/p&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;mklist = lambda *args: reduce(lambda lst, el: cons(el, lst), reversed(args), None) &#xA;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;car = lambda lst: lst[0] if lst else lst&lt;/p&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;cdr = lambda lst: lst[1] if lst else lst &#xA;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;nth = lambda n, lst: nth(n-1, cdr(lst)) if n ]]&amp;gt; 0 else car(lst)&lt;/p&gt;&#xA;&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;length = lambda lst, count=0: length(cdr(lst), count+1) if lst else count&#xA;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;begin = lambda *args: args[-1]&lt;/p&gt;</description>
+      <description>&lt;p&gt;Lisp has some very effective way to get jobs done, this article give you a direct way to use Python like Lisp.```&#xA;cons = lambda el, lst: (el, lst)&lt;/p&gt;&#xA;&lt;pre&gt;&lt;code class=&#34;&#34;&gt;mklist = lambda *args: reduce(lambda lst, el: cons(el, lst), reversed(args), None) &lt;/code&gt;&lt;/pre&gt;&#xA;&lt;p&gt;car = lambda lst: lst[0] if lst else lst&lt;/p&gt;&#xA;&lt;pre&gt;&lt;code class=&#34;&#34;&gt;cdr = lambda lst: lst[1] if lst else lst &lt;/code&gt;&lt;/pre&gt;&#xA;&lt;p&gt;nth = lambda n, lst: nth(n-1, cdr(lst)) if n ]]&amp;gt; 0 else car(lst)&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>
