@@ -1,0 +1,37 @@
+baseURL = 'https://rmmod.com/'
+languageCode = 'en-us'
+title = 'Guanlan Dai'
+theme = 'LoveIt'
+
+enableEmoji = true
+
+[params]
+  defaultTheme = "auto"
+  dateFormat = "2006-01-02"
+
+  [params.header]
+    desktopMode = "fixed"
+    mobileMode = "auto"
+
+    [params.header.title]
+      name = "Guanlan Dai"
+
+  [params.footer]
+    enable = true
+    hugo = false
+    custom = "2012 - 2025 guanlan | CC BY-NC 4.0"
+    copyright = false
+    author = false
+    since = 2009
+
+[menu]
+  [[menu.main]]
+    weight = 1
+    identifier = "home"
+    name = "Home"
+    url = "/"
+  [[menu.main]]
+    weight = 2
+    identifier = "about"
+    name = "About"
+    url = "/about/"
