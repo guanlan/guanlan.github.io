@@ -1,0 +1,82 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>All Posts - Guanlan Dai</title>
+        <link>https://rmmod.com/posts/</link>
+        <description>All Posts | Guanlan Dai</description>
+        <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Thu, 18 Jul 2024 00:00:00 &#43;0000</lastBuildDate><atom:link href="https://rmmod.com/posts/" rel="self" type="application/rss+xml" /><item>
+    <title>Deep Dive into Kong Gateway&#39;s New Rust-Based Router</title>
+    <link>https://rmmod.com/posts/rust-based-router-kong-gateway/</link>
+    <pubDate>Thu, 18 Jul 2024 00:00:00 &#43;0000</pubDate>
+    <author>guanlan</author>
+    <guid>https://rmmod.com/posts/rust-based-router-kong-gateway/</guid>
+    <description><![CDATA[<h2 id="what-is-the-expressions-router">What is the Expressions Router?</h2>
+<p>The router component in the Kong Gateway is a crucial element for traffic handling, allowing the definition of specific matching rules to identify and process client requests. As a core component of the gateway, the router plays a vital role in ensuring the functionality, flexibility, security as well as performance of the gateway.</p>
+<p></p>
+<p>In the 3.0 version update of the Kong API Gateway, the routing system was completely rewritten in Rust — a memory-safe and efficient language. A concise DSL (Domain Specific Language) was designed to define routing rules efficiently, called the &ldquo;Expressions Router.&rdquo; The new design reduced the routing construction time by 75% when handling up to 10,000 routing rules, significantly decreasing from 20 seconds to 5 seconds.</p>]]></description>
+</item>
+<item>
+    <title>Protecting Services With Kong Gateway Rate Limiting</title>
+    <link>https://rmmod.com/posts/kong-gateway-rate-limiting/</link>
+    <pubDate>Tue, 18 May 2021 00:00:00 &#43;0000</pubDate>
+    <author>guanlan</author>
+    <guid>https://rmmod.com/posts/kong-gateway-rate-limiting/</guid>
+    <description><![CDATA[<p>The Kong Gateway Rate Limiting <a href="https://docs.konghq.com/hub/kong-inc/rate-limiting" target="_blank" rel="noopener noreffer ">plugin</a> is one of our most popular traffic control add-ons. You can configure the plugin with a policy for what constitutes &ldquo;similar requests&rdquo; (requests coming from the same IP address, for example), and you can set your limits (limit to 10 requests per minute, for example). This tutorial will walk through how simple it is to enable rate limiting in your <a href="https://konghq.com/kong" target="_blank" rel="noopener noreffer ">Kong Gateway</a>.</p>]]></description>
+</item>
+<item>
+    <title>How to Design a Scalable Rate Limiting Algorithm</title>
+    <link>https://rmmod.com/posts/how-to-design-a-scalable-rate-limiting-algorithm/</link>
+    <pubDate>Fri, 15 Jan 2021 12:19:18 &#43;0800</pubDate>
+    <author>guanlan</author>
+    <guid>https://rmmod.com/posts/how-to-design-a-scalable-rate-limiting-algorithm/</guid>
+    <description><![CDATA[<h2 id="what-is-rate-limiting">What is rate limiting?</h2>
+<p>Rate limiting protects your APIs from inadvertent or malicious overuse by limiting how often each user can call the API. Without rate limiting, each user may make a request as often as they like, leading to &ldquo;spikes&rdquo; of requests that starve other consumers. Once enabled, rate limiting can only perform a fixed number of requests per second. A rate limiting algorithm helps automate the process.</p>
+<p></p>]]></description>
+</item>
+<item>
+    <title>Practical Tips on Writing an Effective Web Crawler</title>
+    <link>https://rmmod.com/posts/effective-web-crawler/</link>
+    <pubDate>Fri, 15 Jan 2021 00:00:00 &#43;0000</pubDate>
+    <author>guanlan</author>
+    <guid>https://rmmod.com/posts/effective-web-crawler/</guid>
+    <description><![CDATA[<p>A web crawler is a hard-working bot to gather information or index the pages on the Internet. It starts at some seeds URLs and finds every hyperlink on each page, and then crawler will visit those hyperlinks recursively.</p>
+<h3 id="1-choose-an-ideal-programming-language">1. Choose an Ideal Programming Language</h3>
+<p>Based on the ranking of popular languages on developing web crawlers (based on result numbers of relative repositories host on Github on February, 2013). Python or Ruby probably is a wise choice, the mainly speed limit of web crawler is network latency not CPU, so choose Python or Ruby as a language to develop a web crawler will make life easier. Python provide some standard libraries, they are very useful, such like urllib, httplib and regex, those libraries can handle lots of work. Python also has plenty of valuable third-party libraries worth a try: <strong><a href="http://scrapy.org/" target="_blank" rel="noopener noreffer ">scrapy</a></strong>, a web scraping framework. <strong><a href="http://urllib3.readthedocs.org/en/latest/" target="_blank" rel="noopener noreffer ">urllib3</a></strong>, a Python HTTP library with thread-safe connection pooling, file post support. <strong><a href="http://greenlet.readthedocs.org/" target="_blank" rel="noopener noreffer ">greenlet</a></strong>, a Lightweight concurrent programming framework. <em><strong><a href="http://twistedmatrix.com/" target="_blank" rel="noopener noreffer ">twisted</a></strong></em>, an <strong>event-driven networking engine.</strong>  </p>]]></description>
+</item>
+<item>
+    <title>Snippets for Racket Language</title>
+    <link>https://rmmod.com/posts/snippets-for-racket-language/</link>
+    <pubDate>Sun, 03 Feb 2013 00:00:00 &#43;0000</pubDate>
+    <author>guanlan</author>
+    <guid>https://rmmod.com/posts/snippets-for-racket-language/</guid>
+    <description><![CDATA[<p>In the CS 5010 - Programming Design Paradigm course, we need write tons of documents,  repeat ourselves again and again, so I develop this snippet to save us time. If you using vim, you need install <a href="http://www.vim.org/scripts/script.php?script_id=2540" target="_blank" rel="noopener noreffer ">snipMate</a> first, You can get the snippet on my Github: <a href="https://github.com/guanlan/snippet-for-racket" target="_blank" rel="noopener noreffer ">https://github.com/guanlan/snippet-for-racket</a> download the snippet file and put in ~/.vim/snippets/ You can <a href="http://www.youtube.com/watch?v=upGPM9jN25Y" target="_blank" rel="noopener noreffer ">watch demo here</a> This snippets is also available on sublime, you can <a href="http://web-design-weekly.com/2012/07/03/snippets-in-sublime-text-2/" target="_blank" rel="noopener noreffer ">read tutorial here</a>.</p>]]></description>
+</item>
+<item>
+    <title>Rethink in Functional Languages</title>
+    <link>https://rmmod.com/posts/rethink-in-functional-languages/</link>
+    <pubDate>Wed, 09 Jan 2013 00:00:00 &#43;0000</pubDate>
+    <author>guanlan</author>
+    <guid>https://rmmod.com/posts/rethink-in-functional-languages/</guid>
+    <description><![CDATA[<p>After about 3 months to learn and using Racket (a programming language in Lisp/Scheme family),  I learning lots of concepts of programming. The most important thing in FL(functional languages) is: <strong>&quot;<em>All data are immutable. All functions are pure.</em>&quot;</strong>  </p>
+<h2 id="immutable-data"> Immutable Data</h2>
+<p>Immutable data cannot be modified after being created. It has many advantages:</p>
+<ol>
+<li><strong>Inherently Thread safety</strong> Parallel programming is the nightmare of some programers, because different threads simultaneously access the same object can cause unexpected problem, such like a race conditions. The most famous and classical example is <a href="http://en.wikipedia.org/wiki/Race_condition#Example" target="_blank" rel="noopener noreffer ">Bank Account Problem</a>. Today we get more and more cores in our computers, so the <a href="http://www.infoq.com/news/2008/06/scala-vs-erlang" target="_blank" rel="noopener noreffer ">multi-core crisis</a> we need to face, some experts believe in the future, we using Scala or Erlang to deal with this crisis.Interesting thing is many &ldquo;next generation&rdquo; language is either the functional or support functional paradigm.</li>
+<li><strong>Eliminate side-effects</strong> There are so many reasons. Most important thing is global variables are difficult to understand. For example, if we want understand one functions in the non-trival project,  and we find a variable define in other place, so we will jump to the definition of this variable and other places where modify it, it will cost us more time to figure out what the exactly meaning of this function. So there is the same reason why the code is much easier to understand if we use immutable objects, because the scope of an immutable object is limited as possible. It will make our programming easier and more robust.</li>
+</ol>
+<p>  The programming experts from other languages also know we need use immutable data as more as possible: Joshua Bloch,the author of Effective Java, said, “If an object is immutable, it can be in only one state, and you win big.You never have to worry about what state the object is in, and you can share it freely, with no need for synchronization.” Scott Meyers, Effective C++, Item 3: <a href="http://codeidol.com/cpp/effective-cpp/Accustoming-Yourself-to-C/Item-3-Use-const-whenever-possible/" target="_blank" rel="noopener noreffer ">Use <em>const</em> whenever possible</a>. Other languages also use immutable data frequently, such like Python, the number/string/tuple types are immutable data, the String build-in class in Java is immutable too. But immutable data is inconvenient in some situation:</p>]]></description>
+</item>
+<item>
+    <title>How to use Python like Lisp</title>
+    <link>https://rmmod.com/posts/how-to-use-python-like-lisp/</link>
+    <pubDate>Mon, 19 Nov 2012 00:00:00 &#43;0000</pubDate>
+    <author>guanlan</author>
+    <guid>https://rmmod.com/posts/how-to-use-python-like-lisp/</guid>
+    <description><![CDATA[<p>Lisp has some very effective way to get jobs done, this article give you a direct way to use Python like Lisp.```
+cons = lambda el, lst: (el, lst)</p>
+<pre><code class="">mklist = lambda *args: reduce(lambda lst, el: cons(el, lst), reversed(args), None) </code></pre>
+<p>car = lambda lst: lst[0] if lst else lst</p>
+<pre><code class="">cdr = lambda lst: lst[1] if lst else lst </code></pre>
+<p>nth = lambda n, lst: nth(n-1, cdr(lst)) if n ]]&gt; 0 else car(lst)</p>]]></description>
+</item>
+</channel>
+</rss>

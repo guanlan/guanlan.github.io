@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Protecting Services With Kong Gateway Rate Limiting - Guanlan Dai</title><meta name="Description" content="This is my cool site"><meta property="og:url" content="https://rmmod.com/posts/kong-gateway-rate-limiting/">
+  <meta property="og:site_name" content="Guanlan Dai">
+  <meta property="og:title" content="Protecting Services With Kong Gateway Rate Limiting">
+  <meta property="og:description" content="The Kong Gateway Rate Limiting plugin is one of our most popular traffic control add-ons. You can configure the plugin with a policy for what constitutes “similar requests” (requests coming from the same IP address, for example), and you can set your limits (limit to 10 requests per minute, for example). This tutorial will walk through how simple it is to enable rate limiting in your Kong Gateway.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2021-05-18T00:00:00+00:00">
+    <meta property="article:modified_time" content="2021-05-18T00:00:00+00:00">
+    <meta property="article:tag" content="Kong">
+    <meta property="article:tag" content="Rate Limiting">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Protecting Services With Kong Gateway Rate Limiting">
+  <meta name="twitter:description" content="The Kong Gateway Rate Limiting plugin is one of our most popular traffic control add-ons. You can configure the plugin with a policy for what constitutes “similar requests” (requests coming from the same IP address, for example), and you can set your limits (limit to 10 requests per minute, for example). This tutorial will walk through how simple it is to enable rate limiting in your Kong Gateway.">
+<meta name="application-name" content="My cool site">
+<meta name="apple-mobile-web-app-title" content="My cool site">
+<meta name="referrer" content="no-referrer" /><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://rmmod.com/posts/kong-gateway-rate-limiting/" /><link rel="prev" href="https://rmmod.com/posts/how-to-design-a-scalable-rate-limiting-algorithm/" /><link rel="next" href="https://rmmod.com/posts/rust-based-router-kong-gateway/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.7.2/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.7.2/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Protecting Services With Kong Gateway Rate Limiting",
+        "inLanguage": "en-us",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/rmmod.com\/posts\/kong-gateway-rate-limiting\/"
+        },"genre": "posts","keywords": "Kong, Rate Limiting","wordcount":  1922 ,
+        "url": "https:\/\/rmmod.com\/posts\/kong-gateway-rate-limiting\/","datePublished": "2021-05-18T00:00:00+00:00","dateModified": "2021-05-18T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "guanlan"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Guanlan Dai">Guanlan Dai</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/"> Home </a><a class="menu-item" href="/about/"> About </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a></div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Guanlan Dai">Guanlan Dai</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/" title="">Home</a><a class="menu-item" href="/about/" title="">About</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Protecting Services With Kong Gateway Rate Limiting</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>guanlan</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2021-05-18">2021-05-18</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1922 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;10 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#rate-limiting-protecting-your-server-101">Rate Limiting: Protecting Your Server 101</a></li>
+    <li><a href="#mini-project-for-kong-gateway-rate-limiting">Mini-Project for Kong Gateway Rate Limiting</a></li>
+    <li><a href="#create-a-nodejs-express-api-server">Create a Node.js Express API Server</a></li>
+    <li><a href="#install-and-set-up-kong-gateway">Install and Set Up Kong Gateway</a></li>
+    <li><a href="#configure-kong-gateway-with-our-service-and-routes">Configure Kong Gateway With Our Service and Routes</a></li>
+    <li><a href="#add-the-kong-gateway-rate-limiting-plugin">Add the Kong Gateway Rate Limiting Plugin</a>
+      <ul>
+        <li><a href="#rate-limiting-similar-requests">Rate Limiting &ldquo;Similar&rdquo; Requests</a></li>
+        <li><a href="#counter-storage-policy">Counter Storage &ldquo;Policy&rdquo;</a></li>
+      </ul>
+    </li>
+    <li><a href="#advanced-rate-limiting">Advanced Rate Limiting</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><p>The Kong Gateway Rate Limiting <a href="https://docs.konghq.com/hub/kong-inc/rate-limiting" target="_blank" rel="noopener noreffer ">plugin</a> is one of our most popular traffic control add-ons. You can configure the plugin with a policy for what constitutes &ldquo;similar requests&rdquo; (requests coming from the same IP address, for example), and you can set your limits (limit to 10 requests per minute, for example). This tutorial will walk through how simple it is to enable rate limiting in your <a href="https://konghq.com/kong" target="_blank" rel="noopener noreffer ">Kong Gateway</a>.</p>
+<h2 id="rate-limiting-protecting-your-server-101">Rate Limiting: Protecting Your Server 101</h2>
+<p>Let&rsquo;s take a step back and go over the concept of rate limiting for those who aren&rsquo;t familiar.</p>
+<p>Rate limiting is remarkably effective and ridiculously simple. It&rsquo;s also regularly forgotten. Rate limiting is a defensive measure you can use to prevent your server or application from being paralyzed. By restricting the number of similar requests that can hit your server within a window of time, you ensure your server won&rsquo;t be overwhelmed and debilitated.</p>
+<p>You&rsquo;re not only guarding against malicious requests. Yes, you want to shut down a bot that&rsquo;s trying to discover login credentials with a brute force attack. You want to stop scrapers from slurping up your content. You want to safeguard your server from DDOS attacks.</p>
+<p>But it&rsquo;s also vital to limit non-malicious requests. Sometimes, it&rsquo;s somebody else&rsquo;s buggy code that hits your API endpoint 10 times a second rather than one time every 10 minutes. Or, perhaps only your premium users get unlimited API requests, while your free-tier users only get a hundred requests an hour.</p>
+<p>If you&rsquo;re interested in rate limiting for Kubernetes services, check out this video:</p>
+<h2 id="mini-project-for-kong-gateway-rate-limiting">Mini-Project for Kong Gateway Rate Limiting</h2>
+<p>In our mini-project for this article, we&rsquo;re going to walk through a basic use case: Kong Gateway with the Rate Limiting plugin protecting a simple API server. Here are our steps:</p>
+<ol>
+<li>Create Node.js Express API server with a single &ldquo;hello world&rdquo; endpoint.</li>
+<li>Install and set up Kong Gateway.</li>
+<li>Configure Kong Gateway to sit in front of our API server.</li>
+<li>Add and configure the Rate Limiting plugin.</li>
+<li>Test our rate limiting policies.</li>
+</ol>
+<p>After walking through these steps together, you&rsquo;ll have what you need to tailor the Rate Limiting plugin for your unique business needs.<br>
+Want to set up rate limiting for your API gateway with clicks instead of code? <a href="https://konghq.com/kong-konnect" target="_blank" rel="noopener noreffer ">Try Konnect for free &raquo;</a></p>
+<h2 id="create-a-nodejs-express-api-server">Create a Node.js Express API Server</h2>
+<p>To get started, we&rsquo;ll create a simple API server with a single endpoint that listens for a GET request and responds with &ldquo;hello world.&rdquo; At the command line, create a project folder and initialize a Node.js application:</p>
+<div class="admonition example">
+  <p class="admonition-title">Create Project Folder</p>
+  <div>
+```bash
+~/$  mkdir project
+~/$  cd project
+~/project$  yarn init
+// Accept all defaults
+```
+</div>
+</div>
+
+<p>Then, we&rsquo;ll add Express, which is the only package we&rsquo;ll need:</p>
+<div class="admonition example">
+  <p class="admonition-title">Install Express</p>
+  <div>
+```bash
+~/project$  yarn add express
+```
+</div>
+</div>
+
+<p>Lastly, let&rsquo;s create a simple server with our &ldquo;hello world&rdquo; endpoint. In your project folder, create an index.js file with these contents:</p>
+<div class="admonition example">
+  <p class="admonition-title">Node.js Server Code</p>
+  <div>
+```js
+/* PATH: ~/project/index.js
+*/
+const express = require('express')
+const server = express()
+const port = 3000
+server.get('/', (req, res) => {
+ console.log(req.headers)
+ res.status(200).send('Hello world!')
+})
+server.listen(port, () => {
+ console.log(`Server is listening on http://localhost:${port}`)
+})
+```
+</div>
+</div>
+
+<p>Now, spin up your server:</p>
+<div class="admonition example">
+  <p class="admonition-title">Start Server</p>
+  <div>
+```bash
+~/project$  node index.js
+```
+</div>
+</div>
+
+<p>In your browser, you can visit http://localhost:3000. Here&rsquo;s what you should see:</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://konghq.com/wp-content/uploads/2021/05/local-host-hello-world.png.webp"
+        data-srcset="https://konghq.com/wp-content/uploads/2021/05/local-host-hello-world.png.webp, https://konghq.com/wp-content/uploads/2021/05/local-host-hello-world.png.webp 1.5x, https://konghq.com/wp-content/uploads/2021/05/local-host-hello-world.png.webp 2x"
+        data-sizes="auto"
+        alt="https://konghq.com/wp-content/uploads/2021/05/local-host-hello-world.png.webp"
+        title="local host hello world" /></p>
+<p>Let&rsquo;s also use <a href="https://insomnia.rest/" target="_blank" rel="noopener noreffer ">Insomnia</a>, a desktop client for API testing. In Insomnia, we send a GET request to http://localhost:3000.</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://konghq.com/wp-content/uploads/2021/05/local-host-hello-world-insomnia.png.webp"
+        data-srcset="https://konghq.com/wp-content/uploads/2021/05/local-host-hello-world-insomnia.png.webp, https://konghq.com/wp-content/uploads/2021/05/local-host-hello-world-insomnia.png.webp 1.5x, https://konghq.com/wp-content/uploads/2021/05/local-host-hello-world-insomnia.png.webp 2x"
+        data-sizes="auto"
+        alt="https://konghq.com/wp-content/uploads/2021/05/local-host-hello-world-insomnia.png.webp"
+        title="local host hello world in Insomnia" /></p>
+<p>Our Node.js API server with its single endpoint is up and running. We have our 200 OK response.</p>
+<p>Keep that terminal window with the node running. We&rsquo;ll do the rest of our work in a separate terminal window.</p>
+<h2 id="install-and-set-up-kong-gateway">Install and Set Up Kong Gateway</h2>
+<p>Next, we&rsquo;ll <a href="https://konghq.com/install" target="_blank" rel="noopener noreffer ">install Kong Gateway</a> to sit in front of our API server. These steps will vary depending on your local environment.</p>
+<p>Simple usage of the Rate Limiting plugin supports configuring Kong in DB-less mode with a declarative configuration. That means, instead of sending configurations to Kong Gateway one step at a time, with those configurations stored in a database, we can use a single declarative .yml file for specifying our entire Kong configuration.</p>
+<p>After installing Kong, we generate a starter .yml file:</p>
+<p><div class="admonition example">
+  <p class="admonition-title">Generate Kong Configuration File</p>
+  <div>
+```bash
+~/project$  kong config init
+
+~/project$  tree  -L  1
+
+.
+
+├──  index.js
+
+├──  kong.yml
+
+├──  node_modules
+
+├──  package.json
+
+└──  yarn.lock
+
+1  directory,  4  files
+```
+</div>
+</div>
+
+We&rsquo;ll come back to that kong.yml file in a moment.</p>
+<p>Now, let&rsquo;s tell Kong where to look for that declarative configuration file upon startup. In /etc/kong, there is a kong.conf.default file that we&rsquo;ll need to copy as kong.conf and then edit:</p>
+<div class="admonition example">
+  <p class="admonition-title">Copy Kong Configuration File</p>
+  <div>
+```bash
+~/project$  cd  /etc/kong
+/etc/kong$  sudo su
+root:/etc/kong$  cp kong.conf.default kong.conf
+```
+</div>
+</div>
+
+<p>Next, we edit the kong.conf file. You&rsquo;ll likely need root privileges to do this. There are two edits that we need to make:</p>
+<div class="admonition example">
+  <p class="admonition-title">Kong Configuration</p>
+  <div>
+```lua
+# PATH: /etc/kong/kong.conf
+# line ~839: Uncomment this line and set to off
+database  =  off
+# line ~1023, Uncomment this line. Set to absolute path to kong.yml
+declarative_config  =  /PATH/TO/YOUR/project/kong.yml
+```
+</div>
+</div>
+
+<h2 id="configure-kong-gateway-with-our-service-and-routes">Configure Kong Gateway With Our Service and Routes</h2>
+<p>Before we start up Kong, let&rsquo;s edit the declarative configuration file generated in our project folder. It should look like this:</p>
+<div class="admonition example">
+  <p class="admonition-title">YAML Configuration</p>
+  <div>
+```yaml
+# PATH: ~/project/kong.yml
+ 
+_format_version: "2.1"
+ 
+services:
+- name: my-api-server
+  url: http://localhost:3000/
+  routes:
+  - name: api-routes
+    paths:
+    - /api
+```
+</div>
+</div>
+
+<p>Let&rsquo;s walk through what this configuration does. After setting the syntax version (2.1), we configure a new upstream service for which Kong will serve as an API gateway. Our service, which we name my-api-server, listens for requests at the URL http://localhost:3000. </p>
+<p>We associate a route (arbitrarily named api-routes) for our service with the path /api. Kong Gateway will listen for requests to /api, and then route those requests to our API server at http://localhost:3000.</p>
+<p>With our declarative configuration file in place, we start Kong:</p>
+<div class="admonition example">
+  <p class="admonition-title">Start Kong</p>
+  <div>
+```bash
+~/project$  sudo kong start
+```
+</div>
+</div>
+
+<p>Now, in Insomnia, we send a GET request through Kong Gateway, which listens at http://localhost:8000, to the /api path:</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://konghq.com/wp-content/uploads/2021/05/insomnia-get-request.png.webp"
+        data-srcset="https://konghq.com/wp-content/uploads/2021/05/insomnia-get-request.png.webp, https://konghq.com/wp-content/uploads/2021/05/insomnia-get-request.png.webp 1.5x, https://konghq.com/wp-content/uploads/2021/05/insomnia-get-request.png.webp 2x"
+        data-sizes="auto"
+        alt="https://konghq.com/wp-content/uploads/2021/05/insomnia-get-request.png.webp"
+        title="Insomnia get request" /></p>
+<p>Note that, by sending our request to port 8000, we are going <em>through</em> Kong Gateway to get to our API server.</p>
+<h2 id="add-the-kong-gateway-rate-limiting-plugin">Add the Kong Gateway Rate Limiting Plugin</h2>
+<p>Now that we have Kong Gateway sitting in front of our API server, we&rsquo;ll add in the Rate Limiting Plugin and test it out. We will need to add a few lines to our kong.yml declarative configuration file:</p>
+<div class="admonition example">
+  <p class="admonition-title">Rate Limiting Configuration</p>
+  <div>
+```yaml
+# PATH: ~/project/kong.yml
+ 
+_format_version: "2.1"
+ 
+services:
+- name: my-api-server
+  url: http://localhost:3000/
+  routes:
+  - name: api-routes
+    paths:
+    - /api
+  plugins:
+  - name: rate-limiting
+    config:
+      minute: 5
+      hour: 12
+      policy: local
+      limit_by: header
+      header_name: x-api-key
+      policy:  local
+```
+</div>
+</div>
+
+<p>We&rsquo;ve added the entire plugins section underneath our my-api-server service. We specify the name of the plugin, rate-limiting. This name is <em>not</em> arbitrary but refers to the actual rate-limiting plugin in the Kong package.</p>
+<p>In this first run, we&rsquo;ve configured the plugin with minute: 5, which allows for up to five requests per minute. We&rsquo;ve also added hour : 12, which limits the requests per hour to 12. We&rsquo;re using the local policy, which has to do with how Kong will store and increment request counts. We&rsquo;ll talk about this policy configuration more below.</p>
+<p>Let&rsquo;s restart Kong:</p>
+<div class="admonition example">
+  <p class="admonition-title">Restart Kong</p>
+  <div>
+```bash
+~/project$  sudo kong restart
+```
+</div>
+</div>
+
+<p>Now, back in Insomnia, we test out sending some requests to our API endpoint. If you send a request every few seconds, you&rsquo;ll see that the first five requests received a 200 OK response. However, if you exceed five requests within a minute:</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://konghq.com/wp-content/uploads/2021/05/insomnia-test-kong-rate-limiting.png.webp"
+        data-srcset="https://konghq.com/wp-content/uploads/2021/05/insomnia-test-kong-rate-limiting.png.webp, https://konghq.com/wp-content/uploads/2021/05/insomnia-test-kong-rate-limiting.png.webp 1.5x, https://konghq.com/wp-content/uploads/2021/05/insomnia-test-kong-rate-limiting.png.webp 2x"
+        data-sizes="auto"
+        alt="https://konghq.com/wp-content/uploads/2021/05/insomnia-test-kong-rate-limiting.png.webp"
+        title="Insomnia test Kong&rsquo;s rate limiting plugin" /></p>
+<p>The Rate Limiting plugin detects that requests have exceeded the five-per-minute rule. It doesn&rsquo;t let the subsequent request through to the API server. Instead, we get a 429 Too Many Requests response.</p>
+<p>Our plugin works!</p>
+<p>If you wait a minute and then try your requests again, you&rsquo;ll see that you can get another five successful requests until Kong blocks you again with another 429.</p>
+<p>At this point, we&rsquo;ve sent 10 requests over several minutes. But you&rsquo;ll recall that we configured our plugin with hour: 12. That means our 11th and 12th requests will be successful. However, the system will reject our 13th request  even though we haven&rsquo;t exceeded the five-per-minute rule . That&rsquo;s because we&rsquo;ll have exceeded the 12-per-hour rule.</p>
+<p>The Rate Limiting plugin allows you to limit the number of requests per second, minute, hour, day, month and year.</p>
+<h3 id="rate-limiting-similar-requests">Rate Limiting &ldquo;Similar&rdquo; Requests</h3>
+<p>We&rsquo;ve configured Kong to count (and limit) requests to our server in our simple use case so far. More likely, we&rsquo;ll want to apply our rate limits to <em>similar</em> requests. By &ldquo;similar,&rdquo; we might mean &ldquo;coming from the same IP address&rdquo; or &ldquo;using the same API key.&rdquo;</p>
+<p>For example, let&rsquo;s say that all users of our API server need to send requests with a unique API key set in headers as x-api-key. We can configure Kong to apply its rate limits on a per-API-key basis as follows:</p>
+<div class="admonition example">
+  <p class="admonition-title">Per-API-Key Rate Limiting</p>
+  <div>
+```yaml
+# PATH: ~/project/kong.yml
+ 
+_format_version: "2.1"
+ 
+services:
+- name: my-api-server
+  url: http://localhost:3000/
+  routes:
+  - name: api-routes
+    paths:
+    - /api
+  plugins:
+  - name: rate-limiting
+    config:
+      minute: 5
+      hour: 12
+      policy: local
+```
+</div>
+</div>
+
+<p>If we change the x-api-key to a different value (for example, user2), we immediately get 200 OK responses:</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://konghq.com/wp-content/uploads/2021/05/insomnia-test-kong-rate-limiting-2.png.webp"
+        data-srcset="https://konghq.com/wp-content/uploads/2021/05/insomnia-test-kong-rate-limiting-2.png.webp, https://konghq.com/wp-content/uploads/2021/05/insomnia-test-kong-rate-limiting-2.png.webp 1.5x, https://konghq.com/wp-content/uploads/2021/05/insomnia-test-kong-rate-limiting-2.png.webp 2x"
+        data-sizes="auto"
+        alt="https://konghq.com/wp-content/uploads/2021/05/insomnia-test-kong-rate-limiting-2.png.webp"
+        title="Insomnia test Kong rate limiting" /></p>
+<p>Requests from user2 are counted separately from requests from user1. Each unique x-api-key value gets (according to our rate limiting rules) up to five requests per minute and up to 12 requests per hour.</p>
+<p>You can configure the plugin to limit_by IP address, a header value, request path or even credentials (like <a href="https://konghq.com/blog/kong-gateway-oauth2" target="_blank" rel="noopener noreffer ">OAuth2</a> or <a href="https://konghq.com/blog/jwt-kong-gateway" target="_blank" rel="noopener noreffer ">JWT</a>).</p>
+<h3 id="counter-storage-policy">Counter Storage &ldquo;Policy&rdquo;</h3>
+<p>In our example above, we set the policy of the Rate Limiting plugin to local. This policy configuration controls <a href="https://docs.konghq.com/hub/kong-inc/rate-limiting/#implementation-considerations" target="_blank" rel="noopener noreffer ">how Kong will store request counters</a> to apply its rate limits. The local policy stores in-memory counters. It&rsquo;s the simplest strategy to implement (there&rsquo;s nothing else you need to do!). </p>
+<p>However, request counters with this strategy are only <em>mostly</em> accurate. If you want basic protection for your server, and it&rsquo;s acceptable if you miscount a request here and there, then the local policy is sufficient. </p>
+<p>The documentation for the Rate Limiting plugin instructs those with needs where &ldquo;every transaction counts&rdquo; to use the cluster (writes to the database) or redis (writes to Redis key-value store) policy instead.</p>
+<h2 id="advanced-rate-limiting">Advanced Rate Limiting</h2>
+<p>For many common business cases, the open source Rate Limiting plugin has enough configuration options to meet your needs. For those with more complex needs (multiple limits or time windows, integration with Redis Sentinel), Kong also offers their <a href="https://docs.konghq.com/hub/kong-inc/rate-limiting-advanced" target="_blank" rel="noopener noreffer ">Rate Limiting Advanced plugin</a> for <a href="https://konghq.com/kong-konnect" target="_blank" rel="noopener noreffer ">Kong Konnect</a>.</p>
+<p>Let&rsquo;s briefly recap what we did in our mini-project. We spun up a simple API server. Then, we installed and configured Kong Gateway to sit in front of our API server. Next, we added the Rate Limiting plugin to count and limit requests to our server, showing how Kong blocks requests once we exceed certain limits within a window of time. </p>
+<p>Lastly, we demonstrated how to group (and count) requests as &ldquo;similar&rdquo; with the example of a header value. Doing so enabled our plugin to differentiate counts for requests coming from two different users so that you can apply that rate limit to each user separately.</p>
+<p>That&rsquo;s all there is to it. Kong&rsquo;s Rate Limiting plugin makes protecting your server ridiculously simple. As a basic traffic control defense measure, rate limiting can bring incredible power and peace of mind. You can find more details in the <a href="https://docs.konghq.com/hub/kong-inc/rate-limiting" target="_blank" rel="noopener noreffer ">rate limiting plugin doc</a>.</p>
+<p>If you have any additional questions, post them on <a href="https://discuss.konghq.com/" target="_blank" rel="noopener noreffer ">Kong Nation</a>. To stay in touch, join the <a href="https://konghq.com/community" target="_blank" rel="noopener noreffer ">Kong Community</a>.</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2021-05-18</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on X" data-sharer="x" data-url="https://rmmod.com/posts/kong-gateway-rate-limiting/" data-title="Protecting Services With Kong Gateway Rate Limiting" data-via="guanlandai" data-hashtags="Kong,Rate Limiting"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Threads" data-sharer="threads" data-url="https://rmmod.com/posts/kong-gateway-rate-limiting/" data-title="Protecting Services With Kong Gateway Rate Limiting"><i class="fab fa-threads fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://rmmod.com/posts/kong-gateway-rate-limiting/" data-hashtag="Kong"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://rmmod.com/posts/kong-gateway-rate-limiting/" data-title="Protecting Services With Kong Gateway Rate Limiting"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://rmmod.com/posts/kong-gateway-rate-limiting/" data-title="Protecting Services With Kong Gateway Rate Limiting"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@14.9.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://rmmod.com/posts/kong-gateway-rate-limiting/" data-title="Protecting Services With Kong Gateway Rate Limiting"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Diaspora" data-sharer="diaspora" data-url="https://rmmod.com/posts/kong-gateway-rate-limiting/" data-title="Protecting Services With Kong Gateway Rate Limiting" data-description=""><i class="fab fa-diaspora fa-fw" aria-hidden="true"></i></a><a href="https://t.me/share/url?url=https%3a%2f%2frmmod.com%2fposts%2fkong-gateway-rate-limiting%2f&amp;text=Protecting%20Services%20With%20Kong%20Gateway%20Rate%20Limiting" target="_blank" title="Share on Telegram"><i class="fab fa-telegram fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/kong/">Kong</a>,&nbsp;<a href="/tags/rate-limiting/">Rate Limiting</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/how-to-design-a-scalable-rate-limiting-algorithm/" class="prev" rel="prev" title="How to Design a Scalable Rate Limiting Algorithm"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>How to Design a Scalable Rate Limiting Algorithm</a>
+            <a href="/posts/rust-based-router-kong-gateway/" class="next" rel="next" title="Deep Dive into Kong Gateway&#39;s New Rust-Based Router">Deep Dive into Kong Gateway's New Rust-Based Router<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">CC BY-NC 4.0</div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2009 - 2025</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Guanlan Dai</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a>
+        </div>
+
+        <div id="fixed-buttons-hidden"><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><script src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.2/sharer.min.js"></script><script>window.config={"comment":{}};</script><script src="/js/theme.min.js"></script></body>
+</html>
