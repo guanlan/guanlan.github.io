@@ -8,6 +8,7 @@ enableEmoji = true
 [params]
   defaultTheme = "auto"
   dateFormat = "2006-01-02"
+  rss = true
 
   [params.header]
     desktopMode = "fixed"
@@ -19,10 +20,13 @@ enableEmoji = true
   [params.footer]
     enable = true
     hugo = false
-    custom = "2012 - 2025 guanlan | CC BY-NC 4.0"
-    copyright = false
-    author = false
+    custom = "Guanlan Dai | CC BY-NC 4.0"
+    copyright = true 
+    author = true 
     since = 2009
+
+  [params.social]
+    RSS = true
 
 [menu]
   [[menu.main]]
