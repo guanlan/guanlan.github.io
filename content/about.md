@@ -1,21 +1,9 @@
 # About
 
-**Guanlan Dai**
+Currently serve as Site Lead of Kong China and Director of Gateway at [Kong](https://konghq.com/).
 
-Site Lead, China @[Kong](https://konghq.com/), formerly @[Cloudflare](https://www.cloudflare.com). I'm particularly interested in Distributed Systems, Web Performance and Scalability, Data, Artificial Intelligence and Network Security. Feel free to check out my [Github](https://github.com/guanlan).
+I helped scale Kong from an open-source API gateway into a full-stack microservices platform, bridging open-source traction with enterprise adoption. I established and lead our Shanghai engineering hub (50+ engineers) from scratch, now a core engine driving innovation in API management and AI infrastructure.
 
-##### My Technical Blogs
+Previously, I led edge engineering at [Cloudflare](http://cloudflare.com/), scaling systems that handle trillions of daily requests across CDN, WAF, and DDoS protection.
 
-**In English**
-
-[http://rmmod.com/posts/](http://rmmod.com/posts/)
-
-    (Nov, 2012 ~ Present)
-
-**In Chinese**
-
-[http://www.cppblog.com/xguru/](http://www.cppblog.com/xguru/)
-
-    (Dec, 2009 ~ July, 2011)
-
-
+My background is in distributed systems, networks, and scaling resilient infrastructure.
