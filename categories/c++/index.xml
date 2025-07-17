@@ -1,97 +1,26 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>C++ on Guanlan Dai</title><link>https://rmmod.com/categories/c++/</link><description>Recent content in C++ on Guanlan Dai</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Thu, 24 Dec 2009 00:00:00 +0800</lastBuildDate><atom:link href="https://rmmod.com/categories/c++/index.xml" rel="self" type="application/rss+xml"/><item><title>A 'Strange Phenomenon' in C/C++ Arrays</title><link>https://rmmod.com/posts/cppblog/2009-12-24-cc-array-peculiar-phenomenon-en/</link><pubDate>Thu, 24 Dec 2009 00:00:00 +0800</pubDate><guid>https://rmmod.com/posts/cppblog/2009-12-24-cc-array-peculiar-phenomenon-en/</guid><description>&lt;p>Everyone is familiar with using arrays, right?&lt;br>
-Take a look at this program, it&amp;rsquo;s quite simple.&lt;/p>
-&lt;p>1&lt;img
- class="lazyload"
- src="https://rmmod.com/svg/loading.min.svg"
- data-src="https://rmmod.com/img/None.gif"
- data-srcset="https://rmmod.com/img/None.gif, https://rmmod.com/img/None.gif 1.5x, https://rmmod.com/img/None.gif 2x"
- data-sizes="auto"
- alt="/img/None.gif"
- title="/img/None.gif" />#include&lt;!-- raw HTML omitted -->&lt;br>
-2&lt;img
- class="lazyload"
- src="https://rmmod.com/svg/loading.min.svg"
- data-src="https://rmmod.com/img/None.gif"
- data-srcset="https://rmmod.com/img/None.gif, https://rmmod.com/img/None.gif 1.5x, https://rmmod.com/img/None.gif 2x"
- data-sizes="auto"
- alt="/img/None.gif"
- title="/img/None.gif" />int main()&lt;br>
-3&lt;img
- class="lazyload"
- src="https://rmmod.com/svg/loading.min.svg"
- data-src="https://rmmod.com/img/ExpandedBlockStart.gif"
- data-srcset="https://rmmod.com/img/ExpandedBlockStart.gif, https://rmmod.com/img/ExpandedBlockStart.gif 1.5x, https://rmmod.com/img/ExpandedBlockStart.gif 2x"
- data-sizes="auto"
- alt="/img/ExpandedBlockStart.gif"
- title="/img/ExpandedBlockStart.gif" />&lt;img
- class="lazyload"
- src="https://rmmod.com/svg/loading.min.svg"
- data-src="https://rmmod.com/img/ContractedBlock.gif"
- data-srcset="https://rmmod.com/img/ContractedBlock.gif, https://rmmod.com/img/ContractedBlock.gif 1.5x, https://rmmod.com/img/ContractedBlock.gif 2x"
- data-sizes="auto"
- alt="/img/ContractedBlock.gif"
- title="/img/ContractedBlock.gif" />&lt;img
- class="lazyload"
- src="https://rmmod.com/svg/loading.min.svg"
- data-src="https://rmmod.com/img/dot.gif"
- data-srcset="https://rmmod.com/img/dot.gif, https://rmmod.com/img/dot.gif 1.5x, https://rmmod.com/img/dot.gif 2x"
- data-sizes="auto"
- alt="/img/dot.gif"
- title="/img/dot.gif" />{&lt;br>
-4&lt;img
- class="lazyload"
- src="https://rmmod.com/svg/loading.min.svg"
- data-src="https://rmmod.com/img/ExpandedSubBlockStart.gif"
- data-srcset="https://rmmod.com/img/ExpandedSubBlockStart.gif, https://rmmod.com/img/ExpandedSubBlockStart.gif 1.5x, https://rmmod.com/img/ExpandedSubBlockStart.gif 2x"
- data-sizes="auto"
- alt="/img/ExpandedSubBlockStart.gif"
- title="/img/ExpandedSubBlockStart.gif" />&lt;img
- class="lazyload"
- src="https://rmmod.com/svg/loading.min.svg"
- data-src="https://rmmod.com/img/ContractedSubBlock.gif"
- data-srcset="https://rmmod.com/img/ContractedSubBlock.gif, https://rmmod.com/img/ContractedSubBlock.gif 1.5x, https://rmmod.com/img/ContractedSubBlock.gif 2x"
- data-sizes="auto"
- alt="/img/ContractedSubBlock.gif"
- title="/img/ContractedSubBlock.gif" /> int a[] = &lt;img
- class="lazyload"
- src="https://rmmod.com/svg/loading.min.svg"
- data-src="https://rmmod.com/img/dot.gif"
- data-srcset="https://rmmod.com/img/dot.gif, https://rmmod.com/img/dot.gif 1.5x, https://rmmod.com/img/dot.gif 2x"
- data-sizes="auto"
- alt="/img/dot.gif"
- title="/img/dot.gif" />{1,2,3,4,5};&lt;br>
-5&lt;img
- class="lazyload"
- src="https://rmmod.com/svg/loading.min.svg"
- data-src="https://rmmod.com/img/InBlock.gif"
- data-srcset="https://rmmod.com/img/InBlock.gif, https://rmmod.com/img/InBlock.gif 1.5x, https://rmmod.com/img/InBlock.gif 2x"
- data-sizes="auto"
- alt="/img/InBlock.gif"
- title="/img/InBlock.gif" /> for(int i = 0 ; i &amp;lt; 5; i++)&lt;br>
-6&lt;img
- class="lazyload"
- src="https://rmmod.com/svg/loading.min.svg"
- data-src="https://rmmod.com/img/InBlock.gif"
- data-srcset="https://rmmod.com/img/InBlock.gif, https://rmmod.com/img/InBlock.gif 1.5x, https://rmmod.com/img/InBlock.gif 2x"
- data-sizes="auto"
- alt="/img/InBlock.gif"
- title="/img/InBlock.gif" /> std::cout &amp;laquo; i[a] &amp;laquo; &amp;quot; &amp;ldquo;;&lt;br>
-7&lt;img
- class="lazyload"
- src="https://rmmod.com/svg/loading.min.svg"
- data-src="https://rmmod.com/img/InBlock.gif"
- data-srcset="https://rmmod.com/img/InBlock.gif, https://rmmod.com/img/InBlock.gif 1.5x, https://rmmod.com/img/InBlock.gif 2x"
- data-sizes="auto"
- alt="/img/InBlock.gif"
- title="/img/InBlock.gif" /> return 0;&lt;br>
-8&lt;img
- class="lazyload"
- src="https://rmmod.com/svg/loading.min.svg"
- data-src="https://rmmod.com/img/ExpandedBlockEnd.gif"
- data-srcset="https://rmmod.com/img/ExpandedBlockEnd.gif, https://rmmod.com/img/ExpandedBlockEnd.gif 1.5x, https://rmmod.com/img/ExpandedBlockEnd.gif 2x"
- data-sizes="auto"
- alt="/img/ExpandedBlockEnd.gif"
- title="/img/ExpandedBlockEnd.gif" />}&lt;/p></description></item><item><title>Random Thoughts Series 1 - C++ Thoughts</title><link>https://rmmod.com/posts/cppblog/2009-12-20-random-thoughts-series-1-cpp-thoughts-en/</link><pubDate>Sun, 20 Dec 2009 00:00:00 +0800</pubDate><guid>https://rmmod.com/posts/cppblog/2009-12-20-random-thoughts-series-1-cpp-thoughts-en/</guid><description>&lt;p>After diving deep into the internal structure of STL and some of the deeper mechanisms and techniques of C++, a question that every programmer must face suddenly emerged.&lt;/p>
-&lt;p>&lt;strong>Why Programming in C++?&lt;/strong>&lt;/p>
-&lt;p>Why should I choose C++ over the simple and pure C, or the flexible and comprehensive JAVA and C#?&lt;/p>
-&lt;p>Browsing through various technical forums and blogs of experts, everyone is arguing for their favorite language. C#/JAVA programmers say: don&amp;rsquo;t reinvent the wheel, with a good language platform and rich comprehensive libraries, you can focus on more important aspects like architecture and software engineering. Why be obsessed with the surface foundations of the language? The C++ standard doesn&amp;rsquo;t even have basic GUI libraries and network libraries. Even BJ, the creator of C++, wants to develop C++ into a platform.&lt;/p></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>C&#43;&#43; on Guanlan Dai</title>
+    <link>https://rmmod.com/categories/c&#43;&#43;/</link>
+    <description>Recent content in C&#43;&#43; on Guanlan Dai</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 24 Dec 2009 00:00:00 +0800</lastBuildDate>
+    <atom:link href="https://rmmod.com/categories/c++/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>A &#39;Strange Phenomenon&#39; in C/C&#43;&#43; Arrays</title>
+      <link>https://rmmod.com/posts/cppblog/2009-12-24-cc-array-peculiar-phenomenon-en/</link>
+      <pubDate>Thu, 24 Dec 2009 00:00:00 +0800</pubDate>
+      <guid>https://rmmod.com/posts/cppblog/2009-12-24-cc-array-peculiar-phenomenon-en/</guid>
+      <description>&lt;p&gt;Everyone is familiar with using arrays, right?&lt;br&gt;&#xA;Take a look at this program, it&amp;rsquo;s quite simple.&lt;/p&gt;&#xA;&lt;pre&gt;&lt;code class=&#34;cpp&#34;&gt;#include&amp;lt;iostream&amp;gt;&#xA;int main()&#xA;{&#xA;    int a[] = {1,2,3,4,5};&#xA;    for(int i = 0 ; i &amp;lt; 5; i&amp;#43;&amp;#43;)&#xA;        std::cout &amp;lt;&amp;lt; i[a] &amp;lt;&amp;lt; &amp;#34; &amp;#34;;&#xA;    return 0;&#xA;}&lt;/code&gt;&lt;/pre&gt;&#xA;&lt;p&gt;Now look carefully at line 6.&lt;br&gt;&#xA;What did you notice?&lt;br&gt;&#xA;Try compiling it to see if it passes?&lt;/p&gt;&#xA;&lt;p&gt;Let&amp;rsquo;s simplify this program even more&lt;/p&gt;&#xA;&lt;pre&gt;&lt;code class=&#34;cpp&#34;&gt;int a[5] = {1,2,3,4,5};&#xA;int b = 1[a];&lt;/code&gt;&lt;/pre&gt;&#xA;&lt;p&gt;Now let&amp;rsquo;s look at the generated assembly code&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Random Thoughts Series 1 - C&#43;&#43; Thoughts</title>
+      <link>https://rmmod.com/posts/cppblog/2009-12-20-random-thoughts-series-1-cpp-thoughts-en/</link>
+      <pubDate>Sun, 20 Dec 2009 00:00:00 +0800</pubDate>
+      <guid>https://rmmod.com/posts/cppblog/2009-12-20-random-thoughts-series-1-cpp-thoughts-en/</guid>
+      <description>&lt;p&gt;After diving deep into the internal structure of STL and some of the deeper mechanisms and techniques of C++, a question that every programmer must face suddenly emerged.&lt;/p&gt;&#xA;&lt;p&gt;&lt;strong&gt;Why Programming in C++?&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;p&gt;Why should I choose C++ over the simple and pure C, or the flexible and comprehensive JAVA and C#?&lt;/p&gt;&#xA;&lt;p&gt;Browsing through various technical forums and blogs of experts, everyone is arguing for their favorite language. C#/JAVA programmers say: don&amp;rsquo;t reinvent the wheel, with a good language platform and rich comprehensive libraries, you can focus on more important aspects like architecture and software engineering. Why be obsessed with the surface foundations of the language? The C++ standard doesn&amp;rsquo;t even have basic GUI libraries and network libraries. Even BJ, the creator of C++, wants to develop C++ into a platform.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

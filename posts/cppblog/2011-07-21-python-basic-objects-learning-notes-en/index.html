@@ -1,48 +1,194 @@
-<!doctype html><html lang=en-us><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><title>Python Basic Objects Learning Notes - Guanlan Dai</title><meta name=Description content="This is my cool site"><meta property="og:url" content="https://rmmod.com/posts/cppblog/2011-07-21-python-basic-objects-learning-notes-en/"><meta property="og:site_name" content="Guanlan Dai"><meta property="og:title" content="Python Basic Objects Learning Notes"><meta property="og:description" content="Recently revisiting the book “Python Source Code Analysis”, I’ve recorded the key points about Python basic objects as follows:
-**Python Integer Objects** 1. Python integers use C language's long type for storage 2. Python int addition checks if the result overflows, and automatically converts to pyLongObject if it does 3. Documentation in Python is seamlessly integrated into the language implementation 1 a = 11
-2 print a.doc
-4. Small integer objects are completely cached in memory, other integer objects take turns using a block of memory space 5. Small integer objects are created in _PyInt_Init called during Python initialization, and exist until the Python virtual machine exits **Python String Objects** 1. After pyStringObject is created, the internally maintained string cannot be changed 2. Is the intern mechanism only used when character array length is 0 or 1? The code provided in the book is too simplified and doesn't explain clearly, but looking at the demonstration results later, it seems all strings implement the intern mechanism 3. String concatenation operations severely impact Python program execution efficiency. Using join only allocates memory once, greatly improving efficiency. Usage example: “&#34;.join([‘s1’,‘s2’,‘s3’])"><meta property="og:locale" content="en_us"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2011-07-21T00:00:00+08:00"><meta property="article:modified_time" content="2011-07-21T00:00:00+08:00"><meta property="article:tag" content="Original"><meta name=twitter:card content="summary"><meta name=twitter:title content="Python Basic Objects Learning Notes"><meta name=twitter:description content="Recently revisiting the book “Python Source Code Analysis”, I’ve recorded the key points about Python basic objects as follows:
-**Python Integer Objects** 1. Python integers use C language's long type for storage 2. Python int addition checks if the result overflows, and automatically converts to pyLongObject if it does 3. Documentation in Python is seamlessly integrated into the language implementation 1 a = 11
-2 print a.doc
-4. Small integer objects are completely cached in memory, other integer objects take turns using a block of memory space 5. Small integer objects are created in _PyInt_Init called during Python initialization, and exist until the Python virtual machine exits **Python String Objects** 1. After pyStringObject is created, the internally maintained string cannot be changed 2. Is the intern mechanism only used when character array length is 0 or 1? The code provided in the book is too simplified and doesn't explain clearly, but looking at the demonstration results later, it seems all strings implement the intern mechanism 3. String concatenation operations severely impact Python program execution efficiency. Using join only allocates memory once, greatly improving efficiency. Usage example: “&#34;.join([‘s1’,‘s2’,‘s3’])"><meta name=application-name content="My cool site"><meta name=apple-mobile-web-app-title content="My cool site"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://rmmod.com/posts/cppblog/2011-07-21-python-basic-objects-learning-notes-en/><link rel=prev href=https://rmmod.com/posts/cppblog/2010-10-24-look-at-this-years-programmers-problem-solving-sequence-en/><link rel=next href=https://rmmod.com/posts/how-to-use-python-like-lisp/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Python Basic Objects Learning Notes","inLanguage":"en-us","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/rmmod.com\/posts\/cppblog\/2011-07-21-python-basic-objects-learning-notes-en\/"},"genre":"posts","keywords":"original","wordcount":426,"url":"https:\/\/rmmod.com\/posts\/cppblog\/2011-07-21-python-basic-objects-learning-notes-en\/","datePublished":"2011-07-21T00:00:00+08:00","dateModified":"2011-07-21T00:00:00+08:00","publisher":{"@type":"Organization","name":""},"author":{"@type":"Person","name":"guanlan"},"description":""}</script></head><body data-header-desktop=fixed data-header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem("theme")?localStorage.getItem("theme")==="dark":"auto"==="auto"?window.matchMedia("(prefers-color-scheme: dark)").matches:"auto"==="dark")&&document.body.setAttribute("theme","dark")</script><div id=mask></div><div class=wrapper><header class=desktop id=header-desktop><div class=header-wrapper><div class=header-title><a href=/ title="Guanlan Dai">Guanlan Dai</a></div><div class=menu><div class=menu-inner><a class=menu-item href=/>Home </a><a class=menu-item href=/about/>About </a><span class="menu-item delimiter"></span><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme">
-<i class="fas fa-adjust fa-fw" aria-hidden=true></i></a></div></div></div></header><header class=mobile id=header-mobile><div class=header-container><div class=header-wrapper><div class=header-title><a href=/ title="Guanlan Dai">Guanlan Dai</a></div><div class=menu-toggle id=menu-toggle-mobile><span></span><span></span><span></span></div></div><div class=menu id=menu-mobile><a class=menu-item href=/ title>Home</a><a class=menu-item href=/about/ title>About</a><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme">
-<i class="fas fa-adjust fa-fw" aria-hidden=true></i></a></div></div></header><main class=main><div class=container><div class=toc id=toc-auto><h2 class=toc-title>Contents</h2><div class=toc-content id=toc-content-auto></div></div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Python Basic Objects Learning Notes</h1><div class=post-meta><div class=post-meta-line><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw" aria-hidden=true></i>guanlan</a>
-</span>&nbsp;<span class=post-category>included in <a href=/categories/python/><i class="far fa-folder fa-fw" aria-hidden=true></i>Python</a></span></div><div class=post-meta-line><i class="far fa-calendar-alt fa-fw" aria-hidden=true></i>&nbsp;<time datetime=2011-07-21>2011-07-21</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden=true></i>&nbsp;426 words&nbsp;
-<i class="far fa-clock fa-fw" aria-hidden=true></i>&nbsp;2 minutes&nbsp;</div></div><div class="details toc" id=toc-static data-kept><div class="details-summary toc-title"><span>Contents</span>
-<span><i class="details-icon fas fa-angle-right" aria-hidden=true></i></span></div><div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents></nav></div></div><div class=content id=content><p>Recently revisiting the book &ldquo;Python Source Code Analysis&rdquo;, I&rsquo;ve recorded the key points about Python basic objects as follows:</p><pre><code>**Python Integer Objects**  
- 1. Python integers use C language's long type for storage  
-2. Python int addition checks if the result overflows, and automatically converts to pyLongObject if it does  
-3. Documentation in Python is seamlessly integrated into the language implementation  
-</code></pre><p>1 a = 11<br>2 print a.<strong>doc</strong></p><pre><code>4. Small integer objects are completely cached in memory, other integer objects take turns using a block of memory space  
-5. Small integer objects are created in _PyInt_Init called during Python initialization, and exist until the Python virtual machine exits
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Python Basic Objects Learning Notes - Guanlan Dai</title><meta name="Description" content="This is my cool site"><meta property="og:url" content="https://rmmod.com/posts/cppblog/2011-07-21-python-basic-objects-learning-notes-en/">
+  <meta property="og:site_name" content="Guanlan Dai">
+  <meta property="og:title" content="Python Basic Objects Learning Notes">
+  <meta property="og:description" content="Recently revisiting the book “Python Source Code Analysis”, I’ve recorded the key points about Python basic objects as follows:
+​ Python Integer Objects
+Python integers use C language’s long type for storage Python int addition checks if the result overflows, and automatically converts to pyLongObject if it does Documentation in Python is seamlessly integrated into the language implementation a = 11 print a.__doc__ Small integer objects are completely cached in memory, other integer objects take turns using a block of memory space">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2011-07-21T00:00:00+08:00">
+    <meta property="article:modified_time" content="2011-07-21T00:00:00+08:00">
+    <meta property="article:tag" content="Original">
 
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Python Basic Objects Learning Notes">
+  <meta name="twitter:description" content="Recently revisiting the book “Python Source Code Analysis”, I’ve recorded the key points about Python basic objects as follows:
+​ Python Integer Objects
+Python integers use C language’s long type for storage Python int addition checks if the result overflows, and automatically converts to pyLongObject if it does Documentation in Python is seamlessly integrated into the language implementation a = 11 print a.__doc__ Small integer objects are completely cached in memory, other integer objects take turns using a block of memory space">
+      <meta name="twitter:site" content="@guanlandai">
+<meta name="application-name" content="My cool site">
+<meta name="apple-mobile-web-app-title" content="My cool site"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://rmmod.com/posts/cppblog/2011-07-21-python-basic-objects-learning-notes-en/" /><link rel="prev" href="https://rmmod.com/posts/cppblog/2010-10-24-look-at-this-years-programmers-problem-solving-sequence-en/" /><link rel="next" href="https://rmmod.com/posts/how-to-use-python-like-lisp/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Python Basic Objects Learning Notes",
+        "inLanguage": "en-us",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/rmmod.com\/posts\/cppblog\/2011-07-21-python-basic-objects-learning-notes-en\/"
+        },"genre": "posts","keywords": "original","wordcount":  408 ,
+        "url": "https:\/\/rmmod.com\/posts\/cppblog\/2011-07-21-python-basic-objects-learning-notes-en\/","datePublished": "2011-07-21T00:00:00+08:00","dateModified": "2011-07-21T00:00:00+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "guanlan"
+            },"description": ""
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
 
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Guanlan Dai">Guanlan Dai</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/"> Home </a><a class="menu-item" href="/about/"> About </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Guanlan Dai">Guanlan Dai</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/" title="">Home</a><a class="menu-item" href="/about/" title="">About</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Python Basic Objects Learning Notes</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>guanlan</a>
+</span>&nbsp;<span class="post-category">included in <a href="/categories/python/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Python</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2011-07-21">2011-07-21</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;408 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;2 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents"></nav></div>
+            </div><div class="content" id="content"><p>Recently revisiting the book &ldquo;Python Source Code Analysis&rdquo;, I&rsquo;ve recorded the key points about Python basic objects as follows:</p>
+<p>​    <strong>Python Integer Objects</strong></p>
+<ol>
+<li>Python integers use C language&rsquo;s long type for storage</li>
+<li>Python int addition checks if the result overflows, and automatically converts to pyLongObject if it does</li>
+<li>Documentation in Python is seamlessly integrated into the language implementation</li>
+</ol>
+<pre><code class="python">a = 11  
+print a.__doc__</code></pre>
+<ol start="4">
+<li>
+<p>Small integer objects are completely cached in memory, other integer objects take turns using a block of memory space</p>
+</li>
+<li>
+<p>Small integer objects are created in _PyInt_Init called during Python initialization, and exist until the Python virtual machine exits</p>
+<p><strong>Python String Objects</strong></p>
+<ol>
+<li>After pyStringObject is created, the internally maintained string cannot be changed</li>
+<li>Is the intern mechanism only used when character array length is 0 or 1? The code provided in the book is too simplified and doesn&rsquo;t explain clearly, but looking at the demonstration results later, it seems all strings implement the intern mechanism</li>
+<li>String concatenation operations severely impact Python program execution efficiency. Using join only allocates memory once, greatly improving efficiency. Usage example:</li>
+</ol>
+</li>
+</ol>
+<pre><code class="python">&#34;&#34;.join([&#39;s1&#39;,&#39;s2&#39;,&#39;s3&#39;])</code></pre>
+<p><strong>Python Dict Objects</strong></p>
+<ol>
+<li>
+<p>Python&rsquo;s dict uses hashtable instead of R-B Tree.</p>
+</li>
+<li>
+<p>Uses open addressing to resolve conflicts.</p>
+</li>
+<li>
+<p>To ensure continuity of the conflict detection chain, uses pseudo-deletion technique - deleted active objects are set to dummy state</p>
+</li>
+<li>
+<p>To reduce conflicts, when load factor exceeds 2/3, table size is changed, increasing by 4x each time. If the number of active elements in the table exceeds 50000 (giant table),<br>
+growth rate is slowed down to 2x each time. It can be seen that Python dict has high lookup efficiency, while being very economical with memory usage, also considering reduced growth factor for giant tables.</p>
+<p><strong>Python List Objects</strong></p>
+</li>
+<li>
+<p>PyListObject is similar to Vector in STL.</p>
+</li>
+<li>
+<p>Python is very frugal with memory usage - if the new size after list change is less than 1/2 of allocated memory, it shrinks the memory.</p>
+</li>
+<li>
+<p>Inserting elements in the middle of PyList requires moving subsequent elements one by one, similar to C arrays, so insertions and deletions of middle elements should be avoided.</p>
+</li>
+<li>
+<p>Comparison of STL and PyListObject automatic expansion algorithms: personally I think list would be more appropriately named array, hehe</p>
+</li>
+</ol>
+<pre><code class="c">//sgi STL:  
+len = (old_size != 0 )?2*oldsize:1  
+//(expand by 2x if not enough, if initially empty set to 1)  
+//Python:  
+new_allocated=(newsize&gt;&gt;3)&#43;(newsize&lt;9?3:6)  
+//(???)</code></pre>
+<ol start="5">
+<li>Regarding the choice of growth factor, there&rsquo;s discussion here:</li>
+</ol>
+<p><a href="http://en.w3support.net/index.php?db=so&amp;id=1100311" target="_blank" rel="noopener noreffer">http://en.w3support.net/index.php?db=so&amp;id=1100311</a>
+</p>
+<p>p70 typo in the book: &ldquo;allcated/2&rdquo; should be &ldquo;allocated/2&rdquo;</p>
+<hr>
+<p><em>Original link: <a href="http://www.cppblog.com/xguru/archive/2011/07/21/Python_object.html" target="_blank" rel="noopener noreffer">http://www.cppblog.com/xguru/archive/2011/07/21/Python_object.html</a>
+</em></p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2011-07-21</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://rmmod.com/posts/cppblog/2011-07-21-python-basic-objects-learning-notes-en/" data-title="Python Basic Objects Learning Notes" data-via="guanlandai" data-hashtags="original"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://rmmod.com/posts/cppblog/2011-07-21-python-basic-objects-learning-notes-en/" data-hashtag="original"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://rmmod.com/posts/cppblog/2011-07-21-python-basic-objects-learning-notes-en/" data-title="Python Basic Objects Learning Notes"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://rmmod.com/posts/cppblog/2011-07-21-python-basic-objects-learning-notes-en/" data-title="Python Basic Objects Learning Notes"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@6.20.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://rmmod.com/posts/cppblog/2011-07-21-python-basic-objects-learning-notes-en/" data-title="Python Basic Objects Learning Notes"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
 
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/original/">Original</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
 
+    <div class="post-nav"><a href="/posts/cppblog/2010-10-24-look-at-this-years-programmers-problem-solving-sequence-en/" class="prev" rel="prev" title="[Essay] Look at This Year&#39;s Programmers&#39; Problem-Solving Sequence"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>[Essay] Look at This Year&#39;s Programmers&#39; Problem-Solving Sequence</a>
+            <a href="/posts/how-to-use-python-like-lisp/" class="next" rel="next" title="How to use Python like Lisp">How to use Python like Lisp<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Guanlan Dai | CC BY-NC 4.0</div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2009 - 2025</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span></div>
+        </div>
+    </footer></div>
 
-**Python String Objects**  
- 1. After pyStringObject is created, the internally maintained string cannot be changed   
-2. Is the intern mechanism only used when character array length is 0 or 1? The code provided in the book is too simplified and doesn't explain clearly, but looking at the demonstration results later, it seems all strings implement the intern mechanism  
-3. String concatenation operations severely impact Python program execution efficiency. Using join only allocates memory once, greatly improving efficiency. Usage example:  
-</code></pre><p>&ldquo;".join([&lsquo;s1&rsquo;,&lsquo;s2&rsquo;,&lsquo;s3&rsquo;])</p><pre><code>**Python Dict Objects**  
- 1. Python's dict uses hashtable instead of R-B Tree.  
-2. Uses open addressing to resolve conflicts.  
-3. To ensure continuity of the conflict detection chain, uses pseudo-deletion technique - deleted active objects are set to dummy state  
-4. To reduce conflicts, when load factor exceeds 2/3, table size is changed, increasing by 4x each time. If the number of active elements in the table exceeds 50000 (giant table),  
-   growth rate is slowed down to 2x each time. It can be seen that Python dict has high lookup efficiency, while being very economical with memory usage, also considering reduced growth factor for giant tables.  
-  
-
-
-
-**Python List Objects**  
- 1. PyListObject is similar to Vector in STL.  
-2. Python is very frugal with memory usage - if the new size after list change is less than 1/2 of allocated memory, it shrinks the memory.  
-3. Inserting elements in the middle of PyList requires moving subsequent elements one by one, similar to C arrays, so insertions and deletions of middle elements should be avoided.  
-4. Comparison of STL and PyListObject automatic expansion algorithms: personally I think list would be more appropriately named array, hehe  
-</code></pre><p>//sgi STL:<br>len = (old_size != 0 )?2*oldsize:1<br>//(expand by 2x if not enough, if initially empty set to 1)<br>//Python:<br>new_allocated=(newsize&#187;3)+(newsize&lt;9?3:6)<br>//(???)</p><pre><code>5. Regarding the choice of growth factor, there's discussion here:  
-[http://en.w3support.net/index.php?db=so&amp;id=1100311](http://en.w3support.net/index.php?db=so&amp;id=1100311)  
-  
-p70 typo in the book: &quot;allcated/2&quot; should be &quot;allocated/2&quot;  
-</code></pre><hr><p><em>Original link: <a href=http://www.cppblog.com/xguru/archive/2011/07/21/Python_object.html target=_blank rel="noopener noreffer">http://www.cppblog.com/xguru/archive/2011/07/21/Python_object.html</a></em></p></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span>Updated on 2011-07-21</span></div></div><div class=post-info-line><div class=post-info-md></div><div class=post-info-share><span><a href=javascript:void(0); title="Share on Twitter" data-sharer=twitter data-url=https://rmmod.com/posts/cppblog/2011-07-21-python-basic-objects-learning-notes-en/ data-title="Python Basic Objects Learning Notes" data-hashtags=original><i class="fab fa-twitter fa-fw" aria-hidden=true></i></a><a href=javascript:void(0); title="Share on Facebook" data-sharer=facebook data-url=https://rmmod.com/posts/cppblog/2011-07-21-python-basic-objects-learning-notes-en/ data-hashtag=original><i class="fab fa-facebook-square fa-fw" aria-hidden=true></i></a><a href=javascript:void(0); title="Share on Hacker News" data-sharer=hackernews data-url=https://rmmod.com/posts/cppblog/2011-07-21-python-basic-objects-learning-notes-en/ data-title="Python Basic Objects Learning Notes"><i class="fab fa-hacker-news fa-fw" aria-hidden=true></i></a><a href=javascript:void(0); title="Share on Line" data-sharer=line data-url=https://rmmod.com/posts/cppblog/2011-07-21-python-basic-objects-learning-notes-en/ data-title="Python Basic Objects Learning Notes"><i data-svg-src=https://cdn.jsdelivr.net/npm/simple-icons@6.20.0/icons/line.svg aria-hidden=true></i></a><a href=javascript:void(0); title="Share on 微博" data-sharer=weibo data-url=https://rmmod.com/posts/cppblog/2011-07-21-python-basic-objects-learning-notes-en/ data-title="Python Basic Objects Learning Notes"><i class="fab fa-weibo fa-fw" aria-hidden=true></i></a></span></div></div></div><div class=post-info-more><section class=post-tags><i class="fas fa-tags fa-fw" aria-hidden=true></i>&nbsp;<a href=/tags/original/>Original</a></section><section><span><a href=javascript:void(0); onclick=window.history.back()>Back</a></span>&nbsp;|&nbsp;<span><a href=/>Home</a></span></section></div><div class=post-nav><a href=/posts/cppblog/2010-10-24-look-at-this-years-programmers-problem-solving-sequence-en/ class=prev rel=prev title="[Essay] Look at This Year's Programmers' Problem-Solving Sequence"><i class="fas fa-angle-left fa-fw" aria-hidden=true></i>[Essay] Look at This Year's Programmers' Problem-Solving Sequence</a>
-<a href=/posts/how-to-use-python-like-lisp/ class=next rel=next title="How to use Python like Lisp">How to use Python like Lisp<i class="fas fa-angle-right fa-fw" aria-hidden=true></i></a></div></div></article></div></main><footer class=footer><div class=footer-container><div class=footer-line>Guanlan Dai | CC BY-NC 4.0</div><div class=footer-line itemscope itemtype=http://schema.org/CreativeWork><i class="far fa-copyright fa-fw" aria-hidden=true></i><span itemprop=copyrightYear>2009 - 2025</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=/ target=_blank></a></span></div></div></footer></div><div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title="Back to Top"><i class="fas fa-arrow-up fa-fw" aria-hidden=true></i>
-</a><a href=# id=view-comments class=fixed-button title="View Comments"><i class="fas fa-comment fa-fw" aria-hidden=true></i></a></div><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lazysizes@5.3.1/lazysizes.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js></script><script type=text/javascript>window.config={code:{copyTitle:"Copy to clipboard",maxShownLines:50},comment:{}}</script><script type=text/javascript src=/js/theme.min.js></script></body></html>
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.1/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

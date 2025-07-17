@@ -1,21 +1,19 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Python on Guanlan Dai</title><link>https://rmmod.com/categories/python/</link><description>Recent content in Python on Guanlan Dai</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Thu, 21 Jul 2011 00:00:00 +0800</lastBuildDate><atom:link href="https://rmmod.com/categories/python/index.xml" rel="self" type="application/rss+xml"/><item><title>Python Basic Objects Learning Notes</title><link>https://rmmod.com/posts/cppblog/2011-07-21-python-basic-objects-learning-notes-en/</link><pubDate>Thu, 21 Jul 2011 00:00:00 +0800</pubDate><guid>https://rmmod.com/posts/cppblog/2011-07-21-python-basic-objects-learning-notes-en/</guid><description>&lt;p>Recently revisiting the book &amp;ldquo;Python Source Code Analysis&amp;rdquo;, I&amp;rsquo;ve recorded the key points about Python basic objects as follows:&lt;/p>
-&lt;pre>&lt;code>**Python Integer Objects** 
- 1. Python integers use C language's long type for storage 
-2. Python int addition checks if the result overflows, and automatically converts to pyLongObject if it does 
-3. Documentation in Python is seamlessly integrated into the language implementation 
-&lt;/code>&lt;/pre>
-&lt;p>1 a = 11&lt;br>
-2 print a.&lt;strong>doc&lt;/strong>&lt;/p>
-&lt;pre>&lt;code>4. Small integer objects are completely cached in memory, other integer objects take turns using a block of memory space 
-5. Small integer objects are created in _PyInt_Init called during Python initialization, and exist until the Python virtual machine exits
-
-
-
-
-
-**Python String Objects** 
- 1. After pyStringObject is created, the internally maintained string cannot be changed 
-2. Is the intern mechanism only used when character array length is 0 or 1? The code provided in the book is too simplified and doesn't explain clearly, but looking at the demonstration results later, it seems all strings implement the intern mechanism 
-3. String concatenation operations severely impact Python program execution efficiency. Using join only allocates memory once, greatly improving efficiency. Usage example: 
-&lt;/code>&lt;/pre>
-&lt;p>&amp;ldquo;&amp;quot;.join([&amp;lsquo;s1&amp;rsquo;,&amp;lsquo;s2&amp;rsquo;,&amp;lsquo;s3&amp;rsquo;])&lt;/p></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Python on Guanlan Dai</title>
+    <link>https://rmmod.com/categories/python/</link>
+    <description>Recent content in Python on Guanlan Dai</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 21 Jul 2011 00:00:00 +0800</lastBuildDate>
+    <atom:link href="https://rmmod.com/categories/python/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Python Basic Objects Learning Notes</title>
+      <link>https://rmmod.com/posts/cppblog/2011-07-21-python-basic-objects-learning-notes-en/</link>
+      <pubDate>Thu, 21 Jul 2011 00:00:00 +0800</pubDate>
+      <guid>https://rmmod.com/posts/cppblog/2011-07-21-python-basic-objects-learning-notes-en/</guid>
+      <description>&lt;p&gt;Recently revisiting the book &amp;ldquo;Python Source Code Analysis&amp;rdquo;, I&amp;rsquo;ve recorded the key points about Python basic objects as follows:&lt;/p&gt;&#xA;&lt;p&gt;​    &lt;strong&gt;Python Integer Objects&lt;/strong&gt;&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Python integers use C language&amp;rsquo;s long type for storage&lt;/li&gt;&#xA;&lt;li&gt;Python int addition checks if the result overflows, and automatically converts to pyLongObject if it does&lt;/li&gt;&#xA;&lt;li&gt;Documentation in Python is seamlessly integrated into the language implementation&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;pre&gt;&lt;code class=&#34;python&#34;&gt;a = 11  &#xA;print a.__doc__&lt;/code&gt;&lt;/pre&gt;&#xA;&lt;ol start=&#34;4&#34;&gt;&#xA;&lt;li&gt;&#xA;&lt;p&gt;Small integer objects are completely cached in memory, other integer objects take turns using a block of memory space&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
