@@ -1,1 +1,82 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Tags on Guanlan Dai</title><link>https://rmmod.com/tags/</link><description>Recent content in Tags on Guanlan Dai</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Thu, 18 Jul 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://rmmod.com/tags/index.xml" rel="self" type="application/rss+xml"/><item><title>Kong</title><link>https://rmmod.com/tags/kong/</link><pubDate>Thu, 18 Jul 2024 00:00:00 +0000</pubDate><guid>https://rmmod.com/tags/kong/</guid><description/></item><item><title>Rust</title><link>https://rmmod.com/tags/rust/</link><pubDate>Thu, 18 Jul 2024 00:00:00 +0000</pubDate><guid>https://rmmod.com/tags/rust/</guid><description/></item><item><title>Rate Limiting</title><link>https://rmmod.com/tags/rate-limiting/</link><pubDate>Tue, 18 May 2021 00:00:00 +0000</pubDate><guid>https://rmmod.com/tags/rate-limiting/</guid><description/></item><item><title>Networking</title><link>https://rmmod.com/tags/networking/</link><pubDate>Fri, 15 Jan 2021 00:00:00 +0000</pubDate><guid>https://rmmod.com/tags/networking/</guid><description/></item><item><title>Lisp</title><link>https://rmmod.com/tags/lisp/</link><pubDate>Sun, 03 Feb 2013 00:00:00 +0000</pubDate><guid>https://rmmod.com/tags/lisp/</guid><description/></item><item><title>Python</title><link>https://rmmod.com/tags/python/</link><pubDate>Wed, 09 Jan 2013 00:00:00 +0000</pubDate><guid>https://rmmod.com/tags/python/</guid><description/></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on Guanlan Dai</title>
+    <link>https://rmmod.com/tags/</link>
+    <description>Recent content in Tags on Guanlan Dai</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 18 Jul 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://rmmod.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Kong</title>
+      <link>https://rmmod.com/tags/kong/</link>
+      <pubDate>Thu, 18 Jul 2024 00:00:00 +0000</pubDate>
+      <guid>https://rmmod.com/tags/kong/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Rust</title>
+      <link>https://rmmod.com/tags/rust/</link>
+      <pubDate>Thu, 18 Jul 2024 00:00:00 +0000</pubDate>
+      <guid>https://rmmod.com/tags/rust/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Rate Limiting</title>
+      <link>https://rmmod.com/tags/rate-limiting/</link>
+      <pubDate>Tue, 18 May 2021 00:00:00 +0000</pubDate>
+      <guid>https://rmmod.com/tags/rate-limiting/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Networking</title>
+      <link>https://rmmod.com/tags/networking/</link>
+      <pubDate>Fri, 15 Jan 2021 00:00:00 +0000</pubDate>
+      <guid>https://rmmod.com/tags/networking/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Lisp</title>
+      <link>https://rmmod.com/tags/lisp/</link>
+      <pubDate>Sun, 03 Feb 2013 00:00:00 +0000</pubDate>
+      <guid>https://rmmod.com/tags/lisp/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Python</title>
+      <link>https://rmmod.com/tags/python/</link>
+      <pubDate>Wed, 09 Jan 2013 00:00:00 +0000</pubDate>
+      <guid>https://rmmod.com/tags/python/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Original</title>
+      <link>https://rmmod.com/tags/original/</link>
+      <pubDate>Thu, 21 Jul 2011 00:00:00 +0800</pubDate>
+      <guid>https://rmmod.com/tags/original/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Essay</title>
+      <link>https://rmmod.com/tags/essay/</link>
+      <pubDate>Sun, 24 Oct 2010 00:00:00 +0800</pubDate>
+      <guid>https://rmmod.com/tags/essay/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Tips</title>
+      <link>https://rmmod.com/tags/tips/</link>
+      <pubDate>Thu, 07 Oct 2010 00:00:00 +0800</pubDate>
+      <guid>https://rmmod.com/tags/tips/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Fun</title>
+      <link>https://rmmod.com/tags/fun/</link>
+      <pubDate>Tue, 27 Jul 2010 00:00:00 +0800</pubDate>
+      <guid>https://rmmod.com/tags/fun/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>
