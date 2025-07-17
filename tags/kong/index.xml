@@ -1,33 +1,24 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Kong on Guanlan Dai</title>
-    <link>https://rmmod.com/tags/kong/</link>
-    <description>Recent content in Kong on Guanlan Dai</description>
-    <generator>Hugo</generator>
-    <language>en-us</language>
-    <lastBuildDate>Thu, 18 Jul 2024 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://rmmod.com/tags/kong/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Deep Dive into Kong Gateway&#39;s New Rust-Based Router</title>
-      <link>https://rmmod.com/posts/rust-based-router-kong-gateway/</link>
-      <pubDate>Thu, 18 Jul 2024 00:00:00 +0000</pubDate>
-      <guid>https://rmmod.com/posts/rust-based-router-kong-gateway/</guid>
-      <description>&lt;h2 id=&#34;what-is-the-expressions-router&#34;&gt;What is the Expressions Router?&lt;/h2&gt;&#xA;&lt;p&gt;The router component in the Kong Gateway is a crucial element for traffic handling, allowing the definition of specific matching rules to identify and process client requests. As a core component of the gateway, the router plays a vital role in ensuring the functionality, flexibility, security as well as performance of the gateway.&lt;/p&gt;&#xA;&lt;p&gt;&lt;img&#xA;        class=&#34;lazyload&#34;&#xA;        src=&#34;https://rmmod.com/svg/loading.min.svg&#34;&#xA;        data-src=&#34;https://prd-mktg-konghq-com.imgix.net/images/2024/07/668eda3d-image7-2.png?auto=format&amp;amp;fit=max&amp;amp;w=2560&#34;&#xA;        data-srcset=&#34;https://prd-mktg-konghq-com.imgix.net/images/2024/07/668eda3d-image7-2.png?auto=format&amp;amp;fit=max&amp;amp;w=2560, https://prd-mktg-konghq-com.imgix.net/images/2024/07/668eda3d-image7-2.png?auto=format&amp;amp;fit=max&amp;amp;w=2560 1.5x, https://prd-mktg-konghq-com.imgix.net/images/2024/07/668eda3d-image7-2.png?auto=format&amp;amp;fit=max&amp;amp;w=2560 2x&#34;&#xA;        data-sizes=&#34;auto&#34;&#xA;        alt=&#34;https://prd-mktg-konghq-com.imgix.net/images/2024/07/668eda3d-image7-2.png?auto=format&amp;amp;fit=max&amp;amp;w=2560&#34;&#xA;        title=&#34;Kong gateway&#34; /&gt;&lt;/p&gt;&#xA;&lt;p&gt;In the 3.0 version update of the Kong API Gateway, the routing system was completely rewritten in Rust — a memory-safe and efficient language. A concise DSL (Domain Specific Language) was designed to define routing rules efficiently, called the &amp;ldquo;Expressions Router.&amp;rdquo; The new design reduced the routing construction time by 75% when handling up to 10,000 routing rules, significantly decreasing from 20 seconds to 5 seconds.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Protecting Services With Kong Gateway Rate Limiting</title>
-      <link>https://rmmod.com/posts/kong-gateway-rate-limiting/</link>
-      <pubDate>Tue, 18 May 2021 00:00:00 +0000</pubDate>
-      <guid>https://rmmod.com/posts/kong-gateway-rate-limiting/</guid>
-      <description>&lt;p&gt;The Kong Gateway Rate Limiting &lt;a href=&#34;https://docs.konghq.com/hub/kong-inc/rate-limiting&#34; target=&#34;_blank&#34; rel=&#34;noopener noreffer &#34;&gt;plugin&lt;/a&gt; is one of our most popular traffic control add-ons. You can configure the plugin with a policy for what constitutes &amp;ldquo;similar requests&amp;rdquo; (requests coming from the same IP address, for example), and you can set your limits (limit to 10 requests per minute, for example). This tutorial will walk through how simple it is to enable rate limiting in your &lt;a href=&#34;https://konghq.com/kong&#34; target=&#34;_blank&#34; rel=&#34;noopener noreffer &#34;&gt;Kong Gateway&lt;/a&gt;.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>How to Design a Scalable Rate Limiting Algorithm</title>
-      <link>https://rmmod.com/posts/how-to-design-a-scalable-rate-limiting-algorithm/</link>
-      <pubDate>Fri, 15 Jan 2021 12:19:18 +0800</pubDate>
-      <guid>https://rmmod.com/posts/how-to-design-a-scalable-rate-limiting-algorithm/</guid>
-      <description>&lt;h2 id=&#34;what-is-rate-limiting&#34;&gt;What is rate limiting?&lt;/h2&gt;&#xA;&lt;p&gt;Rate limiting protects your APIs from inadvertent or malicious overuse by limiting how often each user can call the API. Without rate limiting, each user may make a request as often as they like, leading to &amp;ldquo;spikes&amp;rdquo; of requests that starve other consumers. Once enabled, rate limiting can only perform a fixed number of requests per second. A rate limiting algorithm helps automate the process.&lt;/p&gt;&#xA;&lt;p&gt;&lt;img&#xA;        class=&#34;lazyload&#34;&#xA;        src=&#34;https://rmmod.com/svg/loading.min.svg&#34;&#xA;        data-src=&#34;https://konghq.com/wp-content/uploads/2017/12/01-rate-limit-kong.png&#34;&#xA;        data-srcset=&#34;https://konghq.com/wp-content/uploads/2017/12/01-rate-limit-kong.png, https://konghq.com/wp-content/uploads/2017/12/01-rate-limit-kong.png 1.5x, https://konghq.com/wp-content/uploads/2017/12/01-rate-limit-kong.png 2x&#34;&#xA;        data-sizes=&#34;auto&#34;&#xA;        alt=&#34;https://konghq.com/wp-content/uploads/2017/12/01-rate-limit-kong.png&#34;&#xA;        title=&#34;rate limiting enabled at 2 requests/min&#34; /&gt;&lt;/p&gt;</description>
-    </item>
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Kong on Guanlan Dai</title><link>https://rmmod.com/tags/kong/</link><description>Recent content in Kong on Guanlan Dai</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Thu, 18 Jul 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://rmmod.com/tags/kong/index.xml" rel="self" type="application/rss+xml"/><item><title>Deep Dive into Kong Gateway's New Rust-Based Router</title><link>https://rmmod.com/posts/rust-based-router-kong-gateway/</link><pubDate>Thu, 18 Jul 2024 00:00:00 +0000</pubDate><guid>https://rmmod.com/posts/rust-based-router-kong-gateway/</guid><description>&lt;h2 id="what-is-the-expressions-router">What is the Expressions Router?&lt;/h2>
+&lt;p>The router component in the Kong Gateway is a crucial element for traffic handling, allowing the definition of specific matching rules to identify and process client requests. As a core component of the gateway, the router plays a vital role in ensuring the functionality, flexibility, security as well as performance of the gateway.&lt;/p>
+&lt;p>&lt;img
+ class="lazyload"
+ src="https://rmmod.com/svg/loading.min.svg"
+ data-src="https://prd-mktg-konghq-com.imgix.net/images/2024/07/668eda3d-image7-2.png?auto=format&amp;amp;fit=max&amp;amp;w=2560"
+ data-srcset="https://prd-mktg-konghq-com.imgix.net/images/2024/07/668eda3d-image7-2.png?auto=format&amp;amp;fit=max&amp;amp;w=2560, https://prd-mktg-konghq-com.imgix.net/images/2024/07/668eda3d-image7-2.png?auto=format&amp;amp;fit=max&amp;amp;w=2560 1.5x, https://prd-mktg-konghq-com.imgix.net/images/2024/07/668eda3d-image7-2.png?auto=format&amp;amp;fit=max&amp;amp;w=2560 2x"
+ data-sizes="auto"
+ alt="https://prd-mktg-konghq-com.imgix.net/images/2024/07/668eda3d-image7-2.png?auto=format&amp;amp;fit=max&amp;amp;w=2560"
+ title="Kong gateway" />&lt;/p>
+&lt;p>In the 3.0 version update of the Kong API Gateway, the routing system was completely rewritten in Rust — a memory-safe and efficient language. A concise DSL (Domain Specific Language) was designed to define routing rules efficiently, called the &amp;ldquo;Expressions Router.&amp;rdquo; The new design reduced the routing construction time by 75% when handling up to 10,000 routing rules, significantly decreasing from 20 seconds to 5 seconds.&lt;/p></description></item><item><title>Protecting Services With Kong Gateway Rate Limiting</title><link>https://rmmod.com/posts/kong-gateway-rate-limiting/</link><pubDate>Tue, 18 May 2021 00:00:00 +0000</pubDate><guid>https://rmmod.com/posts/kong-gateway-rate-limiting/</guid><description>&lt;p>The Kong Gateway Rate Limiting &lt;a href="https://docs.konghq.com/hub/kong-inc/rate-limiting" target="_blank" rel="noopener noreffer">plugin&lt;/a>
+ is one of our most popular traffic control add-ons. You can configure the plugin with a policy for what constitutes &amp;ldquo;similar requests&amp;rdquo; (requests coming from the same IP address, for example), and you can set your limits (limit to 10 requests per minute, for example). This tutorial will walk through how simple it is to enable rate limiting in your &lt;a href="https://konghq.com/kong" target="_blank" rel="noopener noreffer">Kong Gateway&lt;/a>
+.&lt;/p>
+&lt;h2 id="rate-limiting-protecting-your-server-101">Rate Limiting: Protecting Your Server 101&lt;/h2>
+&lt;p>Let&amp;rsquo;s take a step back and go over the concept of rate limiting for those who aren&amp;rsquo;t familiar.&lt;/p></description></item><item><title>How to Design a Scalable Rate Limiting Algorithm</title><link>https://rmmod.com/posts/how-to-design-a-scalable-rate-limiting-algorithm/</link><pubDate>Fri, 15 Jan 2021 12:19:18 +0800</pubDate><guid>https://rmmod.com/posts/how-to-design-a-scalable-rate-limiting-algorithm/</guid><description>&lt;h2 id="what-is-rate-limiting">What is rate limiting?&lt;/h2>
+&lt;p>Rate limiting protects your APIs from inadvertent or malicious overuse by limiting how often each user can call the API. Without rate limiting, each user may make a request as often as they like, leading to &amp;ldquo;spikes&amp;rdquo; of requests that starve other consumers. Once enabled, rate limiting can only perform a fixed number of requests per second. A rate limiting algorithm helps automate the process.&lt;/p>
+&lt;p>&lt;img
+ class="lazyload"
+ src="https://rmmod.com/svg/loading.min.svg"
+ data-src="https://konghq.com/wp-content/uploads/2017/12/01-rate-limit-kong.png"
+ data-srcset="https://konghq.com/wp-content/uploads/2017/12/01-rate-limit-kong.png, https://konghq.com/wp-content/uploads/2017/12/01-rate-limit-kong.png 1.5x, https://konghq.com/wp-content/uploads/2017/12/01-rate-limit-kong.png 2x"
+ data-sizes="auto"
+ alt="https://konghq.com/wp-content/uploads/2017/12/01-rate-limit-kong.png"
+ title="rate limiting enabled at 2 requests/min" />&lt;/p></description></item></channel></rss>

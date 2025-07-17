@@ -1,19 +1,11 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Rust on Guanlan Dai</title>
-    <link>https://rmmod.com/tags/rust/</link>
-    <description>Recent content in Rust on Guanlan Dai</description>
-    <generator>Hugo</generator>
-    <language>en-us</language>
-    <lastBuildDate>Thu, 18 Jul 2024 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://rmmod.com/tags/rust/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Deep Dive into Kong Gateway&#39;s New Rust-Based Router</title>
-      <link>https://rmmod.com/posts/rust-based-router-kong-gateway/</link>
-      <pubDate>Thu, 18 Jul 2024 00:00:00 +0000</pubDate>
-      <guid>https://rmmod.com/posts/rust-based-router-kong-gateway/</guid>
-      <description>&lt;h2 id=&#34;what-is-the-expressions-router&#34;&gt;What is the Expressions Router?&lt;/h2&gt;&#xA;&lt;p&gt;The router component in the Kong Gateway is a crucial element for traffic handling, allowing the definition of specific matching rules to identify and process client requests. As a core component of the gateway, the router plays a vital role in ensuring the functionality, flexibility, security as well as performance of the gateway.&lt;/p&gt;&#xA;&lt;p&gt;&lt;img&#xA;        class=&#34;lazyload&#34;&#xA;        src=&#34;https://rmmod.com/svg/loading.min.svg&#34;&#xA;        data-src=&#34;https://prd-mktg-konghq-com.imgix.net/images/2024/07/668eda3d-image7-2.png?auto=format&amp;amp;fit=max&amp;amp;w=2560&#34;&#xA;        data-srcset=&#34;https://prd-mktg-konghq-com.imgix.net/images/2024/07/668eda3d-image7-2.png?auto=format&amp;amp;fit=max&amp;amp;w=2560, https://prd-mktg-konghq-com.imgix.net/images/2024/07/668eda3d-image7-2.png?auto=format&amp;amp;fit=max&amp;amp;w=2560 1.5x, https://prd-mktg-konghq-com.imgix.net/images/2024/07/668eda3d-image7-2.png?auto=format&amp;amp;fit=max&amp;amp;w=2560 2x&#34;&#xA;        data-sizes=&#34;auto&#34;&#xA;        alt=&#34;https://prd-mktg-konghq-com.imgix.net/images/2024/07/668eda3d-image7-2.png?auto=format&amp;amp;fit=max&amp;amp;w=2560&#34;&#xA;        title=&#34;Kong gateway&#34; /&gt;&lt;/p&gt;&#xA;&lt;p&gt;In the 3.0 version update of the Kong API Gateway, the routing system was completely rewritten in Rust — a memory-safe and efficient language. A concise DSL (Domain Specific Language) was designed to define routing rules efficiently, called the &amp;ldquo;Expressions Router.&amp;rdquo; The new design reduced the routing construction time by 75% when handling up to 10,000 routing rules, significantly decreasing from 20 seconds to 5 seconds.&lt;/p&gt;</description>
-    </item>
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Rust on Guanlan Dai</title><link>https://rmmod.com/tags/rust/</link><description>Recent content in Rust on Guanlan Dai</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Thu, 18 Jul 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://rmmod.com/tags/rust/index.xml" rel="self" type="application/rss+xml"/><item><title>Deep Dive into Kong Gateway's New Rust-Based Router</title><link>https://rmmod.com/posts/rust-based-router-kong-gateway/</link><pubDate>Thu, 18 Jul 2024 00:00:00 +0000</pubDate><guid>https://rmmod.com/posts/rust-based-router-kong-gateway/</guid><description>&lt;h2 id="what-is-the-expressions-router">What is the Expressions Router?&lt;/h2>
+&lt;p>The router component in the Kong Gateway is a crucial element for traffic handling, allowing the definition of specific matching rules to identify and process client requests. As a core component of the gateway, the router plays a vital role in ensuring the functionality, flexibility, security as well as performance of the gateway.&lt;/p>
+&lt;p>&lt;img
+ class="lazyload"
+ src="https://rmmod.com/svg/loading.min.svg"
+ data-src="https://prd-mktg-konghq-com.imgix.net/images/2024/07/668eda3d-image7-2.png?auto=format&amp;amp;fit=max&amp;amp;w=2560"
+ data-srcset="https://prd-mktg-konghq-com.imgix.net/images/2024/07/668eda3d-image7-2.png?auto=format&amp;amp;fit=max&amp;amp;w=2560, https://prd-mktg-konghq-com.imgix.net/images/2024/07/668eda3d-image7-2.png?auto=format&amp;amp;fit=max&amp;amp;w=2560 1.5x, https://prd-mktg-konghq-com.imgix.net/images/2024/07/668eda3d-image7-2.png?auto=format&amp;amp;fit=max&amp;amp;w=2560 2x"
+ data-sizes="auto"
+ alt="https://prd-mktg-konghq-com.imgix.net/images/2024/07/668eda3d-image7-2.png?auto=format&amp;amp;fit=max&amp;amp;w=2560"
+ title="Kong gateway" />&lt;/p>
+&lt;p>In the 3.0 version update of the Kong API Gateway, the routing system was completely rewritten in Rust — a memory-safe and efficient language. A concise DSL (Domain Specific Language) was designed to define routing rules efficiently, called the &amp;ldquo;Expressions Router.&amp;rdquo; The new design reduced the routing construction time by 75% when handling up to 10,000 routing rules, significantly decreasing from 20 seconds to 5 seconds.&lt;/p></description></item></channel></rss>

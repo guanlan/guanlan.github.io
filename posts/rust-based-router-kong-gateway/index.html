@@ -1,195 +1,18 @@
-<!DOCTYPE html>
-<html lang="en-us">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="robots" content="noodp" />
-        <title>Deep Dive into Kong Gateway&#39;s New Rust-Based Router - Guanlan Dai</title><meta name="Description" content="This is my cool site"><meta property="og:url" content="https://rmmod.com/posts/rust-based-router-kong-gateway/">
-  <meta property="og:site_name" content="Guanlan Dai">
-  <meta property="og:title" content="Deep Dive into Kong Gateway&#39;s New Rust-Based Router">
-  <meta property="og:description" content="What is the Expressions Router? The router component in the Kong Gateway is a crucial element for traffic handling, allowing the definition of specific matching rules to identify and process client requests. As a core component of the gateway, the router plays a vital role in ensuring the functionality, flexibility, security as well as performance of the gateway.
-In the 3.0 version update of the Kong API Gateway, the routing system was completely rewritten in Rust — a memory-safe and efficient language. A concise DSL (Domain Specific Language) was designed to define routing rules efficiently, called the “Expressions Router.” The new design reduced the routing construction time by 75% when handling up to 10,000 routing rules, significantly decreasing from 20 seconds to 5 seconds.">
-  <meta property="og:locale" content="en_us">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2024-07-18T00:00:00+00:00">
-    <meta property="article:modified_time" content="2024-07-18T00:00:00+00:00">
-    <meta property="article:tag" content="Kong">
-    <meta property="article:tag" content="Rust">
-
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Deep Dive into Kong Gateway&#39;s New Rust-Based Router">
-  <meta name="twitter:description" content="What is the Expressions Router? The router component in the Kong Gateway is a crucial element for traffic handling, allowing the definition of specific matching rules to identify and process client requests. As a core component of the gateway, the router plays a vital role in ensuring the functionality, flexibility, security as well as performance of the gateway.
-In the 3.0 version update of the Kong API Gateway, the routing system was completely rewritten in Rust — a memory-safe and efficient language. A concise DSL (Domain Specific Language) was designed to define routing rules efficiently, called the “Expressions Router.” The new design reduced the routing construction time by 75% when handling up to 10,000 routing rules, significantly decreasing from 20 seconds to 5 seconds.">
-<meta name="application-name" content="My cool site">
-<meta name="apple-mobile-web-app-title" content="My cool site">
-<meta name="referrer" content="no-referrer" /><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://rmmod.com/posts/rust-based-router-kong-gateway/" /><link rel="prev" href="https://rmmod.com/posts/kong-gateway-rate-limiting/" /><link rel="stylesheet" href="/css/style.min.css"><link rel="preload" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.7.2/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.7.2/css/all.min.css"></noscript><link rel="preload" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-        <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"></noscript><script type="application/ld+json">
-    {
-        "@context": "http://schema.org",
-        "@type": "BlogPosting",
-        "headline": "Deep Dive into Kong Gateway's New Rust-Based Router",
-        "inLanguage": "en-us",
-        "mainEntityOfPage": {
-            "@type": "WebPage",
-            "@id": "https:\/\/rmmod.com\/posts\/rust-based-router-kong-gateway\/"
-        },"genre": "posts","keywords": "Kong, Rust","wordcount":  806 ,
-        "url": "https:\/\/rmmod.com\/posts\/rust-based-router-kong-gateway\/","datePublished": "2024-07-18T00:00:00+00:00","dateModified": "2024-07-18T00:00:00+00:00","publisher": {
-            "@type": "Organization",
-            "name": ""},"author": {
-                "@type": "Person",
-                "name": "guanlan"
-            },"description": ""
-    }
-    </script></head>
-    <body data-header-desktop="fixed" data-header-mobile="auto"><script>(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
-
-        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
-    <div class="header-wrapper">
-        <div class="header-title">
-            <a href="/" title="Guanlan Dai">Guanlan Dai</a>
-        </div>
-        <div class="menu">
-            <div class="menu-inner"><a class="menu-item" href="/"> Home </a><a class="menu-item" href="/about/"> About </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
-                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
-                </a></div>
-        </div>
-    </div>
-</header><header class="mobile" id="header-mobile">
-    <div class="header-container">
-        <div class="header-wrapper">
-            <div class="header-title">
-                <a href="/" title="Guanlan Dai">Guanlan Dai</a>
-            </div>
-            <div class="menu-toggle" id="menu-toggle-mobile">
-                <span></span><span></span><span></span>
-            </div>
-        </div>
-        <div class="menu" id="menu-mobile"><a class="menu-item" href="/" title="">Home</a><a class="menu-item" href="/about/" title="">About</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
-                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
-            </a></div>
-    </div>
-</header><main class="main">
-                <div class="container"><div class="toc" id="toc-auto">
-            <h2 class="toc-title">Contents</h2>
-            <div class="toc-content" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Deep Dive into Kong Gateway's New Rust-Based Router</h1><div class="post-meta">
-            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel="author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>guanlan</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-07-18">2024-07-18</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;806 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;4 minutes&nbsp;</div>
-        </div><div class="details toc" id="toc-static"  data-kept="">
-                <div class="details-summary toc-title">
-                    <span>Contents</span>
-                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
-                </div>
-                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
-  <ul>
-    <li><a href="#what-is-the-expressions-router">What is the Expressions Router?</a>
-      <ul>
-        <li><a href="#example-exact-match">Example: Exact Match</a></li>
-        <li><a href="#example-regex-match">Example: Regex Match</a></li>
-      </ul>
-    </li>
-    <li><a href="#router-optimization">Router Optimization</a></li>
-    <li><a href="#migration-path-between-old-and-new-routes-new-feature-in-version-37">Migration Path Between Old and New Routes (New Feature in Version 3.7)</a></li>
-    <li><a href="#shared-the-same-codebase-for-front-end-and-backend">Shared the Same Codebase for Front-end and Backend</a>
-      <ul>
-        <li><a href="#example-of-frontend-wasm-interface">Example of frontend WASM interface:</a></li>
-        <li><a href="#example-of-backend-ffi-interface">Example of backend FFI interface:</a></li>
-      </ul>
-    </li>
-  </ul>
-</nav></div>
-            </div><div class="content" id="content"><h2 id="what-is-the-expressions-router">What is the Expressions Router?</h2>
-<p>The router component in the Kong Gateway is a crucial element for traffic handling, allowing the definition of specific matching rules to identify and process client requests. As a core component of the gateway, the router plays a vital role in ensuring the functionality, flexibility, security as well as performance of the gateway.</p>
-<p><img
-        class="lazyload"
-        src="/svg/loading.min.svg"
-        data-src="https://prd-mktg-konghq-com.imgix.net/images/2024/07/668eda3d-image7-2.png?auto=format&amp;fit=max&amp;w=2560"
-        data-srcset="https://prd-mktg-konghq-com.imgix.net/images/2024/07/668eda3d-image7-2.png?auto=format&amp;fit=max&amp;w=2560, https://prd-mktg-konghq-com.imgix.net/images/2024/07/668eda3d-image7-2.png?auto=format&amp;fit=max&amp;w=2560 1.5x, https://prd-mktg-konghq-com.imgix.net/images/2024/07/668eda3d-image7-2.png?auto=format&amp;fit=max&amp;w=2560 2x"
-        data-sizes="auto"
-        alt="https://prd-mktg-konghq-com.imgix.net/images/2024/07/668eda3d-image7-2.png?auto=format&amp;fit=max&amp;w=2560"
-        title="Kong gateway" /></p>
-<p>In the 3.0 version update of the Kong API Gateway, the routing system was completely rewritten in Rust — a memory-safe and efficient language. A concise DSL (Domain Specific Language) was designed to define routing rules efficiently, called the &ldquo;Expressions Router.&rdquo; The new design reduced the routing construction time by 75% when handling up to 10,000 routing rules, significantly decreasing from 20 seconds to 5 seconds.</p>
-<p><img
-        class="lazyload"
-        src="/svg/loading.min.svg"
-        data-src="https://prd-mktg-konghq-com.imgix.net/images/2024/07/668eda68-image5-3.png?auto=format&amp;fit=max&amp;w=2560"
-        data-srcset="https://prd-mktg-konghq-com.imgix.net/images/2024/07/668eda68-image5-3.png?auto=format&amp;fit=max&amp;w=2560, https://prd-mktg-konghq-com.imgix.net/images/2024/07/668eda68-image5-3.png?auto=format&amp;fit=max&amp;w=2560 1.5x, https://prd-mktg-konghq-com.imgix.net/images/2024/07/668eda68-image5-3.png?auto=format&amp;fit=max&amp;w=2560 2x"
-        data-sizes="auto"
-        alt="https://prd-mktg-konghq-com.imgix.net/images/2024/07/668eda68-image5-3.png?auto=format&amp;fit=max&amp;w=2560"
-        title="match" /></p>
-<h3 id="example-exact-match">Example: Exact Match</h3>
-<pre><code class="json">lower(http.path) == &#34;/foo/bar&#34;</code></pre>
-<h3 id="example-regex-match">Example: Regex Match</h3>
-<pre><code class="json">http.path ~ r#&#34;/foo/bar/\d&#43;&#34;#</code></pre>
-<p>We utilized the high-performance <a href="https://pest.rs/" target="_blank" rel="noopener noreffer ">pest</a> library from the Rust ecosystem to parse our DSL, with the entire grammar description being about 40 lines.</p>
-<p><img
-        class="lazyload"
-        src="/svg/loading.min.svg"
-        data-src="https://prd-mktg-konghq-com.imgix.net/images/2024/07/668edaf2-image6-2.png?auto=format&amp;fit=max&amp;w=2560"
-        data-srcset="https://prd-mktg-konghq-com.imgix.net/images/2024/07/668edaf2-image6-2.png?auto=format&amp;fit=max&amp;w=2560, https://prd-mktg-konghq-com.imgix.net/images/2024/07/668edaf2-image6-2.png?auto=format&amp;fit=max&amp;w=2560 1.5x, https://prd-mktg-konghq-com.imgix.net/images/2024/07/668edaf2-image6-2.png?auto=format&amp;fit=max&amp;w=2560 2x"
-        data-sizes="auto"
-        alt="https://prd-mktg-konghq-com.imgix.net/images/2024/07/668edaf2-image6-2.png?auto=format&amp;fit=max&amp;w=2560"
-        title="pest_dsl" /></p>
-<p>In Kong, you can add an Expressions route through the Admin API POST method.</p>
-<pre><code class="bash">curl --request POST \
+<!doctype html><html lang=en-us><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><title>Deep Dive into Kong Gateway's New Rust-Based Router - Guanlan Dai</title><meta name=Description content="This is my cool site"><meta property="og:url" content="https://rmmod.com/posts/rust-based-router-kong-gateway/"><meta property="og:site_name" content="Guanlan Dai"><meta property="og:title" content="Deep Dive into Kong Gateway's New Rust-Based Router"><meta property="og:description" content="What is the Expressions Router? The router component in the Kong Gateway is a crucial element for traffic handling, allowing the definition of specific matching rules to identify and process client requests. As a core component of the gateway, the router plays a vital role in ensuring the functionality, flexibility, security as well as performance of the gateway.
+In the 3.0 version update of the Kong API Gateway, the routing system was completely rewritten in Rust — a memory-safe and efficient language. A concise DSL (Domain Specific Language) was designed to define routing rules efficiently, called the “Expressions Router.” The new design reduced the routing construction time by 75% when handling up to 10,000 routing rules, significantly decreasing from 20 seconds to 5 seconds."><meta property="og:locale" content="en_us"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2024-07-18T00:00:00+00:00"><meta property="article:modified_time" content="2024-07-18T00:00:00+00:00"><meta property="article:tag" content="Kong"><meta property="article:tag" content="Rust"><meta name=twitter:card content="summary"><meta name=twitter:title content="Deep Dive into Kong Gateway's New Rust-Based Router"><meta name=twitter:description content="What is the Expressions Router? The router component in the Kong Gateway is a crucial element for traffic handling, allowing the definition of specific matching rules to identify and process client requests. As a core component of the gateway, the router plays a vital role in ensuring the functionality, flexibility, security as well as performance of the gateway.
+In the 3.0 version update of the Kong API Gateway, the routing system was completely rewritten in Rust — a memory-safe and efficient language. A concise DSL (Domain Specific Language) was designed to define routing rules efficiently, called the “Expressions Router.” The new design reduced the routing construction time by 75% when handling up to 10,000 routing rules, significantly decreasing from 20 seconds to 5 seconds."><meta name=application-name content="My cool site"><meta name=apple-mobile-web-app-title content="My cool site"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://rmmod.com/posts/rust-based-router-kong-gateway/><link rel=prev href=https://rmmod.com/posts/kong-gateway-rate-limiting/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Deep Dive into Kong Gateway's New Rust-Based Router","inLanguage":"en-us","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/rmmod.com\/posts\/rust-based-router-kong-gateway\/"},"genre":"posts","keywords":"Kong, Rust","wordcount":807,"url":"https:\/\/rmmod.com\/posts\/rust-based-router-kong-gateway\/","datePublished":"2024-07-18T00:00:00+00:00","dateModified":"2024-07-18T00:00:00+00:00","publisher":{"@type":"Organization","name":""},"author":{"@type":"Person","name":"guanlan"},"description":""}</script></head><body data-header-desktop=fixed data-header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem("theme")?localStorage.getItem("theme")==="dark":"auto"==="auto"?window.matchMedia("(prefers-color-scheme: dark)").matches:"auto"==="dark")&&document.body.setAttribute("theme","dark")</script><div id=mask></div><div class=wrapper><header class=desktop id=header-desktop><div class=header-wrapper><div class=header-title><a href=/ title="Guanlan Dai">Guanlan Dai</a></div><div class=menu><div class=menu-inner><a class=menu-item href=/>Home </a><a class=menu-item href=/about/>About </a><span class="menu-item delimiter"></span><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme">
+<i class="fas fa-adjust fa-fw" aria-hidden=true></i></a></div></div></div></header><header class=mobile id=header-mobile><div class=header-container><div class=header-wrapper><div class=header-title><a href=/ title="Guanlan Dai">Guanlan Dai</a></div><div class=menu-toggle id=menu-toggle-mobile><span></span><span></span><span></span></div></div><div class=menu id=menu-mobile><a class=menu-item href=/ title>Home</a><a class=menu-item href=/about/ title>About</a><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme">
+<i class="fas fa-adjust fa-fw" aria-hidden=true></i></a></div></div></header><main class=main><div class=container><div class=toc id=toc-auto><h2 class=toc-title>Contents</h2><div class=toc-content id=toc-content-auto></div></div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Deep Dive into Kong Gateway's New Rust-Based Router</h1><div class=post-meta><div class=post-meta-line><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw" aria-hidden=true></i>guanlan</a></span></div><div class=post-meta-line><i class="far fa-calendar-alt fa-fw" aria-hidden=true></i>&nbsp;<time datetime=2024-07-18>2024-07-18</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden=true></i>&nbsp;807 words&nbsp;
+<i class="far fa-clock fa-fw" aria-hidden=true></i>&nbsp;4 minutes&nbsp;</div></div><div class="details toc" id=toc-static data-kept><div class="details-summary toc-title"><span>Contents</span>
+<span><i class="details-icon fas fa-angle-right" aria-hidden=true></i></span></div><div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents><ul><li><a href=#what-is-the-expressions-router>What is the Expressions Router?</a><ul><li><a href=#example-exact-match>Example: Exact Match</a></li><li><a href=#example-regex-match>Example: Regex Match</a></li></ul></li><li><a href=#router-optimization>Router Optimization</a></li><li><a href=#migration-path-between-old-and-new-routes-new-feature-in-version-37>Migration Path Between Old and New Routes (New Feature in Version 3.7)</a></li><li><a href=#shared-the-same-codebase-for-front-end-and-backend>Shared the Same Codebase for Front-end and Backend</a><ul><li><a href=#example-of-frontend-wasm-interface>Example of frontend WASM interface:</a></li><li><a href=#example-of-backend-ffi-interface>Example of backend FFI interface:</a></li></ul></li></ul></nav></div></div><div class=content id=content><h2 id=what-is-the-expressions-router>What is the Expressions Router?</h2><p>The router component in the Kong Gateway is a crucial element for traffic handling, allowing the definition of specific matching rules to identify and process client requests. As a core component of the gateway, the router plays a vital role in ensuring the functionality, flexibility, security as well as performance of the gateway.</p><p><img class=lazyload src=/svg/loading.min.svg data-src="https://prd-mktg-konghq-com.imgix.net/images/2024/07/668eda3d-image7-2.png?auto=format&amp;fit=max&amp;w=2560" data-srcset="https://prd-mktg-konghq-com.imgix.net/images/2024/07/668eda3d-image7-2.png?auto=format&amp;fit=max&amp;w=2560, https://prd-mktg-konghq-com.imgix.net/images/2024/07/668eda3d-image7-2.png?auto=format&amp;fit=max&amp;w=2560 1.5x, https://prd-mktg-konghq-com.imgix.net/images/2024/07/668eda3d-image7-2.png?auto=format&amp;fit=max&amp;w=2560 2x" data-sizes=auto alt="https://prd-mktg-konghq-com.imgix.net/images/2024/07/668eda3d-image7-2.png?auto=format&amp;fit=max&amp;w=2560" title="Kong gateway"></p><p>In the 3.0 version update of the Kong API Gateway, the routing system was completely rewritten in Rust — a memory-safe and efficient language. A concise DSL (Domain Specific Language) was designed to define routing rules efficiently, called the &ldquo;Expressions Router.&rdquo; The new design reduced the routing construction time by 75% when handling up to 10,000 routing rules, significantly decreasing from 20 seconds to 5 seconds.</p><p><img class=lazyload src=/svg/loading.min.svg data-src="https://prd-mktg-konghq-com.imgix.net/images/2024/07/668eda68-image5-3.png?auto=format&amp;fit=max&amp;w=2560" data-srcset="https://prd-mktg-konghq-com.imgix.net/images/2024/07/668eda68-image5-3.png?auto=format&amp;fit=max&amp;w=2560, https://prd-mktg-konghq-com.imgix.net/images/2024/07/668eda68-image5-3.png?auto=format&amp;fit=max&amp;w=2560 1.5x, https://prd-mktg-konghq-com.imgix.net/images/2024/07/668eda68-image5-3.png?auto=format&amp;fit=max&amp;w=2560 2x" data-sizes=auto alt="https://prd-mktg-konghq-com.imgix.net/images/2024/07/668eda68-image5-3.png?auto=format&amp;fit=max&amp;w=2560" title=match></p><h3 id=example-exact-match>Example: Exact Match</h3><pre><code class=json>lower(http.path) == &#34;/foo/bar&#34;</code></pre><h3 id=example-regex-match>Example: Regex Match</h3><pre><code class=json>http.path ~ r#&#34;/foo/bar/\d&#43;&#34;#</code></pre><p>We utilized the high-performance <a href=https://pest.rs/ target=_blank rel="noopener noreffer">pest</a>
+library from the Rust ecosystem to parse our DSL, with the entire grammar description being about 40 lines.</p><p><img class=lazyload src=/svg/loading.min.svg data-src="https://prd-mktg-konghq-com.imgix.net/images/2024/07/668edaf2-image6-2.png?auto=format&amp;fit=max&amp;w=2560" data-srcset="https://prd-mktg-konghq-com.imgix.net/images/2024/07/668edaf2-image6-2.png?auto=format&amp;fit=max&amp;w=2560, https://prd-mktg-konghq-com.imgix.net/images/2024/07/668edaf2-image6-2.png?auto=format&amp;fit=max&amp;w=2560 1.5x, https://prd-mktg-konghq-com.imgix.net/images/2024/07/668edaf2-image6-2.png?auto=format&amp;fit=max&amp;w=2560 2x" data-sizes=auto alt="https://prd-mktg-konghq-com.imgix.net/images/2024/07/668edaf2-image6-2.png?auto=format&amp;fit=max&amp;w=2560" title=pest_dsl></p><p>In Kong, you can add an Expressions route through the Admin API POST method.</p><pre><code class=bash>curl --request POST \
   --url http://localhost:8001/services/example-service/routes \
   --header &#39;Content-Type: multipart/form-data&#39; \
-  --form-string &#39;expression=(http.path == &#34;/mock&#34; || net.protocol == &#34;https&#34;)&#39;</code></pre>
-<h2 id="router-optimization">Router Optimization</h2>
-<p>This DSL offers many convenient features, such as prefix matching (<code>^=</code>), suffix matching (<code>=^</code>), and IP address ranges in IpCidr format, allowing users to avoid expensive regular expressions. The enhanced expressive power can describe complex routing requirements in a single routing rule, reducing the number of rules needed.</p>
-<p>The new design optimizes the order of checks and allows bypassing costly checks when appropriate. Expression routes are always evaluated in descending order of priority. Therefore, when configuring routes, you should set a higher priority for more likely matches to improve efficiency.</p>
-<ul>
-<li>
-<p>Example of a likely match route.</p>
-<pre><code class="json">expression: http.path == &#34;/likely/matched/request/path&#34;
-priority: 100</code></pre>
-</li>
-<li>
-<p>Example of an unlikely match route.</p>
-<pre><code class="json">expression: http.path == &#34;/unlikely/matched/request/path&#34;
-priority: 50</code></pre>
-</li>
-</ul>
-<p>Additionally, version 3.0 introduces condition-triggered partial route reconstruction, effectively avoiding the time consumption of global route reconstruction. In scenarios with many routes, benchmark tests show that the P99 time for route reconstruction reduced from 1.5 seconds to 0.1 seconds.</p>
-<p>For more optimizations, refer to Kong’s official documentation.</p>
-<h2 id="migration-path-between-old-and-new-routes-new-feature-in-version-37">Migration Path Between Old and New Routes (New Feature in Version 3.7)</h2>
-<p><img
-        class="lazyload"
-        src="/svg/loading.min.svg"
-        data-src="https://prd-mktg-konghq-com.imgix.net/images/2024/07/668edbee-image1-6.png?auto=format&amp;fit=max&amp;w=2560"
-        data-srcset="https://prd-mktg-konghq-com.imgix.net/images/2024/07/668edbee-image1-6.png?auto=format&amp;fit=max&amp;w=2560, https://prd-mktg-konghq-com.imgix.net/images/2024/07/668edbee-image1-6.png?auto=format&amp;fit=max&amp;w=2560 1.5x, https://prd-mktg-konghq-com.imgix.net/images/2024/07/668edbee-image1-6.png?auto=format&amp;fit=max&amp;w=2560 2x"
-        data-sizes="auto"
-        alt="https://prd-mktg-konghq-com.imgix.net/images/2024/07/668edbee-image1-6.png?auto=format&amp;fit=max&amp;w=2560"
-        title="img" /></p>
-<p>In the latest 3.7 version of Kong Gateway, the routing system has been further enhanced with a key feature: migration support for Expressions routes, allowing customers to run both traditional JSON-based routes and new Expressions routes in tandem.</p>
-<p><img
-        class="lazyload"
-        src="/svg/loading.min.svg"
-        data-src="https://img.youtube.com/vi/Ubzs1VSMhXs/maxresdefault.jpg"
-        data-srcset="https://img.youtube.com/vi/Ubzs1VSMhXs/maxresdefault.jpg, https://img.youtube.com/vi/Ubzs1VSMhXs/maxresdefault.jpg 1.5x, https://img.youtube.com/vi/Ubzs1VSMhXs/maxresdefault.jpg 2x"
-        data-sizes="auto"
-        alt="https://img.youtube.com/vi/Ubzs1VSMhXs/maxresdefault.jpg"
-        title="Youtube thumbnail" /></p>
-<p>Kong Gateway now supports configuring both JSON and Expressions routes in a single control plane, enabling teams to gradually migrate routes to the Expression language based on business needs. Comprehensive GUI support is also provided, with syntax highlighting and auto-completion.</p>
-<p><img
-        class="lazyload"
-        src="/svg/loading.min.svg"
-        data-src="https://img.youtube.com/vi/3w-K8R1w34g/maxresdefault.jpg"
-        data-srcset="https://img.youtube.com/vi/3w-K8R1w34g/maxresdefault.jpg, https://img.youtube.com/vi/3w-K8R1w34g/maxresdefault.jpg 1.5x, https://img.youtube.com/vi/3w-K8R1w34g/maxresdefault.jpg 2x"
-        data-sizes="auto"
-        alt="https://img.youtube.com/vi/3w-K8R1w34g/maxresdefault.jpg"
-        title="Youtube thumbnail" /></p>
-<p>This update ensures users can smoothly transition from the Traditional routing system to the new Expressions routing system without service interruption or complex operations. For those still using Traditional routing methods, we strongly recommend upgrading to the new Expressions routes for a more efficient and flexible routing management experience.</p>
-<h2 id="shared-the-same-codebase-for-front-end-and-backend">Shared the Same Codebase for Front-end and Backend</h2>
-<p>An interesting technical highlight is developing a resty-router library on the backend, invoking Rust implementations through FFI, and integrating it into OpenResty’s backend ecosystem.</p>
-<p>Using WebAssembly (WASM) via <a href="https://rustwasm.github.io/docs/wasm-bindgen/" target="_blank" rel="noopener noreffer ">wasm-bindgen</a> and <a href="https://rustwasm.github.io/wasm-pack/" target="_blank" rel="noopener noreffer ">wasm-pack</a>, we added macros in Rust code to enable the core functions used in modern browsers. This allowed us to encapsulate the core developed in Rust into a fully-typed TypeScript codebase, and achieve complex features like interactive editors and playgrounds after integration with Vue components.</p>
-<h3 id="example-of-frontend-wasm-interface">Example of frontend WASM interface:</h3>
-<pre><code class="json">#[wasm_bindgen(js_name = addMatcher)]
+  --form-string &#39;expression=(http.path == &#34;/mock&#34; || net.protocol == &#34;https&#34;)&#39;</code></pre><h2 id=router-optimization>Router Optimization</h2><p>This DSL offers many convenient features, such as prefix matching (<code>^=</code>), suffix matching (<code>=^</code>), and IP address ranges in IpCidr format, allowing users to avoid expensive regular expressions. The enhanced expressive power can describe complex routing requirements in a single routing rule, reducing the number of rules needed.</p><p>The new design optimizes the order of checks and allows bypassing costly checks when appropriate. Expression routes are always evaluated in descending order of priority. Therefore, when configuring routes, you should set a higher priority for more likely matches to improve efficiency.</p><ul><li><p>Example of a likely match route.</p><pre><code class=json>expression: http.path == &#34;/likely/matched/request/path&#34;
+priority: 100</code></pre></li><li><p>Example of an unlikely match route.</p><pre><code class=json>expression: http.path == &#34;/unlikely/matched/request/path&#34;
+priority: 50</code></pre></li></ul><p>Additionally, version 3.0 introduces condition-triggered partial route reconstruction, effectively avoiding the time consumption of global route reconstruction. In scenarios with many routes, benchmark tests show that the P99 time for route reconstruction reduced from 1.5 seconds to 0.1 seconds.</p><p>For more optimizations, refer to Kong’s official documentation.</p><h2 id=migration-path-between-old-and-new-routes-new-feature-in-version-37>Migration Path Between Old and New Routes (New Feature in Version 3.7)</h2><p><img class=lazyload src=/svg/loading.min.svg data-src="https://prd-mktg-konghq-com.imgix.net/images/2024/07/668edbee-image1-6.png?auto=format&amp;fit=max&amp;w=2560" data-srcset="https://prd-mktg-konghq-com.imgix.net/images/2024/07/668edbee-image1-6.png?auto=format&amp;fit=max&amp;w=2560, https://prd-mktg-konghq-com.imgix.net/images/2024/07/668edbee-image1-6.png?auto=format&amp;fit=max&amp;w=2560 1.5x, https://prd-mktg-konghq-com.imgix.net/images/2024/07/668edbee-image1-6.png?auto=format&amp;fit=max&amp;w=2560 2x" data-sizes=auto alt="https://prd-mktg-konghq-com.imgix.net/images/2024/07/668edbee-image1-6.png?auto=format&amp;fit=max&amp;w=2560" title=img></p><p>In the latest 3.7 version of Kong Gateway, the routing system has been further enhanced with a key feature: migration support for Expressions routes, allowing customers to run both traditional JSON-based routes and new Expressions routes in tandem.</p><p><img class=lazyload src=/svg/loading.min.svg data-src=https://img.youtube.com/vi/Ubzs1VSMhXs/maxresdefault.jpg data-srcset="https://img.youtube.com/vi/Ubzs1VSMhXs/maxresdefault.jpg, https://img.youtube.com/vi/Ubzs1VSMhXs/maxresdefault.jpg 1.5x, https://img.youtube.com/vi/Ubzs1VSMhXs/maxresdefault.jpg 2x" data-sizes=auto alt=https://img.youtube.com/vi/Ubzs1VSMhXs/maxresdefault.jpg title="Youtube thumbnail"></p><p>Kong Gateway now supports configuring both JSON and Expressions routes in a single control plane, enabling teams to gradually migrate routes to the Expression language based on business needs. Comprehensive GUI support is also provided, with syntax highlighting and auto-completion.</p><p><img class=lazyload src=/svg/loading.min.svg data-src=https://img.youtube.com/vi/3w-K8R1w34g/maxresdefault.jpg data-srcset="https://img.youtube.com/vi/3w-K8R1w34g/maxresdefault.jpg, https://img.youtube.com/vi/3w-K8R1w34g/maxresdefault.jpg 1.5x, https://img.youtube.com/vi/3w-K8R1w34g/maxresdefault.jpg 2x" data-sizes=auto alt=https://img.youtube.com/vi/3w-K8R1w34g/maxresdefault.jpg title="Youtube thumbnail"></p><p>This update ensures users can smoothly transition from the Traditional routing system to the new Expressions routing system without service interruption or complex operations. For those still using Traditional routing methods, we strongly recommend upgrading to the new Expressions routes for a more efficient and flexible routing management experience.</p><h2 id=shared-the-same-codebase-for-front-end-and-backend>Shared the Same Codebase for Front-end and Backend</h2><p>An interesting technical highlight is developing a resty-router library on the backend, invoking Rust implementations through FFI, and integrating it into OpenResty’s backend ecosystem.</p><p>Using WebAssembly (WASM) via <a href=https://rustwasm.github.io/docs/wasm-bindgen/ target=_blank rel="noopener noreffer">wasm-bindgen</a>
+and <a href=https://rustwasm.github.io/wasm-pack/ target=_blank rel="noopener noreffer">wasm-pack</a>
+, we added macros in Rust code to enable the core functions used in modern browsers. This allowed us to encapsulate the core developed in Rust into a fully-typed TypeScript codebase, and achieve complex features like interactive editors and playgrounds after integration with Vue components.</p><h3 id=example-of-frontend-wasm-interface>Example of frontend WASM interface:</h3><pre><code class=json>#[wasm_bindgen(js_name = addMatcher)]
 pub unsafe fn add_matcher(
     &amp;mut self,
     priority: usize,
@@ -201,9 +24,7 @@ pub unsafe fn add_matcher(
         Err(err) =&gt; err.into(),
     }
     .into()
-}</code></pre>
-<h3 id="example-of-backend-ffi-interface">Example of backend FFI interface:</h3>
-<pre><code class="json">#[no_mangle]
+}</code></pre><h3 id=example-of-backend-ffi-interface>Example of backend FFI interface:</h3><pre><code class=json>#[no_mangle]
 // uuid must be ASCII representation of 128-bit UUID
 pub unsafe extern &#34;C&#34; fn router_add_matcher(
     router: &amp;mut Router,
@@ -224,45 +45,7 @@ pub unsafe extern &#34;C&#34; fn router_add_matcher(
         return false;
     }
     true
-}</code></pre>
-<p>Thanks to the common library used by both the frontend and backend, users can intuitively write Expressions with syntax highlighting and auto-completion in the browser and test and verify routing rules in the playground. The frontend UI runs the same code in the browser as Gateway would have used during proxying, eliminating any chance of implementation mismatch and potential inconsistent behaviors.</p>
-<p>You may visit the <a href="https://docs.konghq.com/gateway/latest/kong-enterprise/expressions-language/" target="_blank" rel="noopener noreffer ">Expressions Language reference</a> page to learn more about the features of the language, as well as <a href="https://docs.konghq.com/gateway/latest/kong-enterprise/how-to-configure-routes-using-expressions/" target="_blank" rel="noopener noreffer ">How to Configure Routes using Expressions</a> to learn more about how to get started routing traffic with expressions inside Kong Gateway.</p>
-</div><div class="post-footer" id="post-footer">
-    <div class="post-info">
-        <div class="post-info-line">
-            <div class="post-info-mod">
-                <span>Updated on 2024-07-18</span>
-            </div></div>
-        <div class="post-info-line">
-            <div class="post-info-md"></div>
-            <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="Share on X" data-sharer="x" data-url="https://rmmod.com/posts/rust-based-router-kong-gateway/" data-title="Deep Dive into Kong Gateway&#39;s New Rust-Based Router" data-via="guanlandai" data-hashtags="Kong,Rust"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Threads" data-sharer="threads" data-url="https://rmmod.com/posts/rust-based-router-kong-gateway/" data-title="Deep Dive into Kong Gateway&#39;s New Rust-Based Router"><i class="fab fa-threads fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://rmmod.com/posts/rust-based-router-kong-gateway/" data-hashtag="Kong"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://rmmod.com/posts/rust-based-router-kong-gateway/" data-title="Deep Dive into Kong Gateway&#39;s New Rust-Based Router"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://rmmod.com/posts/rust-based-router-kong-gateway/" data-title="Deep Dive into Kong Gateway&#39;s New Rust-Based Router"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@14.9.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://rmmod.com/posts/rust-based-router-kong-gateway/" data-title="Deep Dive into Kong Gateway&#39;s New Rust-Based Router"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Diaspora" data-sharer="diaspora" data-url="https://rmmod.com/posts/rust-based-router-kong-gateway/" data-title="Deep Dive into Kong Gateway&#39;s New Rust-Based Router" data-description=""><i class="fab fa-diaspora fa-fw" aria-hidden="true"></i></a><a href="https://t.me/share/url?url=https%3a%2f%2frmmod.com%2fposts%2frust-based-router-kong-gateway%2f&amp;text=Deep%20Dive%20into%20Kong%20Gateway%27s%20New%20Rust-Based%20Router" target="_blank" title="Share on Telegram"><i class="fab fa-telegram fa-fw" aria-hidden="true"></i></a></span>
-            </div>
-        </div>
-    </div>
-
-    <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/kong/">Kong</a>,&nbsp;<a href="/tags/rust/">Rust</a></section>
-        <section>
-            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
-        </section>
-    </div>
-
-    <div class="post-nav"><a href="/posts/kong-gateway-rate-limiting/" class="prev" rel="prev" title="Protecting Services With Kong Gateway Rate Limiting"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Protecting Services With Kong Gateway Rate Limiting</a></div>
-</div>
-</article></div>
-            </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">CC BY-NC 4.0</div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2009 - 2025</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Guanlan Dai</a></span></div>
-        </div>
-    </footer></div>
-
-        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
-                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
-            </a>
-        </div>
-
-        <div id="fixed-buttons-hidden"><a href="#" id="view-comments" class="fixed-button" title="View Comments">
-                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
-            </a>
-        </div><script src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.2/lazysizes.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.2/sharer.min.js"></script><script>window.config={"comment":{}};</script><script src="/js/theme.min.js"></script></body>
-</html>
+}</code></pre><p>Thanks to the common library used by both the frontend and backend, users can intuitively write Expressions with syntax highlighting and auto-completion in the browser and test and verify routing rules in the playground. The frontend UI runs the same code in the browser as Gateway would have used during proxying, eliminating any chance of implementation mismatch and potential inconsistent behaviors.</p><p>You may visit the <a href=https://docs.konghq.com/gateway/latest/kong-enterprise/expressions-language/ target=_blank rel="noopener noreffer">Expressions Language reference</a>
+page to learn more about the features of the language, as well as <a href=https://docs.konghq.com/gateway/latest/kong-enterprise/how-to-configure-routes-using-expressions/ target=_blank rel="noopener noreffer">How to Configure Routes using Expressions</a>
+to learn more about how to get started routing traffic with expressions inside Kong Gateway.</p></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span>Updated on 2024-07-18</span></div></div><div class=post-info-line><div class=post-info-md></div><div class=post-info-share><span><a href=javascript:void(0); title="Share on Twitter" data-sharer=twitter data-url=https://rmmod.com/posts/rust-based-router-kong-gateway/ data-title="Deep Dive into Kong Gateway's New Rust-Based Router" data-hashtags=Kong,Rust><i class="fab fa-twitter fa-fw" aria-hidden=true></i></a><a href=javascript:void(0); title="Share on Facebook" data-sharer=facebook data-url=https://rmmod.com/posts/rust-based-router-kong-gateway/ data-hashtag=Kong><i class="fab fa-facebook-square fa-fw" aria-hidden=true></i></a><a href=javascript:void(0); title="Share on Hacker News" data-sharer=hackernews data-url=https://rmmod.com/posts/rust-based-router-kong-gateway/ data-title="Deep Dive into Kong Gateway's New Rust-Based Router"><i class="fab fa-hacker-news fa-fw" aria-hidden=true></i></a><a href=javascript:void(0); title="Share on Line" data-sharer=line data-url=https://rmmod.com/posts/rust-based-router-kong-gateway/ data-title="Deep Dive into Kong Gateway's New Rust-Based Router"><i data-svg-src=https://cdn.jsdelivr.net/npm/simple-icons@6.20.0/icons/line.svg aria-hidden=true></i></a><a href=javascript:void(0); title="Share on 微博" data-sharer=weibo data-url=https://rmmod.com/posts/rust-based-router-kong-gateway/ data-title="Deep Dive into Kong Gateway's New Rust-Based Router"><i class="fab fa-weibo fa-fw" aria-hidden=true></i></a></span></div></div></div><div class=post-info-more><section class=post-tags><i class="fas fa-tags fa-fw" aria-hidden=true></i>&nbsp;<a href=/tags/kong/>Kong</a>,&nbsp;<a href=/tags/rust/>Rust</a></section><section><span><a href=javascript:void(0); onclick=window.history.back()>Back</a></span>&nbsp;|&nbsp;<span><a href=/>Home</a></span></section></div><div class=post-nav><a href=/posts/kong-gateway-rate-limiting/ class=prev rel=prev title="Protecting Services With Kong Gateway Rate Limiting"><i class="fas fa-angle-left fa-fw" aria-hidden=true></i>Protecting Services With Kong Gateway Rate Limiting</a></div></div></article></div></main><footer class=footer><div class=footer-container><div class=footer-line>Guanlan Dai | CC BY-NC 4.0</div><div class=footer-line itemscope itemtype=http://schema.org/CreativeWork><i class="far fa-copyright fa-fw" aria-hidden=true></i><span itemprop=copyrightYear>2009 - 2025</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=/ target=_blank></a></span></div></div></footer></div><div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title="Back to Top"><i class="fas fa-arrow-up fa-fw" aria-hidden=true></i>
+</a><a href=# id=view-comments class=fixed-button title="View Comments"><i class="fas fa-comment fa-fw" aria-hidden=true></i></a></div><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lazysizes@5.3.1/lazysizes.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js></script><script type=text/javascript>window.config={code:{copyTitle:"Copy to clipboard",maxShownLines:50},comment:{}}</script><script type=text/javascript src=/js/theme.min.js></script></body></html>

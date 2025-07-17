@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Nginx on Guanlan Dai</title><link>https://rmmod.com/categories/nginx/</link><description>Recent content in Nginx on Guanlan Dai</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Mon, 28 Jun 2010 00:00:00 +0800</lastBuildDate><atom:link href="https://rmmod.com/categories/nginx/index.xml" rel="self" type="application/rss+xml"/><item><title>nginx Startup, Shutdown and Configuration Script</title><link>https://rmmod.com/posts/cppblog/2010-06-28-nginx-startup-shutdown-configuration-script-en/</link><pubDate>Mon, 28 Jun 2010 00:00:00 +0800</pubDate><guid>https://rmmod.com/posts/cppblog/2010-06-28-nginx-startup-shutdown-configuration-script-en/</guid><description>&lt;p>2010-12-29-update: Found a newer version provided by jason, available &lt;a href="http://code.google.com/p/nginx-init-ubuntu/source/browse/tags/2.0.0-RC2/nginx?spec=svn30&amp;amp;r=30" target="_blank" rel="noopener noreffer">here&lt;/a>
+&lt;/p>
+&lt;p>I searched online for several versions but none of them worked on Ubuntu&lt;br>
+So I modified jackbillow&amp;rsquo;s version myself, and it feels pretty good to use.&lt;/p>
+&lt;p>Usage: nginx.sh {start|stop|conf|restart}&lt;br>
+//start|stop|configure|restart&lt;/p>
+&lt;p>Note: Must be run with administrator privileges&lt;/p>
+&lt;p>################################################&lt;br>
+#!/bin/bash&lt;/p>
+&lt;h1 id="v003">v.0.0.3&lt;/h1>
+&lt;h1 id="create-by-jackbillow-at-20071015">create by jackbillow at 2007.10.15&lt;/h1>
+&lt;h1 id="redevelop-by-guanlan-at-2010628">redevelop by guanlan at 2010.6.28&lt;/h1>
+&lt;h1 id="on-ubuntu-1004">On Ubuntu 10.04&lt;/h1>
+&lt;h1 id="nginx---this-shell-script-takes-care-of-starting-and-stopping-nginx">nginx - This shell script takes care of starting and stopping nginx.&lt;/h1>
+&lt;h1>&lt;/h1>
+&lt;h1 id="description-nginx-engine-x-is-light-http-webproxy-server">description: nginx [engine x] is light http web/proxy server&lt;/h1>
+&lt;h1 id="that-answers-incoming-ftp-service-requests">that answers incoming ftp service requests.&lt;/h1>
+&lt;p>###############################################&lt;/p></description></item></channel></rss>
