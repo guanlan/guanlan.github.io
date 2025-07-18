@@ -1,23 +1,7 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title>All Posts - Guanlan Dai</title><link>https://rmmod.com/posts/</link><description>All Posts | Guanlan Dai</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Thu, 18 Jul 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://rmmod.com/posts/" rel="self" type="application/rss+xml"/><item><title>Deep Dive into Kong Gateway's New Rust-Based Router</title><link>https://rmmod.com/posts/rust-based-router-kong-gateway/</link><pubDate>Thu, 18 Jul 2024 00:00:00 +0000</pubDate><author>guanlan</author><guid>https://rmmod.com/posts/rust-based-router-kong-gateway/</guid><description><![CDATA[<h2 id="what-is-the-expressions-router">What is the Expressions Router?</h2>
 <p>The router component in the Kong Gateway is a crucial element for traffic handling, allowing the definition of specific matching rules to identify and process client requests. As a core component of the gateway, the router plays a vital role in ensuring the functionality, flexibility, security as well as performance of the gateway.</p>
 <p></p>
-<p>In the 3.0 version update of the Kong API Gateway, the routing system was completely rewritten in Rust — a memory-safe and efficient language. A concise DSL (Domain Specific Language) was designed to define routing rules efficiently, called the &ldquo;Expressions Router.&rdquo; The new design reduced the routing construction time by 75% when handling up to 10,000 routing rules, significantly decreasing from 20 seconds to 5 seconds.</p>]]></description></item><item><title>Test Code Overflow Fix</title><link>https://rmmod.com/posts/test-code-overflow/</link><pubDate>Mon, 15 Jan 2024 10:00:00 +0800</pubDate><author>Author</author><guid>https://rmmod.com/posts/test-code-overflow/</guid><description><![CDATA[<p>This is a test page to demonstrate that the code block overflow issue has been fixed.</p>
-<h2 id="test-with-a-very-long-line-of-code">Test with a very long line of code</h2>
-<p>Here&rsquo;s a code block with a very long line that would normally overflow:</p>
-<pre><code class="python">def this_is_a_very_long_function_with_a_very_long_name_that_would_normally_cause_horizontal_overflow_in_the_code_block(parameter1_with_long_name, parameter2_with_long_name, parameter3_with_long_name, parameter4_with_long_name):
-    &#34;&#34;&#34;This is a docstring with a very long line that demonstrates the horizontal scrolling functionality of the code block when lines are too long to fit in the viewport&#34;&#34;&#34;
-    very_long_variable_name_that_makes_the_line_even_longer = &#34;This is a string with a very long value that extends far beyond the normal width of the code block container&#34;
-    return very_long_variable_name_that_makes_the_line_even_longer &#43; &#34; and even more text to make it longer&#34;</code></pre>
-<h2 id="test-with-wide-table-like-code">Test with wide table-like code</h2>
-<pre><code class="javascript">const veryLongObjectWithManyPropertiesThatWouldCauseOverflow = {
-    propertyWithVeryLongName1: &#34;value that is also quite long to demonstrate the issue&#34;,
-    propertyWithVeryLongName2: &#34;another value that is also quite long to demonstrate the issue&#34;,
-    propertyWithVeryLongName3: &#34;yet another value that is also quite long to demonstrate the issue&#34;,
-    propertyWithVeryLongName4: &#34;and one more value that is also quite long to demonstrate the issue&#34;
-};</code></pre>
-<h2 id="test-with-long-command">Test with long command</h2>
-<pre><code class="bash">docker run --name my-container-with-very-long-name -p 8080:8080 -e ENVIRONMENT_VARIABLE_WITH_LONG_NAME=value -e ANOTHER_ENVIRONMENT_VARIABLE_WITH_LONG_NAME=another-value -v /very/long/path/to/local/directory:/very/long/path/to/container/directory:ro my-image-with-very-long-name:latest</code></pre>
-<p>If the fix is working correctly, all these code blocks should:</p>]]></description></item><item><title>Protecting Services With Kong Gateway Rate Limiting</title><link>https://rmmod.com/posts/kong-gateway-rate-limiting/</link><pubDate>Tue, 18 May 2021 00:00:00 +0000</pubDate><author>guanlan</author><guid>https://rmmod.com/posts/kong-gateway-rate-limiting/</guid><description><![CDATA[<p>The Kong Gateway Rate Limiting <a href="https://docs.konghq.com/hub/kong-inc/rate-limiting" target="_blank" rel="noopener noreffer">plugin</a>
+<p>In the 3.0 version update of the Kong API Gateway, the routing system was completely rewritten in Rust — a memory-safe and efficient language. A concise DSL (Domain Specific Language) was designed to define routing rules efficiently, called the &ldquo;Expressions Router.&rdquo; The new design reduced the routing construction time by 75% when handling up to 10,000 routing rules, significantly decreasing from 20 seconds to 5 seconds.</p>]]></description></item><item><title>Protecting Services With Kong Gateway Rate Limiting</title><link>https://rmmod.com/posts/kong-gateway-rate-limiting/</link><pubDate>Tue, 18 May 2021 00:00:00 +0000</pubDate><author>guanlan</author><guid>https://rmmod.com/posts/kong-gateway-rate-limiting/</guid><description><![CDATA[<p>The Kong Gateway Rate Limiting <a href="https://docs.konghq.com/hub/kong-inc/rate-limiting" target="_blank" rel="noopener noreffer">plugin</a>
  is one of our most popular traffic control add-ons. You can configure the plugin with a policy for what constitutes &ldquo;similar requests&rdquo; (requests coming from the same IP address, for example), and you can set your limits (limit to 10 requests per minute, for example). This tutorial will walk through how simple it is to enable rate limiting in your <a href="https://konghq.com/kong" target="_blank" rel="noopener noreffer">Kong Gateway</a>
 .</p>
 <h2 id="rate-limiting-protecting-your-server-101">Rate Limiting: Protecting Your Server 101</h2>
@@ -71,4 +55,26 @@ For technical problems, definitely check Google and Wikipedia. Use Baidu more if
 <p>2.Coworkers<br>
 Ask coworkers for help. If your colleagues are helpful, technically skilled, and have encountered similar problems, their advice can be very valuable and might solve the problem immediately.</p>
 <p>3.StackOverflow<br>
-Search for answers on programming help websites, or post questions if you can&rsquo;t find answers. There are quite a lot of helpful people, but it seems this site has more Java/.Net questions.</p>]]></description></item></channel></rss>
+Search for answers on programming help websites, or post questions if you can&rsquo;t find answers. There are quite a lot of helpful people, but it seems this site has more Java/.Net questions.</p>]]></description></item><item><title>[Tips] Linux Command Line Decompression Tips</title><link>https://rmmod.com/posts/cppblog/2010-10-07-linux-command-line-decompression-tips-en/</link><pubDate>Thu, 07 Oct 2010 00:00:00 +0800</pubDate><author>guanlan</author><guid>https://rmmod.com/posts/cppblog/2010-10-07-linux-command-line-decompression-tips-en/</guid><description><![CDATA[<p>Everyone finds it frustrating that Linux has numerous compression formats, and each format corresponds to different commands, which is quite a headache.<br>
+Let me introduce a method to you:<br>
+Add this to your bashrc:</p>
+<p>ex () {<br>
+if [ -f $1 ] ; then<br>
+case $1 in<br>
+*.tar.bz2) tar xjf $1 ;;<br>
+*.tar.gz) tar xzf $1 ;;<br>
+*.bz2) bunzip2 $1 ;;<br>
+*.rar) rar x $1 ;;<br>
+*.gz) gunzip $1 ;;<br>
+*.tar) tar xf $1 ;;<br>
+*.tbz2) tar xjf $1 ;;<br>
+*.tgz) tar xzf $1 ;;<br>
+*.zip) unzip $1 ;;<br>
+*.Z) uncompress $1 ;;<br>
+*.7z) 7z x $1 ;;<br>
+*) echo &ldquo;Unable to extract &lsquo;$1&rsquo; file!!&rdquo; ;;<br>
+esac<br>
+else<br>
+echo &ldquo;&rsquo;$1&rsquo; is not a valid file!&rdquo;<br>
+fi<br>
+}</p>]]></description></item></channel></rss>
