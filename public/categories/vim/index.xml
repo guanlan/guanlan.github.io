@@ -1,36 +1,19 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Vim on Guanlan Dai</title><link>https://rmmod.com/categories/vim/</link><description>Recent content in Vim on Guanlan Dai</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Thu, 24 Jun 2010 00:00:00 +0800</lastBuildDate><atom:link href="https://rmmod.com/categories/vim/index.xml" rel="self" type="application/rss+xml"/><item><title>VIM Commands Big Picture</title><link>https://rmmod.com/posts/cppblog/2010-06-24-vim-commands-big-picture-en/</link><pubDate>Thu, 24 Jun 2010 00:00:00 +0800</pubDate><guid>https://rmmod.com/posts/cppblog/2010-06-24-vim-commands-big-picture-en/</guid><description>&lt;p>&lt;a href="https://rmmod.com/img/o_vim_cheat_sheet1.jpg" rel="">&lt;img
- class="lazyload"
- src="https://rmmod.com/svg/loading.min.svg"
- data-src="https://rmmod.com/img/o_vim_cheat_sheet1.jpg"
- data-srcset="https://rmmod.com/img/o_vim_cheat_sheet1.jpg, https://rmmod.com/img/o_vim_cheat_sheet1.jpg 1.5x, https://rmmod.com/img/o_vim_cheat_sheet1.jpg 2x"
- data-sizes="auto"
- alt="/img/o_vim_cheat_sheet1.jpg"
- title="/img/o_vim_cheat_sheet1.jpg" />&lt;/a>
-&lt;br>
-The &lt;a href="https://rmmod.com/img/o_vim_cheat_sheet.jpg" rel="">&lt;/a>
-&lt;a href="https://rmmod.com/img/o_vim_cheat_sheet.jpg" rel="">image&lt;/a>
-(&lt;a href="https://rmmod.com/img/o_vim_cheat_sheet1.jpg" rel="">&lt;/a>
-&lt;a href="https://rmmod.com/img/o_vim_cheat_sheet1.jpg" rel="">here&lt;/a>
-&lt;a href="https://rmmod.com/img/o_vim_cheat_sheet.jpg" rel="">&lt;/a>
-) might be a bit large, but I think it&amp;rsquo;s quite convenient to view. Feedback on any errors is welcome, and I&amp;rsquo;ll correct them as soon as possible. Here&amp;rsquo;s the &lt;a href="http://jrmiii.com/2009/03/06/learning-vim-the-pragmatic-way.html" target="_blank" rel="noopener noreffer">original English version.&lt;br>
-&lt;/a>
-&lt;br>
-Here are some similar ones:[&lt;/p>
-&lt;ol>
-&lt;li>Cheat sheet](&lt;a href="http://www.tuxfiles.org/linuxhelp/vimcheat.html" target="_blank" rel="noopener noreffer">http://www.tuxfiles.org/linuxhelp/vimcheat.html&lt;/a>
-) &lt;a href="http://www.fprintf.net/vimCheatSheet.html" target="_blank" rel="noopener noreffer">here&lt;/a>
-,&lt;/li>
-&lt;li>Key mapping &lt;a href="https://rmmod.com/img/File:Vi-vim-cheat-sheet.gif" rel="">here&lt;/a>
-[&lt;a href="https://rmmod.com/img/File:Vi-vim-cheat-sheet.gif" rel="">EN&lt;/a>
-] [&lt;em>&lt;a href="https://rmmod.com/img/vi-vim-cheat-sheet.png" rel="">&lt;em>CN&lt;/em>&lt;/a>
-&lt;/em>] ,&lt;/li>
-&lt;li>vgod&amp;rsquo;s &lt;a href="http://blog.vgod.tw/wp-content/uploads/2009/12/vgod-vim-cheat-sheet-full.pdf" target="_blank" rel="noopener noreffer">version&lt;/a>
-,&lt;/li>
-&lt;li>Another one &lt;a href="https://rmmod.com/img/060504194114.jpg" rel="">here&lt;/a>
-,&lt;/li>
-&lt;li>And a &lt;a href="https://rmmod.com/img/vi.png" rel="">wallpaper&lt;/a>
- here.&lt;/li>
-&lt;/ol>
-&lt;hr>
-&lt;p>&lt;em>Original link: &lt;a href="http://www.cppblog.com/xguru/archive/2010/06/24/118623.html" target="_blank" rel="noopener noreffer">http://www.cppblog.com/xguru/archive/2010/06/24/118623.html&lt;/a>
-&lt;/em>&lt;/p></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Vim on Guanlan Dai</title>
+    <link>https://rmmod.com/categories/vim/</link>
+    <description>Recent content in Vim on Guanlan Dai</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 24 Jun 2010 00:00:00 +0800</lastBuildDate>
+    <atom:link href="https://rmmod.com/categories/vim/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>VIM Commands Big Picture</title>
+      <link>https://rmmod.com/posts/cppblog/2010-06-24-vim-commands-big-picture-en/</link>
+      <pubDate>Thu, 24 Jun 2010 00:00:00 +0800</pubDate>
+      <guid>https://rmmod.com/posts/cppblog/2010-06-24-vim-commands-big-picture-en/</guid>
+      <description>&lt;p&gt;&lt;a href=&#34;https://rmmod.com/img/o_vim_cheat_sheet1.jpg&#34; rel=&#34;&#34;&gt;&lt;img&#xA;        class=&#34;lazyload&#34;&#xA;        src=&#34;https://rmmod.com/svg/loading.min.svg&#34;&#xA;        data-src=&#34;https://rmmod.com/img/o_vim_cheat_sheet1.jpg&#34;&#xA;        data-srcset=&#34;https://rmmod.com/img/o_vim_cheat_sheet1.jpg, https://rmmod.com/img/o_vim_cheat_sheet1.jpg 1.5x, https://rmmod.com/img/o_vim_cheat_sheet1.jpg 2x&#34;&#xA;        data-sizes=&#34;auto&#34;&#xA;        alt=&#34;/img/o_vim_cheat_sheet1.jpg&#34;&#xA;        title=&#34;/img/o_vim_cheat_sheet1.jpg&#34; /&gt;&lt;/a&gt;&#xA;&lt;br&gt;&#xA;The &lt;a href=&#34;https://rmmod.com/img/o_vim_cheat_sheet.jpg&#34; rel=&#34;&#34;&gt;&lt;/a&gt;&#xA;&lt;a href=&#34;https://rmmod.com/img/o_vim_cheat_sheet.jpg&#34; rel=&#34;&#34;&gt;image&lt;/a&gt;&#xA;(&lt;a href=&#34;https://rmmod.com/img/o_vim_cheat_sheet1.jpg&#34; rel=&#34;&#34;&gt;&lt;/a&gt;&#xA;&lt;a href=&#34;https://rmmod.com/img/o_vim_cheat_sheet1.jpg&#34; rel=&#34;&#34;&gt;here&lt;/a&gt;&#xA;&lt;a href=&#34;https://rmmod.com/img/o_vim_cheat_sheet.jpg&#34; rel=&#34;&#34;&gt;&lt;/a&gt;&#xA;) might be a bit large, but I think it&amp;rsquo;s quite convenient to view. Feedback on any errors is welcome, and I&amp;rsquo;ll correct them as soon as possible. Here&amp;rsquo;s the &lt;a href=&#34;http://jrmiii.com/2009/03/06/learning-vim-the-pragmatic-way.html&#34; target=&#34;_blank&#34; rel=&#34;noopener noreffer&#34;&gt;original English version.&lt;br&gt;&#xA;&lt;/a&gt;&#xA;&lt;br&gt;&#xA;Here are some similar ones:[&lt;/p&gt;&#xA;&lt;ol&gt;&#xA;&lt;li&gt;Cheat sheet](&lt;a href=&#34;http://www.tuxfiles.org/linuxhelp/vimcheat.html&#34; target=&#34;_blank&#34; rel=&#34;noopener noreffer&#34;&gt;http://www.tuxfiles.org/linuxhelp/vimcheat.html&lt;/a&gt;&#xA;) &lt;a href=&#34;http://www.fprintf.net/vimCheatSheet.html&#34; target=&#34;_blank&#34; rel=&#34;noopener noreffer&#34;&gt;here&lt;/a&gt;&#xA;,&lt;/li&gt;&#xA;&lt;li&gt;Key mapping &lt;a href=&#34;https://rmmod.com/img/File:Vi-vim-cheat-sheet.gif&#34; rel=&#34;&#34;&gt;here&lt;/a&gt;&#xA;[&lt;a href=&#34;https://rmmod.com/img/File:Vi-vim-cheat-sheet.gif&#34; rel=&#34;&#34;&gt;EN&lt;/a&gt;&#xA;] [&lt;em&gt;&lt;a href=&#34;https://rmmod.com/img/vi-vim-cheat-sheet.png&#34; rel=&#34;&#34;&gt;&lt;em&gt;CN&lt;/em&gt;&lt;/a&gt;&#xA;&lt;/em&gt;] ,&lt;/li&gt;&#xA;&lt;li&gt;vgod&amp;rsquo;s &lt;a href=&#34;http://blog.vgod.tw/wp-content/uploads/2009/12/vgod-vim-cheat-sheet-full.pdf&#34; target=&#34;_blank&#34; rel=&#34;noopener noreffer&#34;&gt;version&lt;/a&gt;&#xA;,&lt;/li&gt;&#xA;&lt;li&gt;Another one &lt;a href=&#34;https://rmmod.com/img/060504194114.jpg&#34; rel=&#34;&#34;&gt;here&lt;/a&gt;&#xA;,&lt;/li&gt;&#xA;&lt;li&gt;And a &lt;a href=&#34;https://rmmod.com/img/vi.png&#34; rel=&#34;&#34;&gt;wallpaper&lt;/a&gt;&#xA; here.&lt;/li&gt;&#xA;&lt;/ol&gt;&#xA;&lt;hr&gt;&#xA;&lt;p&gt;&lt;em&gt;Original link: &lt;a href=&#34;http://www.cppblog.com/xguru/archive/2010/06/24/118623.html&#34; target=&#34;_blank&#34; rel=&#34;noopener noreffer&#34;&gt;http://www.cppblog.com/xguru/archive/2010/06/24/118623.html&lt;/a&gt;&#xA;&lt;/em&gt;&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

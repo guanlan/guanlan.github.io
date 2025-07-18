@@ -1,67 +1,19 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Nginx on Guanlan Dai</title><link>https://rmmod.com/categories/nginx/</link><description>Recent content in Nginx on Guanlan Dai</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Mon, 28 Jun 2010 00:00:00 +0800</lastBuildDate><atom:link href="https://rmmod.com/categories/nginx/index.xml" rel="self" type="application/rss+xml"/><item><title>nginx Startup, Shutdown and Configuration Script</title><link>https://rmmod.com/posts/cppblog/2010-06-28-nginx-startup-shutdown-configuration-script-en/</link><pubDate>Mon, 28 Jun 2010 00:00:00 +0800</pubDate><guid>https://rmmod.com/posts/cppblog/2010-06-28-nginx-startup-shutdown-configuration-script-en/</guid><description>&lt;pre>&lt;code class="bash">################################################
-#!/bin/bash
-# v.0.0.3
-# create by jackbillow at 2007.10.15
-# redevelop by XGuru at 2010.6.28
-# On Ubuntu 10.04
-# nginx - This shell script takes care of starting and stopping nginx.
-#
-# description: nginx [engine x] is light http web/proxy server
-# that answers incoming ftp service requests.
-###############################################
-
-nginx_path=&amp;#34;/usr/local/nginx&amp;#34;
-nginx_pid=&amp;#34;/usr/local/nginx/logs/nginx.pid&amp;#34;
-prog=&amp;#34;nginx&amp;#34;
-
-RETVAL=0
-
-
-start() {
-# Start daemons.
- if [ -e $nginx_path/conf/nginx.conf ];then
- echo -n $&amp;#34;Starting $prog: &amp;#34;
- $nginx_path/sbin/nginx -c $nginx_path/conf/nginx.conf &amp;amp;
- RETVAL=$?
- [ $RETVAL -eq 0 ] &amp;amp;&amp;amp; {
- echo Start &amp;#34;$prog&amp;#34; successfully!
- }
- else
- RETVAL=1
- fi
- return $RETVAL
-}
-# Stop daemons.
-stop() {
- echo -n $&amp;#34;Stopping $prog\n&amp;#34;
- sudo killall -9 nginx
- RETVAL=$?
-}
-# See how we were called.
-
-conf(){
- gvim &amp;#34;$nginx_path/conf/nginx.conf&amp;#34;
-}
-case &amp;#34;$1&amp;#34; in
-start)
- start
- ;;
-stop)
- stop
- ;;
-conf)
- conf
- ;; 
-restart)
- stop
- start
- ;;
-*)
- echo $&amp;#34;Usage: $0 {start|stop|conf|restart}&amp;#34;
- echo $&amp;#34;Your may need root privilege to execute this script!&amp;#34;
- exit 1
-esac
-exit $RETVAL&lt;/code>&lt;/pre>
-&lt;hr>
-&lt;p>&lt;em>Original link: &lt;a href="http://www.cppblog.com/xguru/archive/2010/06/28/118868.html" target="_blank" rel="noopener noreffer">http://www.cppblog.com/xguru/archive/2010/06/28/118868.html&lt;/a>
-&lt;/em>&lt;/p></description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Nginx on Guanlan Dai</title>
+    <link>https://rmmod.com/categories/nginx/</link>
+    <description>Recent content in Nginx on Guanlan Dai</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 28 Jun 2010 00:00:00 +0800</lastBuildDate>
+    <atom:link href="https://rmmod.com/categories/nginx/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>nginx Startup, Shutdown and Configuration Script</title>
+      <link>https://rmmod.com/posts/cppblog/2010-06-28-nginx-startup-shutdown-configuration-script-en/</link>
+      <pubDate>Mon, 28 Jun 2010 00:00:00 +0800</pubDate>
+      <guid>https://rmmod.com/posts/cppblog/2010-06-28-nginx-startup-shutdown-configuration-script-en/</guid>
+      <description>&lt;pre&gt;&lt;code class=&#34;bash&#34;&gt;################################################&#xA;#!/bin/bash&#xA;# v.0.0.3&#xA;# create by jackbillow at 2007.10.15&#xA;# redevelop by XGuru at 2010.6.28&#xA;# On Ubuntu 10.04&#xA;# nginx - This shell script takes care of starting and stopping nginx.&#xA;#&#xA;# description: nginx [engine x] is light http web/proxy server&#xA;# that answers incoming ftp service requests.&#xA;###############################################&#xA;&#xA;nginx_path=&amp;#34;/usr/local/nginx&amp;#34;&#xA;nginx_pid=&amp;#34;/usr/local/nginx/logs/nginx.pid&amp;#34;&#xA;prog=&amp;#34;nginx&amp;#34;&#xA;&#xA;RETVAL=0&#xA;&#xA;&#xA;start() {&#xA;# Start daemons.&#xA;        if [ -e $nginx_path/conf/nginx.conf ];then&#xA;          echo -n $&amp;#34;Starting $prog: &amp;#34;&#xA;          $nginx_path/sbin/nginx -c $nginx_path/conf/nginx.conf &amp;amp;&#xA;          RETVAL=$?&#xA;        [ $RETVAL -eq 0 ] &amp;amp;&amp;amp; {&#xA;        echo Start &amp;#34;$prog&amp;#34; successfully!&#xA;        }&#xA;        else&#xA;        RETVAL=1&#xA;        fi&#xA;        return $RETVAL&#xA;}&#xA;# Stop daemons.&#xA;stop() {&#xA;        echo -n $&amp;#34;Stopping $prog\n&amp;#34;&#xA;        sudo killall -9 nginx&#xA;        RETVAL=$?&#xA;}&#xA;# See how we were called.&#xA;&#xA;conf(){&#xA;        gvim &amp;#34;$nginx_path/conf/nginx.conf&amp;#34;&#xA;}&#xA;case &amp;#34;$1&amp;#34; in&#xA;start)&#xA;        start&#xA;        ;;&#xA;stop)&#xA;        stop&#xA;        ;;&#xA;conf)&#xA;        conf&#xA;        ;;        &#xA;restart)&#xA;        stop&#xA;        start&#xA;        ;;&#xA;*)&#xA;        echo $&amp;#34;Usage: $0 {start|stop|conf|restart}&amp;#34;&#xA;        echo $&amp;#34;Your may need root privilege to execute this script!&amp;#34;&#xA;        exit 1&#xA;esac&#xA;exit $RETVAL&lt;/code&gt;&lt;/pre&gt;&#xA;&lt;hr&gt;&#xA;&lt;p&gt;&lt;em&gt;Original link: &lt;a href=&#34;http://www.cppblog.com/xguru/archive/2010/06/28/118868.html&#34; target=&#34;_blank&#34; rel=&#34;noopener noreffer&#34;&gt;http://www.cppblog.com/xguru/archive/2010/06/28/118868.html&lt;/a&gt;&#xA;&lt;/em&gt;&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
