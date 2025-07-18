@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Original on Guanlan Dai</title><link>https://rmmod.com/tags/original/</link><description>Recent content in Original on Guanlan Dai</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Thu, 21 Jul 2011 00:00:00 +0800</lastBuildDate><atom:link href="https://rmmod.com/tags/original/index.xml" rel="self" type="application/rss+xml"/><item><title>Python Basic Objects Learning Notes</title><link>https://rmmod.com/posts/cppblog/2011-07-21-python-basic-objects-learning-notes-en/</link><pubDate>Thu, 21 Jul 2011 00:00:00 +0800</pubDate><guid>https://rmmod.com/posts/cppblog/2011-07-21-python-basic-objects-learning-notes-en/</guid><description>&lt;p>Recently revisiting the book &amp;ldquo;Python Source Code Analysis&amp;rdquo;, I&amp;rsquo;ve recorded the key points about Python basic objects as follows:&lt;/p>
+&lt;p>​ &lt;strong>Python Integer Objects&lt;/strong>&lt;/p>
+&lt;ol>
+&lt;li>Python integers use C language&amp;rsquo;s long type for storage&lt;/li>
+&lt;li>Python int addition checks if the result overflows, and automatically converts to pyLongObject if it does&lt;/li>
+&lt;li>Documentation in Python is seamlessly integrated into the language implementation&lt;/li>
+&lt;/ol>
+&lt;pre>&lt;code class="python">a = 11 
+print a.__doc__&lt;/code>&lt;/pre>
+&lt;ol start="4">
+&lt;li>
+&lt;p>Small integer objects are completely cached in memory, other integer objects take turns using a block of memory space&lt;/p></description></item><item><title>My Favorite Nine Firefox Add-ons in 2010</title><link>https://rmmod.com/posts/cppblog/2010-06-28-my-favorite-nine-firefox-addons-en/</link><pubDate>Mon, 28 Jun 2010 00:00:00 +0800</pubDate><guid>https://rmmod.com/posts/cppblog/2010-06-28-my-favorite-nine-firefox-addons-en/</guid><description>&lt;h2 id="doubans-firefox-group-says">Douban&amp;rsquo;s &lt;a href="http://www.douban.com/group/Firefox/" target="_blank" rel="noopener noreffer">Firefox Group&lt;/a>
+ says:&lt;/h2>
+&lt;p>Firefox is not perfect, not the most stable, not without vulnerabilities, and not the fastest, but it can be yours.&lt;/p>
+&lt;p>I really like this quote. It&amp;rsquo;s because of the rich and colorful add-ons that Firefox has become so popular.&lt;br>
+The following add-ons are my personal favorites, and I recommend them to everyone!&lt;/p>
+&lt;h2 id="1colorfultabs">1.ColorfulTabs&lt;/h2>
+&lt;p>People can distinguish colors much faster than text. This add-on generates tab colors based on the page&amp;rsquo;s main color scheme, making your tabs colorful. Not only is it pleasing to the eye, but it also makes it easier to switch to the tab you want.&lt;/p></description></item><item><title>nginx Startup, Shutdown and Configuration Script</title><link>https://rmmod.com/posts/cppblog/2010-06-28-nginx-startup-shutdown-configuration-script-en/</link><pubDate>Mon, 28 Jun 2010 00:00:00 +0800</pubDate><guid>https://rmmod.com/posts/cppblog/2010-06-28-nginx-startup-shutdown-configuration-script-en/</guid><description>&lt;pre>&lt;code class="bash">################################################
+#!/bin/bash
+# v.0.0.3
+# create by jackbillow at 2007.10.15
+# redevelop by XGuru at 2010.6.28
+# On Ubuntu 10.04
+# nginx - This shell script takes care of starting and stopping nginx.
+#
+# description: nginx [engine x] is light http web/proxy server
+# that answers incoming ftp service requests.
+###############################################
+
+nginx_path=&amp;#34;/usr/local/nginx&amp;#34;
+nginx_pid=&amp;#34;/usr/local/nginx/logs/nginx.pid&amp;#34;
+prog=&amp;#34;nginx&amp;#34;
+
+RETVAL=0
+
+
+start() {
+# Start daemons.
+ if [ -e $nginx_path/conf/nginx.conf ];then
+ echo -n $&amp;#34;Starting $prog: &amp;#34;
+ $nginx_path/sbin/nginx -c $nginx_path/conf/nginx.conf &amp;amp;
+ RETVAL=$?
+ [ $RETVAL -eq 0 ] &amp;amp;&amp;amp; {
+ echo Start &amp;#34;$prog&amp;#34; successfully!
+ }
+ else
+ RETVAL=1
+ fi
+ return $RETVAL
+}
+# Stop daemons.
+stop() {
+ echo -n $&amp;#34;Stopping $prog\n&amp;#34;
+ sudo killall -9 nginx
+ RETVAL=$?
+}
+# See how we were called.
+
+conf(){
+ gvim &amp;#34;$nginx_path/conf/nginx.conf&amp;#34;
+}
+case &amp;#34;$1&amp;#34; in
+start)
+ start
+ ;;
+stop)
+ stop
+ ;;
+conf)
+ conf
+ ;; 
+restart)
+ stop
+ start
+ ;;
+*)
+ echo $&amp;#34;Usage: $0 {start|stop|conf|restart}&amp;#34;
+ echo $&amp;#34;Your may need root privilege to execute this script!&amp;#34;
+ exit 1
+esac
+exit $RETVAL&lt;/code>&lt;/pre>
+&lt;hr>
+&lt;p>&lt;em>Original link: &lt;a href="http://www.cppblog.com/xguru/archive/2010/06/28/118868.html" target="_blank" rel="noopener noreffer">http://www.cppblog.com/xguru/archive/2010/06/28/118868.html&lt;/a>
+&lt;/em>&lt;/p></description></item><item><title>Libevent Analysis Notes (3) - Determining I/O Multiplexing Mechanism</title><link>https://rmmod.com/posts/cppblog/2010-06-25-libevent-analysis-notes-3-io-multiplexing-mechanism-determination-en/</link><pubDate>Fri, 25 Jun 2010 00:00:00 +0800</pubDate><guid>https://rmmod.com/posts/cppblog/2010-06-25-libevent-analysis-notes-3-io-multiplexing-mechanism-determination-en/</guid><description>&lt;p>Libevent&amp;rsquo;s original intention was to design a cross-platform lightweight I/O framework. Due to historical issues, the I/O multiplexing mechanisms across different platforms are difficult to unify. Therefore, the methods for handling cross-platform compatibility deserve special attention.&lt;/p>
+&lt;p>eventop is defined in the source code as follows:&lt;/p>
+&lt;pre>&lt;code class="cpp">static const struct eventop *eventops[]={
+
+#ifdef HAVE_EVENT_PORTS
+
+ &amp;amp;evportops,
+
+#endif 
+
+…
+
+}&lt;/code>&lt;/pre>
+&lt;p>As can be seen, libevent uses macros to find available multiplexing mechanisms at compile time.&lt;/p></description></item><item><title>Libevent Analysis Notes (1) - Installation and Usage</title><link>https://rmmod.com/posts/cppblog/2010-06-24-libevent-analysis-notes-1-installation-and-usage-en/</link><pubDate>Thu, 24 Jun 2010 00:00:00 +0800</pubDate><guid>https://rmmod.com/posts/cppblog/2010-06-24-libevent-analysis-notes-1-installation-and-usage-en/</guid><description>&lt;p>Introduction to Libevent&lt;/p>
+&lt;p>&lt;img
+ class="lazyload"
+ src="https://rmmod.com/svg/loading.min.svg"
+ data-src="https://rmmod.com/img/None.gif"
+ data-srcset="https://rmmod.com/img/None.gif, https://rmmod.com/img/None.gif 1.5x, https://rmmod.com/img/None.gif 2x"
+ data-sizes="auto"
+ alt="/img/None.gif"
+ title="/img/None.gif" />The libevent API provides a mechanism to execute a callback function when a specific event occurs on a file descriptor or after a timeout has been reached. Furthermore, libevent also support callbacks due to signals or regular timeouts.&lt;/p>
+&lt;pre>&lt;code>The libevent API provides such a mechanism: 
+Execute a specified callback function when a specific event occurs in a specified file descriptor, or when a timeout is reached. 
+Additionally, libevent callback functionality also supports triggering by signals or regular timeouts. 
+Note that its license is a BSD-style license, which can be used in commercial products without having to open source. 
+&lt;/code>&lt;/pre>
+&lt;p>​&lt;/p></description></item><item><title>Libevent Learning Notes (2) - Basic Data Structures</title><link>https://rmmod.com/posts/cppblog/2010-06-24-libevent-learning-notes-2-basic-data-structures-en/</link><pubDate>Thu, 24 Jun 2010 00:00:00 +0800</pubDate><guid>https://rmmod.com/posts/cppblog/2010-06-24-libevent-learning-notes-2-basic-data-structures-en/</guid><description>&lt;h2 id="21-event_base-core-event-base-data-structure">2.1 event_base Core Event Base Data Structure&lt;/h2>
+&lt;h2>&lt;/h2>
+&lt;p>&lt;img
+ class="lazyload"
+ src="https://rmmod.com/svg/loading.min.svg"
+ data-src="https://rmmod.com/img/libevent1.jpg"
+ data-srcset="https://rmmod.com/img/libevent1.jpg, https://rmmod.com/img/libevent1.jpg 1.5x, https://rmmod.com/img/libevent1.jpg 2x"
+ data-sizes="auto"
+ alt="/img/libevent1.jpg"
+ title="/img/libevent1.jpg" />&lt;/p>
+&lt;p>As can be seen, event_base is the core part of the entire libevent, which consists of three structures: a time heap (corresponding to EVLIST_TIMEOUT), a registered queue (corresponding to EVLIST_INSERTE), and an active event queue (corresponding to EVLIST_ACTIVE).&lt;/p>
+&lt;p>The time heap uses min-Heap (minimum binary heap), while both the registered queue and active event queue use doubly linked lists.&lt;/p></description></item><item><title>VIM Commands Big Picture</title><link>https://rmmod.com/posts/cppblog/2010-06-24-vim-commands-big-picture-en/</link><pubDate>Thu, 24 Jun 2010 00:00:00 +0800</pubDate><guid>https://rmmod.com/posts/cppblog/2010-06-24-vim-commands-big-picture-en/</guid><description>&lt;p>&lt;a href="https://rmmod.com/img/o_vim_cheat_sheet1.jpg" rel="">&lt;img
+ class="lazyload"
+ src="https://rmmod.com/svg/loading.min.svg"
+ data-src="https://rmmod.com/img/o_vim_cheat_sheet1.jpg"
+ data-srcset="https://rmmod.com/img/o_vim_cheat_sheet1.jpg, https://rmmod.com/img/o_vim_cheat_sheet1.jpg 1.5x, https://rmmod.com/img/o_vim_cheat_sheet1.jpg 2x"
+ data-sizes="auto"
+ alt="/img/o_vim_cheat_sheet1.jpg"
+ title="/img/o_vim_cheat_sheet1.jpg" />&lt;/a>
+&lt;br>
+The &lt;a href="https://rmmod.com/img/o_vim_cheat_sheet.jpg" rel="">&lt;/a>
+&lt;a href="https://rmmod.com/img/o_vim_cheat_sheet.jpg" rel="">image&lt;/a>
+(&lt;a href="https://rmmod.com/img/o_vim_cheat_sheet1.jpg" rel="">&lt;/a>
+&lt;a href="https://rmmod.com/img/o_vim_cheat_sheet1.jpg" rel="">here&lt;/a>
+&lt;a href="https://rmmod.com/img/o_vim_cheat_sheet.jpg" rel="">&lt;/a>
+) might be a bit large, but I think it&amp;rsquo;s quite convenient to view. Feedback on any errors is welcome, and I&amp;rsquo;ll correct them as soon as possible. Here&amp;rsquo;s the &lt;a href="http://jrmiii.com/2009/03/06/learning-vim-the-pragmatic-way.html" target="_blank" rel="noopener noreffer">original English version.&lt;br>
+&lt;/a>
+&lt;br>
+Here are some similar ones:[&lt;/p>
+&lt;ol>
+&lt;li>Cheat sheet](&lt;a href="http://www.tuxfiles.org/linuxhelp/vimcheat.html" target="_blank" rel="noopener noreffer">http://www.tuxfiles.org/linuxhelp/vimcheat.html&lt;/a>
+) &lt;a href="http://www.fprintf.net/vimCheatSheet.html" target="_blank" rel="noopener noreffer">here&lt;/a>
+,&lt;/li>
+&lt;li>Key mapping &lt;a href="https://rmmod.com/img/File:Vi-vim-cheat-sheet.gif" rel="">here&lt;/a>
+[&lt;a href="https://rmmod.com/img/File:Vi-vim-cheat-sheet.gif" rel="">EN&lt;/a>
+] [&lt;em>&lt;a href="https://rmmod.com/img/vi-vim-cheat-sheet.png" rel="">&lt;em>CN&lt;/em>&lt;/a>
+&lt;/em>] ,&lt;/li>
+&lt;li>vgod&amp;rsquo;s &lt;a href="http://blog.vgod.tw/wp-content/uploads/2009/12/vgod-vim-cheat-sheet-full.pdf" target="_blank" rel="noopener noreffer">version&lt;/a>
+,&lt;/li>
+&lt;li>Another one &lt;a href="https://rmmod.com/img/060504194114.jpg" rel="">here&lt;/a>
+,&lt;/li>
+&lt;li>And a &lt;a href="https://rmmod.com/img/vi.png" rel="">wallpaper&lt;/a>
+ here.&lt;/li>
+&lt;/ol>
+&lt;hr>
+&lt;p>&lt;em>Original link: &lt;a href="http://www.cppblog.com/xguru/archive/2010/06/24/118623.html" target="_blank" rel="noopener noreffer">http://www.cppblog.com/xguru/archive/2010/06/24/118623.html&lt;/a>
+&lt;/em>&lt;/p></description></item><item><title>Memcached Source Code Analysis Notes PDF</title><link>https://rmmod.com/posts/cppblog/2010-01-23-memcached-source-code-analysis-notes-pdf-en/</link><pubDate>Sat, 23 Jan 2010 00:00:00 +0800</pubDate><guid>https://rmmod.com/posts/cppblog/2010-01-23-memcached-source-code-analysis-notes-pdf-en/</guid><description>&lt;p>Memcached is a free, open source, high-performance, distributed memory object caching system, aimed at speeding up dynamic web applications by alleviating database load.&lt;/p>
+&lt;p>As the saying goes, the palest ink is better than the best memory.&lt;br>
+&lt;a href="http://www.cppblog.com/Files/guanlan/Memcached.pdf" target="_blank" rel="noopener noreffer">This document&lt;/a>
+ is what I use to record some experiences during the process of reading Memcached source code, as well as analyzing some internal working mechanisms of memcached.&lt;br>
+I hope it can also bring convenience to everyone.&lt;/p></description></item><item><title>Random Thoughts Series 2 - Factorial Algorithm Thoughts</title><link>https://rmmod.com/posts/cppblog/2009-12-30-random-thoughts-series-2-factorial-algorithm-thoughts-en/</link><pubDate>Wed, 30 Dec 2009 00:00:00 +0800</pubDate><guid>https://rmmod.com/posts/cppblog/2009-12-30-random-thoughts-series-2-factorial-algorithm-thoughts-en/</guid><description>&lt;p>by &lt;a href="http://www.cppblog.com/xguru/archive/2009/12/29/104344.html" target="_blank" rel="noopener noreffer">guanlan&lt;/a>
+&lt;a href="http://topic.csdn.net/t/20030916/20/2267097.html" target="_blank" rel="noopener noreffer">&lt;/a>
+&lt;/p>
+&lt;p>Factorial again, this is an old topic, right? Without even thinking, a simple recursion will do!&lt;/p>
+&lt;p>&lt;img
+ class="lazyload"
+ src="https://rmmod.com/svg/loading.min.svg"
+ data-src="https://rmmod.com/img/None.gif"
+ data-srcset="https://rmmod.com/img/None.gif, https://rmmod.com/img/None.gif 1.5x, https://rmmod.com/img/None.gif 2x"
+ data-sizes="auto"
+ alt="/img/None.gif"
+ title="/img/None.gif" />int factorial(int n)&lt;br>
+&lt;img
+ class="lazyload"
+ src="https://rmmod.com/svg/loading.min.svg"
+ data-src="https://rmmod.com/img/ExpandedBlockStart.gif"
+ data-srcset="https://rmmod.com/img/ExpandedBlockStart.gif, https://rmmod.com/img/ExpandedBlockStart.gif 1.5x, https://rmmod.com/img/ExpandedBlockStart.gif 2x"
+ data-sizes="auto"
+ alt="/img/ExpandedBlockStart.gif"
+ title="/img/ExpandedBlockStart.gif" />&lt;img
+ class="lazyload"
+ src="https://rmmod.com/svg/loading.min.svg"
+ data-src="https://rmmod.com/img/ContractedBlock.gif"
+ data-srcset="https://rmmod.com/img/ContractedBlock.gif, https://rmmod.com/img/ContractedBlock.gif 1.5x, https://rmmod.com/img/ContractedBlock.gif 2x"
+ data-sizes="auto"
+ alt="/img/ContractedBlock.gif"
+ title="/img/ContractedBlock.gif" />&lt;img
+ class="lazyload"
+ src="https://rmmod.com/svg/loading.min.svg"
+ data-src="https://rmmod.com/img/dot.gif"
+ data-srcset="https://rmmod.com/img/dot.gif, https://rmmod.com/img/dot.gif 1.5x, https://rmmod.com/img/dot.gif 2x"
+ data-sizes="auto"
+ alt="/img/dot.gif"
+ title="/img/dot.gif" />{&lt;br>
+&lt;img
+ class="lazyload"
+ src="https://rmmod.com/svg/loading.min.svg"
+ data-src="https://rmmod.com/img/InBlock.gif"
+ data-srcset="https://rmmod.com/img/InBlock.gif, https://rmmod.com/img/InBlock.gif 1.5x, https://rmmod.com/img/InBlock.gif 2x"
+ data-sizes="auto"
+ alt="/img/InBlock.gif"
+ title="/img/InBlock.gif" /> if( n == 1)&lt;br>
+&lt;img
+ class="lazyload"
+ src="https://rmmod.com/svg/loading.min.svg"
+ data-src="https://rmmod.com/img/InBlock.gif"
+ data-srcset="https://rmmod.com/img/InBlock.gif, https://rmmod.com/img/InBlock.gif 1.5x, https://rmmod.com/img/InBlock.gif 2x"
+ data-sizes="auto"
+ alt="/img/InBlock.gif"
+ title="/img/InBlock.gif" /> return 1;&lt;br>
+&lt;img
+ class="lazyload"
+ src="https://rmmod.com/svg/loading.min.svg"
+ data-src="https://rmmod.com/img/InBlock.gif"
+ data-srcset="https://rmmod.com/img/InBlock.gif, https://rmmod.com/img/InBlock.gif 1.5x, https://rmmod.com/img/InBlock.gif 2x"
+ data-sizes="auto"
+ alt="/img/InBlock.gif"
+ title="/img/InBlock.gif" /> return n * factorial(n-1);&lt;br>
+&lt;img
+ class="lazyload"
+ src="https://rmmod.com/svg/loading.min.svg"
+ data-src="https://rmmod.com/img/ExpandedBlockEnd.gif"
+ data-srcset="https://rmmod.com/img/ExpandedBlockEnd.gif, https://rmmod.com/img/ExpandedBlockEnd.gif 1.5x, https://rmmod.com/img/ExpandedBlockEnd.gif 2x"
+ data-sizes="auto"
+ alt="/img/ExpandedBlockEnd.gif"
+ title="/img/ExpandedBlockEnd.gif" />}&lt;/p></description></item><item><title>A 'Strange Phenomenon' in C/C++ Arrays</title><link>https://rmmod.com/posts/cppblog/2009-12-24-cc-array-peculiar-phenomenon-en/</link><pubDate>Thu, 24 Dec 2009 00:00:00 +0800</pubDate><guid>https://rmmod.com/posts/cppblog/2009-12-24-cc-array-peculiar-phenomenon-en/</guid><description>&lt;p>Everyone is familiar with using arrays, right?&lt;br>
+Take a look at this program, it&amp;rsquo;s quite simple.&lt;/p>
+&lt;pre>&lt;code class="cpp">#include&amp;lt;iostream&amp;gt;
+int main()
+{
+ int a[] = {1,2,3,4,5};
+ for(int i = 0 ; i &amp;lt; 5; i&amp;#43;&amp;#43;)
+ std::cout &amp;lt;&amp;lt; i[a] &amp;lt;&amp;lt; &amp;#34; &amp;#34;;
+ return 0;
+}&lt;/code>&lt;/pre>
+&lt;p>Now look carefully at line 6.&lt;br>
+What did you notice?&lt;br>
+Try compiling it to see if it passes?&lt;/p>
+&lt;p>Let&amp;rsquo;s simplify this program even more&lt;/p>
+&lt;pre>&lt;code class="cpp">int a[5] = {1,2,3,4,5};
+int b = 1[a];&lt;/code>&lt;/pre>
+&lt;p>Now let&amp;rsquo;s look at the generated assembly code&lt;/p></description></item><item><title>Random Thoughts Series 1 - C++ Thoughts</title><link>https://rmmod.com/posts/cppblog/2009-12-20-random-thoughts-series-1-cpp-thoughts-en/</link><pubDate>Sun, 20 Dec 2009 00:00:00 +0800</pubDate><guid>https://rmmod.com/posts/cppblog/2009-12-20-random-thoughts-series-1-cpp-thoughts-en/</guid><description>&lt;p>After diving deep into the internal structure of STL and some of the deeper mechanisms and techniques of C++, a question that every programmer must face suddenly emerged.&lt;/p>
+&lt;p>&lt;strong>Why Programming in C++?&lt;/strong>&lt;/p>
+&lt;p>Why should I choose C++ over the simple and pure C, or the flexible and comprehensive JAVA and C#?&lt;/p>
+&lt;p>Browsing through various technical forums and blogs of experts, everyone is arguing for their favorite language. C#/JAVA programmers say: don&amp;rsquo;t reinvent the wheel, with a good language platform and rich comprehensive libraries, you can focus on more important aspects like architecture and software engineering. Why be obsessed with the surface foundations of the language? The C++ standard doesn&amp;rsquo;t even have basic GUI libraries and network libraries. Even BJ, the creator of C++, wants to develop C++ into a platform.&lt;/p></description></item></channel></rss>

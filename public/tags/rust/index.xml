@@ -3,9 +3,9 @@
 &lt;p>&lt;img
  class="lazyload"
  src="https://rmmod.com/svg/loading.min.svg"
- data-src="https://prd-mktg-konghq-com.imgix.net/images/2024/07/668eda3d-image7-2.png?auto=format&amp;amp;fit=max&amp;amp;w=2560"
- data-srcset="https://prd-mktg-konghq-com.imgix.net/images/2024/07/668eda3d-image7-2.png?auto=format&amp;amp;fit=max&amp;amp;w=2560, https://prd-mktg-konghq-com.imgix.net/images/2024/07/668eda3d-image7-2.png?auto=format&amp;amp;fit=max&amp;amp;w=2560 1.5x, https://prd-mktg-konghq-com.imgix.net/images/2024/07/668eda3d-image7-2.png?auto=format&amp;amp;fit=max&amp;amp;w=2560 2x"
+ data-src="https://rmmod.com/img/668eda3d-image7-2.png"
+ data-srcset="https://rmmod.com/img/668eda3d-image7-2.png, https://rmmod.com/img/668eda3d-image7-2.png 1.5x, https://rmmod.com/img/668eda3d-image7-2.png 2x"
  data-sizes="auto"
- alt="https://prd-mktg-konghq-com.imgix.net/images/2024/07/668eda3d-image7-2.png?auto=format&amp;amp;fit=max&amp;amp;w=2560"
+ alt="/img/668eda3d-image7-2.png"
  title="Kong gateway" />&lt;/p>
 &lt;p>In the 3.0 version update of the Kong API Gateway, the routing system was completely rewritten in Rust — a memory-safe and efficient language. A concise DSL (Domain Specific Language) was designed to define routing rules efficiently, called the &amp;ldquo;Expressions Router.&amp;rdquo; The new design reduced the routing construction time by 75% when handling up to 10,000 routing rules, significantly decreasing from 20 seconds to 5 seconds.&lt;/p></description></item></channel></rss>

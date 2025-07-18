@@ -31,8 +31,7 @@ In our mini-project for this article, we're going to walk through a basic use ca
 4.  Add and configure the Rate Limiting plugin.
 5.  Test our rate limiting policies.
 
-After walking through these steps together, you'll have what you need to tailor the Rate Limiting plugin for your unique business needs.\
-Want to set up rate limiting for your API gateway with clicks instead of code? [Try Konnect for free >>](https://konghq.com/kong-konnect)
+After walking through these steps together, you'll have what you need to tailor the Rate Limiting plugin for your unique business needs.
 
 Create a Node.js Express API Server
 -----------------------------------
@@ -40,27 +39,27 @@ Create a Node.js Express API Server
 To get started, we'll create a simple API server with a single endpoint that listens for a GET request and responds with "hello world." At the command line, create a project folder and initialize a Node.js application:
 
 
-{{< admonition type=example title="Create Project Folder" open=true >}}
+
 ```bash
 ~/$  mkdir project
 ~/$  cd project
 ~/project$  yarn init
 // Accept all defaults
 ```
-{{< /admonition >}}
+
 
 
 Then, we'll add Express, which is the only package we'll need:
 
-{{< admonition type=example title="Install Express" open=true >}}
+
 ```bash
 ~/project$  yarn add express
 ```
-{{< /admonition >}}
+
 
 Lastly, let's create a simple server with our "hello world" endpoint. In your project folder, create an index.js file with these contents:
 
-{{< admonition type=example title="Node.js Server Code" open=true >}}
+
 ```js
 /* PATH: ~/project/index.js
 */
@@ -75,23 +74,20 @@ server.listen(port, () => {
  console.log(`Server is listening on http://localhost:${port}`)
 })
 ```
-{{< /admonition >}}
+
 
 Now, spin up your server:
 
-{{< admonition type=example title="Start Server" open=true >}}
 ```bash
 ~/project$  node index.js
 ```
-{{< /admonition >}}
-
 In your browser, you can visit http://localhost:3000. Here's what you should see:
 
-![local host hello world](https://konghq.com/wp-content/uploads/2021/05/local-host-hello-world.png.webp)
+![local host hello world](/img/local-host-hello-world.png)
 
 Let's also use [Insomnia](https://insomnia.rest/), a desktop client for API testing. In Insomnia, we send a GET request to http://localhost:3000.
 
-![local host hello world in Insomnia](https://konghq.com/wp-content/uploads/2021/05/local-host-hello-world-insomnia.png.webp)
+![local host hello world in Insomnia](/img/local-host-hello-world-insomnia.png)
 
 Our Node.js API server with its single endpoint is up and running. We have our 200 OK response.
 
@@ -106,7 +102,7 @@ Simple usage of the Rate Limiting plugin supports configuring Kong in DB-less mo
 
 After installing Kong, we generate a starter .yml file:
 
-{{< admonition type=example title="Generate Kong Configuration File" open=true >}}
+
 ```bash
 ~/project$  kong config init
 
@@ -115,33 +111,29 @@ After installing Kong, we generate a starter .yml file:
 .
 
 ├──  index.js
-
 ├──  kong.yml
-
 ├──  node_modules
-
 ├──  package.json
-
 └──  yarn.lock
 
 1  directory,  4  files
 ```
-{{< /admonition >}}
+
 We'll come back to that kong.yml file in a moment.
 
 Now, let's tell Kong where to look for that declarative configuration file upon startup. In /etc/kong, there is a kong.conf.default file that we'll need to copy as kong.conf and then edit:
 
-{{< admonition type=example title="Copy Kong Configuration File" open=true >}}
+
 ```bash
 ~/project$  cd  /etc/kong
 /etc/kong$  sudo su
 root:/etc/kong$  cp kong.conf.default kong.conf
 ```
-{{< /admonition >}}
+
 
 Next, we edit the kong.conf file. You'll likely need root privileges to do this. There are two edits that we need to make:
 
-{{< admonition type=example title="Kong Configuration" open=true >}}
+
 ```lua
 # PATH: /etc/kong/kong.conf
 # line ~839: Uncomment this line and set to off
@@ -149,15 +141,13 @@ database  =  off
 # line ~1023, Uncomment this line. Set to absolute path to kong.yml
 declarative_config  =  /PATH/TO/YOUR/project/kong.yml
 ```
-{{< /admonition >}}
+
 
 Configure Kong Gateway With Our Service and Routes
 --------------------------------------------------
 
 Before we start up Kong, let's edit the declarative configuration file generated in our project folder. It should look like this:
 
-
-{{< admonition type=example title="YAML Configuration" open=true >}}
 ```yaml
 # PATH: ~/project/kong.yml
  
@@ -171,7 +161,7 @@ services:
     paths:
     - /api
 ```
-{{< /admonition >}}
+
 
 Let's walk through what this configuration does. After setting the syntax version (2.1), we configure a new upstream service for which Kong will serve as an API gateway. Our service, which we name my-api-server, listens for requests at the URL http://localhost:3000. 
 
@@ -179,16 +169,14 @@ We associate a route (arbitrarily named api-routes) for our service with the pa
 
 With our declarative configuration file in place, we start Kong:
 
-
-{{< admonition type=example title="Start Kong" open=true >}}
 ```bash
 ~/project$  sudo kong start
 ```
-{{< /admonition >}}
+
 
 Now, in Insomnia, we send a GET request through Kong Gateway, which listens at http://localhost:8000, to the /api path:
 
-![Insomnia get request](https://konghq.com/wp-content/uploads/2021/05/insomnia-get-request.png.webp)
+![Insomnia get request](/img/insomnia-get-request.png)
 
 Note that, by sending our request to port 8000, we are going *through* Kong Gateway to get to our API server.
 
@@ -197,7 +185,7 @@ Add the Kong Gateway Rate Limiting Plugin
 
 Now that we have Kong Gateway sitting in front of our API server, we'll add in the Rate Limiting Plugin and test it out. We will need to add a few lines to our kong.yml declarative configuration file:
 
-{{< admonition type=example title="Rate Limiting Configuration" open=true >}}
+
 ```yaml
 # PATH: ~/project/kong.yml
  
@@ -220,7 +208,7 @@ services:
       header_name: x-api-key
       policy:  local
 ```
-{{< /admonition >}}
+
 
 We've added the entire plugins section underneath our my-api-server service. We specify the name of the plugin, rate-limiting. This name is *not* arbitrary but refers to the actual rate-limiting plugin in the Kong package.
 
@@ -228,15 +216,14 @@ In this first run, we've configured the plugin with minute: 5, which allows fo
 
 Let's restart Kong:
 
-{{< admonition type=example title="Restart Kong" open=true >}}
 ```bash
 ~/project$  sudo kong restart
 ```
-{{< /admonition >}}
+
 
 Now, back in Insomnia, we test out sending some requests to our API endpoint. If you send a request every few seconds, you'll see that the first five requests received a 200 OK response. However, if you exceed five requests within a minute:
 
-![Insomnia test Kong's rate limiting plugin](https://konghq.com/wp-content/uploads/2021/05/insomnia-test-kong-rate-limiting.png.webp)
+![Insomnia test Kong's rate limiting plugin](/img/insomnia-test-kong-rate-limiting.png)
 
 The Rate Limiting plugin detects that requests have exceeded the five-per-minute rule. It doesn't let the subsequent request through to the API server. Instead, we get a 429 Too Many Requests response.
 
@@ -254,7 +241,7 @@ We've configured Kong to count (and limit) requests to our server in our simple 
 
 For example, let's say that all users of our API server need to send requests with a unique API key set in headers as x-api-key. We can configure Kong to apply its rate limits on a per-API-key basis as follows:
 
-{{< admonition type=example title="Per-API-Key Rate Limiting" open=true >}}
+
 ```yaml
 # PATH: ~/project/kong.yml
  
@@ -274,11 +261,11 @@ services:
       hour: 12
       policy: local
 ```
-{{< /admonition >}}
+
 
 If we change the x-api-key to a different value (for example, user2), we immediately get 200 OK responses:
 
-![Insomnia test Kong rate limiting](https://konghq.com/wp-content/uploads/2021/05/insomnia-test-kong-rate-limiting-2.png.webp)
+![Insomnia test Kong rate limiting](/img/insomnia-test-kong-rate-limiting-2.png)
 
 Requests from user2 are counted separately from requests from user1. Each unique x-api-key value gets (according to our rate limiting rules) up to five requests per minute and up to 12 requests per hour.
 

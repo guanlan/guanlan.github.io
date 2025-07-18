@@ -1,0 +1,123 @@
+// 覆盖 LoveIt 主题的代码高亮样式
+// 使用更高优先级的选择器和 !important 确保样式生效
+
+// 针对 LoveIt 主题的特定结构提高优先级
+.single .content .highlight {
+  // 覆盖主题默认背景色
+  > .chroma {
+    background-color: #272822 !important;
+    color: #f8f8f2 !important;
+    
+    pre {
+      background-color: #272822 !important;
+      color: #f8f8f2 !important;
+    }
+    
+    code {
+      background-color: #272822 !important;
+      color: #f8f8f2 !important;
+    }
+    
+    // 覆盖表格背景
+    table, tr, td {
+      background-color: #272822 !important;
+    }
+  }
+  
+  // 语法高亮颜色 - 使用更高优先级的选择器
+  .chroma {
+    .k { color: #66d9ef !important; }  // 关键字
+    .kd { color: #66d9ef !important; } // 关键字声明
+    .kn { color: #f92672 !important; } // import, from 等
+    .kp { color: #66d9ef !important; } // 关键字伪
+    .kr { color: #66d9ef !important; } // 关键字保留
+    .kt { color: #66d9ef !important; } // 关键字类型
+    .kc { color: #66d9ef !important; } // 关键字常量
+    .n { color: #f8f8f2 !important; }  // 名称
+    .na { color: #a6e22e !important; } // 属性名
+    .nb { color: #f8f8f2 !important; } // 内置名称
+    .nc { color: #a6e22e !important; } // 类名
+    .no { color: #66d9ef !important; } // 常量
+    .nd { color: #a6e22e !important; } // 装饰器
+    .ni { color: #f8f8f2 !important; } // 实体
+    .ne { color: #a6e22e !important; } // 异常
+    .nf { color: #a6e22e !important; } // 函数名
+    .nl { color: #f8f8f2 !important; } // 标签
+    .nn { color: #f8f8f2 !important; } // 命名空间
+    .nx { color: #a6e22e !important; } // 其他名称
+    .py { color: #f8f8f2 !important; } // 属性
+    .nt { color: #f92672 !important; } // 标签名
+    .nv { color: #f8f8f2 !important; } // 变量
+    .o { color: #f92672 !important; }  // 操作符
+    .ow { color: #f92672 !important; } // 操作符词
+    .p { color: #f8f8f2 !important; }  // 标点符号
+    .l { color: #ae81ff !important; }  // 字面量
+    .ld { color: #e6db74 !important; } // 日期
+    .s { color: #e6db74 !important; }  // 字符串
+    .s1 { color: #e6db74 !important; } // 单引号字符串
+    .s2 { color: #e6db74 !important; } // 双引号字符串
+    .sa { color: #e6db74 !important; } // 字符串字面量
+    .sb { color: #e6db74 !important; } // 字符串反引号
+    .sc { color: #e6db74 !important; } // 字符串字符
+    .dl { color: #e6db74 !important; } // 字符串分隔符
+    .sd { color: #e6db74 !important; } // 字符串文档
+    .se { color: #ae81ff !important; } // 字符串转义
+    .sh { color: #e6db74 !important; } // 字符串heredoc
+    .si { color: #e6db74 !important; } // 字符串插值
+    .sx { color: #e6db74 !important; } // 字符串其他
+    .sr { color: #e6db74 !important; } // 字符串正则
+    .ss { color: #e6db74 !important; } // 字符串符号
+    .m { color: #ae81ff !important; }  // 数字
+    .mb { color: #ae81ff !important; } // 二进制
+    .mf { color: #ae81ff !important; } // 浮点数
+    .mh { color: #ae81ff !important; } // 十六进制数
+    .mi { color: #ae81ff !important; } // 整数
+    .il { color: #ae81ff !important; } // 长整数
+    .mo { color: #ae81ff !important; } // 八进制数
+    .c { color: #75715e !important; font-style: italic !important; }  // 注释
+    .c1 { color: #75715e !important; font-style: italic !important; } // 单行注释
+    .cm { color: #75715e !important; font-style: italic !important; } // 多行注释
+    .cp { color: #75715e !important; font-style: italic !important; } // 预处理注释
+    .cs { color: #75715e !important; font-style: italic !important; } // 特殊注释
+    .ch { color: #75715e !important; font-style: italic !important; } // 注释标题
+    .cpf { color: #75715e !important; font-style: italic !important; } // 注释文件
+    .err { color: #960050 !important; background-color: #1e0010 !important; } // 错误
+    .gi { color: #a6e22e !important; } // 通用插入
+    .gd { color: #f92672 !important; } // 通用删除
+    .ge { font-style: italic !important; } // 通用强调
+    .gs { font-weight: bold !important; } // 通用强
+    .gu { color: #75715e !important; } // 通用子标题
+    .gp { color: #66d9ef !important; } // 通用提示符
+    .w { color: #f8f8f2 !important; }  // 空白
+  }
+}
+
+// 暗色主题支持
+[theme=dark] .single .content .highlight {
+  > .chroma {
+    background-color: #272822 !important;
+    color: #f8f8f2 !important;
+
+    .code-header {
+      background-color: #3c3d38 !important;
+      color: #f8f8f2 !important;
+    }
+
+    pre, code, table, tr, td {
+      background-color: #272822 !important;
+      color: #f8f8f2 !important;
+    }
+  }
+}
+
+// 内联代码样式
+.single .content code:not(.chroma code) {
+  background-color: #f5f5f5 !important;
+  color: #E74C3C !important;
+  padding: 0 .4rem !important;
+}
+
+[theme=dark] .single .content code:not(.chroma code) {
+  background-color: #3c3d38 !important;
+  color: #E5BF78 !important;
+}

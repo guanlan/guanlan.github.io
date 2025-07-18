@@ -28,6 +28,12 @@ enableEmoji = true
   [params.social]
     RSS = true
 
+  [params.page]
+    [params.page.library]
+      [params.page.library.css]
+        # 添加代码高亮样式文件
+        codeHighlight = "css/_code-highlight.scss"
+
 [menu]
   [[menu.main]]
     weight = 1
@@ -39,3 +45,12 @@ enableEmoji = true
     identifier = "about"
     name = "About"
     url = "/about/"
+
+[markup]
+  [markup.highlight]
+    codeFences = true
+    guessSyntax = true
+    lineNos = true
+    lineNumbersInTable = true
+    # LoveIt 主题要求必须设置为 false
+    noClasses = false

@@ -8,11 +8,11 @@ tags: ["Kong", "Rust"]
 
 The router component in the Kong Gateway is a crucial element for traffic handling, allowing the definition of specific matching rules to identify and process client requests. As a core component of the gateway, the router plays a vital role in ensuring the functionality, flexibility, security as well as performance of the gateway.
 
-![Kong gateway](https://prd-mktg-konghq-com.imgix.net/images/2024/07/668eda3d-image7-2.png?auto=format&fit=max&w=2560)
+![Kong gateway](/img/668eda3d-image7-2.png)
 
 In the 3.0 version update of the Kong API Gateway, the routing system was completely rewritten in Rust — a memory-safe and efficient language. A concise DSL (Domain Specific Language) was designed to define routing rules efficiently, called the "Expressions Router." The new design reduced the routing construction time by 75% when handling up to 10,000 routing rules, significantly decreasing from 20 seconds to 5 seconds.
 
-![match](https://prd-mktg-konghq-com.imgix.net/images/2024/07/668eda68-image5-3.png?auto=format&fit=max&w=2560)
+![match](/img/668eda68-image5-3.png)
 
 ### Example: Exact Match
 
@@ -28,7 +28,7 @@ http.path ~ r#"/foo/bar/\d+"#
 
 We utilized the high-performance [pest](https://pest.rs/) library from the Rust ecosystem to parse our DSL, with the entire grammar description being about 40 lines.
 
-![pest_dsl](https://prd-mktg-konghq-com.imgix.net/images/2024/07/668edaf2-image6-2.png?auto=format&fit=max&w=2560)
+![pest_dsl](/img/668edaf2-image6-2.png)
 
 In Kong, you can add an Expressions route through the Admin API POST method.
 
@@ -65,15 +65,15 @@ For more optimizations, refer to Kong’s official documentation.
 
 ## Migration Path Between Old and New Routes (New Feature in Version 3.7)
 
-![img](https://prd-mktg-konghq-com.imgix.net/images/2024/07/668edbee-image1-6.png?auto=format&fit=max&w=2560)
+![img](/img/668edbee-image1-6.png)
 
 In the latest 3.7 version of Kong Gateway, the routing system has been further enhanced with a key feature: migration support for Expressions routes, allowing customers to run both traditional JSON-based routes and new Expressions routes in tandem.
 
-![Youtube thumbnail](https://img.youtube.com/vi/Ubzs1VSMhXs/maxresdefault.jpg)
+![Youtube thumbnail](/img/maxresdefault.jpg)
 
 Kong Gateway now supports configuring both JSON and Expressions routes in a single control plane, enabling teams to gradually migrate routes to the Expression language based on business needs. Comprehensive GUI support is also provided, with syntax highlighting and auto-completion.
 
-![Youtube thumbnail](https://img.youtube.com/vi/3w-K8R1w34g/maxresdefault.jpg)
+![Youtube thumbnail](/img/maxresdefault_1.jpg)
 
 This update ensures users can smoothly transition from the Traditional routing system to the new Expressions routing system without service interruption or complex operations. For those still using Traditional routing methods, we strongly recommend upgrading to the new Expressions routes for a more efficient and flexible routing management experience.
 

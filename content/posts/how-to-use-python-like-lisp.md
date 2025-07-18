@@ -5,29 +5,24 @@ author: "guanlan"
 tags: ["Lisp","Python"]
 ---
 
-Lisp has some very effective way to get jobs done, this article give you a direct way to use Python like Lisp.```
+Lisp has some very effective way to get jobs done, this article give you a direct way to use Python like Lisp.
+
+```python
 cons = lambda el, lst: (el, lst) 
-``````
 mklist = lambda *args: reduce(lambda lst, el: cons(el, lst), reversed(args), None) 
-``````
 car = lambda lst: lst[0] if lst else lst 
-``````
 cdr = lambda lst: lst[1] if lst else lst 
-``````
-nth = lambda n, lst: nth(n-1, cdr(lst)) if n ]]> 0 else car(lst) 
-``````
+nth = lambda n, lst: nth(n-1, cdr(lst)) if n > 0 else car(lst) 
 length = lambda lst, count=0: length(cdr(lst), count+1) if lst else count
-``````
 begin = lambda *args: args[-1] 
-``````
-display = lambda lst: begin(w("%s " % car(lst)), display(cdr(lst))) if lst else w("niln")
-```where `w = sys.stdout.write````
-foldr = lambda f, i: lambda s: reduce(f, s, i)
-``````
-foldl = reduce
+display = lambda lst: begin(w("%s " % car(lst)), display(cdr(lst))) if lst else w("nil\n")
 ```
 
-```
+where `w = sys.stdout.write`
+
+```python
+foldr = lambda f, i: lambda s: reduce(f, s, i)
+foldl = reduce
 mapcar = map
 ```
 

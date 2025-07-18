@@ -1,0 +1,397 @@
+// LoveIt 主题代码高亮覆盖样式
+// 使用 Monokai 配色方案
+
+// 直接覆盖 LoveIt 主题的颜色映射
+.single .content {
+  // 覆盖所有代码块的背景色
+  code, pre, .highlight, .highlight > .chroma {
+    background: #272822 !important;
+    color: #f8f8f2 !important;
+  }
+  
+  // 修复代码块宽度溢出
+  .highlight {
+    overflow: visible !important;
+    max-width: 100% !important;
+    position: relative !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    
+    // 确保代码块不会超出容器宽度
+    > .chroma {
+      overflow: visible !important;
+      position: relative !important;
+      
+      .table-wrapper {
+        overflow-x: auto !important;
+        overflow-y: hidden !important;
+        max-width: 100% !important;
+        width: 100% !important;
+        display: block !important;
+        margin: 0 !important;
+        
+        // 自定义滚动条样式
+        &::-webkit-scrollbar {
+          height: 10px !important;
+          background-color: #1e1e1e !important;
+        }
+        
+        &::-webkit-scrollbar-thumb {
+          background-color: #555 !important;
+          border-radius: 5px !important;
+          
+          &:hover {
+            background-color: #777 !important;
+          }
+        }
+        
+        // Firefox滚动条
+        scrollbar-width: thin !important;
+        scrollbar-color: #555 #1e1e1e !important;
+        
+        table {
+          width: auto !important;
+          min-width: 100% !important;
+          display: table !important;
+          table-layout: auto !important;
+          margin: 0 !important;
+          border: 0 !important;
+          
+          tbody {
+            display: table-row-group !important;
+          }
+          
+          tr {
+            display: table-row !important;
+          }
+          
+          td {
+            padding: 0 !important;
+            vertical-align: top !important;
+            display: table-cell !important;
+            border: 0 !important;
+            
+            // 行号列
+            &:first-child {
+              width: auto !important;
+              min-width: 2.5rem !important;
+              position: sticky !important;
+              left: 0 !important;
+              background: #272822 !important;
+              z-index: 1 !important;
+              padding-right: 0.5rem !important;
+              
+              pre {
+                margin: 0 !important;
+                padding: 0.5rem 0 !important;
+                
+                .ln, .lnt {
+                  padding-right: 0.5rem !important;
+                  user-select: none !important;
+                }
+              }
+            }
+            
+            // 代码内容列
+            &:last-child {
+              width: 100% !important;
+              padding: 0 !important;
+              
+              pre {
+                margin: 0 !important;
+                padding: 0.5rem !important;
+                overflow-x: auto !important;
+                overflow-y: hidden !important;
+                max-width: 100% !important;
+                white-space: pre !important;
+                word-wrap: normal !important;
+                word-break: normal !important;
+                display: block !important;
+                
+                code {
+                  display: inline-block !important;
+                  min-width: 100% !important;
+                  white-space: pre !important;
+                  word-wrap: normal !important;
+                  word-break: normal !important;
+                  line-height: 1.4em !important;
+                }
+              }
+            }
+          }
+        }
+      }
+      
+      // 对于没有行号的代码块
+      > pre {
+        overflow-x: auto !important;
+        max-width: 100% !important;
+        white-space: pre !important;
+        word-wrap: normal !important;
+        word-break: normal !important;
+        padding: 1rem !important;
+        margin: 0 !important;
+        
+        code {
+          display: inline-block !important;
+          min-width: 100% !important;
+          white-space: pre !important;
+          word-wrap: normal !important;
+          word-break: normal !important;
+        }
+      }
+      
+      // 当代码块展开时
+      &.open .table-wrapper {
+        overflow-x: auto !important;
+      }
+    }
+  }
+  
+  // 确保表格背景也是深色
+  .highlight table, .highlight tr, .highlight td {
+    background: #272822 !important;
+  }
+  
+  // 代码块容器
+  .highlight > .chroma {
+    .code-header {
+      background: #3c3d38 !important;
+      color: #f8f8f2 !important;
+      
+      &:hover {
+        background: #3c3d38 !important;
+      }
+    }
+    
+    &.open .code-header {
+      background: #3c3d38 !important;
+    }
+    
+    // 行号
+    .ln, .lnt {
+      color: #7f7f7f !important;
+    }
+    
+    // 高亮行
+    .hl {
+      background-color: #3c3d38 !important;
+    }
+  }
+  
+  // Monokai 语法高亮颜色
+  .highlight {
+    /* 括号 */ .p { color: #f8f8f2 !important; }
+    /* 关键字 */ .k { color: #66d9ef !important; }
+    /* 关键字常量 */ .kc { color: #66d9ef !important; }
+    /* 关键字声明 */ .kd { color: #66d9ef !important; }
+    /* 关键字命名空间 */ .kn { color: #f92672 !important; }
+    /* 关键字伪 */ .kp { color: #66d9ef !important; }
+    /* 关键字保留 */ .kr { color: #66d9ef !important; }
+    /* 关键字类型 */ .kt { color: #66d9ef !important; }
+    /* 名称 */ .n { color: #f8f8f2 !important; }
+    /* 名称属性 */ .na { color: #a6e22e !important; }
+    /* 名称内置 */ .nb { color: #f8f8f2 !important; }
+    /* 名称内置伪 */ .bp { color: #f8f8f2 !important; }
+    /* 名称类 */ .nc { color: #a6e22e !important; }
+    /* 名称常量 */ .no { color: #66d9ef !important; }
+    /* 名称装饰器 */ .nd { color: #a6e22e !important; }
+    /* 名称实体 */ .ni { color: #f8f8f2 !important; }
+    /* 名称异常 */ .ne { color: #a6e22e !important; }
+    /* 名称函数 */ .nf { color: #a6e22e !important; }
+    /* 名称函数魔术 */ .fm { color: #a6e22e !important; }
+    /* 名称标签 */ .nl { color: #f8f8f2 !important; }
+    /* 名称命名空间 */ .nn { color: #f8f8f2 !important; }
+    /* 名称其他 */ .nx { color: #a6e22e !important; }
+    /* 名称属性 */ .py { color: #f8f8f2 !important; }
+    /* 名称标签 */ .nt { color: #f92672 !important; }
+    /* 名称变量 */ .nv { color: #f8f8f2 !important; }
+    /* 名称变量类 */ .vc { color: #f8f8f2 !important; }
+    /* 名称变量全局 */ .vg { color: #f8f8f2 !important; }
+    /* 名称变量实例 */ .vi { color: #f8f8f2 !important; }
+    /* 名称变量魔术 */ .vm { color: #f8f8f2 !important; }
+    /* 字面量 */ .l { color: #ae81ff !important; }
+    /* 字面量日期 */ .ld { color: #e6db74 !important; }
+    /* 字符串 */ .s { color: #e6db74 !important; }
+    /* 字符串词缀 */ .sa { color: #e6db74 !important; }
+    /* 字符串反引号 */ .sb { color: #e6db74 !important; }
+    /* 字符串字符 */ .sc { color: #e6db74 !important; }
+    /* 字符串定界符 */ .dl { color: #e6db74 !important; }
+    /* 字符串文档 */ .sd { color: #e6db74 !important; }
+    /* 字符串双引号 */ .s2 { color: #e6db74 !important; }
+    /* 字符串转义 */ .se { color: #ae81ff !important; }
+    /* 字符串 Heredoc */ .sh { color: #e6db74 !important; }
+    /* 字符串插值 */ .si { color: #e6db74 !important; }
+    /* 字符串其他 */ .sx { color: #e6db74 !important; }
+    /* 字符串正则 */ .sr { color: #e6db74 !important; }
+    /* 字符串单引号 */ .s1 { color: #e6db74 !important; }
+    /* 字符串符号 */ .ss { color: #e6db74 !important; }
+    /* 数字 */ .m { color: #ae81ff !important; }
+    /* 数字二进制 */ .mb { color: #ae81ff !important; }
+    /* 数字浮点 */ .mf { color: #ae81ff !important; }
+    /* 数字十六进制 */ .mh { color: #ae81ff !important; }
+    /* 数字整数 */ .mi { color: #ae81ff !important; }
+    /* 数字整数长 */ .il { color: #ae81ff !important; }
+    /* 数字八进制 */ .mo { color: #ae81ff !important; }
+    /* 操作符 */ .o { color: #f92672 !important; }
+    /* 操作符词 */ .ow { color: #f92672 !important; }
+    /* 注释 */ .c { color: #75715e !important; font-style: italic !important; }
+    /* 注释 Hashbang */ .ch { color: #75715e !important; font-style: italic !important; }
+    /* 注释多行 */ .cm { color: #75715e !important; font-style: italic !important; }
+    /* 注释单行 */ .c1 { color: #75715e !important; font-style: italic !important; }
+    /* 注释特殊 */ .cs { color: #75715e !important; font-style: italic !important; }
+    /* 注释预处理 */ .cp { color: #75715e !important; font-style: italic !important; }
+    /* 注释预处理文件 */ .cpf { color: #75715e !important; font-style: italic !important; }
+    /* 通用删除 */ .gd { color: #f92672 !important; }
+    /* 通用强调 */ .ge { font-style: italic !important; }
+    /* 通用错误 */ .gr { color: #f92672 !important; }
+    /* 通用标题 */ .gh { color: #f8f8f2 !important; }
+    /* 通用插入 */ .gi { color: #a6e22e !important; }
+    /* 通用输出 */ .go { color: #66d9ef !important; }
+    /* 通用提示 */ .gp { color: #f92672 !important; }
+    /* 通用强 */ .gs { font-weight: bold !important; }
+    /* 通用子标题 */ .gu { color: #75715e !important; }
+    /* 通用追踪 */ .gt { color: #f92672 !important; }
+    /* 通用下划线 */ .gl { text-decoration: underline !important; }
+    /* 文本空白 */ .w { color: #f8f8f2 !important; }
+  }
+}
+
+// 暗色主题保持一致
+[theme=dark] .single .content {
+  code, pre, .highlight, .highlight > .chroma {
+    background: #272822 !important;
+    color: #f8f8f2 !important;
+  }
+  
+  .highlight table, .highlight tr, .highlight td {
+    background: #272822 !important;
+  }
+}
+
+// 内联代码样式
+.single .content > p > code,
+.single .content > ul code,
+.single .content > ol code,
+.single .content > blockquote code {
+  background-color: #f5f5f5 !important;
+  color: #E74C3C !important;
+  padding: 2px 6px !important;
+  border-radius: 3px !important;
+}
+
+[theme=dark] .single .content > p > code,
+[theme=dark] .single .content > ul code,
+[theme=dark] .single .content > ol code,
+[theme=dark] .single .content > blockquote code {
+  background-color: #3c3d38 !important;
+  color: #E5BF78 !important;
+}
+
+// 代码块滚动条样式
+.single .content .highlight {
+  // 添加圆角和阴影
+  border-radius: 6px !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
+  
+  // 滚动条样式
+  &::-webkit-scrollbar {
+    height: 8px !important;
+    background-color: #1e1e1e !important;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background-color: #555 !important;
+    border-radius: 4px !important;
+  }
+  
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: #888 !important;
+  }
+  
+  pre::-webkit-scrollbar {
+    height: 8px !important;
+    background-color: transparent !important;
+  }
+  
+  pre::-webkit-scrollbar-thumb {
+    background-color: #555 !important;
+    border-radius: 4px !important;
+  }
+}
+
+// 禁用行号列的换行
+.single .content .highlight .lntd:first-child {
+  white-space: nowrap !important;
+}
+
+// 保证代码内容不换行
+.single .content .highlight .lntd:last-child pre {
+  white-space: pre !important;
+  overflow-x: auto !important;
+}
+
+// 移动端响应式处理
+@media (max-width: 768px) {
+  .single .content .highlight {
+    margin-left: -1rem !important;
+    margin-right: -1rem !important;
+    border-radius: 0 !important;
+    
+    > .chroma .code-header {
+      border-radius: 0 !important;
+    }
+  }
+}
+
+// 终极代码块溢出修复 - 最高优先级
+body .single .content .highlight > .chroma .table-wrapper {
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  max-width: 100% !important;
+  width: 100% !important;
+  display: block !important;
+  position: relative !important;
+  
+  // 确保滚动条可见
+  &::-webkit-scrollbar {
+    height: 12px !important;
+    background-color: rgba(255, 255, 255, 0.1) !important;
+  }
+  
+  &::-webkit-scrollbar-track {
+    background-color: rgba(0, 0, 0, 0.2) !important;
+    border-radius: 6px !important;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.3) !important;
+    border-radius: 6px !important;
+    
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.5) !important;
+    }
+  }
+}
+
+// 确保代码内容不换行
+body .single .content .highlight > .chroma .table-wrapper table td:last-child pre,
+body .single .content .highlight > .chroma > pre {
+  white-space: pre !important;
+  overflow-x: auto !important;
+  word-wrap: normal !important;
+  word-break: normal !important;
+}
+
+// 确保整个代码块容器不溢出
+body .single .content .highlight {
+  max-width: 100% !important;
+  overflow: hidden !important;
+  position: relative !important;
+}
+
+// 修复LoveIt主题特定的样式冲突
+body .single .content .highlight > .chroma.open .table-wrapper {
+  overflow-x: auto !important;
+  max-height: none !important;
+}

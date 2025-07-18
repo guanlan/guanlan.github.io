@@ -11,7 +11,7 @@ What is rate limiting?
 
 Rate limiting protects your APIs from inadvertent or malicious overuse by limiting how often each user can call the API. Without rate limiting, each user may make a request as often as they like, leading to "spikes" of requests that starve other consumers. Once enabled, rate limiting can only perform a fixed number of requests per second. A rate limiting algorithm helps automate the process.
 
-![rate limiting enabled at 2 requests/min](https://konghq.com/wp-content/uploads/2017/12/01-rate-limit-kong.png)
+![rate limiting enabled at 2 requests/min](/img/01-rate-limit-kong.png)
 
 In the example chart, you can see how rate limiting blocks requests over time. The API was initially receiving four requests per minute, shown in green. When we enabled rate limiting at 12:02, the system denied additional requests, shown in red.
 
@@ -56,7 +56,7 @@ There are various algorithms for API rate limiting, each with its benefits and d
 
 [Leaky bucket](https://en.wikipedia.org/wiki/Leaky_bucket) (closely related to [token bucket](https://en.wikipedia.org/wiki/Token_bucket)) is an algorithm that provides a simple, intuitive approach to rate limiting via a queue, which you can think of as a bucket holding the requests. When registering a request, the system appends it to the end of the queue. Processing for the first item on the queue occurs at a regular interval or first in, first out (FIFO). If the queue is full, then additional requests are discarded (or leaked).
 
-![rate limiting capacity](https://kongwp.imgix.net/wp-content/uploads/2017/12/02-rate-limit-kong.png?auto=compress%2Cformat)
+![rate limiting capacity](/img/02-rate-limit-kong.png)
 
 This algorithm's advantage is that it smooths out bursts of requests and processes them at an approximately average rate. It's also easy to implement on a single server or[ load balancer](https://konghq.com/blog/dear-load-balancers) and is memory efficient for each user, given the limited queue size.
 
@@ -66,7 +66,7 @@ However, a burst of traffic can fill up the queue with old requests and starve m
 
 The system uses a window size of n seconds (typically using human-friendly values, such as 60 or 3600 seconds) to track the fixed window algorithm rate. Each incoming request increments the counter for the window. It discards the request if the counter exceeds a threshold. The current timestamp floor typically defines the windows, so 12:00:03, with a 60-second window length, would be in the 12:00:00 window.
 
-![request 3 denied](https://konghq.com/wp-content/uploads/2017/12/03-rate-limit-kong.png)
+![request 3 denied](/img/03-rate-limit-kong.png)
 
 This algorithm's advantage is that it ensures more recent requests get processed without being starved by old requests. However, a single burst of traffic that occurs near the boundary of a window can result in the processing of twice the rate of requests because it will allow requests for both the current and next windows within a short time. Additionally, if many consumers wait for a reset window, they may stampede your API at the same time at the top of the hour.
 
@@ -74,7 +74,7 @@ This algorithm's advantage is that it ensures more recent requests get processed
 
 Sliding Log rate limiting involves tracking a time-stamped log for each consumer's request. The system stores these logs in a time-sorted hash set or table. It also discards logs with timestamps beyond a threshold. When a new request comes in, we calculate the sum of logs to determine the request rate. If the request would exceed the threshold rate, then it is held.
 
-![request at 12:00:35 hold](https://kongwp.imgix.net/wp-content/uploads/2017/12/04-rate-limit-kong.png?auto=compress%2Cformat)
+![request at 12:00:35 hold](/img/04-rate-limit-kong.png)
 
 The advantage of this algorithm is that it does not suffer from the boundary conditions of fixed windows. Enforcement of the rate limit will remain precise. Since the system tracks the sliding log for each consumer, you don't have the stampede effect that challenges fixed windows. However, it can be costly to store an unlimited number of logs for every request. It's also expensive to compute because each request requires calculating a summation over the consumer's prior requests, potentially across a cluster of servers. As a result, it does not scale well to handle large bursts of traffic or denial of service attacks.
 
@@ -82,7 +82,7 @@ The advantage of this algorithm is that it does not suffer from the boundary con
 
 Sliding Window is a hybrid approach that combines the fixed window algorithm's low processing cost and the sliding log's improved boundary conditions. Like the fixed window algorithm, we track a counter for each fixed window. Next, we account for a weighted value of the previous window's request rate based on the current timestamp to smooth out bursts of traffic. For example, if the current window is 25% through, we weigh the previous window's count by 75%. The relatively small number of data points needed to track per key allows us to scale and distribute across large clusters.
 
-![](https://kongwp.imgix.net/wp-content/uploads/2017/12/05-rate-limit-kong.png?auto=compress%2Cformat)
+![](/img/05-rate-limit-kong.png)
 
 We recommend the sliding window approach because it gives the flexibility to scale rate limiting with good performance. The rate windows are an intuitive way to present rate limit data to API consumers. It also avoids the starvation problem of the leaky bucket and the bursting problems of fixed window implementations.
 
@@ -97,13 +97,13 @@ The simplest way to enforce the limit is to set up sticky sessions in your load 
 
 A better solution that allows more flexible load-balancing rules is to use a centralized data store such as Redis or[ Cassandra](https://konghq.com/blog/using-instaclustr-and-cassandra-with-kong). A centralized data store will collect the counts for each window and consumer. The two main problems with this approach are increased latency making requests to the data store and race conditions, which we will discuss next.
 
-![load balancer requests going into nodes](https://konghq.com/wp-content/uploads/2017/12/06-rate-limit-kong.png)
+![load balancer requests going into nodes](/img/06-rate-limit-kong.png)
 
 ### Race Conditions
 
 One of the most extensive problems with a centralized data store is the potential for [race conditions](https://en.wikipedia.org/wiki/Race_condition) in [high concurrency](https://en.wikipedia.org/wiki/Concurrency_(computer_science)) request patterns. This issue happens when you use a naïve "get-then-set" approach, wherein you retrieve the current rate limit counter, increment it, and then push it back to the datastore. This model's problem is that additional requests can come through in the time it takes to perform a full cycle of read-increment-store, each attempting to store the increment counter with an invalid (lower) counter value. This allows a consumer to send a very high rate of requests to bypass rate limiting controls.
 
-![load balancer requests going into nodes and then counter to Redis](https://konghq.com/wp-content/uploads/2017/12/06-2-rate-limit-kong.png)
+![load balancer requests going into nodes and then counter to Redis](/img/06-2-rate-limit-kong.png)
 
 One way to avoid this problem is to put a "lock" around the key in question, preventing any other processes from accessing or writing to the counter. A lock would quickly become a significant performance bottleneck and does not scale well, mainly when using remote servers like Redis as the backing datastore.
 
@@ -115,7 +115,7 @@ The increased [latency](https://konghq.com/blog/observability-kubernetes-kong) i
 
 Make checks locally in memory to make these rate limit determinations with minimal latency. To make local checks, relax the rate check conditions and use an eventually consistent model. For example, each node can create a data sync cycle that will synchronize with the centralized data store. Each node periodically pushes a counter increment for each consumer and window to the datastore. These pushes atomically update the values. The node can then retrieve the updated values to update its in-memory version. This cycle of converge → diverge → reconverge among nodes in the cluster is eventually consistent.
 
-![](https://konghq.com/wp-content/uploads/2017/12/07-rate-limit-kong.png)
+![](/img/07-rate-limit-kong.png)
 
 The periodic rate at which nodes converge should be configurable. Shorter sync intervals will result in less divergence of data points when spreading traffic across multiple nodes in the cluster (e.g., when sitting behind a round robin balancer). Whereas longer sync intervals put less read/write pressure on the datastore and less overhead on each node to fetch new synced values. 
 
@@ -126,7 +126,7 @@ Kong is an [open source API gateway](https://konghq.com/kong) that makes it very
 
 Kong Gateway sits in front of your APIs and is the main entry point to your upstream APIs. While processing the request and the response, Kong Gateway will execute any plugin that you have decided to add to the API.
 
-![kong gateway](https://konghq.com/wp-content/uploads/2017/12/illustration2.png)
+![kong gateway](/img/illustration2.png)
 
 Kong API Gateway's rate limiting plug-in is highly configurable. It:
 

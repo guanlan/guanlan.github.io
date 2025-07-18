@@ -12,7 +12,24 @@ Based on the ranking of popular languages on developing web crawlers (based on r
 
 ### 2\. Reading Some Simple Open-source Projects
 
-You need to figure out how exactly does a crawler works. Here is a very simple crawler written in Python, in 10 lines of code. \[python\] import re, urllib crawled\_urls = set() def crawl(url): for new\_url in re.findall('''href=\["'\](.\[^"'\]+)\["'\]''', urllib.urlopen(url).read()): if new\_url not in crawled\_urls: print new\_url crawled\_urls.add(new\_url) if \_\_name\_\_ == "\_\_main\_\_": url = 'http://www.yahoo.com/' crawl(url) \[/python\] Crawler usually needs to keep track of which URLs need to be crawled, and which URLs has already crawled (to avoid the infinite loop). Other simple projects: [**Python Crawler**](http://code.google.com/p/python-crawler/), a very simple crawler using Berkeley DB to store results. [**pholcidae**](https://github.com/bbrodriges/pholcidae), a tiny Python module allows you to write your own crawl spider fast and easy.
+You need to figure out how exactly does a crawler works. Here is a very simple crawler written in Python, in 10 lines of code. 
+
+```python
+import re, urllib
+crawled_urls = set()
+
+def crawl(url): 
+  for new_url in re.findall('''href=["'\](.[^"'\]+)["'\]''', urllib.urlopen(url).read()): 
+    if new_url not in crawled_urls:
+      print new_url crawled_urls.add(new\_url) 
+      if __name__ == "__main__":
+        url = 'http://www.yahoo.com/'
+        crawl(url) 
+```
+
+
+
+\[python\] i\[/python\] Crawler usually needs to keep track of which URLs need to be crawled, and which URLs has already crawled (to avoid the infinite loop). Other simple projects: [**Python Crawler**](http://code.google.com/p/python-crawler/), a very simple crawler using Berkeley DB to store results. [**pholcidae**](https://github.com/bbrodriges/pholcidae), a tiny Python module allows you to write your own crawl spider fast and easy.
 
 ### 3.Choosing the Right Data Structure
 
