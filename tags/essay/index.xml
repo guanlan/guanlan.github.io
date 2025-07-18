@@ -1,19 +1,9 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Essay on Guanlan Dai</title>
-    <link>https://rmmod.com/tags/essay/</link>
-    <description>Recent content in Essay on Guanlan Dai</description>
-    <generator>Hugo</generator>
-    <language>en-us</language>
-    <lastBuildDate>Sun, 24 Oct 2010 00:00:00 +0800</lastBuildDate>
-    <atom:link href="https://rmmod.com/tags/essay/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>[Essay] Look at This Year&#39;s Programmers&#39; Problem-Solving Sequence</title>
-      <link>https://rmmod.com/posts/cppblog/2010-10-24-look-at-this-years-programmers-problem-solving-sequence-en/</link>
-      <pubDate>Sun, 24 Oct 2010 00:00:00 +0800</pubDate>
-      <guid>https://rmmod.com/posts/cppblog/2010-10-24-look-at-this-years-programmers-problem-solving-sequence-en/</guid>
-      <description>&lt;p&gt;2010 developer&amp;rsquo;s problem solving sequence:&lt;/p&gt;&#xA;&lt;p&gt;from:&lt;a href=&#34;http://twitter.com/#%21/activa&#34; title=&#34;Philippe Leybaert&#34; target=&#34;_blank&#34; rel=&#34;noopener noreffer&#34;&gt;@activa&lt;/a&gt;&#xA;&lt;/p&gt;&#xA;&lt;p&gt;1.Google&lt;br&gt;&#xA;For technical problems, definitely check Google and Wikipedia. Use Baidu more if you want to see adult product ads.&lt;/p&gt;&#xA;&lt;p&gt;2.Coworkers&lt;br&gt;&#xA;Ask coworkers for help. If your colleagues are helpful, technically skilled, and have encountered similar problems, their advice can be very valuable and might solve the problem immediately.&lt;/p&gt;&#xA;&lt;p&gt;3.StackOverflow&lt;br&gt;&#xA;Search for answers on programming help websites, or post questions if you can&amp;rsquo;t find answers. There are quite a lot of helpful people, but it seems this site has more Java/.Net questions.&lt;/p&gt;</description>
-    </item>
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Essay on Guanlan Dai</title><link>https://rmmod.com/tags/essay/</link><description>Recent content in Essay on Guanlan Dai</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Sun, 24 Oct 2010 00:00:00 +0800</lastBuildDate><atom:link href="https://rmmod.com/tags/essay/index.xml" rel="self" type="application/rss+xml"/><item><title>[Essay] Look at This Year's Programmers' Problem-Solving Sequence</title><link>https://rmmod.com/posts/cppblog/2010-10-24-look-at-this-years-programmers-problem-solving-sequence-en/</link><pubDate>Sun, 24 Oct 2010 00:00:00 +0800</pubDate><guid>https://rmmod.com/posts/cppblog/2010-10-24-look-at-this-years-programmers-problem-solving-sequence-en/</guid><description>&lt;p>2010 developer&amp;rsquo;s problem solving sequence:&lt;/p>
+&lt;p>from:&lt;a href="http://twitter.com/#%21/activa" title="Philippe Leybaert" target="_blank" rel="noopener noreffer">@activa&lt;/a>
+&lt;/p>
+&lt;p>1.Google&lt;br>
+For technical problems, definitely check Google and Wikipedia. Use Baidu more if you want to see adult product ads.&lt;/p>
+&lt;p>2.Coworkers&lt;br>
+Ask coworkers for help. If your colleagues are helpful, technically skilled, and have encountered similar problems, their advice can be very valuable and might solve the problem immediately.&lt;/p>
+&lt;p>3.StackOverflow&lt;br>
+Search for answers on programming help websites, or post questions if you can&amp;rsquo;t find answers. There are quite a lot of helpful people, but it seems this site has more Java/.Net questions.&lt;/p></description></item></channel></rss>

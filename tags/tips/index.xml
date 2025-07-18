@@ -1,19 +1,23 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Tips on Guanlan Dai</title>
-    <link>https://rmmod.com/tags/tips/</link>
-    <description>Recent content in Tips on Guanlan Dai</description>
-    <generator>Hugo</generator>
-    <language>en-us</language>
-    <lastBuildDate>Thu, 07 Oct 2010 00:00:00 +0800</lastBuildDate>
-    <atom:link href="https://rmmod.com/tags/tips/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>[Tips] Linux Command Line Decompression Tips</title>
-      <link>https://rmmod.com/posts/cppblog/2010-10-07-linux-command-line-decompression-tips-en/</link>
-      <pubDate>Thu, 07 Oct 2010 00:00:00 +0800</pubDate>
-      <guid>https://rmmod.com/posts/cppblog/2010-10-07-linux-command-line-decompression-tips-en/</guid>
-      <description>&lt;p&gt;Everyone finds it frustrating that Linux has numerous compression formats, and each format corresponds to different commands, which is quite a headache.&lt;br&gt;&#xA;Let me introduce a method to you:&lt;br&gt;&#xA;Add this to your bashrc:&lt;/p&gt;&#xA;&lt;p&gt;ex () {&lt;br&gt;&#xA;if [ -f $1 ] ; then&lt;br&gt;&#xA;case $1 in&lt;br&gt;&#xA;*.tar.bz2) tar xjf $1 ;;&lt;br&gt;&#xA;*.tar.gz) tar xzf $1 ;;&lt;br&gt;&#xA;*.bz2) bunzip2 $1 ;;&lt;br&gt;&#xA;*.rar) rar x $1 ;;&lt;br&gt;&#xA;*.gz) gunzip $1 ;;&lt;br&gt;&#xA;*.tar) tar xf $1 ;;&lt;br&gt;&#xA;*.tbz2) tar xjf $1 ;;&lt;br&gt;&#xA;*.tgz) tar xzf $1 ;;&lt;br&gt;&#xA;*.zip) unzip $1 ;;&lt;br&gt;&#xA;*.Z) uncompress $1 ;;&lt;br&gt;&#xA;*.7z) 7z x $1 ;;&lt;br&gt;&#xA;*) echo &amp;ldquo;Unable to extract &amp;lsquo;$1&amp;rsquo; file!!&amp;rdquo; ;;&lt;br&gt;&#xA;esac&lt;br&gt;&#xA;else&lt;br&gt;&#xA;echo &amp;ldquo;&amp;rsquo;$1&amp;rsquo; is not a valid file!&amp;rdquo;&lt;br&gt;&#xA;fi&lt;br&gt;&#xA;}&lt;/p&gt;</description>
-    </item>
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Tips on Guanlan Dai</title><link>https://rmmod.com/tags/tips/</link><description>Recent content in Tips on Guanlan Dai</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Thu, 07 Oct 2010 00:00:00 +0800</lastBuildDate><atom:link href="https://rmmod.com/tags/tips/index.xml" rel="self" type="application/rss+xml"/><item><title>[Tips] Linux Command Line Decompression Tips</title><link>https://rmmod.com/posts/cppblog/2010-10-07-linux-command-line-decompression-tips-en/</link><pubDate>Thu, 07 Oct 2010 00:00:00 +0800</pubDate><guid>https://rmmod.com/posts/cppblog/2010-10-07-linux-command-line-decompression-tips-en/</guid><description>&lt;p>Everyone finds it frustrating that Linux has numerous compression formats, and each format corresponds to different commands, which is quite a headache.&lt;br>
+Let me introduce a method to you:&lt;br>
+Add this to your bashrc:&lt;/p>
+&lt;p>ex () {&lt;br>
+if [ -f $1 ] ; then&lt;br>
+case $1 in&lt;br>
+*.tar.bz2) tar xjf $1 ;;&lt;br>
+*.tar.gz) tar xzf $1 ;;&lt;br>
+*.bz2) bunzip2 $1 ;;&lt;br>
+*.rar) rar x $1 ;;&lt;br>
+*.gz) gunzip $1 ;;&lt;br>
+*.tar) tar xf $1 ;;&lt;br>
+*.tbz2) tar xjf $1 ;;&lt;br>
+*.tgz) tar xzf $1 ;;&lt;br>
+*.zip) unzip $1 ;;&lt;br>
+*.Z) uncompress $1 ;;&lt;br>
+*.7z) 7z x $1 ;;&lt;br>
+*) echo &amp;ldquo;Unable to extract &amp;lsquo;$1&amp;rsquo; file!!&amp;rdquo; ;;&lt;br>
+esac&lt;br>
+else&lt;br>
+echo &amp;ldquo;&amp;rsquo;$1&amp;rsquo; is not a valid file!&amp;rdquo;&lt;br>
+fi&lt;br>
+}&lt;/p></description></item></channel></rss>

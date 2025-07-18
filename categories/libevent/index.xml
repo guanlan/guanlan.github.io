@@ -1,33 +1,39 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Libevent on Guanlan Dai</title>
-    <link>https://rmmod.com/categories/libevent/</link>
-    <description>Recent content in Libevent on Guanlan Dai</description>
-    <generator>Hugo</generator>
-    <language>en-us</language>
-    <lastBuildDate>Fri, 25 Jun 2010 00:00:00 +0800</lastBuildDate>
-    <atom:link href="https://rmmod.com/categories/libevent/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Libevent Analysis Notes (3) - Determining I/O Multiplexing Mechanism</title>
-      <link>https://rmmod.com/posts/cppblog/2010-06-25-libevent-analysis-notes-3-io-multiplexing-mechanism-determination-en/</link>
-      <pubDate>Fri, 25 Jun 2010 00:00:00 +0800</pubDate>
-      <guid>https://rmmod.com/posts/cppblog/2010-06-25-libevent-analysis-notes-3-io-multiplexing-mechanism-determination-en/</guid>
-      <description>&lt;p&gt;Libevent&amp;rsquo;s original intention was to design a cross-platform lightweight I/O framework. Due to historical issues, the I/O multiplexing mechanisms across different platforms are difficult to unify. Therefore, the methods for handling cross-platform compatibility deserve special attention.&lt;/p&gt;&#xA;&lt;p&gt;eventop is defined in the source code as follows:&lt;/p&gt;&#xA;&lt;pre&gt;&lt;code class=&#34;cpp&#34;&gt;static const struct eventop *eventops[]={&#xA;&#xA;#ifdef HAVE_EVENT_PORTS&#xA;&#xA;         &amp;amp;evportops,&#xA;&#xA;#endif &#xA;&#xA;…&#xA;&#xA;}&lt;/code&gt;&lt;/pre&gt;&#xA;&lt;p&gt;As can be seen, libevent uses macros to find available multiplexing mechanisms at compile time.&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Libevent Analysis Notes (1) - Installation and Usage</title>
-      <link>https://rmmod.com/posts/cppblog/2010-06-24-libevent-analysis-notes-1-installation-and-usage-en/</link>
-      <pubDate>Thu, 24 Jun 2010 00:00:00 +0800</pubDate>
-      <guid>https://rmmod.com/posts/cppblog/2010-06-24-libevent-analysis-notes-1-installation-and-usage-en/</guid>
-      <description>&lt;p&gt;Introduction to Libevent&lt;/p&gt;&#xA;&lt;p&gt;&lt;img&#xA;        class=&#34;lazyload&#34;&#xA;        src=&#34;https://rmmod.com/svg/loading.min.svg&#34;&#xA;        data-src=&#34;https://rmmod.com/img/None.gif&#34;&#xA;        data-srcset=&#34;https://rmmod.com/img/None.gif, https://rmmod.com/img/None.gif 1.5x, https://rmmod.com/img/None.gif 2x&#34;&#xA;        data-sizes=&#34;auto&#34;&#xA;        alt=&#34;/img/None.gif&#34;&#xA;        title=&#34;/img/None.gif&#34; /&gt;The libevent API provides a mechanism to execute a callback function when a specific event occurs on a file descriptor or after a timeout has been reached. Furthermore, libevent also support callbacks due to signals or regular timeouts.&lt;/p&gt;&#xA;&lt;pre&gt;&lt;code&gt;The libevent API provides such a mechanism:  &#xA;Execute a specified callback function when a specific event occurs in a specified file descriptor, or when a timeout is reached.  &#xA;Additionally, libevent callback functionality also supports triggering by signals or regular timeouts.  &#xA;Note that its license is a BSD-style license, which can be used in commercial products without having to open source.  &#xA;&lt;/code&gt;&lt;/pre&gt;&#xA;&lt;p&gt;​&lt;/p&gt;</description>
-    </item>
-    <item>
-      <title>Libevent Learning Notes (2) - Basic Data Structures</title>
-      <link>https://rmmod.com/posts/cppblog/2010-06-24-libevent-learning-notes-2-basic-data-structures-en/</link>
-      <pubDate>Thu, 24 Jun 2010 00:00:00 +0800</pubDate>
-      <guid>https://rmmod.com/posts/cppblog/2010-06-24-libevent-learning-notes-2-basic-data-structures-en/</guid>
-      <description>&lt;h2 id=&#34;21-event_base-core-event-base-data-structure&#34;&gt;2.1 event_base Core Event Base Data Structure&lt;/h2&gt;&#xA;&lt;h2&gt;&lt;/h2&gt;&#xA;&lt;p&gt;&lt;img&#xA;        class=&#34;lazyload&#34;&#xA;        src=&#34;https://rmmod.com/svg/loading.min.svg&#34;&#xA;        data-src=&#34;https://rmmod.com/img/libevent1.jpg&#34;&#xA;        data-srcset=&#34;https://rmmod.com/img/libevent1.jpg, https://rmmod.com/img/libevent1.jpg 1.5x, https://rmmod.com/img/libevent1.jpg 2x&#34;&#xA;        data-sizes=&#34;auto&#34;&#xA;        alt=&#34;/img/libevent1.jpg&#34;&#xA;        title=&#34;/img/libevent1.jpg&#34; /&gt;&lt;/p&gt;&#xA;&lt;p&gt;As can be seen, event_base is the core part of the entire libevent, which consists of three structures: a time heap (corresponding to EVLIST_TIMEOUT), a registered queue (corresponding to EVLIST_INSERTE), and an active event queue (corresponding to EVLIST_ACTIVE).&lt;/p&gt;&#xA;&lt;p&gt;The time heap uses min-Heap (minimum binary heap), while both the registered queue and active event queue use doubly linked lists.&lt;/p&gt;</description>
-    </item>
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Libevent on Guanlan Dai</title><link>https://rmmod.com/categories/libevent/</link><description>Recent content in Libevent on Guanlan Dai</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Fri, 25 Jun 2010 00:00:00 +0800</lastBuildDate><atom:link href="https://rmmod.com/categories/libevent/index.xml" rel="self" type="application/rss+xml"/><item><title>Libevent Analysis Notes (3) - Determining I/O Multiplexing Mechanism</title><link>https://rmmod.com/posts/cppblog/2010-06-25-libevent-analysis-notes-3-io-multiplexing-mechanism-determination-en/</link><pubDate>Fri, 25 Jun 2010 00:00:00 +0800</pubDate><guid>https://rmmod.com/posts/cppblog/2010-06-25-libevent-analysis-notes-3-io-multiplexing-mechanism-determination-en/</guid><description>&lt;p>Libevent&amp;rsquo;s original intention was to design a cross-platform lightweight I/O framework. Due to historical issues, the I/O multiplexing mechanisms across different platforms are difficult to unify. Therefore, the methods for handling cross-platform compatibility deserve special attention.&lt;/p>
+&lt;p>eventop is defined in the source code as follows:&lt;/p>
+&lt;pre>&lt;code class="cpp">static const struct eventop *eventops[]={
+
+#ifdef HAVE_EVENT_PORTS
+
+ &amp;amp;evportops,
+
+#endif 
+
+…
+
+}&lt;/code>&lt;/pre>
+&lt;p>As can be seen, libevent uses macros to find available multiplexing mechanisms at compile time.&lt;/p></description></item><item><title>Libevent Analysis Notes (1) - Installation and Usage</title><link>https://rmmod.com/posts/cppblog/2010-06-24-libevent-analysis-notes-1-installation-and-usage-en/</link><pubDate>Thu, 24 Jun 2010 00:00:00 +0800</pubDate><guid>https://rmmod.com/posts/cppblog/2010-06-24-libevent-analysis-notes-1-installation-and-usage-en/</guid><description>&lt;p>Introduction to Libevent&lt;/p>
+&lt;p>&lt;img
+ class="lazyload"
+ src="https://rmmod.com/svg/loading.min.svg"
+ data-src="https://rmmod.com/img/None.gif"
+ data-srcset="https://rmmod.com/img/None.gif, https://rmmod.com/img/None.gif 1.5x, https://rmmod.com/img/None.gif 2x"
+ data-sizes="auto"
+ alt="/img/None.gif"
+ title="/img/None.gif" />The libevent API provides a mechanism to execute a callback function when a specific event occurs on a file descriptor or after a timeout has been reached. Furthermore, libevent also support callbacks due to signals or regular timeouts.&lt;/p>
+&lt;pre>&lt;code>The libevent API provides such a mechanism: 
+Execute a specified callback function when a specific event occurs in a specified file descriptor, or when a timeout is reached. 
+Additionally, libevent callback functionality also supports triggering by signals or regular timeouts. 
+Note that its license is a BSD-style license, which can be used in commercial products without having to open source. 
+&lt;/code>&lt;/pre>
+&lt;p>​&lt;/p></description></item><item><title>Libevent Learning Notes (2) - Basic Data Structures</title><link>https://rmmod.com/posts/cppblog/2010-06-24-libevent-learning-notes-2-basic-data-structures-en/</link><pubDate>Thu, 24 Jun 2010 00:00:00 +0800</pubDate><guid>https://rmmod.com/posts/cppblog/2010-06-24-libevent-learning-notes-2-basic-data-structures-en/</guid><description>&lt;h2 id="21-event_base-core-event-base-data-structure">2.1 event_base Core Event Base Data Structure&lt;/h2>
+&lt;h2>&lt;/h2>
+&lt;p>&lt;img
+ class="lazyload"
+ src="https://rmmod.com/svg/loading.min.svg"
+ data-src="https://rmmod.com/img/libevent1.jpg"
+ data-srcset="https://rmmod.com/img/libevent1.jpg, https://rmmod.com/img/libevent1.jpg 1.5x, https://rmmod.com/img/libevent1.jpg 2x"
+ data-sizes="auto"
+ alt="/img/libevent1.jpg"
+ title="/img/libevent1.jpg" />&lt;/p>
+&lt;p>As can be seen, event_base is the core part of the entire libevent, which consists of three structures: a time heap (corresponding to EVLIST_TIMEOUT), a registered queue (corresponding to EVLIST_INSERTE), and an active event queue (corresponding to EVLIST_ACTIVE).&lt;/p>
+&lt;p>The time heap uses min-Heap (minimum binary heap), while both the registered queue and active event queue use doubly linked lists.&lt;/p></description></item></channel></rss>

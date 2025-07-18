@@ -1,161 +1,28 @@
-<!DOCTYPE html>
-<html lang="en-us">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="robots" content="noodp" />
-        <title>Practical Tips on Writing an Effective Web Crawler - Guanlan Dai</title><meta name="Description" content="This is my cool site"><meta property="og:url" content="https://rmmod.com/posts/effective-web-crawler/">
-  <meta property="og:site_name" content="Guanlan Dai">
-  <meta property="og:title" content="Practical Tips on Writing an Effective Web Crawler">
-  <meta property="og:description" content="A web crawler is a hard-working bot to gather information or index the pages on the Internet. It starts at some seeds URLs and finds every hyperlink on each page, and then crawler will visit those hyperlinks recursively.
-1. Choose an Ideal Programming Language Based on the ranking of popular languages on developing web crawlers (based on result numbers of relative repositories host on Github on February, 2013). Python or Ruby probably is a wise choice, the mainly speed limit of web crawler is network latency not CPU, so choose Python or Ruby as a language to develop a web crawler will make life easier. Python provide some standard libraries, they are very useful, such like urllib, httplib and regex, those libraries can handle lots of work. Python also has plenty of valuable third-party libraries worth a try: scrapy , a web scraping framework. urllib3 , a Python HTTP library with thread-safe connection pooling, file post support. greenlet , a Lightweight concurrent programming framework. twisted , an event-driven networking engine.">
-  <meta property="og:locale" content="en_us">
-  <meta property="og:type" content="article">
-    <meta property="article:section" content="posts">
-    <meta property="article:published_time" content="2021-01-15T00:00:00+00:00">
-    <meta property="article:modified_time" content="2021-01-15T00:00:00+00:00">
-    <meta property="article:tag" content="Networking">
+<!doctype html><html lang=en-us><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><title>Practical Tips on Writing an Effective Web Crawler - Guanlan Dai</title><meta name=Description content="This is my cool site"><meta property="og:url" content="https://rmmod.com/posts/effective-web-crawler/"><meta property="og:site_name" content="Guanlan Dai"><meta property="og:title" content="Practical Tips on Writing an Effective Web Crawler"><meta property="og:description" content="A web crawler is a hard-working bot to gather information or index the pages on the Internet. It starts at some seeds URLs and finds every hyperlink on each page, and then crawler will visit those hyperlinks recursively.
+1. Choose an Ideal Programming Language Based on the ranking of popular languages on developing web crawlers (based on result numbers of relative repositories host on Github on February, 2013). Python or Ruby probably is a wise choice, the mainly speed limit of web crawler is network latency not CPU, so choose Python or Ruby as a language to develop a web crawler will make life easier. Python provide some standard libraries, they are very useful, such like urllib, httplib and regex, those libraries can handle lots of work. Python also has plenty of valuable third-party libraries worth a try: scrapy , a web scraping framework. urllib3 , a Python HTTP library with thread-safe connection pooling, file post support. greenlet , a Lightweight concurrent programming framework. twisted , an event-driven networking engine."><meta property="og:locale" content="en_us"><meta property="og:type" content="article"><meta property="article:section" content="posts"><meta property="article:published_time" content="2021-01-15T00:00:00+00:00"><meta property="article:modified_time" content="2021-01-15T00:00:00+00:00"><meta property="article:tag" content="Networking"><meta name=twitter:card content="summary"><meta name=twitter:title content="Practical Tips on Writing an Effective Web Crawler"><meta name=twitter:description content="A web crawler is a hard-working bot to gather information or index the pages on the Internet. It starts at some seeds URLs and finds every hyperlink on each page, and then crawler will visit those hyperlinks recursively.
+1. Choose an Ideal Programming Language Based on the ranking of popular languages on developing web crawlers (based on result numbers of relative repositories host on Github on February, 2013). Python or Ruby probably is a wise choice, the mainly speed limit of web crawler is network latency not CPU, so choose Python or Ruby as a language to develop a web crawler will make life easier. Python provide some standard libraries, they are very useful, such like urllib, httplib and regex, those libraries can handle lots of work. Python also has plenty of valuable third-party libraries worth a try: scrapy , a web scraping framework. urllib3 , a Python HTTP library with thread-safe connection pooling, file post support. greenlet , a Lightweight concurrent programming framework. twisted , an event-driven networking engine."><meta name=twitter:site content="@guanlandai"><meta name=application-name content="My cool site"><meta name=apple-mobile-web-app-title content="My cool site"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://rmmod.com/posts/effective-web-crawler/><link rel=prev href=https://rmmod.com/posts/snippets-for-racket-language/><link rel=next href=https://rmmod.com/posts/how-to-design-a-scalable-rate-limiting-algorithm/><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"Practical Tips on Writing an Effective Web Crawler","inLanguage":"en-us","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/rmmod.com\/posts\/effective-web-crawler\/"},"genre":"posts","keywords":"Networking","wordcount":719,"url":"https:\/\/rmmod.com\/posts\/effective-web-crawler\/","datePublished":"2021-01-15T00:00:00+00:00","dateModified":"2021-01-15T00:00:00+00:00","publisher":{"@type":"Organization","name":""},"author":{"@type":"Person","name":"guanlan"},"description":""}</script></head><body data-header-desktop=fixed data-header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem("theme")?localStorage.getItem("theme")==="dark":"auto"==="auto"?window.matchMedia("(prefers-color-scheme: dark)").matches:"auto"==="dark")&&document.body.setAttribute("theme","dark")</script><div id=mask></div><div class=wrapper><header class=desktop id=header-desktop><div class=header-wrapper><div class=header-title><a href=/ title="Guanlan Dai">Guanlan Dai</a></div><div class=menu><div class=menu-inner><a class=menu-item href=/>Home </a><a class=menu-item href=/about/>About </a><span class="menu-item delimiter"></span><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme">
+<i class="fas fa-adjust fa-fw" aria-hidden=true></i></a></div></div></div></header><header class=mobile id=header-mobile><div class=header-container><div class=header-wrapper><div class=header-title><a href=/ title="Guanlan Dai">Guanlan Dai</a></div><div class=menu-toggle id=menu-toggle-mobile><span></span><span></span><span></span></div></div><div class=menu id=menu-mobile><a class=menu-item href=/ title>Home</a><a class=menu-item href=/about/ title>About</a><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme">
+<i class="fas fa-adjust fa-fw" aria-hidden=true></i></a></div></div></header><main class=main><div class=container><div class=toc id=toc-auto><h2 class=toc-title>Contents</h2><div class=toc-content id=toc-content-auto></div></div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Practical Tips on Writing an Effective Web Crawler</h1><div class=post-meta><div class=post-meta-line><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw" aria-hidden=true></i>guanlan</a></span></div><div class=post-meta-line><i class="far fa-calendar-alt fa-fw" aria-hidden=true></i>&nbsp;<time datetime=2021-01-15>2021-01-15</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden=true></i>&nbsp;719 words&nbsp;
+<i class="far fa-clock fa-fw" aria-hidden=true></i>&nbsp;4 minutes&nbsp;</div></div><div class="details toc" id=toc-static data-kept><div class="details-summary toc-title"><span>Contents</span>
+<span><i class="details-icon fas fa-angle-right" aria-hidden=true></i></span></div><div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents><ul><li><ul><li><a href=#1-choose-an-ideal-programming-language>1. Choose an Ideal Programming Language</a></li><li><a href=#2-reading-some-simple-open-source-projects>2. Reading Some Simple Open-source Projects</a></li><li><a href=#3choosing-the-right-data-structure>3.Choosing the Right Data Structure</a></li><li><a href=#4-multithreading-and-asynchronous>4. Multithreading and Asynchronous</a></li><li><a href=#5-http-persistent-connections>5. HTTP Persistent Connections</a></li><li><a href=#6-efficient-regular-expressions>6. Efficient Regular Expressions</a></li></ul></li></ul></nav></div></div><div class=content id=content><p>A web crawler is a hard-working bot to gather information or index the pages on the Internet. It starts at some seeds URLs and finds every hyperlink on each page, and then crawler will visit those hyperlinks recursively.</p><h3 id=1-choose-an-ideal-programming-language>1. Choose an Ideal Programming Language</h3><p>Based on the ranking of popular languages on developing web crawlers (based on result numbers of relative repositories host on Github on February, 2013). Python or Ruby probably is a wise choice, the mainly speed limit of web crawler is network latency not CPU, so choose Python or Ruby as a language to develop a web crawler will make life easier. Python provide some standard libraries, they are very useful, such like urllib, httplib and regex, those libraries can handle lots of work. Python also has plenty of valuable third-party libraries worth a try: <strong><a href=http://scrapy.org/ target=_blank rel="noopener noreffer">scrapy</a>
+</strong>, a web scraping framework. <strong><a href=http://urllib3.readthedocs.org/en/latest/ target=_blank rel="noopener noreffer">urllib3</a>
+</strong>, a Python HTTP library with thread-safe connection pooling, file post support. <strong><a href=http://greenlet.readthedocs.org/ target=_blank rel="noopener noreffer">greenlet</a>
+</strong>, a Lightweight concurrent programming framework. <em><strong><a href=http://twistedmatrix.com/ target=_blank rel="noopener noreffer">twisted</a>
+</strong></em>, an <strong>event-driven networking engine.</strong>  </p><h3 id=2-reading-some-simple-open-source-projects>2. Reading Some Simple Open-source Projects</h3><p>You need to figure out how exactly does a crawler works. Here is a very simple crawler written in Python, in 10 lines of code.</p><pre><code class=python>import re, urllib
+crawled_urls = set()
 
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Practical Tips on Writing an Effective Web Crawler">
-  <meta name="twitter:description" content="A web crawler is a hard-working bot to gather information or index the pages on the Internet. It starts at some seeds URLs and finds every hyperlink on each page, and then crawler will visit those hyperlinks recursively.
-1. Choose an Ideal Programming Language Based on the ranking of popular languages on developing web crawlers (based on result numbers of relative repositories host on Github on February, 2013). Python or Ruby probably is a wise choice, the mainly speed limit of web crawler is network latency not CPU, so choose Python or Ruby as a language to develop a web crawler will make life easier. Python provide some standard libraries, they are very useful, such like urllib, httplib and regex, those libraries can handle lots of work. Python also has plenty of valuable third-party libraries worth a try: scrapy , a web scraping framework. urllib3 , a Python HTTP library with thread-safe connection pooling, file post support. greenlet , a Lightweight concurrent programming framework. twisted , an event-driven networking engine.">
-      <meta name="twitter:site" content="@guanlandai">
-<meta name="application-name" content="My cool site">
-<meta name="apple-mobile-web-app-title" content="My cool site"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://rmmod.com/posts/effective-web-crawler/" /><link rel="prev" href="https://rmmod.com/posts/snippets-for-racket-language/" /><link rel="next" href="https://rmmod.com/posts/how-to-design-a-scalable-rate-limiting-algorithm/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"><script type="application/ld+json">
-    {
-        "@context": "http://schema.org",
-        "@type": "BlogPosting",
-        "headline": "Practical Tips on Writing an Effective Web Crawler",
-        "inLanguage": "en-us",
-        "mainEntityOfPage": {
-            "@type": "WebPage",
-            "@id": "https:\/\/rmmod.com\/posts\/effective-web-crawler\/"
-        },"genre": "posts","keywords": "Networking","wordcount":  719 ,
-        "url": "https:\/\/rmmod.com\/posts\/effective-web-crawler\/","datePublished": "2021-01-15T00:00:00+00:00","dateModified": "2021-01-15T00:00:00+00:00","publisher": {
-            "@type": "Organization",
-            "name": ""},"author": {
-                "@type": "Person",
-                "name": "guanlan"
-            },"description": ""
-    }
-    </script></head>
-    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
-
-        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
-    <div class="header-wrapper">
-        <div class="header-title">
-            <a href="/" title="Guanlan Dai">Guanlan Dai</a>
-        </div>
-        <div class="menu">
-            <div class="menu-inner"><a class="menu-item" href="/"> Home </a><a class="menu-item" href="/about/"> About </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
-                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
-                </a>
-            </div>
-        </div>
-    </div>
-</header><header class="mobile" id="header-mobile">
-    <div class="header-container">
-        <div class="header-wrapper">
-            <div class="header-title">
-                <a href="/" title="Guanlan Dai">Guanlan Dai</a>
-            </div>
-            <div class="menu-toggle" id="menu-toggle-mobile">
-                <span></span><span></span><span></span>
-            </div>
-        </div>
-        <div class="menu" id="menu-mobile"><a class="menu-item" href="/" title="">Home</a><a class="menu-item" href="/about/" title="">About</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
-                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
-            </a></div>
-    </div>
-</header><main class="main">
-                <div class="container"><div class="toc" id="toc-auto">
-            <h2 class="toc-title">Contents</h2>
-            <div class="toc-content" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Practical Tips on Writing an Effective Web Crawler</h1><div class="post-meta">
-            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>guanlan</a>
-</span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2021-01-15">2021-01-15</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;719 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;4 minutes&nbsp;</div>
-        </div><div class="details toc" id="toc-static"  data-kept="">
-                <div class="details-summary toc-title">
-                    <span>Contents</span>
-                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
-                </div>
-                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
-  <ul>
-    <li>
-      <ul>
-        <li><a href="#1-choose-an-ideal-programming-language">1. Choose an Ideal Programming Language</a></li>
-        <li><a href="#2-reading-some-simple-open-source-projects">2. Reading Some Simple Open-source Projects</a></li>
-        <li><a href="#3choosing-the-right-data-structure">3.Choosing the Right Data Structure</a></li>
-        <li><a href="#4-multithreading-and-asynchronous">4. Multithreading and Asynchronous</a></li>
-        <li><a href="#5-http-persistent-connections">5. HTTP Persistent Connections</a></li>
-        <li><a href="#6-efficient-regular-expressions">6. Efficient Regular Expressions</a></li>
-      </ul>
-    </li>
-  </ul>
-</nav></div>
-            </div><div class="content" id="content"><p>A web crawler is a hard-working bot to gather information or index the pages on the Internet. It starts at some seeds URLs and finds every hyperlink on each page, and then crawler will visit those hyperlinks recursively.</p>
-<h3 id="1-choose-an-ideal-programming-language">1. Choose an Ideal Programming Language</h3>
-<p>Based on the ranking of popular languages on developing web crawlers (based on result numbers of relative repositories host on Github on February, 2013). Python or Ruby probably is a wise choice, the mainly speed limit of web crawler is network latency not CPU, so choose Python or Ruby as a language to develop a web crawler will make life easier. Python provide some standard libraries, they are very useful, such like urllib, httplib and regex, those libraries can handle lots of work. Python also has plenty of valuable third-party libraries worth a try: <strong><a href="http://scrapy.org/" target="_blank" rel="noopener noreffer">scrapy</a>
-</strong>, a web scraping framework. <strong><a href="http://urllib3.readthedocs.org/en/latest/" target="_blank" rel="noopener noreffer">urllib3</a>
-</strong>, a Python HTTP library with thread-safe connection pooling, file post support. <strong><a href="http://greenlet.readthedocs.org/" target="_blank" rel="noopener noreffer">greenlet</a>
-</strong>, a Lightweight concurrent programming framework. <em><strong><a href="http://twistedmatrix.com/" target="_blank" rel="noopener noreffer">twisted</a>
-</strong></em>, an <strong>event-driven networking engine.</strong>  </p>
-<h3 id="2-reading-some-simple-open-source-projects">2. Reading Some Simple Open-source Projects</h3>
-<p>You need to figure out how exactly does a crawler works. Here is a very simple crawler written in Python, in 10 lines of code. [python] import re, urllib crawled_urls = set() def crawl(url): for new_url in re.findall(&lsquo;&lsquo;&lsquo;href=[&quot;&rsquo;](.[^&quot;&rsquo;]+)[&quot;&rsquo;]&rsquo;&rsquo;&rsquo;, urllib.urlopen(url).read()): if new_url not in crawled_urls: print new_url crawled_urls.add(new_url) if __name__ == &ldquo;__main__&rdquo;: url = &lsquo;<a href="http://www.yahoo.com/%27" target="_blank" rel="noopener noreffer">http://www.yahoo.com/'</a>
- crawl(url) [/python] Crawler usually needs to keep track of which URLs need to be crawled, and which URLs has already crawled (to avoid the infinite loop). Other simple projects: <a href="http://code.google.com/p/python-crawler/" target="_blank" rel="noopener noreffer"><strong>Python Crawler</strong></a>
-, a very simple crawler using Berkeley DB to store results. <a href="https://github.com/bbrodriges/pholcidae" target="_blank" rel="noopener noreffer"><strong>pholcidae</strong></a>
-, a tiny Python module allows you to write your own crawl spider fast and easy.</p>
-<h3 id="3choosing-the-right-data-structure">3.Choosing the Right Data Structure</h3>
-<p>Choosing a proper data structure will make your crawler efficiently. Queue or Stack is a good choice to store the URLs need be crawled, Hash table or R-B tree seems proper for tracking the crawled URLs, it provide a fast speed to search. Search Time Complexity: Hash table O(1), R-B Tree O(log n) But what if your crawler needs to deal with tons of URLs your memory is not enough? Try to store the checksum of URL string, if it still not enough, you may need to use the Cache algorithms (such like LRU) to dump some URLs into the disk.</p>
-<h3 id="4-multithreading-and-asynchronous">4. Multithreading and Asynchronous</h3>
-<p>If you crawling sites from different servers, using multithreading or asynchronous mechanism will save you lots of time. Remember keep your crawler thread-safe, you need a thread-safe queue to share the results and a thread controller to handle threads. Asynchronous is a event-based mechanism will make your crawler enter a while loop, when an events triggers (some resources become available), your crawler will wake up to do deal with this event (usually by execute callback function), Asynchronous can improve throughput, latency of your crawler. <em>Related Resources:</em> <a href="http://www.andreas-hess.info/programming/webcrawler/index.html#AnotherWebcrawler" target="_blank" rel="noopener noreffer"><em>How to write a multi-threaded webcrawler</em></a>
-, Andreas Hess</p>
-<h3 id="5-http-persistent-connections">5. HTTP Persistent Connections</h3>
-<p>Every time sends an HTTP request you need to open a TCP socket connection, when you finish request, this socket will be closed. When you crawl lots of pages on a same server, you will open and close the socket again and again. The overhead cost is quite a big problem. [code]Connection: Keep-Alive[/code] Use this header in your HTTP request to tell the server your client support keep-alive. Your code also should be modified accordingly.</p>
-<h3 id="6-efficient-regular-expressions">6. Efficient Regular Expressions</h3>
-<p>You should really figure out how the regex works, a good regex really makes a difference in performance. When your web crawlers parsing the information of the HTTP response, the same regex will execute frequently. Compile a regex need little more time in the beginning, but it will run faster when you use it. Notice if you are using Python (or .NET), it will automatically compile and cache the regexs, but it may still be worthwhile to manually do it, you can give it a proper name after compiling a regex, it will make your code more readable. If you want parser even faster, you probably need to write a parser by yourself. Related Resources: <a href="http://www.amazon.com/Mastering-Regular-Expressions-Jeffrey-Friedl/dp/0596528124" target="_blank" rel="noopener noreffer">Mastering Regular Expressions</a>
-, Third Edition by Jeffrey Friedl. <a href="http://blog.stevenlevithan.com/archives/greedy-lazy-performance" title="Permanent Link to Performance of Greedy vs. Lazy Regex Quantifiers" target="_blank" rel="noopener noreffer">Performance of Greedy vs. Lazy Regex Quantifiers</a>
-, <em>Steven Levithan</em> <a href="http://www.javaworld.com/javaworld/jw-09-2007/jw-09-optimizingregex.html" target="_blank" rel="noopener noreffer">Optimizing regular expressions in Java</a>
-, Cristian Mocanu</p>
-</div><div class="post-footer" id="post-footer">
-    <div class="post-info">
-        <div class="post-info-line">
-            <div class="post-info-mod">
-                <span>Updated on 2021-01-15</span>
-            </div></div>
-        <div class="post-info-line">
-            <div class="post-info-md"></div>
-            <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://rmmod.com/posts/effective-web-crawler/" data-title="Practical Tips on Writing an Effective Web Crawler" data-via="guanlandai" data-hashtags="Networking"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://rmmod.com/posts/effective-web-crawler/" data-hashtag="Networking"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://rmmod.com/posts/effective-web-crawler/" data-title="Practical Tips on Writing an Effective Web Crawler"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://rmmod.com/posts/effective-web-crawler/" data-title="Practical Tips on Writing an Effective Web Crawler"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@6.20.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://rmmod.com/posts/effective-web-crawler/" data-title="Practical Tips on Writing an Effective Web Crawler"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
-            </div>
-        </div>
-    </div>
-
-    <div class="post-info-more">
-        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/networking/">Networking</a></section>
-        <section>
-            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
-        </section>
-    </div>
-
-    <div class="post-nav"><a href="/posts/snippets-for-racket-language/" class="prev" rel="prev" title="Snippets for Racket Language"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Snippets for Racket Language</a>
-            <a href="/posts/how-to-design-a-scalable-rate-limiting-algorithm/" class="next" rel="next" title="How to Design a Scalable Rate Limiting Algorithm">How to Design a Scalable Rate Limiting Algorithm<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
-</div>
-</article></div>
-            </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Guanlan Dai | CC BY-NC 4.0</div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2009 - 2025</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span></div>
-        </div>
-    </footer></div>
-
-        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
-                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
-            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
-                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
-            </a>
-        </div><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.1/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
-</html>
+def crawl(url): 
+  for new_url in re.findall(&#39;&#39;&#39;href=[&#34;&#39;\](.[^&#34;&#39;\]&#43;)[&#34;&#39;\]&#39;&#39;&#39;, urllib.urlopen(url).read()): 
+    if new_url not in crawled_urls:
+      print new_url crawled_urls.add(new\_url) 
+      if __name__ == &#34;__main__&#34;:
+        url = &#39;http://www.yahoo.com/&#39;
+        crawl(url) </code></pre><p>[python] i[/python] Crawler usually needs to keep track of which URLs need to be crawled, and which URLs has already crawled (to avoid the infinite loop). Other simple projects: <a href=http://code.google.com/p/python-crawler/ target=_blank rel="noopener noreffer"><strong>Python Crawler</strong></a>
+, a very simple crawler using Berkeley DB to store results. <a href=https://github.com/bbrodriges/pholcidae target=_blank rel="noopener noreffer"><strong>pholcidae</strong></a>
+, a tiny Python module allows you to write your own crawl spider fast and easy.</p><h3 id=3choosing-the-right-data-structure>3.Choosing the Right Data Structure</h3><p>Choosing a proper data structure will make your crawler efficiently. Queue or Stack is a good choice to store the URLs need be crawled, Hash table or R-B tree seems proper for tracking the crawled URLs, it provide a fast speed to search. Search Time Complexity: Hash table O(1), R-B Tree O(log n) But what if your crawler needs to deal with tons of URLs your memory is not enough? Try to store the checksum of URL string, if it still not enough, you may need to use the Cache algorithms (such like LRU) to dump some URLs into the disk.</p><h3 id=4-multithreading-and-asynchronous>4. Multithreading and Asynchronous</h3><p>If you crawling sites from different servers, using multithreading or asynchronous mechanism will save you lots of time. Remember keep your crawler thread-safe, you need a thread-safe queue to share the results and a thread controller to handle threads. Asynchronous is a event-based mechanism will make your crawler enter a while loop, when an events triggers (some resources become available), your crawler will wake up to do deal with this event (usually by execute callback function), Asynchronous can improve throughput, latency of your crawler. <em>Related Resources:</em> <a href=http://www.andreas-hess.info/programming/webcrawler/index.html#AnotherWebcrawler target=_blank rel="noopener noreffer"><em>How to write a multi-threaded webcrawler</em></a>
+, Andreas Hess</p><h3 id=5-http-persistent-connections>5. HTTP Persistent Connections</h3><p>Every time sends an HTTP request you need to open a TCP socket connection, when you finish request, this socket will be closed. When you crawl lots of pages on a same server, you will open and close the socket again and again. The overhead cost is quite a big problem. [code]Connection: Keep-Alive[/code] Use this header in your HTTP request to tell the server your client support keep-alive. Your code also should be modified accordingly.</p><h3 id=6-efficient-regular-expressions>6. Efficient Regular Expressions</h3><p>You should really figure out how the regex works, a good regex really makes a difference in performance. When your web crawlers parsing the information of the HTTP response, the same regex will execute frequently. Compile a regex need little more time in the beginning, but it will run faster when you use it. Notice if you are using Python (or .NET), it will automatically compile and cache the regexs, but it may still be worthwhile to manually do it, you can give it a proper name after compiling a regex, it will make your code more readable. If you want parser even faster, you probably need to write a parser by yourself. Related Resources: <a href=http://www.amazon.com/Mastering-Regular-Expressions-Jeffrey-Friedl/dp/0596528124 target=_blank rel="noopener noreffer">Mastering Regular Expressions</a>
+, Third Edition by Jeffrey Friedl. <a href=http://blog.stevenlevithan.com/archives/greedy-lazy-performance title="Permanent Link to Performance of Greedy vs. Lazy Regex Quantifiers" target=_blank rel="noopener noreffer">Performance of Greedy vs. Lazy Regex Quantifiers</a>
+, <em>Steven Levithan</em> <a href=http://www.javaworld.com/javaworld/jw-09-2007/jw-09-optimizingregex.html target=_blank rel="noopener noreffer">Optimizing regular expressions in Java</a>
+, Cristian Mocanu</p></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span>Updated on 2021-01-15</span></div></div><div class=post-info-line><div class=post-info-md></div><div class=post-info-share><span><a href=javascript:void(0); title="Share on Twitter" data-sharer=twitter data-url=https://rmmod.com/posts/effective-web-crawler/ data-title="Practical Tips on Writing an Effective Web Crawler" data-via=guanlandai data-hashtags=Networking><i class="fab fa-twitter fa-fw" aria-hidden=true></i></a><a href=javascript:void(0); title="Share on Facebook" data-sharer=facebook data-url=https://rmmod.com/posts/effective-web-crawler/ data-hashtag=Networking><i class="fab fa-facebook-square fa-fw" aria-hidden=true></i></a><a href=javascript:void(0); title="Share on Hacker News" data-sharer=hackernews data-url=https://rmmod.com/posts/effective-web-crawler/ data-title="Practical Tips on Writing an Effective Web Crawler"><i class="fab fa-hacker-news fa-fw" aria-hidden=true></i></a><a href=javascript:void(0); title="Share on Line" data-sharer=line data-url=https://rmmod.com/posts/effective-web-crawler/ data-title="Practical Tips on Writing an Effective Web Crawler"><i data-svg-src=https://cdn.jsdelivr.net/npm/simple-icons@6.20.0/icons/line.svg aria-hidden=true></i></a><a href=javascript:void(0); title="Share on 微博" data-sharer=weibo data-url=https://rmmod.com/posts/effective-web-crawler/ data-title="Practical Tips on Writing an Effective Web Crawler"><i class="fab fa-weibo fa-fw" aria-hidden=true></i></a></span></div></div></div><div class=post-info-more><section class=post-tags><i class="fas fa-tags fa-fw" aria-hidden=true></i>&nbsp;<a href=/tags/networking/>Networking</a></section><section><span><a href=javascript:void(0); onclick=window.history.back()>Back</a></span>&nbsp;|&nbsp;<span><a href=/>Home</a></span></section></div><div class=post-nav><a href=/posts/snippets-for-racket-language/ class=prev rel=prev title="Snippets for Racket Language"><i class="fas fa-angle-left fa-fw" aria-hidden=true></i>Snippets for Racket Language</a>
+<a href=/posts/how-to-design-a-scalable-rate-limiting-algorithm/ class=next rel=next title="How to Design a Scalable Rate Limiting Algorithm">How to Design a Scalable Rate Limiting Algorithm<i class="fas fa-angle-right fa-fw" aria-hidden=true></i></a></div></div></article></div></main><footer class=footer><div class=footer-container><div class=footer-line>Guanlan Dai | CC BY-NC 4.0</div><div class=footer-line itemscope itemtype=http://schema.org/CreativeWork><i class="far fa-copyright fa-fw" aria-hidden=true></i><span itemprop=copyrightYear>2009 - 2025</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=/ target=_blank></a></span></div></div></footer></div><div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title="Back to Top"><i class="fas fa-arrow-up fa-fw" aria-hidden=true></i>
+</a><a href=# id=view-comments class=fixed-button title="View Comments"><i class="fas fa-comment fa-fw" aria-hidden=true></i></a></div><link rel=stylesheet href=/css/_code-highlight.scss><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lazysizes@5.3.1/lazysizes.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js></script><script type=text/javascript>window.config={code:{copyTitle:"Copy to clipboard",maxShownLines:50},comment:{}}</script><script type=text/javascript src=/js/theme.min.js></script></body></html>

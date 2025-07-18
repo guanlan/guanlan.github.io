@@ -1,19 +1,5 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Memcached on Guanlan Dai</title>
-    <link>https://rmmod.com/categories/memcached/</link>
-    <description>Recent content in Memcached on Guanlan Dai</description>
-    <generator>Hugo</generator>
-    <language>en-us</language>
-    <lastBuildDate>Sat, 23 Jan 2010 00:00:00 +0800</lastBuildDate>
-    <atom:link href="https://rmmod.com/categories/memcached/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Memcached Source Code Analysis Notes PDF</title>
-      <link>https://rmmod.com/posts/cppblog/2010-01-23-memcached-source-code-analysis-notes-pdf-en/</link>
-      <pubDate>Sat, 23 Jan 2010 00:00:00 +0800</pubDate>
-      <guid>https://rmmod.com/posts/cppblog/2010-01-23-memcached-source-code-analysis-notes-pdf-en/</guid>
-      <description>&lt;p&gt;Memcached is a free, open source, high-performance, distributed memory object caching system, aimed at speeding up dynamic web applications by alleviating database load.&lt;/p&gt;&#xA;&lt;p&gt;As the saying goes, the palest ink is better than the best memory.&lt;br&gt;&#xA;&lt;a href=&#34;http://www.cppblog.com/Files/guanlan/Memcached.pdf&#34; target=&#34;_blank&#34; rel=&#34;noopener noreffer&#34;&gt;This document&lt;/a&gt;&#xA; is what I use to record some experiences during the process of reading Memcached source code, as well as analyzing some internal working mechanisms of memcached.&lt;br&gt;&#xA;I hope it can also bring convenience to everyone.&lt;/p&gt;</description>
-    </item>
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Memcached on Guanlan Dai</title><link>https://rmmod.com/categories/memcached/</link><description>Recent content in Memcached on Guanlan Dai</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Sat, 23 Jan 2010 00:00:00 +0800</lastBuildDate><atom:link href="https://rmmod.com/categories/memcached/index.xml" rel="self" type="application/rss+xml"/><item><title>Memcached Source Code Analysis Notes PDF</title><link>https://rmmod.com/posts/cppblog/2010-01-23-memcached-source-code-analysis-notes-pdf-en/</link><pubDate>Sat, 23 Jan 2010 00:00:00 +0800</pubDate><guid>https://rmmod.com/posts/cppblog/2010-01-23-memcached-source-code-analysis-notes-pdf-en/</guid><description>&lt;p>Memcached is a free, open source, high-performance, distributed memory object caching system, aimed at speeding up dynamic web applications by alleviating database load.&lt;/p>
+&lt;p>As the saying goes, the palest ink is better than the best memory.&lt;br>
+&lt;a href="http://www.cppblog.com/Files/guanlan/Memcached.pdf" target="_blank" rel="noopener noreffer">This document&lt;/a>
+ is what I use to record some experiences during the process of reading Memcached source code, as well as analyzing some internal working mechanisms of memcached.&lt;br>
+I hope it can also bring convenience to everyone.&lt;/p></description></item></channel></rss>
