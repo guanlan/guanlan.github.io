@@ -9,62 +9,88 @@ tags: ["startup","Kong"]
 
 ### **The Beginning**
 
-I never imagined I’d stay with one company for eight years. I still remember that day in San Francisco — **Marco Palladino** had just closed a funding round and asked me to meet at a café to discuss a bold pivot: *“Let’s build the world’s most powerful API platform.”*
+I never thought I would stay at one company for eight years.
 
-![IMG_5446](/img/IMG_5446.JPG)
+What I remember most clearly is a café in San Francisco. Marco Palladino had just closed a round and wanted to talk about where Kong could go next. The pitch was simple and ambitious: let’s build the best API platform in the world.
 
-Shortly after, **Augusto Marietti** invited me to his home, cooked Zucchini Pasta himself, and shared unforgettable stories from Kong’s scrappy early days — including how he once [couch-surfed at Travis Kalanick’s place](https://techcrunch.com/2017/03/23/years-after-crashing-on-travis-kalanicks-couch-this-italian-founder-just-raised-18-million-for-his-startup/), eating rice and beans for months to keep living costs to the bare minimum. Over dinner, he literally wrote my offer on a napkin. That was the moment I decided to go all-in.
+![IMG_5446](/img/kong/IMG_5446.JPG)
+
+A little later, Augusto Marietti invited me to his home for dinner. He made zucchini pasta himself and told stories from the early days of the company, including how he once [crashed on Travis Kalanick’s couch](https://techcrunch.com/2017/03/23/years-after-crashing-on-travis-kalanicks-couch-this-italian-founder-just-raised-18-million-for-his-startup/) and lived on rice and beans just to keep costs down.
+
+At some point that night, he wrote my offer on a napkin.
+
+That was it. I was in.
 
 
 
 ### **The Early Years: Building the Core**
 
-In the first four years, we transformed Kong from a community project into the industry standard for API management. As a founding engineering leader, I built and led the core team, drove the Gateway 1.0 / 2.0 / 3.0 releases, and pushed the shift toward cloud-native, Infrastructure-as-Code, and hybrid architectures for enterprise-grade products. We shipped our first cloud offering, our first AI initiative — and earned a Leader position in the Gartner Magic Quadrant, where Kong has remained for six consecutive years.
+![Gartner API 2025](/img/kong/1761137783696.jpg)
+
+The first four years were about building the core of the company.
+
+Kong was already a strong open-source project, but a company is a different thing. We had to turn early momentum into a real product, a real platform, and eventually a real business. I built and led the core engineering team and worked across the Gateway 1.0, 2.0, and 3.0 releases. A lot of the work was not glamorous. It was about making the system more durable, more extensible, and more usable for large enterprises that wanted something much more demanding than a cool open-source gateway.
+
+That period also pushed us into some of the big architecture shifts of the time: cloud-native infrastructure, Infrastructure as Code, hybrid deployment. We launched our first cloud offering. We started our first AI initiative. Over time, Kong grew into one of the companies that helped define the API management category.
+
+![Gartner API 2025](/img/kong/gartner-api-connect.avif)
 
 
 
 ### **The Global Chapter**
 
-The next four years brought me back to Shanghai with full support from **Saju Pillai**. After more than a month in quarantine with cardboard-like meals, the first thing I did was meet **Datong Sun** and **Wangchong Zhou** in a cozy Shanghainese restaurant to finally taste real food again.
+The next chapter took me back to Shanghai, with a lot of support from Saju Pillai.
 
 
 
-From there, we hit the ground running — searching for offices, defining org structures, crafting our hiring strategy, and rebuilding the Kong community and brand in China.
+I still remember landing there during the quarantine era and spending more than a month eating meals that tasted like damp cardboard. The first thing I did after getting out was meet Datong Sun and Wangchong Zhou at a small Shanghainese restaurant. I mostly just remember how good the food tasted.
+
+![1761137782464](/img/kong/1761137782464.jpeg)
+
+After that, things moved quickly. We looked for office space, figured out the org design, built the hiring plan, and started rebuilding Kong’s engineering presence in China from scratch.
 
 
 
-We started from a few desks.
+![1761137782464](/img/kong/1761137783156.jpeg)
 
-No playbook, no overseas template, limited support.
+At the beginning, it was just a handful of desks.
 
-Just belief — and a shared goal to build something world-class.
+There was no real playbook for what we were trying to do. No mature overseas template to copy. Not that much support. Just a lot of conviction, and a lot of work.
 
+![1761137782464](/img/kong/17611377866866.jpeg)
 
+Four years later, that small start had turned into a 60+ person engineering center. We outgrew the office three times. The team took on some of Kong’s hardest core engineering problems and supported a business that had grown past $100M ARR.
 
-Four years later, we had a **60+ person engineering center**, outgrowing our office three times, powering a **$100M ARR business**, and taking on some of Kong’s most complex core engineering work.
+What I am proudest of, though, is not the number.
 
-That team became one of the hardest-working, sharpest groups I’ve ever had the privilege to lead.
+It is the team.
 
-They didn’t just deliver — they raised the technical ceiling of infrastructure engineering in the region.
+That group had real range. They could move fast when they needed to, go deep when the problem demanded it, and keep standards high through a lot of change. Building that team was one of the most meaningful things I have done in my career.
 
 
 
 ### **Gratitude**
 
-To everyone who fought side by side — you were the ones who held the line when things got tough, and the reason I could keep going all-in.
+A company only looks smooth in hindsight.
 
-Finally, thank you to all **early and existing Kongers** — you’re the foundation of this incredible journey and the reason Kong became what it is today.
+Living through it never feels that way.
 
+There were hard quarters, unclear moments, missed expectations, big swings that worked, and others that did not. Through all of it, I was lucky to work with people who kept showing up and doing the work.
 
+To everyone I built with over those eight years: thank you.
 
-### **Looking Ahead**
-
-Eight years is a long time — long enough to see a startup become an industry standard, and to grow alongside it.
-
-It’s also long enough to know when it’s time for a new challenge.
-
-The next chapter is still unwritten, but if the last eight years have taught me anything, it’s that great things start small — sometimes on a napkin, sometimes over a plate of pasta — and grow into something much bigger than you ever imagined.
+And to the early Kongers, and the many people who joined later and carried the company forward, thank you for building something that lasted.
 
 
 
-Here’s to the next one. 🚀
+### **What Comes Next**
+
+Eight years is long enough to watch a startup become a real company.
+
+It is also long enough to feel when it is time to do something new.
+
+I do not have a neat lesson to end on, except this: some of the biggest things in life start in a way that looks almost accidental at the time. A café conversation. A dinner. A napkin with an offer written on it.
+
+Then, before you realize it, years have passed, a company has grown up, and so have you.
+
+Here’s to the next chapter. 🚀
