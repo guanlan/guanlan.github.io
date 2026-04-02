@@ -1,6 +1,6 @@
 ---
 title: "Agent Infrastructure Needs New Primitives"
-date: 2025-12-21
+date: 2026-03-29
 author: "guanlan"
 tags: ["Agent","Infra"]
 images: ["/img/agent-infra-cover.png"]
