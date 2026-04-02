@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Claude Code Security Cover</title>
+  <style>
+    :root {
+      --bg-1: #f6fbff;
+      --bg-2: #e8f3ff;
+      --bg-3: #dbeeff;
+      --ink: #07111f;
+      --muted: rgba(7, 17, 31, 0.62);
+      --line: rgba(52, 131, 255, 0.18);
+      --blue-1: #1b78ff;
+      --blue-2: #67b7ff;
+      --blue-3: #9fd6ff;
+      --glass: rgba(255, 255, 255, 0.5);
+      --shadow: 0 24px 80px rgba(32, 101, 200, 0.16);
+      --radius-xl: 34px;
+      --radius-lg: 24px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at 18% 18%, rgba(143, 210, 255, 0.45), transparent 28%),
+                  radial-gradient(circle at 82% 24%, rgba(58, 132, 255, 0.2), transparent 24%),
+                  linear-gradient(135deg, var(--bg-1) 0%, var(--bg-2) 46%, var(--bg-3) 100%);
+      color: var(--ink);
+      overflow: hidden;
+    }
+
+    .frame {
+      position: relative;
+      width: 1600px;
+      height: 900px;
+      margin: 0 auto;
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .noise,
+    .waves,
+    .grid,
+    .folds,
+    .orb,
+    .orb::before,
+    .orb::after {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .grid {
+      background-image:
+        linear-gradient(rgba(27, 120, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(27, 120, 255, 0.05) 1px, transparent 1px);
+      background-size: 56px 56px;
+      mask-image: radial-gradient(circle at 50% 45%, black 20%, transparent 82%);
+      opacity: 0.45;
+    }
+
+    .noise {
+      opacity: 0.08;
+      background-image:
+        radial-gradient(rgba(255,255,255,0.9) 0.8px, transparent 0.8px);
+      background-size: 10px 10px;
+      mix-blend-mode: screen;
+    }
+
+    .waves svg,
+    .folds svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .waves {
+      opacity: 0.9;
+      filter: drop-shadow(0 18px 32px rgba(72, 148, 255, 0.14));
+    }
+
+    .folds {
+      opacity: 0.62;
+      mix-blend-mode: screen;
+    }
+
+    .orb::before,
+    .orb::after {
+      content: "";
+      position: absolute;
+      border-radius: 999px;
+      filter: blur(24px);
+    }
+
+    .orb::before {
+      width: 260px;
+      height: 260px;
+      right: 140px;
+      top: 110px;
+      background: radial-gradient(circle, rgba(104, 185, 255, 0.55), rgba(104, 185, 255, 0.04) 72%, transparent 80%);
+    }
+
+    .orb::after {
+      width: 360px;
+      height: 360px;
+      left: -80px;
+      bottom: -60px;
+      background: radial-gradient(circle, rgba(35, 123, 255, 0.18), rgba(35, 123, 255, 0.03) 66%, transparent 82%);
+    }
+
+    .shell {
+      position: absolute;
+      inset: 42px;
+      border-radius: 38px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.72) 0%, rgba(255,255,255,0.54) 100%);
+      border: 1px solid rgba(255,255,255,0.85);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+      overflow: hidden;
+    }
+
+    .shell::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: 1px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.85), rgba(103,183,255,0.28), rgba(255,255,255,0.28));
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor;
+              mask-composite: exclude;
+    }
+
+    .content {
+      position: absolute;
+      inset: 0;
+      padding: 82px 88px 72px 88px;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      column-gap: 44px;
+      align-items: stretch;
+    }
+
+    .left {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .eyebrow-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 18px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.7);
+      border: 1px solid rgba(79, 157, 255, 0.18);
+      color: #0d56c9;
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      box-shadow: 0 10px 24px rgba(63, 123, 219, 0.08);
+    }
+
+    .pill .dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--blue-1), var(--blue-2));
+      box-shadow: 0 0 0 6px rgba(27, 120, 255, 0.08);
+    }
+
+    .meta {
+      font-size: 16px;
+      color: var(--muted);
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+
+    .title-wrap {
+      max-width: 860px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 78px;
+      line-height: 0.97;
+      letter-spacing: -0.045em;
+      font-weight: 900;
+      max-width: 860px;
+    }
+
+    h1 .soft {
+      display: block;
+      color: rgba(7, 17, 31, 0.88);
+      font-weight: 820;
+    }
+
+    h1 .em {
+      display: block;
+      margin-top: 12px;
+      background: linear-gradient(90deg, #0e4ccc 0%, #1c79ff 40%, #66b7ff 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .desc {
+      margin-top: 28px;
+      max-width: 740px;
+      font-size: 23px;
+      line-height: 1.55;
+      color: rgba(7, 17, 31, 0.68);
+      font-weight: 500;
+    }
+
+    .bottom-row {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 28px;
+      margin-top: 42px;
+    }
+
+    .author-card {
+      position: relative;
+      min-width: 280px;
+      padding: 24px 26px;
+      border-radius: 24px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.7), rgba(255,255,255,0.48));
+      border: 1px solid rgba(72, 151, 255, 0.15);
+      box-shadow: 0 12px 40px rgba(73, 127, 198, 0.1);
+      backdrop-filter: blur(14px);
+    }
+
+    .author-card .label {
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(7, 17, 31, 0.45);
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .author-card .name {
+      font-size: 30px;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+    }
+
+    .author-card .sub {
+      margin-top: 8px;
+      font-size: 17px;
+      color: rgba(7, 17, 31, 0.56);
+      font-weight: 600;
+    }
+
+    .tags {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      max-width: 420px;
+    }
+
+    .tag {
+      padding: 12px 18px;
+      border-radius: 999px;
+      font-size: 16px;
+      font-weight: 700;
+      color: #1353b7;
+      background: rgba(255,255,255,0.66);
+      border: 1px solid rgba(74, 143, 255, 0.16);
+      box-shadow: 0 8px 24px rgba(73, 127, 198, 0.08);
+      backdrop-filter: blur(10px);
+    }
+
+    .right {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1;
+    }
+
+    .diagram {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      min-height: 620px;
+      border-radius: 34px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.58), rgba(255,255,255,0.32));
+      border: 1px solid rgba(72, 151, 255, 0.14);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.7), 0 18px 60px rgba(73, 127, 198, 0.1);
+      overflow: hidden;
+    }
+
+    .diagram::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 72% 18%, rgba(101, 184, 255, 0.2), transparent 26%),
+        radial-gradient(circle at 22% 78%, rgba(23, 118, 255, 0.12), transparent 26%);
+      pointer-events: none;
+    }
+
+    .diagram-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(27,120,255,0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(27,120,255,0.045) 1px, transparent 1px);
+      background-size: 36px 36px;
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,0.7), transparent 90%);
+    }
+
+    .flow-line {
+      position: absolute;
+      border-radius: 999px;
+      background: linear-gradient(90deg, rgba(28,121,255,0), rgba(28,121,255,0.28), rgba(102,183,255,0));
+      filter: blur(0.2px);
+    }
+
+    .flow-line.l1 {
+      width: 360px;
+      height: 2px;
+      top: 170px;
+      left: 90px;
+      transform: rotate(-12deg);
+    }
+
+    .flow-line.l2 {
+      width: 420px;
+      height: 2px;
+      top: 300px;
+      left: 40px;
+      transform: rotate(14deg);
+    }
+
+    .flow-line.l3 {
+      width: 320px;
+      height: 2px;
+      bottom: 150px;
+      right: 70px;
+      transform: rotate(-18deg);
+    }
+
+    .node {
+      position: absolute;
+      border-radius: 26px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.82), rgba(255,255,255,0.54));
+      border: 1px solid rgba(79, 157, 255, 0.18);
+      box-shadow: 0 16px 34px rgba(72, 122, 197, 0.11);
+      backdrop-filter: blur(12px);
+      padding: 20px 22px;
+      color: var(--ink);
+    }
+
+    .node .kicker {
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(7,17,31,0.42);
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .node .big {
+      font-size: 26px;
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+      font-weight: 850;
+    }
+
+    .node .small {
+      margin-top: 8px;
+      font-size: 14px;
+      color: rgba(7,17,31,0.55);
+      line-height: 1.4;
+      font-weight: 600;
+    }
+
+    .node.main {
+      width: 350px;
+      height: 172px;
+      top: 92px;
+      right: 68px;
+    }
+
+    .node.secondary {
+      width: 248px;
+      height: 146px;
+      top: 312px;
+      left: 52px;
+    }
+
+    .node.tertiary {
+      width: 276px;
+      height: 146px;
+      bottom: 76px;
+      right: 96px;
+    }
+
+    .mini-chip {
+      position: absolute;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 16px;
+      border-radius: 18px;
+      background: rgba(233, 245, 255, 0.72);
+      border: 1px solid rgba(74, 143, 255, 0.14);
+      color: #1256c0;
+      font-size: 14px;
+      font-weight: 800;
+      box-shadow: 0 10px 24px rgba(73, 127, 198, 0.08);
+      backdrop-filter: blur(10px);
+    }
+
+    .mini-chip::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #1b78ff, #67b7ff);
+      box-shadow: 0 0 0 5px rgba(27, 120, 255, 0.08);
+    }
+
+    .chip-1 { top: 90px; left: 58px; }
+    .chip-2 { top: 250px; right: 34px; }
+    .chip-3 { bottom: 200px; left: 88px; }
+    .chip-4 { bottom: 56px; left: 188px; }
+
+    .curve-svg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    .footer-mark {
+      position: absolute;
+      right: 38px;
+      bottom: 28px;
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(7,17,31,0.32);
+      font-weight: 800;
+    }
+  </style>
+</head>
+<body>
+  <div class="frame">
+    <div class="grid"></div>
+    <div class="orb"></div>
+
+    <div class="waves">
+      <svg viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M-92 612C89 515 247 500 414 560C578 618 721 641 878 594C1068 537 1172 396 1360 405C1477 411 1558 453 1688 548" stroke="url(#waveA)" stroke-width="96" stroke-linecap="round" opacity="0.34"/>
+        <path d="M-40 720C150 628 329 632 486 700C655 772 782 790 933 736C1124 668 1226 542 1418 547C1524 550 1603 588 1712 666" stroke="url(#waveB)" stroke-width="64" stroke-linecap="round" opacity="0.24"/>
+        <path d="M1048 -120C1135 24 1216 164 1192 305C1167 450 1050 544 935 613C802 694 731 765 722 920" stroke="url(#waveC)" stroke-width="78" stroke-linecap="round" opacity="0.18"/>
+        <defs>
+          <linearGradient id="waveA" x1="-92" y1="500" x2="1688" y2="560" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#A9DDFF" stop-opacity="0"/>
+            <stop offset="0.24" stop-color="#A9DDFF"/>
+            <stop offset="0.55" stop-color="#4D9DFF"/>
+            <stop offset="1" stop-color="#A9DDFF" stop-opacity="0"/>
+          </linearGradient>
+          <linearGradient id="waveB" x1="-40" y1="632" x2="1712" y2="666" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#D7F0FF" stop-opacity="0"/>
+            <stop offset="0.28" stop-color="#9ED4FF"/>
+            <stop offset="0.66" stop-color="#2A86FF"/>
+            <stop offset="1" stop-color="#D7F0FF" stop-opacity="0"/>
+          </linearGradient>
+          <linearGradient id="waveC" x1="1194" y1="-120" x2="774" y2="920" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#A8DEFF" stop-opacity="0"/>
+            <stop offset="0.24" stop-color="#A8DEFF"/>
+            <stop offset="0.66" stop-color="#3A8FFF"/>
+            <stop offset="1" stop-color="#A8DEFF" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+      </svg>
+    </div>
+
+    <div class="folds">
+      <svg viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M1035 140L1478 282L1244 523L918 415L1035 140Z" fill="url(#foldA)" opacity="0.28"/>
+        <path d="M1118 208L1351 285L1211 432L1008 366L1118 208Z" fill="url(#foldB)" opacity="0.34"/>
+        <path d="M1322 602L1526 675L1386 816L1184 737L1322 602Z" fill="url(#foldC)" opacity="0.2"/>
+        <defs>
+          <linearGradient id="foldA" x1="918" y1="140" x2="1478" y2="523" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#FFFFFF"/>
+            <stop offset="1" stop-color="#7DC4FF"/>
+          </linearGradient>
+          <linearGradient id="foldB" x1="1008" y1="208" x2="1351" y2="432" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#EAF6FF"/>
+            <stop offset="1" stop-color="#5FB0FF"/>
+          </linearGradient>
+          <linearGradient id="foldC" x1="1184" y1="602" x2="1526" y2="816" gradientUnits="userSpaceOnUse">
+            <stop stop-color="#FFFFFF"/>
+            <stop offset="1" stop-color="#87CAFF"/>
+          </linearGradient>
+        </defs>
+      </svg>
+    </div>
+
+    <div class="shell">
+      <div class="content">
+        <section class="left">
+          <div>
+            <div class="eyebrow-row">
+              <div class="pill"><span class="dot"></span>Agent Infra</div>
+              <div class="meta">April 2, 2026 · Source Code Teardown</div>
+            </div>
+
+            <div class="title-wrap">
+              <h1>
+                <span class="soft">I Read Claude Code's</span>
+                <span class="em">Security Source Code</span>
+              </h1>
+              <div class="desc">
+                A deep teardown of Claude Code's security architecture reveals a well-crafted defense-in-depth system — and the structural limits of bolting safety onto a shell-first world.
+              </div>
+            </div>
+          </div>
+
+          <div class="bottom-row">
+            <div class="author-card">
+              <div class="label">Author</div>
+              <div class="name">Guanlan Dai</div>
+              <div class="sub">Systems, runtime, and agent infrastructure</div>
+            </div>
+
+            <div class="tags">
+              <div class="tag">Defense in Depth</div>
+              <div class="tag">Shell-First Limits</div>
+              <div class="tag">Security Architecture</div>
+            </div>
+          </div>
+        </section>
+
+        <section class="right">
+          <div class="diagram">
+            <div class="diagram-grid"></div>
+            <div class="flow-line l1"></div>
+            <div class="flow-line l2"></div>
+            <div class="flow-line l3"></div>
+
+            <svg class="curve-svg" viewBox="0 0 560 680" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M92 130C162 110 214 116 262 156C307 194 359 214 423 204" stroke="url(#c1)" stroke-width="3" stroke-linecap="round"/>
+              <path d="M124 350C176 304 232 291 301 314C362 334 419 330 476 286" stroke="url(#c2)" stroke-width="3" stroke-linecap="round"/>
+              <path d="M202 552C264 492 336 476 410 503C453 519 489 513 520 486" stroke="url(#c3)" stroke-width="3" stroke-linecap="round"/>
+              <defs>
+                <linearGradient id="c1" x1="92" y1="130" x2="423" y2="204" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#7BC3FF" stop-opacity="0.15"/>
+                  <stop offset="0.52" stop-color="#1B78FF"/>
+                  <stop offset="1" stop-color="#7BC3FF" stop-opacity="0.15"/>
+                </linearGradient>
+                <linearGradient id="c2" x1="124" y1="350" x2="476" y2="286" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#7BC3FF" stop-opacity="0.1"/>
+                  <stop offset="0.5" stop-color="#1B78FF"/>
+                  <stop offset="1" stop-color="#7BC3FF" stop-opacity="0.1"/>
+                </linearGradient>
+                <linearGradient id="c3" x1="202" y1="552" x2="520" y2="486" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#7BC3FF" stop-opacity="0.1"/>
+                  <stop offset="0.5" stop-color="#1B78FF"/>
+                  <stop offset="1" stop-color="#7BC3FF" stop-opacity="0.1"/>
+                </linearGradient>
+              </defs>
+            </svg>
+
+            <div class="mini-chip chip-1">Permission Gateway</div>
+            <div class="mini-chip chip-2">Auto Mode Classifier</div>
+            <div class="mini-chip chip-3">Sandbox Adapter</div>
+            <div class="mini-chip chip-4">Effect Boundary</div>
+
+            <div class="node main">
+              <div class="kicker">Key Tension</div>
+              <div class="big">Well-Engineered<br />Security, Wrong<br />Execution Premise</div>
+              <div class="small">The command can look normal even when the provenance is poisoned.</div>
+            </div>
+
+            <div class="node secondary">
+              <div class="kicker">What Works</div>
+              <div class="big">Defense in<br />Depth</div>
+              <div class="small">AST parsing, explicit deny rules, tool checks, sandbox isolation.</div>
+            </div>
+
+            <div class="node tertiary">
+              <div class="kicker">What Breaks</div>
+              <div class="big">Effects Outgrow<br />Commands</div>
+              <div class="small">Once the agent touches email, databases, or payments, allow-or-kill is not enough.</div>
+            </div>
+
+            <div class="footer-mark">Runtime Governance · Capability Control · Resumability</div>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <div class="noise"></div>
+  </div>
+</body>
+</html>

@@ -92,6 +92,12 @@
   }
 }
 
+// 文章内图片保持正确比例
+.single .content img {
+  height: auto;
+  max-width: 100%;
+}
+
 // 内联代码样式
 .single .content code {
   background-color: #f5f5f5 !important;
