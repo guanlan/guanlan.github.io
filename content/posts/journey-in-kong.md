@@ -25,7 +25,7 @@ That was it. I was in.
 
 ### **The Early Years: Building the Core**
 
-![Gartner API 2025](/img/kong/1761137783696.jpg)
+![Gartner API 2025](/img/kong/1761137783696.jpeg)
 
 The first four years were about building the core of the company.
 
@@ -57,7 +57,7 @@ At the beginning, it was just a handful of desks.
 
 There was no real playbook for what we were trying to do. No mature overseas template to copy. Not that much support. Just a lot of conviction, and a lot of work.
 
-![1761137782464](/img/kong/17611377866866.jpeg)
+![1761137782464](/img/kong/1761137786686.jpeg)
 
 Four years later, that small start had turned into a 60+ person engineering center. We outgrew the office three times. The team took on some of Kong’s hardest core engineering problems and supported a business that had grown past $100M ARR.
 
