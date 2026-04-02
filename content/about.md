@@ -1,9 +1,9 @@
 # About Guanlan
 
-Currently serve as Site Lead of Kong China and Director of Gateway at [Kong](https://konghq.com/).
+Building infrastructure for long-horizon AI agents.
 
-As the founding engineering leader, I’ve helped evolve Kong from an open-source API gateway into a full-stack microservices platform — bridging open-source traction with enterprise adoption. I built Kong’s Shanghai engineering hub from the ground up, scaling it to a 50+ person team now driving innovation in API management and AI infrastructure for 700+ enterprise customers.
+Previously, I was Director of Engineering at [Kong](https://konghq.com/), where I helped scale the company from an open-source API gateway into a broader microservices platform. I also built Kong’s overseas engineering hub from the ground up, growing it into a 60+ person team supporting 700+ enterprise customers and a $100M ARR business.
 
-Before Kong, I led edge engineering at [Cloudflare](http://cloudflare.com/), where I helped scale systems serving trillions of daily requests across CDN, WAF, and DDoS products.
+Before that, I worked on edge infrastructure at [Cloudflare](https://cloudflare.com/), helping scale CDN, WAF, and DDoS systems that served trillions of requests per day.
 
-Talk to me about distributed systems, resilient infra, and network scaling — the good stuff.
+Talk to me about distributed systems, resilient infrastructure, and what it takes to make agents run reliably in the real world.

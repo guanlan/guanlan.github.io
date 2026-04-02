@@ -1,0 +1,72 @@
+/* Admonition shortcode styles */
+.admonition {
+  margin: 1.5rem 0;
+  padding: 0;
+  border-left: .3rem solid #448aff;
+  border-radius: .2rem;
+  box-shadow: 0 2px 5px 0 rgba(0,0,0,.16), 0 2px 10px 0 rgba(0,0,0,.12);
+  overflow: hidden;
+}
+
+.admonition-title {
+  margin: 0;
+  padding: .8rem 1.2rem;
+  background-color: rgba(68,138,255,.1);
+  font-weight: 700;
+}
+
+.admonition > div {
+  padding: 1.2rem;
+}
+
+/* Different admonition types */
+.admonition.example {
+  border-left-color: #448aff;
+}
+
+.admonition.example .admonition-title {
+  background-color: rgba(68,138,255,.1);
+}
+
+.admonition.note {
+  border-left-color: #00b8d4;
+}
+
+.admonition.note .admonition-title {
+  background-color: rgba(0,184,212,.1);
+}
+
+.admonition.tip {
+  border-left-color: #00bfa5;
+}
+
+.admonition.tip .admonition-title {
+  background-color: rgba(0,191,165,.1);
+}
+
+.admonition.warning {
+  border-left-color: #ff9100;
+}
+
+.admonition.warning .admonition-title {
+  background-color: rgba(255,145,0,.1);
+}
+
+.admonition.danger {
+  border-left-color: #ff5252;
+}
+
+.admonition.danger .admonition-title {
+  background-color: rgba(255,82,82,.1);
+}
+
+/* Code blocks within admonitions */
+.admonition pre {
+  margin: 0;
+}
+
+.admonition code {
+  background-color: rgba(0,0,0,.05);
+  padding: .1em .3em;
+  border-radius: .2em;
+}
