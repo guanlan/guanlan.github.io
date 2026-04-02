@@ -3,6 +3,7 @@ title: "Agent Infrastructure Needs New Primitives"
 date: 2025-12-21
 author: "guanlan"
 tags: ["Agent","Infra"]
+images: ["/img/agent-infra-cover.png"]
 ---
 
 I’ve been thinking about agent infrastructure for a while, and one thing keeps coming back: the biggest shift is not what agents can do, but how they run.
