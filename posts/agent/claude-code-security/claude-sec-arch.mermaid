@@ -1,0 +1,97 @@
+flowchart TD
+    %% Define Styles and Classes
+    classDef immuneBadge fill:#ffcccb,stroke:#ff0000,stroke-width:2px,rx:10,ry:10,color:#ff0000;
+    classDef dashedBorder stroke-dasharray: 5 5,stroke-width:2px,stroke:#666;
+    classDef layerFill fill:#fff,stroke:#333,stroke-width:2px,rx:10,ry:10;
+    classDef platformFill fill:#ddd,stroke:#333,stroke-width:2px,rx:10,ry:10;
+
+    %% Input
+    Start([Agent 指令传入]) --> L1_App
+
+    %% Layer 1: Application Layer
+    subgraph L1_App [Layer 1: 应用层: permissions.ts - 统一权限入口]
+        direction TB
+        L1_Text1[先处理显式 deny/ask<br/>最后才应用 permission mode]
+        L1_ImmuneBadge(Bypass-immune:<br/>deny, 内容级 ask, safetyCheck):::immuneBadge
+        L1_Text1 --> L1_ImmuneBadge
+    end
+
+    %% Connection L1 to L2
+    L1_App --> L2_Tool
+
+    %% Layer 2: Tool Layer
+    subgraph L2_Tool [Layer 2: 工具层: 安全重点在 Bash - bashPermissions.ts]
+        direction TB
+        L2_Text[
+            • 命令级权限决策<br/>
+            • AST/语义分析<br/>
+            • 拦截危险 shell 模式<br/>
+            • 只读命令 allowlist<br/>
+            • 路径校验
+        ]
+    end
+
+    %% Layer 3: Classifier Layer
+    subgraph L3_Classifier [Layer 3: Auto mode 分类器: yoloClassifier - 远端 LLM模型]
+        direction TB
+        L3_Brain[
+            <br/>
+            🧠<br/>
+            远端 LLM模型
+        ]
+        
+        L3_Cond{规则/tool 无直接结果<br/>&& 未命中 fast path?}
+        
+        L3_Brain --> L3_Cond
+        
+        L3_Cond -- 是 --> L3_Details[
+            • 语义级审批<br/>
+            • 用于 Auto mode 模型
+        ]
+    end
+        
+    %% Connections bypassing OS layer
+    L2_Tool --> L3_Brain---
+config:
+  layout: dagre
+---
+flowchart TB
+  subgraph AppLayer["Application Layer: Permission Entry"]
+    direction TB
+    A1["Explicit Deny / Ask / SafetyCheck Priority Evaluation"]
+    A2["tool.checkPermissions & Mode Processing"]
+  end
+  subgraph ToolLayer["Tool Layer: Rule Decision Engine"]
+    direction TB
+    T1["Bash AST / Semantic Analysis"]
+    T2["Dangerous Pattern Interception / Read-Only Validation / Path Constraints"]
+  end
+  subgraph Classifier["Classifier: Auto mode Semantic Approval"]
+    direction TB
+    C1["acceptEdits / safe-tool fast path"]
+    C2["Remote LLM Approval<br>(Auto mode only)"]
+  end
+  subgraph OSLayer["OS Layer: Sandbox"]
+    direction TB
+    O1["Restrict File System & Network Boundaries"]
+    O2["Grant Restricted Write Permissions<br>cwd / temp / allowWrite, etc."]
+  end
+
+  Start(["Agent Submits Instruction"]) --> A1
+  A1 --> A2
+  A2 --> T1
+  T1 --> T2
+
+  T2 -->|"Hits deny / safety hard-stop"| Reject(["Block"])
+  T2 -->|"Hits ask"| UserAsk(["Manual Approval"])
+  T2 -->|"Explicitly Allowed in Normal Mode"| OSLayer
+  T2 -->|"Enters Approval Branch in Auto Mode"| C1
+
+  C1 -->|"Hits fast path"| OSLayer
+  C1 -->|"Misses fast path"| C2
+
+  C2 -->|"Judged Dangerous"| Reject
+  C2 -->|"Judged Safe"| OSLayer
+
+  O1 --> O2
+  O2 --> Execute(["Execute in Restricted Environment"])
