@@ -4,6 +4,7 @@ date: 2026-03-29
 author: "guanlan"
 tags: ["Agent","Infra"]
 images: ["/img/agent-infra-cover.png"]
+description: "The bottleneck is shifting from model capability to execution. Git tracks code, not runs. Agent infrastructure needs new primitives — and the gap is growing."
 ---
 
 I’ve been thinking about agent infrastructure for a while, and one thing keeps coming back: the biggest shift is not what agents can do, but how they run.
