@@ -85,7 +85,7 @@ Using WebAssembly (WASM) via [wasm-bindgen](https://rustwasm.github.io/docs/wasm
 
 ### Example of frontend WASM interface:
 
-```json
+```javascript
 #[wasm_bindgen(js_name = addMatcher)]
 pub unsafe fn add_matcher(
     &mut self,
@@ -103,7 +103,7 @@ pub unsafe fn add_matcher(
 
 ### Example of backend FFI interface:
 
-```json
+```rust
 #[no_mangle]
 // uuid must be ASCII representation of 128-bit UUID
 pub unsafe extern "C" fn router_add_matcher(
