@@ -13,7 +13,7 @@ I never thought I would stay at one company for eight years.
 
 What I remember most clearly is a café in San Francisco. Marco Palladino had just closed a round and wanted to talk about where Kong could go next. The pitch was simple and ambitious: let’s build the best API platform in the world.
 
-![IMG_5446](/img/kong/IMG_5446.JPG)
+![IMG_5446](/img/kong/IMG_5446.JPG "San Francisco, 2016")
 
 A little later, Augusto Marietti invited me to his home for dinner. He made zucchini pasta himself and told stories from the early days of the company, including how he once [crashed on Travis Kalanick’s couch](https://techcrunch.com/2017/03/23/years-after-crashing-on-travis-kalanicks-couch-this-italian-founder-just-raised-18-million-for-his-startup/) and lived on rice and beans just to keep costs down.
 
@@ -25,7 +25,7 @@ That was it. I was in.
 
 ### **The Early Years: Building the Core**
 
-![Gartner API 2025](/img/kong/1761137783696.jpeg)
+![Gartner API 2025](/img/kong/1761137783696.jpeg "Gartner API Management 2025")
 
 The first four years were about building the core of the company.
 
@@ -33,7 +33,7 @@ Kong was already a strong open-source project, but a company is a different thin
 
 That period also pushed us into some of the big architecture shifts of the time: cloud-native infrastructure, Infrastructure as Code, hybrid deployment. We launched our first cloud offering. We started our first AI initiative. Over time, Kong grew into one of the companies that helped define the API management category.
 
-![Gartner API 2025](/img/kong/gartner-api-connect.avif)
+![Gartner API 2025](/img/kong/gartner-api-connect.avif "Gartner API Connect 2025")
 
 
 
@@ -45,19 +45,19 @@ The next chapter took me back to Shanghai, with a lot of support from Saju Pilla
 
 I still remember landing there during the quarantine era and spending more than a month eating meals that tasted like damp cardboard. The first thing I did after getting out was meet Datong Sun and Wangchong Zhou at a small Shanghainese restaurant. I mostly just remember how good the food tasted.
 
-![1761137782464](/img/kong/1761137782464.jpeg)
+![1761137782464](/img/kong/1761137782464.jpeg "Shanghai Office, Early Days")
 
 After that, things moved quickly. We looked for office space, figured out the org design, built the hiring plan, and started rebuilding Kong’s engineering presence in China from scratch.
 
 
 
-![1761137782464](/img/kong/1761137783156.jpeg)
+![1761137782464](/img/kong/1761137783156.jpeg "Shanghai Team")
 
 At the beginning, it was just a handful of desks.
 
 There was no real playbook for what we were trying to do. No mature overseas template to copy. Not that much support. Just a lot of conviction, and a lot of work.
 
-![1761137782464](/img/kong/1761137786686.jpeg)
+![1761137782464](/img/kong/1761137786686.jpeg "Kong Shanghai Engineering Center")
 
 Four years later, that small start had turned into a 60+ person engineering center. We outgrew the office three times. The team took on some of Kong’s hardest core engineering problems and supported a business that had grown past $100M ARR.
 
