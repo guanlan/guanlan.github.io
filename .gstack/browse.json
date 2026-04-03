@@ -1,8 +1,8 @@
 {
-  "pid": 99103,
-  "port": 39408,
-  "token": "2d5a1cc6-03b9-4475-bdf5-a5a86bda949b",
-  "startedAt": "2026-04-02T23:09:14.823Z",
+  "pid": 60340,
+  "port": 53885,
+  "token": "466eadce-391c-4aec-a978-772f07c05698",
+  "startedAt": "2026-04-03T16:21:16.061Z",
   "serverPath": "/Users/guanlan/.claude/skills/gstack/browse/src/server.ts",
   "mode": "launched"
 }

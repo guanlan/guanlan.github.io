@@ -2,8 +2,8 @@
 title: "I Read Claude Code's Security Source Code. Here's What It Can't Solve."
 date: 2026-04-02
 author: "guanlan"
-tags: ["Agent","Infra"]
-images: ["/img/agent-infra-cover.png"]
+tags: ["Agent","Infra","Harness"]
+images: ["cover.png"]
 description: "A deep teardown of Claude Code's security architecture reveals a well-crafted defense-in-depth system — and the structural limits of bolting safety onto a shell-first world."
 ---
 
@@ -17,7 +17,7 @@ Within the confines of a development environment, it offers what amounts to a ca
 
 Claude Code's security model is textbook defense-in-depth with four distinct layers, each addressing a different category of risk.
 
-![claude-code-secuirty-overview](claude-code-secuirty-overview.png)
+![claude-code-secuirty-overview](claude-code-secuirty-overview.png "Security Architecture Overview")
 
 - **Application Layer** `permissions.ts` serves as the unified permission gateway.
 
@@ -36,7 +36,7 @@ Claude Code's security model is textbook defense-in-depth with four distinct lay
   - Linux and WSL employ bubblewrap. Filesystem and network access are hard-constrained at this layer.
   - Default write permissions extend beyond the current working directory to include the Claude temp directory and several explicitly permitted paths.
 
-  ![claude-sec-arch](claude-sec-arch.png)
+  ![claude-sec-arch](claude-sec-arch.png "Security Architecture Flowchart")
 
 The most lucid aspect of this design is that it relegates probabilistic judgment to the very last resort.
 
@@ -52,7 +52,7 @@ The most lucid aspect of this design is that it relegates probabilistic judgment
 
 ## The Auto Mode Classifier: Useful, but Unfit as a Security Boundary
 
-![auto-mode-trade-off](auto-mode-trade-off.png)
+![auto-mode-trade-off](auto-mode-trade-off.png "Auto Mode Trade-offs")
 
 In the diagram, Manual permission represents the current default — operations require human approval. Bypass permission mode is the now-infamous `--dangerously-skip-permissions` flag. Auto mode aspires to strike an optimal balance among security, usability, and agent autonomy.
 
