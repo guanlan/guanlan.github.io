@@ -1,19 +1,15 @@
 ---
-title: "I Read Claude Code’s Security Layer. Here’s What It Still Can’t Solve."
+title: "I Read Claude Code’s Leaked Source. It Exposes the Limits of Shell-First Safety."
 date: 2026-04-02
 author: "guanlan"
 tags: ["Agent","Infra","Harness"]
 images: ["cover.png"]
-description: "Claude Code is a strong local security system. It also shows why shell-first safety breaks down once agents start using real identities and causing real side effects."
+description: "I read through Claude Code’s leaked source and found both a very strong local security design and a clear boundary: shell-first safety does not solve long-horizon agent governance."
 ---
 
 Imagine this: a normal curl command is running in your terminal, sending runtime logs to a monitoring webhook. To a rule-based classifier, this looks routine. But what if the command was triggered by a hidden file in the codebase, one laced with a malicious prompt?
 
-Over the past few days, I read through the source code of Claude Code’s security layer.
-
-
-
-Inside a local development environment, Claude Code is a very strong piece of security engineering. But the moment an agent starts touching real identities and real side effects, the problem changes.
+After Claude Code’s source leaked, I read through its security layer line by line. What I found was both impressive and clarifying: Claude Code is a very strong local security system, and it also shows exactly where that model starts to break. Once agents begin acting with real identities and causing real side effects, the problem is no longer just shell safety.
 
 ## A Strong Defense-in-Depth Design
 
