@@ -27,6 +27,7 @@ enableEmoji = true
 
   [params.social]
     RSS = true
+    Instagram = ""
 
   [params.page]
     lightgallery = true
