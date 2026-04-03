@@ -1,110 +1,140 @@
-// 自定义代码高亮样式
-// Chroma Monokai 主题颜色
+// Layout and overflow fixes for highlighted code blocks.
 
 .single .content .highlight {
-  // 代码块背景色
+  overflow: hidden !important;
+  max-width: 100% !important;
+  position: relative !important;
+  margin: 0.75rem 0 !important;
+  border: 1px solid #d8dee4;
+  border-radius: 10px !important;
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.06) !important;
+
   > .chroma {
-    background-color: #272822 !important;
-    color: #f8f8f2 !important;
-    
-    .code-header {
-      background-color: #3c3d38 !important;
-      color: #f8f8f2 !important;
+    overflow: visible !important;
+    position: relative !important;
+
+    .table-wrapper {
+      overflow-x: auto !important;
+      overflow-y: hidden !important;
+      max-width: 100% !important;
+      width: 100% !important;
+      display: block !important;
+      margin: 0 !important;
+      scrollbar-width: thin !important;
+      scrollbar-color: #c1c7d0 #eef2f6 !important;
+
+      &::-webkit-scrollbar {
+        height: 10px !important;
+        background-color: #eef2f6 !important;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background-color: #c1c7d0 !important;
+        border-radius: 999px !important;
+      }
+
+      &::-webkit-scrollbar-thumb:hover {
+        background-color: #aeb6c2 !important;
+      }
+
+      table {
+        width: auto !important;
+        min-width: 100% !important;
+        display: table !important;
+        table-layout: auto !important;
+        margin: 0 !important;
+        border: 0 !important;
+      }
+
+      tbody {
+        display: table-row-group !important;
+      }
+
+      tr {
+        display: table-row !important;
+      }
+
+      td {
+        padding: 0 !important;
+        vertical-align: top !important;
+        display: table-cell !important;
+        border: 0 !important;
+      }
+
+      td:first-child {
+        min-width: 2.75rem !important;
+        position: sticky !important;
+        left: 0 !important;
+        z-index: 1 !important;
+        padding-right: 0.5rem !important;
+        background: #f6f8fa !important;
+        border-right: 1px solid #e5e7eb !important;
+      }
+
+      td:first-child pre {
+        margin: 0 !important;
+        padding: 0.75rem 0 0.75rem 0.75rem !important;
+      }
+
+      td:last-child {
+        width: 100% !important;
+      }
+
+      td:last-child pre {
+        margin: 0 !important;
+        padding: 0.75rem 1rem !important;
+        overflow-x: auto !important;
+        overflow-y: hidden !important;
+        white-space: pre !important;
+        word-wrap: normal !important;
+        word-break: normal !important;
+      }
+
+      td:last-child code {
+        display: inline-block !important;
+        min-width: 100% !important;
+        white-space: pre !important;
+        word-wrap: normal !important;
+        word-break: normal !important;
+        line-height: 1.55 !important;
+      }
     }
-    
-    &.open .code-header {
-      background-color: #3c3d38 !important;
+
+    > pre {
+      overflow-x: auto !important;
+      max-width: 100% !important;
+      white-space: pre !important;
+      word-wrap: normal !important;
+      word-break: normal !important;
+      padding: 0.9rem 1rem !important;
+      margin: 0 !important;
     }
-  }
-  
-  // 行号颜色
-  .ln, .lnt {
-    color: #7f7f7f !important;
-  }
-  
-  // 关键字
-  .k, .kc, .kd, .kp, .kr, .kt, .no { 
-    color: #66d9ef !important; 
-  }
-  
-  // 关键字 (import, from 等)
-  .kn, .nt, .o, .ow { 
-    color: #f92672 !important; 
-  }
-  
-  // 函数名、类名、属性名
-  .nf, .fm, .nc, .na, .nx, .ne, .nd { 
-    color: #a6e22e !important; 
-  }
-  
-  // 字符串
-  .s, .sa, .sb, .sc, .dl, .sd, .s2, .sh, .si, .sx, .sr, .s1, .ss, .ld { 
-    color: #e6db74 !important; 
-  }
-  
-  // 数字
-  .m, .mb, .mf, .mh, .mi, .il, .mo, .l { 
-    color: #ae81ff !important; 
-  }
-  
-  // 注释
-  .c, .ch, .cm, .c1, .cs, .cp, .cpf { 
-    color: #75715e !important; 
-    font-style: italic !important;
-  }
-  
-  // 字符串转义
-  .se { 
-    color: #ae81ff !important; 
-  }
-  
-  // 错误
-  .err { 
-    color: #960050 !important;
-    background-color: #1e0010 !important;
-  }
-  
-  // 高亮行
-  .hl { 
-    background-color: #3c3d38 !important; 
-  }
-  
-  // 代码块内的所有元素背景色
-  pre, code, table, tr, td {
-    background-color: #272822 !important;
+
+    > pre code {
+      display: inline-block !important;
+      min-width: 100% !important;
+      white-space: pre !important;
+      word-wrap: normal !important;
+      word-break: normal !important;
+      line-height: 1.55 !important;
+    }
   }
 }
 
-// 暗色主题调整
 [theme=dark] .single .content .highlight {
-  > .chroma {
-    // 保持 Monokai 主题在暗色模式下的一致性
-    background-color: #272822 !important;
-    
-    .code-header {
-      background-color: #3c3d38 !important;
-      color: #f8f8f2 !important;
-    }
-  }
-  
-  pre, code, table, tr, td {
-    background-color: #272822 !important;
-  }
+  border-color: #d8dee4 !important;
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.06) !important;
 }
 
-// 文章内图片保持正确比例
 .single .content img {
   height: auto;
   max-width: 100%;
 }
 
-// 内联代码样式
-.single .content code {
-  background-color: #f5f5f5 !important;
-  color: #E74C3C !important;
-  
-  [theme=dark] & {
-    background-color: #272822 !important;
-    color: #E5BF78 !important;
+@media (max-width: 768px) {
+  .single .content .highlight {
+    margin-left: -0.25rem !important;
+    margin-right: -0.25rem !important;
+    border-radius: 8px !important;
   }
 }

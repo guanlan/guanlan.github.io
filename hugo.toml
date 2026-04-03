@@ -31,10 +31,6 @@ enableEmoji = true
 
   [params.page]
     lightgallery = true
-    [params.page.library]
-      [params.page.library.css]
-        # 添加代码高亮样式文件
-        codeHighlight = "css/_code-highlight.scss"
 
 [menu]
   [[menu.main]]
