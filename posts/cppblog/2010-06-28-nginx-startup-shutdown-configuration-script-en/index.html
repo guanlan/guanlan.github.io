@@ -7,7 +7,7 @@
         <title>nginx Startup, Shutdown and Configuration Script - Guanlan Dai</title><meta name="Description" content="This is my cool site"><meta property="og:url" content="https://rmmod.com/posts/cppblog/2010-06-28-nginx-startup-shutdown-configuration-script-en/">
   <meta property="og:site_name" content="Guanlan Dai">
   <meta property="og:title" content="nginx Startup, Shutdown and Configuration Script">
-  <meta property="og:description" content="################################################ #!/bin/bash # v.0.0.3 # create by jackbillow at 2007.10.15 # redevelop by XGuru at 2010.6.28 # On Ubuntu 10.04 # nginx - This shell script takes care of starting and stopping nginx. # # description: nginx [engine x] is light http web/proxy server # that answers incoming ftp service requests. ############################################### nginx_path=&#34;/usr/local/nginx&#34; nginx_pid=&#34;/usr/local/nginx/logs/nginx.pid&#34; prog=&#34;nginx&#34; RETVAL=0 start() { # Start daemons. if [ -e $nginx_path/conf/nginx.conf ];then echo -n $&#34;Starting $prog: &#34; $nginx_path/sbin/nginx -c $nginx_path/conf/nginx.conf &amp; RETVAL=$? [ $RETVAL -eq 0 ] &amp;&amp; { echo Start &#34;$prog&#34; successfully! } else RETVAL=1 fi return $RETVAL } # Stop daemons. stop() { echo -n $&#34;Stopping $prog\n&#34; sudo killall -9 nginx RETVAL=$? } # See how we were called. conf(){ gvim &#34;$nginx_path/conf/nginx.conf&#34; } case &#34;$1&#34; in start) start ;; stop) stop ;; conf) conf ;; restart) stop start ;; *) echo $&#34;Usage: $0 {start|stop|conf|restart}&#34; echo $&#34;Your may need root privilege to execute this script!&#34; exit 1 esac exit $RETVAL Original link: http://www.cppblog.com/xguru/archive/2010/06/28/118868.html">
+  <meta property="og:description" content="1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 ################################################ #!/bin/bash # v.0.0.3 # create by jackbillow at 2007.10.15 # redevelop by XGuru at 2010.6.28 # On Ubuntu 10.04 # nginx - This shell script takes care of starting and stopping nginx. # # description: nginx [engine x] is light http web/proxy server # that answers incoming ftp service requests. ############################################### nginx_path=&#34;/usr/local/nginx&#34; nginx_pid=&#34;/usr/local/nginx/logs/nginx.pid&#34; prog=&#34;nginx&#34; RETVAL=0 start() { # Start daemons. if [ -e $nginx_path/conf/nginx.conf ];then echo -n $&#34;Starting $prog: &#34; $nginx_path/sbin/nginx -c $nginx_path/conf/nginx.conf &amp; RETVAL=$? [ $RETVAL -eq 0 ] &amp;&amp; { echo Start &#34;$prog&#34; successfully! } else RETVAL=1 fi return $RETVAL } # Stop daemons. stop() { echo -n $&#34;Stopping $prog\n&#34; sudo killall -9 nginx RETVAL=$? } # See how we were called. conf(){ gvim &#34;$nginx_path/conf/nginx.conf&#34; } case &#34;$1&#34; in start) start ;; stop) stop ;; conf) conf ;; restart) stop start ;; *) echo $&#34;Usage: $0 {start|stop|conf|restart}&#34; echo $&#34;Your may need root privilege to execute this script!&#34; exit 1 esac exit $RETVAL Original link: http://www.cppblog.com/xguru/archive/2010/06/28/118868.html">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
@@ -17,7 +17,7 @@
 
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="nginx Startup, Shutdown and Configuration Script">
-  <meta name="twitter:description" content="################################################ #!/bin/bash # v.0.0.3 # create by jackbillow at 2007.10.15 # redevelop by XGuru at 2010.6.28 # On Ubuntu 10.04 # nginx - This shell script takes care of starting and stopping nginx. # # description: nginx [engine x] is light http web/proxy server # that answers incoming ftp service requests. ############################################### nginx_path=&#34;/usr/local/nginx&#34; nginx_pid=&#34;/usr/local/nginx/logs/nginx.pid&#34; prog=&#34;nginx&#34; RETVAL=0 start() { # Start daemons. if [ -e $nginx_path/conf/nginx.conf ];then echo -n $&#34;Starting $prog: &#34; $nginx_path/sbin/nginx -c $nginx_path/conf/nginx.conf &amp; RETVAL=$? [ $RETVAL -eq 0 ] &amp;&amp; { echo Start &#34;$prog&#34; successfully! } else RETVAL=1 fi return $RETVAL } # Stop daemons. stop() { echo -n $&#34;Stopping $prog\n&#34; sudo killall -9 nginx RETVAL=$? } # See how we were called. conf(){ gvim &#34;$nginx_path/conf/nginx.conf&#34; } case &#34;$1&#34; in start) start ;; stop) stop ;; conf) conf ;; restart) stop start ;; *) echo $&#34;Usage: $0 {start|stop|conf|restart}&#34; echo $&#34;Your may need root privilege to execute this script!&#34; exit 1 esac exit $RETVAL Original link: http://www.cppblog.com/xguru/archive/2010/06/28/118868.html">
+  <meta name="twitter:description" content="1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 ################################################ #!/bin/bash # v.0.0.3 # create by jackbillow at 2007.10.15 # redevelop by XGuru at 2010.6.28 # On Ubuntu 10.04 # nginx - This shell script takes care of starting and stopping nginx. # # description: nginx [engine x] is light http web/proxy server # that answers incoming ftp service requests. ############################################### nginx_path=&#34;/usr/local/nginx&#34; nginx_pid=&#34;/usr/local/nginx/logs/nginx.pid&#34; prog=&#34;nginx&#34; RETVAL=0 start() { # Start daemons. if [ -e $nginx_path/conf/nginx.conf ];then echo -n $&#34;Starting $prog: &#34; $nginx_path/sbin/nginx -c $nginx_path/conf/nginx.conf &amp; RETVAL=$? [ $RETVAL -eq 0 ] &amp;&amp; { echo Start &#34;$prog&#34; successfully! } else RETVAL=1 fi return $RETVAL } # Stop daemons. stop() { echo -n $&#34;Stopping $prog\n&#34; sudo killall -9 nginx RETVAL=$? } # See how we were called. conf(){ gvim &#34;$nginx_path/conf/nginx.conf&#34; } case &#34;$1&#34; in start) start ;; stop) stop ;; conf) conf ;; restart) stop start ;; *) echo $&#34;Usage: $0 {start|stop|conf|restart}&#34; echo $&#34;Your may need root privilege to execute this script!&#34; exit 1 esac exit $RETVAL Original link: http://www.cppblog.com/xguru/archive/2010/06/28/118868.html">
       <meta name="twitter:site" content="@guanlandai">
 <meta name="application-name" content="My cool site">
 <meta name="apple-mobile-web-app-title" content="My cool site"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
@@ -31,7 +31,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/rmmod.com\/posts\/cppblog\/2010-06-28-nginx-startup-shutdown-configuration-script-en\/"
-        },"genre": "posts","keywords": "original","wordcount":  158 ,
+        },"genre": "posts","keywords": "original","wordcount":  222 ,
         "url": "https:\/\/rmmod.com\/posts\/cppblog\/2010-06-28-nginx-startup-shutdown-configuration-script-en\/","datePublished": "2010-06-28T00:00:00+08:00","dateModified": "2010-06-28T00:00:00+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -75,79 +75,149 @@
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">nginx Startup, Shutdown and Configuration Script</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>guanlan</a>
 </span>&nbsp;<span class="post-category">included in <a href="/categories/nginx/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Nginx</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2010-06-28">2010-06-28</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;158 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;One minute&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2010-06-28">2010-06-28</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;222 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;2 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
                     <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents"></nav></div>
-            </div><div class="content" id="content"><pre><code class="bash">################################################
-#!/bin/bash
-# v.0.0.3
-# create by jackbillow at 2007.10.15
-# redevelop by XGuru at 2010.6.28
-# On Ubuntu 10.04
-# nginx - This shell script takes care of starting and stopping nginx.
-#
-# description: nginx [engine x] is light http web/proxy server
-# that answers incoming ftp service requests.
-###############################################
-
-nginx_path=&#34;/usr/local/nginx&#34;
-nginx_pid=&#34;/usr/local/nginx/logs/nginx.pid&#34;
-prog=&#34;nginx&#34;
-
-RETVAL=0
-
-
-start() {
-# Start daemons.
-        if [ -e $nginx_path/conf/nginx.conf ];then
-          echo -n $&#34;Starting $prog: &#34;
-          $nginx_path/sbin/nginx -c $nginx_path/conf/nginx.conf &amp;
-          RETVAL=$?
-        [ $RETVAL -eq 0 ] &amp;&amp; {
-        echo Start &#34;$prog&#34; successfully!
-        }
-        else
-        RETVAL=1
-        fi
-        return $RETVAL
-}
-# Stop daemons.
-stop() {
-        echo -n $&#34;Stopping $prog\n&#34;
-        sudo killall -9 nginx
-        RETVAL=$?
-}
-# See how we were called.
-
-conf(){
-        gvim &#34;$nginx_path/conf/nginx.conf&#34;
-}
-case &#34;$1&#34; in
-start)
-        start
-        ;;
-stop)
-        stop
-        ;;
-conf)
-        conf
-        ;;        
-restart)
-        stop
-        start
-        ;;
-*)
-        echo $&#34;Usage: $0 {start|stop|conf|restart}&#34;
-        echo $&#34;Your may need root privilege to execute this script!&#34;
-        exit 1
-esac
-exit $RETVAL</code></pre>
-<hr>
+            </div><div class="content" id="content"><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">################################################</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#!/bin/bash</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># v.0.0.3</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># create by jackbillow at 2007.10.15</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># redevelop by XGuru at 2010.6.28</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># On Ubuntu 10.04</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># nginx - This shell script takes care of starting and stopping nginx.</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># description: nginx [engine x] is light http web/proxy server</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># that answers incoming ftp service requests.</span>
+</span></span><span class="line"><span class="cl"><span class="c1">###############################################</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">nginx_path</span><span class="o">=</span><span class="s2">&#34;/usr/local/nginx&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">nginx_pid</span><span class="o">=</span><span class="s2">&#34;/usr/local/nginx/logs/nginx.pid&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">prog</span><span class="o">=</span><span class="s2">&#34;nginx&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">RETVAL</span><span class="o">=</span><span class="m">0</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">start<span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Start daemons.</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">[</span> -e <span class="nv">$nginx_path</span>/conf/nginx.conf <span class="o">]</span><span class="p">;</span><span class="k">then</span>
+</span></span><span class="line"><span class="cl">          <span class="nb">echo</span> -n $<span class="s2">&#34;Starting </span><span class="nv">$prog</span><span class="s2">: &#34;</span>
+</span></span><span class="line"><span class="cl">          <span class="nv">$nginx_path</span>/sbin/nginx -c <span class="nv">$nginx_path</span>/conf/nginx.conf <span class="p">&amp;</span>
+</span></span><span class="line"><span class="cl">          <span class="nv">RETVAL</span><span class="o">=</span><span class="nv">$?</span>
+</span></span><span class="line"><span class="cl">        <span class="o">[</span> <span class="nv">$RETVAL</span> -eq <span class="m">0</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">echo</span> Start <span class="s2">&#34;</span><span class="nv">$prog</span><span class="s2">&#34;</span> successfully!
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">RETVAL</span><span class="o">=</span><span class="m">1</span>
+</span></span><span class="line"><span class="cl">        <span class="k">fi</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nv">$RETVAL</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Stop daemons.</span>
+</span></span><span class="line"><span class="cl">stop<span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">echo</span> -n $<span class="s2">&#34;Stopping </span><span class="nv">$prog</span><span class="s2">\n&#34;</span>
+</span></span><span class="line"><span class="cl">        sudo killall -9 nginx
+</span></span><span class="line"><span class="cl">        <span class="nv">RETVAL</span><span class="o">=</span><span class="nv">$?</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># See how we were called.</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">conf<span class="o">(){</span>
+</span></span><span class="line"><span class="cl">        gvim <span class="s2">&#34;</span><span class="nv">$nginx_path</span><span class="s2">/conf/nginx.conf&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">case</span> <span class="s2">&#34;</span><span class="nv">$1</span><span class="s2">&#34;</span> in
+</span></span><span class="line"><span class="cl">start<span class="o">)</span>
+</span></span><span class="line"><span class="cl">        start
+</span></span><span class="line"><span class="cl">        <span class="p">;;</span>
+</span></span><span class="line"><span class="cl">stop<span class="o">)</span>
+</span></span><span class="line"><span class="cl">        stop
+</span></span><span class="line"><span class="cl">        <span class="p">;;</span>
+</span></span><span class="line"><span class="cl">conf<span class="o">)</span>
+</span></span><span class="line"><span class="cl">        conf
+</span></span><span class="line"><span class="cl">        <span class="p">;;</span>        
+</span></span><span class="line"><span class="cl">restart<span class="o">)</span>
+</span></span><span class="line"><span class="cl">        stop
+</span></span><span class="line"><span class="cl">        start
+</span></span><span class="line"><span class="cl">        <span class="p">;;</span>
+</span></span><span class="line"><span class="cl">*<span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">echo</span> $<span class="s2">&#34;Usage: </span><span class="nv">$0</span><span class="s2"> {start|stop|conf|restart}&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">echo</span> <span class="s2">$&#34;Your may need root privilege to execute this script!&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">exit</span> <span class="m">1</span>
+</span></span><span class="line"><span class="cl"><span class="k">esac</span>
+</span></span><span class="line"><span class="cl"><span class="nb">exit</span> <span class="nv">$RETVAL</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
 <p><em>Original link: <a href="http://www.cppblog.com/xguru/archive/2010/06/28/118868.html" target="_blank" rel="noopener noreffer">http://www.cppblog.com/xguru/archive/2010/06/28/118868.html</a>
 </em></p>
 </div><div class="post-footer" id="post-footer">

@@ -9,11 +9,11 @@
   <meta property="og:title" content="A &#39;Strange Phenomenon&#39; in C/C&#43;&#43; Arrays">
   <meta property="og:description" content="Everyone is familiar with using arrays, right?
 Take a look at this program, it’s quite simple.
-#include&lt;iostream&gt; int main() { int a[] = {1,2,3,4,5}; for(int i = 0 ; i &lt; 5; i&#43;&#43;) std::cout &lt;&lt; i[a] &lt;&lt; &#34; &#34;; return 0; } Now look carefully at line 6.
+1 2 3 4 5 6 7 8 #include&lt;iostream&gt; int main() { int a[] = {1,2,3,4,5}; for(int i = 0 ; i &lt; 5; i&#43;&#43;) std::cout &lt;&lt; i[a] &lt;&lt; &#34; &#34;; return 0; } Now look carefully at line 6.
 What did you notice?
 Try compiling it to see if it passes?
 Let’s simplify this program even more
-int a[5] = {1,2,3,4,5}; int b = 1[a]; Now let’s look at the generated assembly code">
+1 2 int a[5] = {1,2,3,4,5}; int b = 1[a]; Now let’s look at the generated assembly code">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
@@ -25,11 +25,11 @@ int a[5] = {1,2,3,4,5}; int b = 1[a]; Now let’s look at the generated assembly
   <meta name="twitter:title" content="A &#39;Strange Phenomenon&#39; in C/C&#43;&#43; Arrays">
   <meta name="twitter:description" content="Everyone is familiar with using arrays, right?
 Take a look at this program, it’s quite simple.
-#include&lt;iostream&gt; int main() { int a[] = {1,2,3,4,5}; for(int i = 0 ; i &lt; 5; i&#43;&#43;) std::cout &lt;&lt; i[a] &lt;&lt; &#34; &#34;; return 0; } Now look carefully at line 6.
+1 2 3 4 5 6 7 8 #include&lt;iostream&gt; int main() { int a[] = {1,2,3,4,5}; for(int i = 0 ; i &lt; 5; i&#43;&#43;) std::cout &lt;&lt; i[a] &lt;&lt; &#34; &#34;; return 0; } Now look carefully at line 6.
 What did you notice?
 Try compiling it to see if it passes?
 Let’s simplify this program even more
-int a[5] = {1,2,3,4,5}; int b = 1[a]; Now let’s look at the generated assembly code">
+1 2 int a[5] = {1,2,3,4,5}; int b = 1[a]; Now let’s look at the generated assembly code">
       <meta name="twitter:site" content="@guanlandai">
 <meta name="application-name" content="My cool site">
 <meta name="apple-mobile-web-app-title" content="My cool site"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
@@ -43,7 +43,7 @@ int a[5] = {1,2,3,4,5}; int b = 1[a]; Now let’s look at the generated assembly
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/rmmod.com\/posts\/cppblog\/2009-12-24-cc-array-peculiar-phenomenon-en\/"
-        },"genre": "posts","keywords": "Original","wordcount":  240 ,
+        },"genre": "posts","keywords": "Original","wordcount":  259 ,
         "url": "https:\/\/rmmod.com\/posts\/cppblog\/2009-12-24-cc-array-peculiar-phenomenon-en\/","datePublished": "2009-12-24T00:00:00+08:00","dateModified": "2009-12-24T00:00:00+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -87,7 +87,7 @@ int a[5] = {1,2,3,4,5}; int b = 1[a]; Now let’s look at the generated assembly
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">A &#39;Strange Phenomenon&#39; in C/C&#43;&#43; Arrays</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>guanlan</a>
 </span>&nbsp;<span class="post-category">included in <a href="/categories/c++/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>C++</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2009-12-24">2009-12-24</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;240 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2009-12-24">2009-12-24</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;259 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;2 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
@@ -97,31 +97,68 @@ int a[5] = {1,2,3,4,5}; int b = 1[a]; Now let’s look at the generated assembly
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents"></nav></div>
             </div><div class="content" id="content"><p>Everyone is familiar with using arrays, right?<br>
 Take a look at this program, it&rsquo;s quite simple.</p>
-<pre><code class="cpp">#include&lt;iostream&gt;
-int main()
-{
-    int a[] = {1,2,3,4,5};
-    for(int i = 0 ; i &lt; 5; i&#43;&#43;)
-        std::cout &lt;&lt; i[a] &lt;&lt; &#34; &#34;;
-    return 0;
-}</code></pre>
-<p>Now look carefully at line 6.<br>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="cp">#include&lt;iostream&gt;
+</span></span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="kt">int</span> <span class="n">a</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">};</span>
+</span></span><span class="line"><span class="cl">    <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span> <span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">i</span><span class="p">[</span><span class="n">a</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="s">&#34; &#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Now look carefully at line 6.<br>
 What did you notice?<br>
 Try compiling it to see if it passes?</p>
 <p>Let&rsquo;s simplify this program even more</p>
-<pre><code class="cpp">int a[5] = {1,2,3,4,5};
-int b = 1[a];</code></pre>
-<p>Now let&rsquo;s look at the generated assembly code</p>
-<pre><code class="assembly">4:       int a[5] = {1,2,3,4,5};
-00401568   mov         dword ptr [ebp-14h],1
-0040156F   mov         dword ptr [ebp-10h],2
-00401576   mov         dword ptr [ebp-0Ch],3
-0040157D   mov         dword ptr [ebp-8],4
-00401584   mov         dword ptr [ebp-4],5
-5:        int b = 1[a];
-0040158B   mov         eax,dword ptr [ebp-10h]
-0040158E   mov         dword ptr [ebp-18h],eax</code></pre>
-<p>You&rsquo;re not seeing things wrong. At this moment, this array is possessed by Chuck Norris - the addresses pointed to by a[1] and 1[a] are the same, both are [ebp-10h].</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">a</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">};</span>
+</span></span><span class="line"><span class="cl"><span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">1</span><span class="p">[</span><span class="n">a</span><span class="p">];</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Now let&rsquo;s look at the generated assembly code</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">4:       int a[5] = {1,2,3,4,5};
+</span></span><span class="line"><span class="cl">00401568   mov         dword ptr [ebp-14h],1
+</span></span><span class="line"><span class="cl">0040156F   mov         dword ptr [ebp-10h],2
+</span></span><span class="line"><span class="cl">00401576   mov         dword ptr [ebp-0Ch],3
+</span></span><span class="line"><span class="cl">0040157D   mov         dword ptr [ebp-8],4
+</span></span><span class="line"><span class="cl">00401584   mov         dword ptr [ebp-4],5
+</span></span><span class="line"><span class="cl">5:        int b = 1[a];
+</span></span><span class="line"><span class="cl">0040158B   mov         eax,dword ptr [ebp-10h]
+</span></span><span class="line"><span class="cl">0040158E   mov         dword ptr [ebp-18h],eax
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>You&rsquo;re not seeing things wrong. At this moment, this array is possessed by Chuck Norris - the addresses pointed to by a[1] and 1[a] are the same, both are [ebp-10h].</p>
 <p>Why?</p>
 <p>Let&rsquo;s recall the relationship between arrays and pointers. How do we represent arrays with pointers?<br>
 *a is a reference to the value at index 0 in array a, i.e., a[0],<br>

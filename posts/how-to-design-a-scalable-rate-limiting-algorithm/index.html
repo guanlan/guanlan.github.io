@@ -32,7 +32,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/rmmod.com\/posts\/how-to-design-a-scalable-rate-limiting-algorithm\/"
-        },"genre": "posts","keywords": "Kong, Rate Limiting","wordcount":  2466 ,
+        },"genre": "posts","keywords": "Kong, Rate Limiting","wordcount":  2499 ,
         "url": "https:\/\/rmmod.com\/posts\/how-to-design-a-scalable-rate-limiting-algorithm\/","datePublished": "2021-01-15T12:19:18+08:00","dateModified": "2021-01-15T12:19:18+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -76,7 +76,7 @@
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">How to Design a Scalable Rate Limiting Algorithm</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>guanlan</a>
 </span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2021-01-15">2021-01-15</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2466 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2021-01-15">2021-01-15</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2499 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;12 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
@@ -268,41 +268,93 @@
 <p>The next step is <a href="https://konghq.com/blog/set-up-kong-gateway" target="_blank" rel="noopener noreffer">adding an API</a>
  on Kong Gateway using the admin API, which can be done by setting up a Route and a Service entity. We will use <a href="https://httpbin.org/" target="_blank" rel="noopener noreffer">httpbin</a>
 , a free testing service for APIs, as our example upstream service,. The get URL will mirror back my request data as JSON. We also assume Kong Gateway is running on the local system at the default ports.</p>
-<pre><code class="bash">curl  -i  -X  POST
-  --url http://localhost:8001/services/
-  --data  &#39;name=httpbin
-  --data &#39;url=http://httpbin.org/get&#39;
-
-curl  -i  -X  POST
-  --url http://localhost:8001/services/httpbin/routes
-  --data  &#39;paths[]=/test&#39;</code></pre>
-<p>Now Kong Gateway is aware that every request sent to &ldquo;/test&rdquo; should be proxied to httpbin. We can make the following request to Kong Gateway on its proxy port to test it:</p>
-<pre><code class="bash">curl http://localhost:8000/test
-{
-&#34;args&#34;:  {},
-&#34;headers&#34;:  {
-&#34;Accept&#34;:  &#34;*/*&#34;,
-&#34;Connection&#34;:  &#34;close&#34;,
-&#34;Host&#34;:  &#34;httpbin.org&#34;,
-&#34;User-Agent&#34;:  &#34;curl/7.51.0&#34;,
-&#34;X-Forwarded-Host&#34;:  &#34;localhost&#34;
-},
-&#34;origin&#34;:  &#34;localhost, 52.89.171.202&#34;,
-&#34;url&#34;:  &#34;http://localhost/get&#34;
-}</code></pre>
-<p>It&rsquo;s alive! Kong Gateway received the request and proxied it to httpbin, which has mirrored back the headers for my request and my origin IP address.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">curl  -i  -X  POST
+</span></span><span class="line"><span class="cl">  --url http://localhost:8001/services/
+</span></span><span class="line"><span class="cl">  --data  <span class="s1">&#39;name=httpbin
+</span></span></span><span class="line"><span class="cl"><span class="s1">  --data &#39;</span><span class="nv">url</span><span class="o">=</span>http://httpbin.org/get<span class="s1">&#39;
+</span></span></span><span class="line"><span class="cl"><span class="s1">
+</span></span></span><span class="line"><span class="cl"><span class="s1">curl  -i  -X  POST
+</span></span></span><span class="line"><span class="cl"><span class="s1">  --url http://localhost:8001/services/httpbin/routes
+</span></span></span><span class="line"><span class="cl"><span class="s1">  --data  &#39;</span>paths<span class="o">[]=</span>/test<span class="err">&#39;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Now Kong Gateway is aware that every request sent to &ldquo;/test&rdquo; should be proxied to httpbin. We can make the following request to Kong Gateway on its proxy port to test it:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">curl http://localhost:8000/test
+</span></span><span class="line"><span class="cl"><span class="o">{</span>
+</span></span><span class="line"><span class="cl"><span class="s2">&#34;args&#34;</span>:  <span class="o">{}</span>,
+</span></span><span class="line"><span class="cl"><span class="s2">&#34;headers&#34;</span>:  <span class="o">{</span>
+</span></span><span class="line"><span class="cl"><span class="s2">&#34;Accept&#34;</span>:  <span class="s2">&#34;*/*&#34;</span>,
+</span></span><span class="line"><span class="cl"><span class="s2">&#34;Connection&#34;</span>:  <span class="s2">&#34;close&#34;</span>,
+</span></span><span class="line"><span class="cl"><span class="s2">&#34;Host&#34;</span>:  <span class="s2">&#34;httpbin.org&#34;</span>,
+</span></span><span class="line"><span class="cl"><span class="s2">&#34;User-Agent&#34;</span>:  <span class="s2">&#34;curl/7.51.0&#34;</span>,
+</span></span><span class="line"><span class="cl"><span class="s2">&#34;X-Forwarded-Host&#34;</span>:  <span class="s2">&#34;localhost&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>,
+</span></span><span class="line"><span class="cl"><span class="s2">&#34;origin&#34;</span>:  <span class="s2">&#34;localhost, 52.89.171.202&#34;</span>,
+</span></span><span class="line"><span class="cl"><span class="s2">&#34;url&#34;</span>:  <span class="s2">&#34;http://localhost/get&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>It&rsquo;s alive! Kong Gateway received the request and proxied it to httpbin, which has mirrored back the headers for my request and my origin IP address.</p>
 <h3 id="adding-basic-rate-limiting">Adding Basic Rate-Limiting</h3>
 <p>Let&rsquo;s go ahead and protect it from an excessive number of requests by adding the rate-limiting functionality using the community edition <a href="https://getkong.org/plugins/rate-limiting" target="_blank" rel="noopener noreffer">Rate-Limiting plugin</a>
 , with a limit of 5 requests per minute from every consumer:</p>
-<pre><code class="bash">curl  -i  -X  POST http://localhost:8001/services/httpbin/plugins/
--d  &#34;name=rate-limiting&#34;
--d  &#34;config.minute=5&#34;</code></pre>
-<p>If we now make more than five requests, Kong Gateway will respond with the following error message:</p>
-<pre><code class="bash">curl http://localhost:8000/test
-{
-&#34;message&#34;:&#34;API rate limit exceeded&#34;
-}</code></pre>
-<p>Looking good! We have added an API on Kong Gateway, and we added rate-limiting in just two HTTP requests to the admin API.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">curl  -i  -X  POST http://localhost:8001/services/httpbin/plugins/
+</span></span><span class="line"><span class="cl">-d  <span class="s2">&#34;name=rate-limiting&#34;</span>
+</span></span><span class="line"><span class="cl">-d  <span class="s2">&#34;config.minute=5&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>If we now make more than five requests, Kong Gateway will respond with the following error message:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">curl http://localhost:8000/test
+</span></span><span class="line"><span class="cl"><span class="o">{</span>
+</span></span><span class="line"><span class="cl"><span class="s2">&#34;message&#34;</span>:<span class="s2">&#34;API rate limit exceeded&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Looking good! We have added an API on Kong Gateway, and we added rate-limiting in just two HTTP requests to the admin API.</p>
 <p>It defaults to rate limiting by IP address using fixed windows and synchronizes across all nodes in your cluster using your default datastore. For other options, including rate limiting per consumer or using another datastore like Redis, please see the <a href="https://getkong.org/plugins/rate-limiting" target="_blank" rel="noopener noreffer">documentation</a>
 .</p>
 <p>For a more detailed tutorial, check out <a href="https://konghq.com/blog/kong-gateway-rate-limiting" target="_blank" rel="noopener noreffer">Protecting Services With Kong Gateway Rate Limiting &raquo;</a>
@@ -312,12 +364,23 @@ curl  -i  -X  POST
  adds support for the sliding window algorithm for better control and performance. The sliding window prevents your API from being overloaded near window boundaries, as explained in the sections above. For low latency, it uses an in-memory table of the counters and can synchronize across the cluster using asynchronous or synchronous updates. This gives the latency of local thresholds and is scalable across your entire cluster.</p>
 <p>The first step is <a href="https://konghq.com/kong-konnect" target="_blank" rel="noopener noreffer">start a free trial of Konnect</a>
 . You can then configure the rate limit, the window size in seconds, and how often to sync the counter values. It&rsquo;s straightforward to use, and you can get this robust control with a simple API call:</p>
-<pre><code class="bash">curl  -i  -X  POST http://localhost:8001/services/httpbin/plugins
--d  &#34;name=rate-limiting&#34;
--d  &#34;config.limit=5&#34;
--d  &#34;config.window_size=60&#34;
--d  &#34;config.sync_rate=10&#34;</code></pre>
-<p>The enterprise edition also supports Redis Sentinel, which makes Redis highly available and more fault-tolerant. You can read more in the <a href="https://docs.konghq.com/hub/kong-inc/rate-limiting" target="_blank" rel="noopener noreffer">rate limiting plugin documentation</a>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">curl  -i  -X  POST http://localhost:8001/services/httpbin/plugins
+</span></span><span class="line"><span class="cl">-d  <span class="s2">&#34;name=rate-limiting&#34;</span>
+</span></span><span class="line"><span class="cl">-d  <span class="s2">&#34;config.limit=5&#34;</span>
+</span></span><span class="line"><span class="cl">-d  <span class="s2">&#34;config.window_size=60&#34;</span>
+</span></span><span class="line"><span class="cl">-d  <span class="s2">&#34;config.sync_rate=10&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The enterprise edition also supports Redis Sentinel, which makes Redis highly available and more fault-tolerant. You can read more in the <a href="https://docs.konghq.com/hub/kong-inc/rate-limiting" target="_blank" rel="noopener noreffer">rate limiting plugin documentation</a>
 .</p>
 <p>Other features include an admin GUI, more security features like role-based access control, analytics and professional support. If you&rsquo;re interested in learning more about the Enterprise edition, just <a href="https://konghq.com/contact" target="_blank" rel="noopener noreffer">contact</a>
  Kong&rsquo;s sales team to <a href="https://konghq.com/request-demo" target="_blank" rel="noopener noreffer">request a demo</a>

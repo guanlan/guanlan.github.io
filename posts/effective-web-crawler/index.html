@@ -33,7 +33,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/rmmod.com\/posts\/effective-web-crawler\/"
-        },"genre": "posts","keywords": "Networking","wordcount":  719 ,
+        },"genre": "posts","keywords": "Networking","wordcount":  729 ,
         "url": "https:\/\/rmmod.com\/posts\/effective-web-crawler\/","datePublished": "2021-01-15T00:00:00+00:00","dateModified": "2021-01-15T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -77,7 +77,7 @@
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Practical Tips on Writing an Effective Web Crawler</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>guanlan</a>
 </span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2021-01-15">2021-01-15</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;719 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2021-01-15">2021-01-15</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;729 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;4 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
@@ -107,17 +107,33 @@
 </strong></em>, an <strong>event-driven networking engine.</strong>  </p>
 <h3 id="2-reading-some-simple-open-source-projects">2. Reading Some Simple Open-source Projects</h3>
 <p>You need to figure out how exactly does a crawler works. Here is a very simple crawler written in Python, in 10 lines of code.</p>
-<pre><code class="python">import re, urllib
-crawled_urls = set()
-
-def crawl(url): 
-  for new_url in re.findall(&#39;&#39;&#39;href=[&#34;&#39;\](.[^&#34;&#39;\]&#43;)[&#34;&#39;\]&#39;&#39;&#39;, urllib.urlopen(url).read()): 
-    if new_url not in crawled_urls:
-      print new_url crawled_urls.add(new\_url) 
-      if __name__ == &#34;__main__&#34;:
-        url = &#39;http://www.yahoo.com/&#39;
-        crawl(url) </code></pre>
-<p>[python] i[/python] Crawler usually needs to keep track of which URLs need to be crawled, and which URLs has already crawled (to avoid the infinite loop). Other simple projects: <a href="http://code.google.com/p/python-crawler/" target="_blank" rel="noopener noreffer"><strong>Python Crawler</strong></a>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">import</span> <span class="nn">re</span><span class="o">,</span> <span class="nn">urllib</span>
+</span></span><span class="line"><span class="cl"><span class="n">crawled_urls</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">def</span> <span class="nf">crawl</span><span class="p">(</span><span class="n">url</span><span class="p">):</span> 
+</span></span><span class="line"><span class="cl">  <span class="k">for</span> <span class="n">new_url</span> <span class="ow">in</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="s1">&#39;&#39;&#39;href=[&#34;&#39;\](.[^&#34;&#39;\]+)[&#34;&#39;\]&#39;&#39;&#39;</span><span class="p">,</span> <span class="n">urllib</span><span class="o">.</span><span class="n">urlopen</span><span class="p">(</span><span class="n">url</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">()):</span> 
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="n">new_url</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">crawled_urls</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">      <span class="nb">print</span> <span class="n">new_url</span> <span class="n">crawled_urls</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">new</span>\<span class="n">_url</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl">      <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">        <span class="n">url</span> <span class="o">=</span> <span class="s1">&#39;http://www.yahoo.com/&#39;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">crawl</span><span class="p">(</span><span class="n">url</span><span class="p">)</span> 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>[python] i[/python] Crawler usually needs to keep track of which URLs need to be crawled, and which URLs has already crawled (to avoid the infinite loop). Other simple projects: <a href="http://code.google.com/p/python-crawler/" target="_blank" rel="noopener noreffer"><strong>Python Crawler</strong></a>
 , a very simple crawler using Berkeley DB to store results. <a href="https://github.com/bbrodriges/pholcidae" target="_blank" rel="noopener noreffer"><strong>pholcidae</strong></a>
 , a tiny Python module allows you to write your own crawl spider fast and easy.</p>
 <h3 id="3choosing-the-right-data-structure">3.Choosing the Right Data Structure</h3>

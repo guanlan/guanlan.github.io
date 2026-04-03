@@ -34,7 +34,7 @@ In the 3.0 version update of the Kong API Gateway, the routing system was comple
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/rmmod.com\/posts\/rust-based-router-kong-gateway\/"
-        },"genre": "posts","keywords": "Kong, Rust","wordcount":  807 ,
+        },"genre": "posts","keywords": "Kong, Rust","wordcount":  852 ,
         "url": "https:\/\/rmmod.com\/posts\/rust-based-router-kong-gateway\/","datePublished": "2024-07-18T00:00:00+00:00","dateModified": "2024-07-18T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -78,7 +78,7 @@ In the 3.0 version update of the Kong API Gateway, the routing system was comple
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Deep Dive into Kong Gateway&#39;s New Rust-Based Router</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>guanlan</a>
 </span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-07-18">2024-07-18</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;807 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2024-07-18">2024-07-18</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;852 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;4 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
@@ -123,10 +123,24 @@ In the 3.0 version update of the Kong API Gateway, the routing system was comple
         alt="/img/668eda68-image5-3.png"
         title="match" /></p>
 <h3 id="example-exact-match">Example: Exact Match</h3>
-<pre><code class="json">lower(http.path) == &#34;/foo/bar&#34;</code></pre>
-<h3 id="example-regex-match">Example: Regex Match</h3>
-<pre><code class="json">http.path ~ r#&#34;/foo/bar/\d&#43;&#34;#</code></pre>
-<p>We utilized the high-performance <a href="https://pest.rs/" target="_blank" rel="noopener noreffer">pest</a>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="err">lower(http.path)</span> <span class="err">==</span> <span class="s2">&#34;/foo/bar&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="example-regex-match">Example: Regex Match</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="err">http.path</span> <span class="err">~</span> <span class="err">r#</span><span class="s2">&#34;/foo/bar/\d+&#34;</span><span class="err">#</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>We utilized the high-performance <a href="https://pest.rs/" target="_blank" rel="noopener noreffer">pest</a>
  library from the Rust ecosystem to parse our DSL, with the entire grammar description being about 40 lines.</p>
 <p><img
         class="lazyload"
@@ -137,24 +151,50 @@ In the 3.0 version update of the Kong API Gateway, the routing system was comple
         alt="/img/668edaf2-image6-2.png"
         title="pest_dsl" /></p>
 <p>In Kong, you can add an Expressions route through the Admin API POST method.</p>
-<pre><code class="bash">curl --request POST \
-  --url http://localhost:8001/services/example-service/routes \
-  --header &#39;Content-Type: multipart/form-data&#39; \
-  --form-string &#39;expression=(http.path == &#34;/mock&#34; || net.protocol == &#34;https&#34;)&#39;</code></pre>
-<h2 id="router-optimization">Router Optimization</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">curl --request POST <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --url http://localhost:8001/services/example-service/routes <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --header <span class="s1">&#39;Content-Type: multipart/form-data&#39;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl">  --form-string <span class="s1">&#39;expression=(http.path == &#34;/mock&#34; || net.protocol == &#34;https&#34;)&#39;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="router-optimization">Router Optimization</h2>
 <p>This DSL offers many convenient features, such as prefix matching (<code>^=</code>), suffix matching (<code>=^</code>), and IP address ranges in IpCidr format, allowing users to avoid expensive regular expressions. The enhanced expressive power can describe complex routing requirements in a single routing rule, reducing the number of rules needed.</p>
 <p>The new design optimizes the order of checks and allows bypassing costly checks when appropriate. Expression routes are always evaluated in descending order of priority. Therefore, when configuring routes, you should set a higher priority for more likely matches to improve efficiency.</p>
 <ul>
 <li>
 <p>Example of a likely match route.</p>
-<pre><code class="json">expression: http.path == &#34;/likely/matched/request/path&#34;
-priority: 100</code></pre>
-</li>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="err">expression:</span> <span class="err">http.path</span> <span class="err">==</span> <span class="s2">&#34;/likely/matched/request/path&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="err">priority:</span> <span class="mi">100</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
 <li>
 <p>Example of an unlikely match route.</p>
-<pre><code class="json">expression: http.path == &#34;/unlikely/matched/request/path&#34;
-priority: 50</code></pre>
-</li>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="err">expression:</span> <span class="err">http.path</span> <span class="err">==</span> <span class="s2">&#34;/unlikely/matched/request/path&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="err">priority:</span> <span class="mi">50</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></li>
 </ul>
 <p>Additionally, version 3.0 introduces condition-triggered partial route reconstruction, effectively avoiding the time consumption of global route reconstruction. In scenarios with many routes, benchmark tests show that the P99 time for route reconstruction reduced from 1.5 seconds to 0.1 seconds.</p>
 <p>For more optimizations, refer to Kong’s official documentation.</p>
@@ -192,43 +232,90 @@ priority: 50</code></pre>
  and <a href="https://rustwasm.github.io/wasm-pack/" target="_blank" rel="noopener noreffer">wasm-pack</a>
 , we added macros in Rust code to enable the core functions used in modern browsers. This allowed us to encapsulate the core developed in Rust into a fully-typed TypeScript codebase, and achieve complex features like interactive editors and playgrounds after integration with Vue components.</p>
 <h3 id="example-of-frontend-wasm-interface">Example of frontend WASM interface:</h3>
-<pre><code class="json">#[wasm_bindgen(js_name = addMatcher)]
-pub unsafe fn add_matcher(
-    &amp;mut self,
-    priority: usize,
-    uuid: &amp;str,
-    atc: &amp;str,
-) -&gt; JsOptionalErrorMessage {
-    match (*self.r).add_matcher(priority, Uuid::from_str(uuid).unwrap_throw(), atc) {
-        Ok(_) =&gt; JsValue::undefined(),
-        Err(err) =&gt; err.into(),
-    }
-    .into()
-}</code></pre>
-<h3 id="example-of-backend-ffi-interface">Example of backend FFI interface:</h3>
-<pre><code class="json">#[no_mangle]
-// uuid must be ASCII representation of 128-bit UUID
-pub unsafe extern &#34;C&#34; fn router_add_matcher(
-    router: &amp;mut Router,
-    priority: usize,
-    uuid: *const i8,
-    atc: *const i8,
-    errbuf: *mut u8,
-    errbuf_len: *mut usize,
-) -&gt; bool {
-    let uuid = ffi::CStr::from_ptr(uuid as *const c_char).to_str().unwrap();
-    let atc = ffi::CStr::from_ptr(atc as *const c_char).to_str().unwrap();
-    let errbuf = from_raw_parts_mut(errbuf, ERR_BUF_MAX_LEN);
-    let uuid = Uuid::try_parse(uuid).expect(&#34;invalid UUID format&#34;);
-    if let Err(e) = router.add_matcher(priority, uuid, atc) {
-        let errlen = min(e.len(), *errbuf_len);
-        errbuf[..errlen].copy_from_slice(&amp;e.as_bytes()[..errlen]);
-        *errbuf_len = errlen;
-        return false;
-    }
-    true
-}</code></pre>
-<p>Thanks to the common library used by both the frontend and backend, users can intuitively write Expressions with syntax highlighting and auto-completion in the browser and test and verify routing rules in the playground. The frontend UI runs the same code in the browser as Gateway would have used during proxying, eliminating any chance of implementation mismatch and potential inconsistent behaviors.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="err">#</span><span class="p">[</span><span class="err">wasm_bindgen(js_name</span> <span class="err">=</span> <span class="err">addMatcher)</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="err">pub</span> <span class="err">unsafe</span> <span class="err">fn</span> <span class="err">add_matcher(</span>
+</span></span><span class="line"><span class="cl">    <span class="err">&amp;mut</span> <span class="err">self,</span>
+</span></span><span class="line"><span class="cl">    <span class="err">priority:</span> <span class="err">usize,</span>
+</span></span><span class="line"><span class="cl">    <span class="err">uuid:</span> <span class="err">&amp;str,</span>
+</span></span><span class="line"><span class="cl">    <span class="err">atc:</span> <span class="err">&amp;str,</span>
+</span></span><span class="line"><span class="cl"><span class="err">)</span> <span class="err">-&gt;</span> <span class="err">JsOptionalErrorMessage</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="err">match</span> <span class="err">(*self.r).add_matcher(priority,</span> <span class="err">Uuid::from_str(uuid).unwrap_throw(),</span> <span class="err">atc)</span> <span class="err">{</span>
+</span></span><span class="line"><span class="cl">        <span class="err">Ok(_)</span> <span class="err">=&gt;</span> <span class="err">JsValue::undefined(),</span>
+</span></span><span class="line"><span class="cl">        <span class="err">Err(err)</span> <span class="err">=&gt;</span> <span class="err">err.into(),</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="err">.into()</span>
+</span></span><span class="line"><span class="cl"><span class="err">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="example-of-backend-ffi-interface">Example of backend FFI interface:</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-json" data-lang="json"><span class="line"><span class="cl"><span class="err">#</span><span class="p">[</span><span class="err">no_mangle</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="c1">// uuid must be ASCII representation of 128-bit UUID
+</span></span></span><span class="line"><span class="cl"><span class="err">pub</span> <span class="err">unsafe</span> <span class="err">extern</span> <span class="s2">&#34;C&#34;</span> <span class="err">fn</span> <span class="err">router_add_matcher(</span>
+</span></span><span class="line"><span class="cl">    <span class="err">router:</span> <span class="err">&amp;mut</span> <span class="err">Router,</span>
+</span></span><span class="line"><span class="cl">    <span class="err">priority:</span> <span class="err">usize,</span>
+</span></span><span class="line"><span class="cl">    <span class="err">uuid:</span> <span class="err">*const</span> <span class="err">i</span><span class="mi">8</span><span class="err">,</span>
+</span></span><span class="line"><span class="cl">    <span class="err">atc:</span> <span class="err">*const</span> <span class="err">i</span><span class="mi">8</span><span class="err">,</span>
+</span></span><span class="line"><span class="cl">    <span class="err">errbuf:</span> <span class="err">*mut</span> <span class="err">u</span><span class="mi">8</span><span class="err">,</span>
+</span></span><span class="line"><span class="cl">    <span class="err">errbuf_len:</span> <span class="err">*mut</span> <span class="err">usize,</span>
+</span></span><span class="line"><span class="cl"><span class="err">)</span> <span class="err">-&gt;</span> <span class="err">bool</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="err">let</span> <span class="err">uuid</span> <span class="err">=</span> <span class="err">ffi::CStr::from_ptr(uuid</span> <span class="err">as</span> <span class="err">*const</span> <span class="err">c_char).to_str().unwrap();</span>
+</span></span><span class="line"><span class="cl">    <span class="err">let</span> <span class="err">atc</span> <span class="err">=</span> <span class="err">ffi::CStr::from_ptr(atc</span> <span class="err">as</span> <span class="err">*const</span> <span class="err">c_char).to_str().unwrap();</span>
+</span></span><span class="line"><span class="cl">    <span class="err">let</span> <span class="err">errbuf</span> <span class="err">=</span> <span class="err">from_raw_parts_mut(errbuf,</span> <span class="err">ERR_BUF_MAX_LEN);</span>
+</span></span><span class="line"><span class="cl">    <span class="err">let</span> <span class="err">uuid</span> <span class="err">=</span> <span class="err">Uuid::try_parse(uuid).expect(</span><span class="nt">&#34;invalid UUID format&#34;</span><span class="err">);</span>
+</span></span><span class="line"><span class="cl">    <span class="err">if</span> <span class="err">let</span> <span class="err">Err(e)</span> <span class="err">=</span> <span class="err">router.add_matcher(priority</span><span class="p">,</span> <span class="err">uuid,</span> <span class="err">atc)</span> <span class="err">{</span>
+</span></span><span class="line"><span class="cl">        <span class="err">let</span> <span class="err">errlen</span> <span class="err">=</span> <span class="err">min(e.len(),</span> <span class="err">*errbuf_len);</span>
+</span></span><span class="line"><span class="cl">        <span class="err">errbuf[..errlen].copy_from_slice(&amp;e.as_bytes()[..errlen]);</span>
+</span></span><span class="line"><span class="cl">        <span class="err">*errbuf_len</span> <span class="err">=</span> <span class="err">errlen;</span>
+</span></span><span class="line"><span class="cl">        <span class="err">return</span> <span class="err">false;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="kc">true</span>
+</span></span><span class="line"><span class="cl"><span class="err">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Thanks to the common library used by both the frontend and backend, users can intuitively write Expressions with syntax highlighting and auto-completion in the browser and test and verify routing rules in the playground. The frontend UI runs the same code in the browser as Gateway would have used during proxying, eliminating any chance of implementation mismatch and potential inconsistent behaviors.</p>
 <p>You may visit the <a href="https://docs.konghq.com/gateway/latest/kong-enterprise/expressions-language/" target="_blank" rel="noopener noreffer">Expressions Language reference</a>
  page to learn more about the features of the language, as well as <a href="https://docs.konghq.com/gateway/latest/kong-enterprise/how-to-configure-routes-using-expressions/" target="_blank" rel="noopener noreffer">How to Configure Routes using Expressions</a>
  to learn more about how to get started routing traffic with expressions inside Kong Gateway.</p>

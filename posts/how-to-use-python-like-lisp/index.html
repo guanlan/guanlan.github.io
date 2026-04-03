@@ -8,7 +8,9 @@
   <meta property="og:site_name" content="Guanlan Dai">
   <meta property="og:title" content="How to use Python like Lisp">
   <meta property="og:description" content="Lisp has some very effective way to get jobs done, this article give you a direct way to use Python like Lisp.
-cons = lambda el, lst: (el, lst) mklist = lambda *args: reduce(lambda lst, el: cons(el, lst), reversed(args), None) car = lambda lst: lst[0] if lst else lst cdr = lambda lst: lst[1] if lst else lst nth = lambda n, lst: nth(n-1, cdr(lst)) if n &gt; 0 else car(lst) length = lambda lst, count=0: length(cdr(lst), count&#43;1) if lst else count begin = lambda *args: args[-1] display = lambda lst: begin(w(&#34;%s &#34; % car(lst)), display(cdr(lst))) if lst else w(&#34;nil\n&#34;) where w = sys.stdout.write">
+1 2 3 4 5 6 7 8 cons = lambda el, lst: (el, lst) mklist = lambda *args: reduce(lambda lst, el: cons(el, lst), reversed(args), None) car = lambda lst: lst[0] if lst else lst cdr = lambda lst: lst[1] if lst else lst nth = lambda n, lst: nth(n-1, cdr(lst)) if n &gt; 0 else car(lst) length = lambda lst, count=0: length(cdr(lst), count&#43;1) if lst else count begin = lambda *args: args[-1] display = lambda lst: begin(w(&#34;%s &#34; % car(lst)), display(cdr(lst))) if lst else w(&#34;nil\n&#34;) where w = sys.stdout.write
+1 2 3 foldr = lambda f, i: lambda s: reduce(f, s, i) foldl = reduce mapcar = map Pay attention about the speed when you use Python, here is a benchmarks for 5 languages:
+from The Great Computer Language Shootout .">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
@@ -20,7 +22,9 @@ cons = lambda el, lst: (el, lst) mklist = lambda *args: reduce(lambda lst, el: c
   <meta name="twitter:card" content="summary">
   <meta name="twitter:title" content="How to use Python like Lisp">
   <meta name="twitter:description" content="Lisp has some very effective way to get jobs done, this article give you a direct way to use Python like Lisp.
-cons = lambda el, lst: (el, lst) mklist = lambda *args: reduce(lambda lst, el: cons(el, lst), reversed(args), None) car = lambda lst: lst[0] if lst else lst cdr = lambda lst: lst[1] if lst else lst nth = lambda n, lst: nth(n-1, cdr(lst)) if n &gt; 0 else car(lst) length = lambda lst, count=0: length(cdr(lst), count&#43;1) if lst else count begin = lambda *args: args[-1] display = lambda lst: begin(w(&#34;%s &#34; % car(lst)), display(cdr(lst))) if lst else w(&#34;nil\n&#34;) where w = sys.stdout.write">
+1 2 3 4 5 6 7 8 cons = lambda el, lst: (el, lst) mklist = lambda *args: reduce(lambda lst, el: cons(el, lst), reversed(args), None) car = lambda lst: lst[0] if lst else lst cdr = lambda lst: lst[1] if lst else lst nth = lambda n, lst: nth(n-1, cdr(lst)) if n &gt; 0 else car(lst) length = lambda lst, count=0: length(cdr(lst), count&#43;1) if lst else count begin = lambda *args: args[-1] display = lambda lst: begin(w(&#34;%s &#34; % car(lst)), display(cdr(lst))) if lst else w(&#34;nil\n&#34;) where w = sys.stdout.write
+1 2 3 foldr = lambda f, i: lambda s: reduce(f, s, i) foldl = reduce mapcar = map Pay attention about the speed when you use Python, here is a benchmarks for 5 languages:
+from The Great Computer Language Shootout .">
       <meta name="twitter:site" content="@guanlandai">
 <meta name="application-name" content="My cool site">
 <meta name="apple-mobile-web-app-title" content="My cool site"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
@@ -34,7 +38,7 @@ cons = lambda el, lst: (el, lst) mklist = lambda *args: reduce(lambda lst, el: c
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/rmmod.com\/posts\/how-to-use-python-like-lisp\/"
-        },"genre": "posts","keywords": "Lisp, Python","wordcount":  293 ,
+        },"genre": "posts","keywords": "Lisp, Python","wordcount":  304 ,
         "url": "https:\/\/rmmod.com\/posts\/how-to-use-python-like-lisp\/","datePublished": "2012-11-19T00:00:00+00:00","dateModified": "2012-11-19T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -78,7 +82,7 @@ cons = lambda el, lst: (el, lst) mklist = lambda *args: reduce(lambda lst, el: c
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">How to use Python like Lisp</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>guanlan</a>
 </span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2012-11-19">2012-11-19</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;293 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2012-11-19">2012-11-19</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;304 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;2 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
@@ -87,19 +91,42 @@ cons = lambda el, lst: (el, lst) mklist = lambda *args: reduce(lambda lst, el: c
                 </div>
                 <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents"></nav></div>
             </div><div class="content" id="content"><p>Lisp has some very effective way to get jobs done, this article give you a direct way to use Python like Lisp.</p>
-<pre><code class="python">cons = lambda el, lst: (el, lst) 
-mklist = lambda *args: reduce(lambda lst, el: cons(el, lst), reversed(args), None) 
-car = lambda lst: lst[0] if lst else lst 
-cdr = lambda lst: lst[1] if lst else lst 
-nth = lambda n, lst: nth(n-1, cdr(lst)) if n &gt; 0 else car(lst) 
-length = lambda lst, count=0: length(cdr(lst), count&#43;1) if lst else count
-begin = lambda *args: args[-1] 
-display = lambda lst: begin(w(&#34;%s &#34; % car(lst)), display(cdr(lst))) if lst else w(&#34;nil\n&#34;)</code></pre>
-<p>where <code>w = sys.stdout.write</code></p>
-<pre><code class="python">foldr = lambda f, i: lambda s: reduce(f, s, i)
-foldl = reduce
-mapcar = map</code></pre>
-<p>Pay attention about the speed when you use Python, here is a benchmarks for 5 languages:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">cons</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">el</span><span class="p">,</span> <span class="n">lst</span><span class="p">:</span> <span class="p">(</span><span class="n">el</span><span class="p">,</span> <span class="n">lst</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl"><span class="n">mklist</span> <span class="o">=</span> <span class="k">lambda</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">reduce</span><span class="p">(</span><span class="k">lambda</span> <span class="n">lst</span><span class="p">,</span> <span class="n">el</span><span class="p">:</span> <span class="n">cons</span><span class="p">(</span><span class="n">el</span><span class="p">,</span> <span class="n">lst</span><span class="p">),</span> <span class="nb">reversed</span><span class="p">(</span><span class="n">args</span><span class="p">),</span> <span class="kc">None</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl"><span class="n">car</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">lst</span><span class="p">:</span> <span class="n">lst</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="n">lst</span> <span class="k">else</span> <span class="n">lst</span> 
+</span></span><span class="line"><span class="cl"><span class="n">cdr</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">lst</span><span class="p">:</span> <span class="n">lst</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">if</span> <span class="n">lst</span> <span class="k">else</span> <span class="n">lst</span> 
+</span></span><span class="line"><span class="cl"><span class="n">nth</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">n</span><span class="p">,</span> <span class="n">lst</span><span class="p">:</span> <span class="n">nth</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">cdr</span><span class="p">(</span><span class="n">lst</span><span class="p">))</span> <span class="k">if</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="n">car</span><span class="p">(</span><span class="n">lst</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl"><span class="n">length</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">lst</span><span class="p">,</span> <span class="n">count</span><span class="o">=</span><span class="mi">0</span><span class="p">:</span> <span class="n">length</span><span class="p">(</span><span class="n">cdr</span><span class="p">(</span><span class="n">lst</span><span class="p">),</span> <span class="n">count</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="k">if</span> <span class="n">lst</span> <span class="k">else</span> <span class="n">count</span>
+</span></span><span class="line"><span class="cl"><span class="n">begin</span> <span class="o">=</span> <span class="k">lambda</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">args</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> 
+</span></span><span class="line"><span class="cl"><span class="n">display</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">lst</span><span class="p">:</span> <span class="n">begin</span><span class="p">(</span><span class="n">w</span><span class="p">(</span><span class="s2">&#34;</span><span class="si">%s</span><span class="s2"> &#34;</span> <span class="o">%</span> <span class="n">car</span><span class="p">(</span><span class="n">lst</span><span class="p">)),</span> <span class="n">display</span><span class="p">(</span><span class="n">cdr</span><span class="p">(</span><span class="n">lst</span><span class="p">)))</span> <span class="k">if</span> <span class="n">lst</span> <span class="k">else</span> <span class="n">w</span><span class="p">(</span><span class="s2">&#34;nil</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>where <code>w = sys.stdout.write</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">foldr</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">f</span><span class="p">,</span> <span class="n">i</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">reduce</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">foldl</span> <span class="o">=</span> <span class="n">reduce</span>
+</span></span><span class="line"><span class="cl"><span class="n">mapcar</span> <span class="o">=</span> <span class="nb">map</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Pay attention about the speed when you use Python, here is a benchmarks for 5 languages:</p>
 <p> from <a href="http://www.bagley.org/~doug/shootout/" target="_blank" rel="noopener noreffer">The Great Computer Language Shootout</a>
 .</p>
 <p>Test</p>

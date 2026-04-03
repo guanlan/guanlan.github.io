@@ -110,15 +110,44 @@
         <a href="/posts/how-to-use-python-like-lisp/">How to use Python like Lisp</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>guanlan</a>
 </span>&nbsp;<span class="post-publish">published on <time datetime="2012-11-19">2012-11-19</time></span></div><div class="content"><p>Lisp has some very effective way to get jobs done, this article give you a direct way to use Python like Lisp.</p>
-<pre><code class="python">cons = lambda el, lst: (el, lst) 
-mklist = lambda *args: reduce(lambda lst, el: cons(el, lst), reversed(args), None) 
-car = lambda lst: lst[0] if lst else lst 
-cdr = lambda lst: lst[1] if lst else lst 
-nth = lambda n, lst: nth(n-1, cdr(lst)) if n &gt; 0 else car(lst) 
-length = lambda lst, count=0: length(cdr(lst), count&#43;1) if lst else count
-begin = lambda *args: args[-1] 
-display = lambda lst: begin(w(&#34;%s &#34; % car(lst)), display(cdr(lst))) if lst else w(&#34;nil\n&#34;)</code></pre>
-<p>where <code>w = sys.stdout.write</code></p></div><div class="post-footer">
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">cons</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">el</span><span class="p">,</span> <span class="n">lst</span><span class="p">:</span> <span class="p">(</span><span class="n">el</span><span class="p">,</span> <span class="n">lst</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl"><span class="n">mklist</span> <span class="o">=</span> <span class="k">lambda</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">reduce</span><span class="p">(</span><span class="k">lambda</span> <span class="n">lst</span><span class="p">,</span> <span class="n">el</span><span class="p">:</span> <span class="n">cons</span><span class="p">(</span><span class="n">el</span><span class="p">,</span> <span class="n">lst</span><span class="p">),</span> <span class="nb">reversed</span><span class="p">(</span><span class="n">args</span><span class="p">),</span> <span class="kc">None</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl"><span class="n">car</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">lst</span><span class="p">:</span> <span class="n">lst</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="n">lst</span> <span class="k">else</span> <span class="n">lst</span> 
+</span></span><span class="line"><span class="cl"><span class="n">cdr</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">lst</span><span class="p">:</span> <span class="n">lst</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">if</span> <span class="n">lst</span> <span class="k">else</span> <span class="n">lst</span> 
+</span></span><span class="line"><span class="cl"><span class="n">nth</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">n</span><span class="p">,</span> <span class="n">lst</span><span class="p">:</span> <span class="n">nth</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">cdr</span><span class="p">(</span><span class="n">lst</span><span class="p">))</span> <span class="k">if</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="n">car</span><span class="p">(</span><span class="n">lst</span><span class="p">)</span> 
+</span></span><span class="line"><span class="cl"><span class="n">length</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">lst</span><span class="p">,</span> <span class="n">count</span><span class="o">=</span><span class="mi">0</span><span class="p">:</span> <span class="n">length</span><span class="p">(</span><span class="n">cdr</span><span class="p">(</span><span class="n">lst</span><span class="p">),</span> <span class="n">count</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="k">if</span> <span class="n">lst</span> <span class="k">else</span> <span class="n">count</span>
+</span></span><span class="line"><span class="cl"><span class="n">begin</span> <span class="o">=</span> <span class="k">lambda</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">args</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> 
+</span></span><span class="line"><span class="cl"><span class="n">display</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">lst</span><span class="p">:</span> <span class="n">begin</span><span class="p">(</span><span class="n">w</span><span class="p">(</span><span class="s2">&#34;</span><span class="si">%s</span><span class="s2"> &#34;</span> <span class="o">%</span> <span class="n">car</span><span class="p">(</span><span class="n">lst</span><span class="p">)),</span> <span class="n">display</span><span class="p">(</span><span class="n">cdr</span><span class="p">(</span><span class="n">lst</span><span class="p">)))</span> <span class="k">if</span> <span class="n">lst</span> <span class="k">else</span> <span class="n">w</span><span class="p">(</span><span class="s2">&#34;nil</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>where <code>w = sys.stdout.write</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">foldr</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">f</span><span class="p">,</span> <span class="n">i</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">reduce</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">foldl</span> <span class="o">=</span> <span class="n">reduce</span>
+</span></span><span class="line"><span class="cl"><span class="n">mapcar</span> <span class="o">=</span> <span class="nb">map</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Pay attention about the speed when you use Python, here is a benchmarks for 5 languages:</p>
+<p> from <a href="http://www.bagley.org/~doug/shootout/" target="_blank" rel="noopener noreffer">The Great Computer Language Shootout</a>
+.</p></div><div class="post-footer">
         <a href="/posts/how-to-use-python-like-lisp/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/lisp/">Lisp</a>,&nbsp;<a href="/tags/python/">Python</a></div></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
@@ -131,9 +160,17 @@ display = lambda lst: begin(w(&#34;%s &#34; % car(lst)), display(cdr(lst))) if l
 <li>Python int addition checks if the result overflows, and automatically converts to pyLongObject if it does</li>
 <li>Documentation in Python is seamlessly integrated into the language implementation</li>
 </ol>
-<pre><code class="python">a = 11  
-print a.__doc__</code></pre>
-<ol start="4">
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">a</span> <span class="o">=</span> <span class="mi">11</span>  
+</span></span><span class="line"><span class="cl"><span class="nb">print</span> <span class="n">a</span><span class="o">.</span><span class="vm">__doc__</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="4">
 <li>
 <p>Small integer objects are completely cached in memory, other integer objects take turns using a block of memory space</p></div><div class="post-footer">
         <a href="/posts/cppblog/2011-07-21-python-basic-objects-learning-notes-en/">Read More</a><div class="post-tags">

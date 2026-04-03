@@ -139,71 +139,141 @@ The following add-ons are my personal favorites, and I recommend them to everyon
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/posts/cppblog/2010-06-28-nginx-startup-shutdown-configuration-script-en/">nginx Startup, Shutdown and Configuration Script</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>guanlan</a>
-</span>&nbsp;<span class="post-publish">published on <time datetime="2010-06-28">2010-06-28</time></span>&nbsp;<span class="post-category">included in <a href="/categories/nginx/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Nginx</a></span></div><div class="content"><pre><code class="bash">################################################
-#!/bin/bash
-# v.0.0.3
-# create by jackbillow at 2007.10.15
-# redevelop by XGuru at 2010.6.28
-# On Ubuntu 10.04
-# nginx - This shell script takes care of starting and stopping nginx.
-#
-# description: nginx [engine x] is light http web/proxy server
-# that answers incoming ftp service requests.
-###############################################
-
-nginx_path=&#34;/usr/local/nginx&#34;
-nginx_pid=&#34;/usr/local/nginx/logs/nginx.pid&#34;
-prog=&#34;nginx&#34;
-
-RETVAL=0
-
-
-start() {
-# Start daemons.
-        if [ -e $nginx_path/conf/nginx.conf ];then
-          echo -n $&#34;Starting $prog: &#34;
-          $nginx_path/sbin/nginx -c $nginx_path/conf/nginx.conf &amp;
-          RETVAL=$?
-        [ $RETVAL -eq 0 ] &amp;&amp; {
-        echo Start &#34;$prog&#34; successfully!
-        }
-        else
-        RETVAL=1
-        fi
-        return $RETVAL
-}
-# Stop daemons.
-stop() {
-        echo -n $&#34;Stopping $prog\n&#34;
-        sudo killall -9 nginx
-        RETVAL=$?
-}
-# See how we were called.
-
-conf(){
-        gvim &#34;$nginx_path/conf/nginx.conf&#34;
-}
-case &#34;$1&#34; in
-start)
-        start
-        ;;
-stop)
-        stop
-        ;;
-conf)
-        conf
-        ;;        
-restart)
-        stop
-        start
-        ;;
-*)
-        echo $&#34;Usage: $0 {start|stop|conf|restart}&#34;
-        echo $&#34;Your may need root privilege to execute this script!&#34;
-        exit 1
-esac
-exit $RETVAL</code></pre>
-<hr>
+</span>&nbsp;<span class="post-publish">published on <time datetime="2010-06-28">2010-06-28</time></span>&nbsp;<span class="post-category">included in <a href="/categories/nginx/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Nginx</a></span></div><div class="content"><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">################################################</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#!/bin/bash</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># v.0.0.3</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># create by jackbillow at 2007.10.15</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># redevelop by XGuru at 2010.6.28</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># On Ubuntu 10.04</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># nginx - This shell script takes care of starting and stopping nginx.</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># description: nginx [engine x] is light http web/proxy server</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># that answers incoming ftp service requests.</span>
+</span></span><span class="line"><span class="cl"><span class="c1">###############################################</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">nginx_path</span><span class="o">=</span><span class="s2">&#34;/usr/local/nginx&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">nginx_pid</span><span class="o">=</span><span class="s2">&#34;/usr/local/nginx/logs/nginx.pid&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">prog</span><span class="o">=</span><span class="s2">&#34;nginx&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">RETVAL</span><span class="o">=</span><span class="m">0</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">start<span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Start daemons.</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">[</span> -e <span class="nv">$nginx_path</span>/conf/nginx.conf <span class="o">]</span><span class="p">;</span><span class="k">then</span>
+</span></span><span class="line"><span class="cl">          <span class="nb">echo</span> -n $<span class="s2">&#34;Starting </span><span class="nv">$prog</span><span class="s2">: &#34;</span>
+</span></span><span class="line"><span class="cl">          <span class="nv">$nginx_path</span>/sbin/nginx -c <span class="nv">$nginx_path</span>/conf/nginx.conf <span class="p">&amp;</span>
+</span></span><span class="line"><span class="cl">          <span class="nv">RETVAL</span><span class="o">=</span><span class="nv">$?</span>
+</span></span><span class="line"><span class="cl">        <span class="o">[</span> <span class="nv">$RETVAL</span> -eq <span class="m">0</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">echo</span> Start <span class="s2">&#34;</span><span class="nv">$prog</span><span class="s2">&#34;</span> successfully!
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">RETVAL</span><span class="o">=</span><span class="m">1</span>
+</span></span><span class="line"><span class="cl">        <span class="k">fi</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nv">$RETVAL</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Stop daemons.</span>
+</span></span><span class="line"><span class="cl">stop<span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">echo</span> -n $<span class="s2">&#34;Stopping </span><span class="nv">$prog</span><span class="s2">\n&#34;</span>
+</span></span><span class="line"><span class="cl">        sudo killall -9 nginx
+</span></span><span class="line"><span class="cl">        <span class="nv">RETVAL</span><span class="o">=</span><span class="nv">$?</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># See how we were called.</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">conf<span class="o">(){</span>
+</span></span><span class="line"><span class="cl">        gvim <span class="s2">&#34;</span><span class="nv">$nginx_path</span><span class="s2">/conf/nginx.conf&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">case</span> <span class="s2">&#34;</span><span class="nv">$1</span><span class="s2">&#34;</span> in
+</span></span><span class="line"><span class="cl">start<span class="o">)</span>
+</span></span><span class="line"><span class="cl">        start
+</span></span><span class="line"><span class="cl">        <span class="p">;;</span>
+</span></span><span class="line"><span class="cl">stop<span class="o">)</span>
+</span></span><span class="line"><span class="cl">        stop
+</span></span><span class="line"><span class="cl">        <span class="p">;;</span>
+</span></span><span class="line"><span class="cl">conf<span class="o">)</span>
+</span></span><span class="line"><span class="cl">        conf
+</span></span><span class="line"><span class="cl">        <span class="p">;;</span>        
+</span></span><span class="line"><span class="cl">restart<span class="o">)</span>
+</span></span><span class="line"><span class="cl">        stop
+</span></span><span class="line"><span class="cl">        start
+</span></span><span class="line"><span class="cl">        <span class="p">;;</span>
+</span></span><span class="line"><span class="cl">*<span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">echo</span> $<span class="s2">&#34;Usage: </span><span class="nv">$0</span><span class="s2"> {start|stop|conf|restart}&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">echo</span> <span class="s2">$&#34;Your may need root privilege to execute this script!&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">exit</span> <span class="m">1</span>
+</span></span><span class="line"><span class="cl"><span class="k">esac</span>
+</span></span><span class="line"><span class="cl"><span class="nb">exit</span> <span class="nv">$RETVAL</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
 <p><em>Original link: <a href="http://www.cppblog.com/xguru/archive/2010/06/28/118868.html" target="_blank" rel="noopener noreffer">http://www.cppblog.com/xguru/archive/2010/06/28/118868.html</a>
 </em></p></div><div class="post-footer">
         <a href="/posts/cppblog/2010-06-28-nginx-startup-shutdown-configuration-script-en/">Read More</a><div class="post-tags">
@@ -213,18 +283,35 @@ exit $RETVAL</code></pre>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>guanlan</a>
 </span>&nbsp;<span class="post-publish">published on <time datetime="2010-06-25">2010-06-25</time></span>&nbsp;<span class="post-category">included in <a href="/categories/libevent/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Libevent</a></span></div><div class="content"><p>Libevent&rsquo;s original intention was to design a cross-platform lightweight I/O framework. Due to historical issues, the I/O multiplexing mechanisms across different platforms are difficult to unify. Therefore, the methods for handling cross-platform compatibility deserve special attention.</p>
 <p>eventop is defined in the source code as follows:</p>
-<pre><code class="cpp">static const struct eventop *eventops[]={
-
-#ifdef HAVE_EVENT_PORTS
-
-         &amp;evportops,
-
-#endif 
-
-…
-
-}</code></pre>
-<p>As can be seen, libevent uses macros to find available multiplexing mechanisms at compile time.</p></div><div class="post-footer">
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">static</span> <span class="k">const</span> <span class="k">struct</span> <span class="nc">eventop</span> <span class="o">*</span><span class="n">eventops</span><span class="p">[]</span><span class="o">=</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cp">#ifdef HAVE_EVENT_PORTS
+</span></span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">         <span class="o">&amp;</span><span class="n">evportops</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cp">#endif 
+</span></span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="err">…</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>As can be seen, libevent uses macros to find available multiplexing mechanisms at compile time.</p></div><div class="post-footer">
         <a href="/posts/cppblog/2010-06-25-libevent-analysis-notes-3-io-multiplexing-mechanism-determination-en/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/original/">Original</a></div></div>
 </article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">

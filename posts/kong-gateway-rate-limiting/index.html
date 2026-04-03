@@ -34,7 +34,7 @@ Rate Limiting: Protecting Your Server 101 Let’s take a step back and go over t
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/rmmod.com\/posts\/kong-gateway-rate-limiting\/"
-        },"genre": "posts","keywords": "Kong, Rate Limiting","wordcount":  1853 ,
+        },"genre": "posts","keywords": "Kong, Rate Limiting","wordcount":  1942 ,
         "url": "https:\/\/rmmod.com\/posts\/kong-gateway-rate-limiting\/","datePublished": "2021-05-18T00:00:00+00:00","dateModified": "2021-05-18T00:00:00+00:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -78,8 +78,8 @@ Rate Limiting: Protecting Your Server 101 Let’s take a step back and go over t
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Protecting Services With Kong Gateway Rate Limiting</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>guanlan</a>
 </span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2021-05-18">2021-05-18</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1853 words&nbsp;
-                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;9 minutes&nbsp;</div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2021-05-18">2021-05-18</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;1942 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;10 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
                     <span>Contents</span>
@@ -122,28 +122,70 @@ Rate Limiting: Protecting Your Server 101 Let’s take a step back and go over t
 <p>After walking through these steps together, you&rsquo;ll have what you need to tailor the Rate Limiting plugin for your unique business needs.</p>
 <h2 id="create-a-nodejs-express-api-server">Create a Node.js Express API Server</h2>
 <p>To get started, we&rsquo;ll create a simple API server with a single endpoint that listens for a GET request and responds with &ldquo;hello world.&rdquo; At the command line, create a project folder and initialize a Node.js application:</p>
-<pre><code class="bash">~/$  mkdir project
-~/$  cd project
-~/project$  yarn init
-// Accept all defaults</code></pre>
-<p>Then, we&rsquo;ll add Express, which is the only package we&rsquo;ll need:</p>
-<pre><code class="bash">~/project$  yarn add express</code></pre>
-<p>Lastly, let&rsquo;s create a simple server with our &ldquo;hello world&rdquo; endpoint. In your project folder, create an index.js file with these contents:</p>
-<pre><code class="js">/* PATH: ~/project/index.js
-*/
-const express = require(&#39;express&#39;)
-const server = express()
-const port = 3000
-server.get(&#39;/&#39;, (req, res) =&gt; {
- console.log(req.headers)
- res.status(200).send(&#39;Hello world!&#39;)
-})
-server.listen(port, () =&gt; {
- console.log(`Server is listening on http://localhost:${port}`)
-})</code></pre>
-<p>Now, spin up your server:</p>
-<pre><code class="bash">~/project$  node index.js</code></pre>
-<p>In your browser, you can visit http://localhost:3000. Here&rsquo;s what you should see:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">~/$  mkdir project
+</span></span><span class="line"><span class="cl">~/$  <span class="nb">cd</span> project
+</span></span><span class="line"><span class="cl">~/project$  yarn init
+</span></span><span class="line"><span class="cl">// Accept all defaults
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Then, we&rsquo;ll add Express, which is the only package we&rsquo;ll need:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">~/project$  yarn add express
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Lastly, let&rsquo;s create a simple server with our &ldquo;hello world&rdquo; endpoint. In your project folder, create an index.js file with these contents:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-js" data-lang="js"><span class="line"><span class="cl"><span class="cm">/* PATH: ~/project/index.js
+</span></span></span><span class="line"><span class="cl"><span class="cm">*/</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">express</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;express&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">server</span> <span class="o">=</span> <span class="nx">express</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="kr">const</span> <span class="nx">port</span> <span class="o">=</span> <span class="mi">3000</span>
+</span></span><span class="line"><span class="cl"><span class="nx">server</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nx">req</span><span class="p">,</span> <span class="nx">res</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">req</span><span class="p">.</span><span class="nx">headers</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"> <span class="nx">res</span><span class="p">.</span><span class="nx">status</span><span class="p">(</span><span class="mi">200</span><span class="p">).</span><span class="nx">send</span><span class="p">(</span><span class="s1">&#39;Hello world!&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">})</span>
+</span></span><span class="line"><span class="cl"><span class="nx">server</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="nx">port</span><span class="p">,</span> <span class="p">()</span> <span class="p">=&gt;</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl"> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="sb">`Server is listening on http://localhost:</span><span class="si">${</span><span class="nx">port</span><span class="si">}</span><span class="sb">`</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">})</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Now, spin up your server:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">~/project$  node index.js
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>In your browser, you can visit http://localhost:3000. Here&rsquo;s what you should see:</p>
 <p><img
         class="lazyload"
         src="/svg/loading.min.svg"
@@ -169,48 +211,111 @@ server.listen(port, () =&gt; {
  to sit in front of our API server. These steps will vary depending on your local environment.</p>
 <p>Simple usage of the Rate Limiting plugin supports configuring Kong in DB-less mode with a declarative configuration. That means, instead of sending configurations to Kong Gateway one step at a time, with those configurations stored in a database, we can use a single declarative .yml file for specifying our entire Kong configuration.</p>
 <p>After installing Kong, we generate a starter .yml file:</p>
-<pre><code class="bash">~/project$  kong config init
-
-~/project$  tree  -L  1
-
-.
-
-├──  index.js
-├──  kong.yml
-├──  node_modules
-├──  package.json
-└──  yarn.lock
-
-1  directory,  4  files</code></pre>
-<p>We&rsquo;ll come back to that kong.yml file in a moment.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">~/project$  kong config init
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">~/project$  tree  -L  <span class="m">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">├──  index.js
+</span></span><span class="line"><span class="cl">├──  kong.yml
+</span></span><span class="line"><span class="cl">├──  node_modules
+</span></span><span class="line"><span class="cl">├──  package.json
+</span></span><span class="line"><span class="cl">└──  yarn.lock
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="m">1</span>  directory,  <span class="m">4</span>  files
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>We&rsquo;ll come back to that kong.yml file in a moment.</p>
 <p>Now, let&rsquo;s tell Kong where to look for that declarative configuration file upon startup. In /etc/kong, there is a kong.conf.default file that we&rsquo;ll need to copy as kong.conf and then edit:</p>
-<pre><code class="bash">~/project$  cd  /etc/kong
-/etc/kong$  sudo su
-root:/etc/kong$  cp kong.conf.default kong.conf</code></pre>
-<p>Next, we edit the kong.conf file. You&rsquo;ll likely need root privileges to do this. There are two edits that we need to make:</p>
-<pre><code class="lua"># PATH: /etc/kong/kong.conf
-# line ~839: Uncomment this line and set to off
-database  =  off
-# line ~1023, Uncomment this line. Set to absolute path to kong.yml
-declarative_config  =  /PATH/TO/YOUR/project/kong.yml</code></pre>
-<h2 id="configure-kong-gateway-with-our-service-and-routes">Configure Kong Gateway With Our Service and Routes</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">~/project$  <span class="nb">cd</span>  /etc/kong
+</span></span><span class="line"><span class="cl">/etc/kong$  sudo su
+</span></span><span class="line"><span class="cl">root:/etc/kong$  cp kong.conf.default kong.conf
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Next, we edit the kong.conf file. You&rsquo;ll likely need root privileges to do this. There are two edits that we need to make:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-lua" data-lang="lua"><span class="line"><span class="cl"><span class="o">#</span> <span class="n">PATH</span><span class="p">:</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">kong</span><span class="o">/</span><span class="n">kong.conf</span>
+</span></span><span class="line"><span class="cl"><span class="o">#</span> <span class="n">line</span> <span class="o">~</span><span class="mi">839</span><span class="p">:</span> <span class="n">Uncomment</span> <span class="n">this</span> <span class="n">line</span> <span class="ow">and</span> <span class="n">set</span> <span class="n">to</span> <span class="n">off</span>
+</span></span><span class="line"><span class="cl"><span class="n">database</span>  <span class="o">=</span>  <span class="n">off</span>
+</span></span><span class="line"><span class="cl"><span class="o">#</span> <span class="n">line</span> <span class="o">~</span><span class="mi">1023</span><span class="p">,</span> <span class="n">Uncomment</span> <span class="n">this</span> <span class="n">line</span><span class="p">.</span> <span class="n">Set</span> <span class="n">to</span> <span class="n">absolute</span> <span class="n">path</span> <span class="n">to</span> <span class="n">kong.yml</span>
+</span></span><span class="line"><span class="cl"><span class="n">declarative_config</span>  <span class="o">=</span>  <span class="o">/</span><span class="n">PATH</span><span class="o">/</span><span class="n">TO</span><span class="o">/</span><span class="n">YOUR</span><span class="o">/</span><span class="n">project</span><span class="o">/</span><span class="n">kong.yml</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="configure-kong-gateway-with-our-service-and-routes">Configure Kong Gateway With Our Service and Routes</h2>
 <p>Before we start up Kong, let&rsquo;s edit the declarative configuration file generated in our project folder. It should look like this:</p>
-<pre><code class="yaml"># PATH: ~/project/kong.yml
- 
-_format_version: &#34;2.1&#34;
- 
-services:
-- name: my-api-server
-  url: http://localhost:3000/
-  routes:
-  - name: api-routes
-    paths:
-    - /api</code></pre>
-<p>Let&rsquo;s walk through what this configuration does. After setting the syntax version (2.1), we configure a new upstream service for which Kong will serve as an API gateway. Our service, which we name my-api-server, listens for requests at the URL http://localhost:3000. </p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c"># PATH: ~/project/kong.yml</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="nt">_format_version</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;2.1&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="nt">services</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl">- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">my-api-server</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l">http://localhost:3000/</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">routes</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">api-routes</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">paths</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">/api</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>Let&rsquo;s walk through what this configuration does. After setting the syntax version (2.1), we configure a new upstream service for which Kong will serve as an API gateway. Our service, which we name my-api-server, listens for requests at the URL http://localhost:3000. </p>
 <p>We associate a route (arbitrarily named api-routes) for our service with the path /api. Kong Gateway will listen for requests to /api, and then route those requests to our API server at http://localhost:3000.</p>
 <p>With our declarative configuration file in place, we start Kong:</p>
-<pre><code class="bash">~/project$  sudo kong start</code></pre>
-<p>Now, in Insomnia, we send a GET request through Kong Gateway, which listens at http://localhost:8000, to the /api path:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">~/project$  sudo kong start
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Now, in Insomnia, we send a GET request through Kong Gateway, which listens at http://localhost:8000, to the /api path:</p>
 <p><img
         class="lazyload"
         src="/svg/loading.min.svg"
@@ -222,31 +327,64 @@ services:
 <p>Note that, by sending our request to port 8000, we are going <em>through</em> Kong Gateway to get to our API server.</p>
 <h2 id="add-the-kong-gateway-rate-limiting-plugin">Add the Kong Gateway Rate Limiting Plugin</h2>
 <p>Now that we have Kong Gateway sitting in front of our API server, we&rsquo;ll add in the Rate Limiting Plugin and test it out. We will need to add a few lines to our kong.yml declarative configuration file:</p>
-<pre><code class="yaml"># PATH: ~/project/kong.yml
- 
-_format_version: &#34;2.1&#34;
- 
-services:
-- name: my-api-server
-  url: http://localhost:3000/
-  routes:
-  - name: api-routes
-    paths:
-    - /api
-  plugins:
-  - name: rate-limiting
-    config:
-      minute: 5
-      hour: 12
-      policy: local
-      limit_by: header
-      header_name: x-api-key
-      policy:  local</code></pre>
-<p>We&rsquo;ve added the entire plugins section underneath our my-api-server service. We specify the name of the plugin, rate-limiting. This name is <em>not</em> arbitrary but refers to the actual rate-limiting plugin in the Kong package.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c"># PATH: ~/project/kong.yml</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="nt">_format_version</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;2.1&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="nt">services</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl">- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">my-api-server</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l">http://localhost:3000/</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">routes</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">api-routes</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">paths</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">/api</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">plugins</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">rate-limiting</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">config</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">minute</span><span class="p">:</span><span class="w"> </span><span class="m">5</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">hour</span><span class="p">:</span><span class="w"> </span><span class="m">12</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">policy</span><span class="p">:</span><span class="w"> </span><span class="l">local</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">limit_by</span><span class="p">:</span><span class="w"> </span><span class="l">header</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">header_name</span><span class="p">:</span><span class="w"> </span><span class="l">x-api-key</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">policy</span><span class="p">:</span><span class="w">  </span><span class="l">local</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>We&rsquo;ve added the entire plugins section underneath our my-api-server service. We specify the name of the plugin, rate-limiting. This name is <em>not</em> arbitrary but refers to the actual rate-limiting plugin in the Kong package.</p>
 <p>In this first run, we&rsquo;ve configured the plugin with minute: 5, which allows for up to five requests per minute. We&rsquo;ve also added hour : 12, which limits the requests per hour to 12. We&rsquo;re using the local policy, which has to do with how Kong will store and increment request counts. We&rsquo;ll talk about this policy configuration more below.</p>
 <p>Let&rsquo;s restart Kong:</p>
-<pre><code class="bash">~/project$  sudo kong restart</code></pre>
-<p>Now, back in Insomnia, we test out sending some requests to our API endpoint. If you send a request every few seconds, you&rsquo;ll see that the first five requests received a 200 OK response. However, if you exceed five requests within a minute:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">~/project$  sudo kong restart
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Now, back in Insomnia, we test out sending some requests to our API endpoint. If you send a request every few seconds, you&rsquo;ll see that the first five requests received a 200 OK response. However, if you exceed five requests within a minute:</p>
 <p><img
         class="lazyload"
         src="/svg/loading.min.svg"
@@ -263,24 +401,47 @@ services:
 <h3 id="rate-limiting-similar-requests">Rate Limiting &ldquo;Similar&rdquo; Requests</h3>
 <p>We&rsquo;ve configured Kong to count (and limit) requests to our server in our simple use case so far. More likely, we&rsquo;ll want to apply our rate limits to <em>similar</em> requests. By &ldquo;similar,&rdquo; we might mean &ldquo;coming from the same IP address&rdquo; or &ldquo;using the same API key.&rdquo;</p>
 <p>For example, let&rsquo;s say that all users of our API server need to send requests with a unique API key set in headers as x-api-key. We can configure Kong to apply its rate limits on a per-API-key basis as follows:</p>
-<pre><code class="yaml"># PATH: ~/project/kong.yml
- 
-_format_version: &#34;2.1&#34;
- 
-services:
-- name: my-api-server
-  url: http://localhost:3000/
-  routes:
-  - name: api-routes
-    paths:
-    - /api
-  plugins:
-  - name: rate-limiting
-    config:
-      minute: 5
-      hour: 12
-      policy: local</code></pre>
-<p>If we change the x-api-key to a different value (for example, user2), we immediately get 200 OK responses:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c"># PATH: ~/project/kong.yml</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="nt">_format_version</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;2.1&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="nt">services</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl">- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">my-api-server</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l">http://localhost:3000/</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">routes</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">api-routes</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">paths</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">/api</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">plugins</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">rate-limiting</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">config</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">minute</span><span class="p">:</span><span class="w"> </span><span class="m">5</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">hour</span><span class="p">:</span><span class="w"> </span><span class="m">12</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">policy</span><span class="p">:</span><span class="w"> </span><span class="l">local</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>If we change the x-api-key to a different value (for example, user2), we immediately get 200 OK responses:</p>
 <p><img
         class="lazyload"
         src="/svg/loading.min.svg"

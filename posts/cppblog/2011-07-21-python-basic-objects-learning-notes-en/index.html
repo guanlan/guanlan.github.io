@@ -9,7 +9,7 @@
   <meta property="og:title" content="Python Basic Objects Learning Notes">
   <meta property="og:description" content="Recently revisiting the book “Python Source Code Analysis”, I’ve recorded the key points about Python basic objects as follows:
 ​ Python Integer Objects
-Python integers use C language’s long type for storage Python int addition checks if the result overflows, and automatically converts to pyLongObject if it does Documentation in Python is seamlessly integrated into the language implementation a = 11 print a.__doc__ Small integer objects are completely cached in memory, other integer objects take turns using a block of memory space">
+Python integers use C language’s long type for storage Python int addition checks if the result overflows, and automatically converts to pyLongObject if it does Documentation in Python is seamlessly integrated into the language implementation 1 2 a = 11 print a.__doc__ Small integer objects are completely cached in memory, other integer objects take turns using a block of memory space">
   <meta property="og:locale" content="en_us">
   <meta property="og:type" content="article">
     <meta property="article:section" content="posts">
@@ -21,7 +21,7 @@ Python integers use C language’s long type for storage Python int addition che
   <meta name="twitter:title" content="Python Basic Objects Learning Notes">
   <meta name="twitter:description" content="Recently revisiting the book “Python Source Code Analysis”, I’ve recorded the key points about Python basic objects as follows:
 ​ Python Integer Objects
-Python integers use C language’s long type for storage Python int addition checks if the result overflows, and automatically converts to pyLongObject if it does Documentation in Python is seamlessly integrated into the language implementation a = 11 print a.__doc__ Small integer objects are completely cached in memory, other integer objects take turns using a block of memory space">
+Python integers use C language’s long type for storage Python int addition checks if the result overflows, and automatically converts to pyLongObject if it does Documentation in Python is seamlessly integrated into the language implementation 1 2 a = 11 print a.__doc__ Small integer objects are completely cached in memory, other integer objects take turns using a block of memory space">
       <meta name="twitter:site" content="@guanlandai">
 <meta name="application-name" content="My cool site">
 <meta name="apple-mobile-web-app-title" content="My cool site"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
@@ -35,7 +35,7 @@ Python integers use C language’s long type for storage Python int addition che
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/rmmod.com\/posts\/cppblog\/2011-07-21-python-basic-objects-learning-notes-en\/"
-        },"genre": "posts","keywords": "original","wordcount":  408 ,
+        },"genre": "posts","keywords": "original","wordcount":  417 ,
         "url": "https:\/\/rmmod.com\/posts\/cppblog\/2011-07-21-python-basic-objects-learning-notes-en\/","datePublished": "2011-07-21T00:00:00+08:00","dateModified": "2011-07-21T00:00:00+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -79,7 +79,7 @@ Python integers use C language’s long type for storage Python int addition che
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Python Basic Objects Learning Notes</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>guanlan</a>
 </span>&nbsp;<span class="post-category">included in <a href="/categories/python/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Python</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2011-07-21">2011-07-21</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;408 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2011-07-21">2011-07-21</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;417 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;2 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
@@ -94,9 +94,17 @@ Python integers use C language’s long type for storage Python int addition che
 <li>Python int addition checks if the result overflows, and automatically converts to pyLongObject if it does</li>
 <li>Documentation in Python is seamlessly integrated into the language implementation</li>
 </ol>
-<pre><code class="python">a = 11  
-print a.__doc__</code></pre>
-<ol start="4">
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">a</span> <span class="o">=</span> <span class="mi">11</span>  
+</span></span><span class="line"><span class="cl"><span class="nb">print</span> <span class="n">a</span><span class="o">.</span><span class="vm">__doc__</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="4">
 <li>
 <p>Small integer objects are completely cached in memory, other integer objects take turns using a block of memory space</p>
 </li>
@@ -110,8 +118,15 @@ print a.__doc__</code></pre>
 </ol>
 </li>
 </ol>
-<pre><code class="python">&#34;&#34;.join([&#39;s1&#39;,&#39;s2&#39;,&#39;s3&#39;])</code></pre>
-<p><strong>Python Dict Objects</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="s2">&#34;&#34;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="s1">&#39;s1&#39;</span><span class="p">,</span><span class="s1">&#39;s2&#39;</span><span class="p">,</span><span class="s1">&#39;s3&#39;</span><span class="p">])</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>Python Dict Objects</strong></p>
 <ol>
 <li>
 <p>Python&rsquo;s dict uses hashtable instead of R-B Tree.</p>
@@ -140,13 +155,25 @@ growth rate is slowed down to 2x each time. It can be seen that Python dict has 
 <p>Comparison of STL and PyListObject automatic expansion algorithms: personally I think list would be more appropriately named array, hehe</p>
 </li>
 </ol>
-<pre><code class="c">//sgi STL:  
-len = (old_size != 0 )?2*oldsize:1  
-//(expand by 2x if not enough, if initially empty set to 1)  
-//Python:  
-new_allocated=(newsize&gt;&gt;3)&#43;(newsize&lt;9?3:6)  
-//(???)</code></pre>
-<ol start="5">
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="c1">//sgi STL:  
+</span></span></span><span class="line"><span class="cl"><span class="n">len</span> <span class="o">=</span> <span class="p">(</span><span class="n">old_size</span> <span class="o">!=</span> <span class="mi">0</span> <span class="p">)</span><span class="o">?</span><span class="mi">2</span><span class="o">*</span><span class="nl">oldsize</span><span class="p">:</span><span class="mi">1</span>  
+</span></span><span class="line"><span class="cl"><span class="c1">//(expand by 2x if not enough, if initially empty set to 1)  
+</span></span></span><span class="line"><span class="cl"><span class="c1">//Python:  
+</span></span></span><span class="line"><span class="cl"><span class="n">new_allocated</span><span class="o">=</span><span class="p">(</span><span class="n">newsize</span><span class="o">&gt;&gt;</span><span class="mi">3</span><span class="p">)</span><span class="o">+</span><span class="p">(</span><span class="n">newsize</span><span class="o">&lt;</span><span class="mi">9</span><span class="o">?</span><span class="mi">3</span><span class="o">:</span><span class="mi">6</span><span class="p">)</span>  
+</span></span><span class="line"><span class="cl"><span class="c1">//(???)
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="5">
 <li>Regarding the choice of growth factor, there&rsquo;s discussion here:</li>
 </ol>
 <p><a href="http://en.w3support.net/index.php?db=so&amp;id=1100311" target="_blank" rel="noopener noreffer">http://en.w3support.net/index.php?db=so&amp;id=1100311</a>

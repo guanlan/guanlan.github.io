@@ -35,7 +35,7 @@ The libevent API provides such a mechanism: Execute a specified callback functio
         "mainEntityOfPage": {
             "@type": "WebPage",
             "@id": "https:\/\/rmmod.com\/posts\/cppblog\/2010-06-24-libevent-analysis-notes-1-installation-and-usage-en\/"
-        },"genre": "posts","keywords": "original","wordcount":  538 ,
+        },"genre": "posts","keywords": "original","wordcount":  544 ,
         "url": "https:\/\/rmmod.com\/posts\/cppblog\/2010-06-24-libevent-analysis-notes-1-installation-and-usage-en\/","datePublished": "2010-06-24T00:00:00+08:00","dateModified": "2010-06-24T00:00:00+08:00","publisher": {
             "@type": "Organization",
             "name": ""},"author": {
@@ -79,7 +79,7 @@ The libevent API provides such a mechanism: Execute a specified callback functio
         </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">Libevent Analysis Notes (1) - Installation and Usage</h1><div class="post-meta">
             <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>guanlan</a>
 </span>&nbsp;<span class="post-category">included in <a href="/categories/libevent/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Libevent</a></span></div>
-            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2010-06-24">2010-06-24</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;538 words&nbsp;
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2010-06-24">2010-06-24</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;544 words&nbsp;
                 <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;3 minutes&nbsp;</div>
         </div><div class="details toc" id="toc-static"  data-kept="">
                 <div class="details-summary toc-title">
@@ -119,13 +119,25 @@ Note that its license is a BSD-style license, which can be used in commercial pr
 </code></pre>
 <p>​    Or use:
 ​</p>
-<pre><code class="bash">~$  wget http://monkey.org/~provos/libevent-1.4.13-stable.tar.gz
-~$  tar –xzvf  libevent-1.4.13-stable.tar.gz
-~$  cd libevent-1.4.13-stable
-~$  ./configure
-~$  make
-~$  sudo make install</code></pre>
-<h2 id="2-library-usage">2. Library Usage</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">~$  wget http://monkey.org/~provos/libevent-1.4.13-stable.tar.gz
+</span></span><span class="line"><span class="cl">~$  tar –xzvf  libevent-1.4.13-stable.tar.gz
+</span></span><span class="line"><span class="cl">~$  <span class="nb">cd</span> libevent-1.4.13-stable
+</span></span><span class="line"><span class="cl">~$  ./configure
+</span></span><span class="line"><span class="cl">~$  make
+</span></span><span class="line"><span class="cl">~$  sudo make install
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="2-library-usage">2. Library Usage</h2>
 <p>You can understand the basic usage of libevent from these simple examples. When compiling, you need to add the &ldquo;-levent&rdquo; parameter.</p>
 <h3 id="21-io-events-corresponding-to-ev_read-ev_write">2.1. I/O Events (corresponding to EV_READ, EV_WRITE)</h3>
 <p>Below is a simplified server program snippet that uses libevent to return system time.</p>
