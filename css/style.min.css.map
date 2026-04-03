@@ -1,7 +1,7 @@
 {
 	"version": 3,
 	"file": "style.min.css",
-	"sourceRoot": "/private/tmp/guanlan-src-fullpub",
+	"sourceRoot": "/private/tmp/guanlan-src-articlepub",
 	"sources": [
 		"themes/LoveIt/assets/css/style.scss",
 		"themes/LoveIt/assets/css/_variables.scss",

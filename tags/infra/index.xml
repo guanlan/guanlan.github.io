@@ -9,11 +9,11 @@
     <lastBuildDate>Thu, 02 Apr 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://rmmod.com/tags/infra/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>I Read Claude Code’s Security Layer. Here’s What It Still Can’t Solve.</title>
+      <title>I Read Claude Code’s Leaked Source. It Exposes the Limits of Shell-First Safety.</title>
       <link>https://rmmod.com/posts/agent/claude-code-security/</link>
       <pubDate>Thu, 02 Apr 2026 00:00:00 +0000</pubDate>
       <guid>https://rmmod.com/posts/agent/claude-code-security/</guid>
-      <description>&lt;p&gt;Imagine this: a normal curl command is running in your terminal, sending runtime logs to a monitoring webhook. To a rule-based classifier, this looks routine. But what if the command was triggered by a hidden file in the codebase, one laced with a malicious prompt?&lt;/p&gt;&#xA;&lt;p&gt;Over the past few days, I read through the source code of Claude Code’s security layer.&lt;/p&gt;&#xA;&lt;p&gt;Inside a local development environment, Claude Code is a very strong piece of security engineering. But the moment an agent starts touching real identities and real side effects, the problem changes.&lt;/p&gt;</description>
+      <description>&lt;p&gt;Imagine this: a normal curl command is running in your terminal, sending runtime logs to a monitoring webhook. To a rule-based classifier, this looks routine. But what if the command was triggered by a hidden file in the codebase, one laced with a malicious prompt?&lt;/p&gt;&#xA;&lt;p&gt;After Claude Code’s source leaked, I read through its security layer line by line. What I found was both impressive and clarifying: Claude Code is a very strong local security system, and it also shows exactly where that model starts to break. Once agents begin acting with real identities and causing real side effects, the problem is no longer just shell safety.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Agent Infrastructure Needs New Primitives</title>
