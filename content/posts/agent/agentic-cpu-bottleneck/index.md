@@ -27,7 +27,7 @@ Once that loop becomes the real workload, model inference is no longer the whole
 
 That is where the old bottleneck story starts to break.
 
-# **The old bottleneck story is starting to break**
+## **The old bottleneck story is starting to break**
 
 We are starting to see it in the data.
 
@@ -37,7 +37,7 @@ Late last year, Georgia Tech and Intel published a paper (A CPU-Centric Perspect
 
 This is the most noteworthy shift at GTC this year. NVIDIA is no longer framing the problem simply as models needing more GPUs. They are emphasizing execution-layer components: agentic responses, runtime engines, orchestration services, tooling, and analytics pipelines. The product narrative behind Vera is that the future value of AI systems will come not just from faster compute, but from highly efficient execution synergy between the CPU and GPU.
 
-# **Why the logic of the agent era is different**
+## **Why the logic of the agent era is different**
 
 Training and inference are compute-bound tasks naturally suited for the GPU's massively parallel architecture. Agent execution logic is entirely different.
 
@@ -49,7 +49,7 @@ Software architecture amplifies this. Python-based agent frameworks like LangCha
 
 **The GPU is the thinking engine. The CPU is the execution and scheduling hub. The industry has bet almost everything on the thinking engine, but the scheduling hub is dragging the system down.**
 
-# **What Vera is actually betting on**
+## **What Vera is actually betting on**
 
 {{< image src="NVIDIA-Rubin-AI-Platform-_6-scaled.png" alt="NVIDIA Rubin AI platform slide" title="NVIDIA Rubin AI platform Photo Credit: Nvidia.com" rel="agentic-cpu-bottleneck-gallery" >}}
 
@@ -81,7 +81,7 @@ It means a KV cache can spill to CPU-side memory without turning into a copy-and
 
 That is the deeper idea behind Vera. Tighter coupling between reasoning and execution.
 
-# **The industry is validating the bet**
+## **The industry is validating the bet**
 
 Intel was already positioning Xeon as the orchestration layer for AI systems, leaning into the fact that agentic workloads need CPU capacity even as GPUs stay scarce. AMD has been telling a similar story around EPYC, with Lisa Su pointing to rising demand from AI orchestration and mixed CPU-GPU deployments.
 
@@ -99,7 +99,7 @@ The Hacker News reaction was predictably split. Some people dismissed Vera as an
 
 Purpose-built is the right word.
 
-# **Hardware is only half the answer**
+## **Hardware is only half the answer**
 
 Still, I don't think the long-term opportunity here is mainly in hardware.
 
@@ -117,7 +117,7 @@ Agents need an execution layer that understands their actual semantics: state pe
 
 The missing layer is runtime infrastructure that treats agent execution as a first-class systems problem.
 
-# **Security is part of execution**
+## **Security is part of execution**
 
 Security breaks in the same place.
 
@@ -135,7 +135,7 @@ I don't want to overstate the parallel. But the convergence matters.
 
 It suggests that agent security is starting to mature in the right direction, as execution governance sitting around the model.
 
-# **What Vera doesn't solve**
+## **What Vera doesn't solve**
 
 GTC 2026 made that shift harder to ignore. NVIDIA is now designing around agent execution as a real systems workload, not as a footnote to GPU compute.
 
