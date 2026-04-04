@@ -22,7 +22,10 @@
     {
         "@context": "http://schema.org",
         "@type": "WebSite",
-        "url": "https:\/\/rmmod.com\/","inLanguage": "en-us","description": "This is my cool site","name": "Guanlan Dai"
+        "url": "https:\/\/rmmod.com\/","inLanguage": "en-us","author": {
+                "@type": "Person",
+                "name": "Guanlan Dai"
+            },"description": "This is my cool site","name": "Guanlan Dai"
     }
     </script></head>
     <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
@@ -67,6 +70,27 @@
 <a href="/index.xml" title="RSS" target="_blank" rel="noopener noreffer me"><i class="fas fa-rss fa-fw" aria-hidden="true"></i></a>
 </div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/cppblog/2010-06-24-libevent-analysis-notes-1-installation-and-usage-en/">Libevent Analysis Notes (1) - Installation and Usage</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>guanlan</a>
+</span>&nbsp;<span class="post-publish">published on <time datetime="2010-06-24">2010-06-24</time></span>&nbsp;<span class="post-category">included in <a href="/categories/libevent/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Libevent</a></span></div><div class="content"><p>Introduction to Libevent</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/img/None.gif"
+        data-srcset="/img/None.gif, /img/None.gif 1.5x, /img/None.gif 2x"
+        data-sizes="auto"
+        alt="/img/None.gif"
+        title="/img/None.gif" />The libevent API provides a mechanism to execute a callback function when a specific event occurs on a file descriptor or after a timeout has been reached. Furthermore, libevent also support callbacks due to signals or regular timeouts.</p>
+<pre><code>The libevent API provides such a mechanism:  
+Execute a specified callback function when a specific event occurs in a specified file descriptor, or when a timeout is reached.  
+Additionally, libevent callback functionality also supports triggering by signals or regular timeouts.  
+Note that its license is a BSD-style license, which can be used in commercial products without having to open source.  
+</code></pre>
+<p>​</p></div><div class="post-footer">
+        <a href="/posts/cppblog/2010-06-24-libevent-analysis-notes-1-installation-and-usage-en/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/original/">Original</a></div></div>
+</article>
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/posts/cppblog/2010-06-24-libevent-learning-notes-2-basic-data-structures-en/">Libevent Learning Notes (2) - Basic Data Structures</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>guanlan</a>
 </span>&nbsp;<span class="post-publish">published on <time datetime="2010-06-24">2010-06-24</time></span>&nbsp;<span class="post-category">included in <a href="/categories/libevent/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Libevent</a></span></div><div class="content"><h2 id="21-event_base-core-event-base-data-structure">2.1 event_base Core Event Base Data Structure</h2>
@@ -83,7 +107,8 @@
 <p>The time heap uses min-Heap (minimum binary heap), while both the registered queue and active event queue use doubly linked lists.</p></div><div class="post-footer">
         <a href="/posts/cppblog/2010-06-24-libevent-learning-notes-2-basic-data-structures-en/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/original/">Original</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+</article>
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/posts/cppblog/2010-06-24-vim-commands-big-picture-en/">VIM Commands Big Picture</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>guanlan</a>
 </span>&nbsp;<span class="post-publish">published on <time datetime="2010-06-24">2010-06-24</time></span>&nbsp;<span class="post-category">included in <a href="/categories/vim/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Vim</a></span></div><div class="content"><p><a href="/img/o_vim_cheat_sheet1.jpg" rel=""><img
@@ -124,7 +149,8 @@ Here are some similar ones:[</p>
 </em></p></div><div class="post-footer">
         <a href="/posts/cppblog/2010-06-24-vim-commands-big-picture-en/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/original/">Original</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+</article>
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/posts/cppblog/2010-01-23-memcached-source-code-analysis-notes-pdf-en/">Memcached Source Code Analysis Notes PDF</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>guanlan</a>
 </span>&nbsp;<span class="post-publish">published on <time datetime="2010-01-23">2010-01-23</time></span>&nbsp;<span class="post-category">included in <a href="/categories/memcached/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Memcached</a></span></div><div class="content"><p>Memcached is a free, open source, high-performance, distributed memory object caching system, aimed at speeding up dynamic web applications by alleviating database load.</p>
@@ -134,7 +160,8 @@ Here are some similar ones:[</p>
 I hope it can also bring convenience to everyone.</p></div><div class="post-footer">
         <a href="/posts/cppblog/2010-01-23-memcached-source-code-analysis-notes-pdf-en/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/original/">Original</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+</article>
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/posts/cppblog/2009-12-30-random-thoughts-series-2-factorial-algorithm-thoughts-en/">Random Thoughts Series 2 - Factorial Algorithm Thoughts</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>guanlan</a>
 </span>&nbsp;<span class="post-publish">published on <time datetime="2009-12-30">2009-12-30</time></span></div><div class="content"><p>by <a href="http://www.cppblog.com/xguru/archive/2009/12/29/104344.html" target="_blank" rel="noopener noreffer">guanlan</a>
@@ -205,7 +232,8 @@ I hope it can also bring convenience to everyone.</p></div><div class="post-foot
         title="/img/ExpandedBlockEnd.gif" />}</p></div><div class="post-footer">
         <a href="/posts/cppblog/2009-12-30-random-thoughts-series-2-factorial-algorithm-thoughts-en/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/original/">Original</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+</article>
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/posts/cppblog/2009-12-24-cc-array-peculiar-phenomenon-en/">A &#39;Strange Phenomenon&#39; in C/C&#43;&#43; Arrays</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>guanlan</a>
 </span>&nbsp;<span class="post-publish">published on <time datetime="2009-12-24">2009-12-24</time></span>&nbsp;<span class="post-category">included in <a href="/categories/c++/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>C++</a></span></div><div class="content"><p>Everyone is familiar with using arrays, right?<br>
@@ -249,16 +277,8 @@ Try compiling it to see if it passes?</p>
 </div><p>Now let&rsquo;s look at the generated assembly code</p></div><div class="post-footer">
         <a href="/posts/cppblog/2009-12-24-cc-array-peculiar-phenomenon-en/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/original/">Original</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/cppblog/2009-12-20-random-thoughts-series-1-cpp-thoughts-en/">Random Thoughts Series 1 - C&#43;&#43; Thoughts</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>guanlan</a>
-</span>&nbsp;<span class="post-publish">published on <time datetime="2009-12-20">2009-12-20</time></span>&nbsp;<span class="post-category">included in <a href="/categories/c++/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>C++</a></span></div><div class="content"><p>After diving deep into the internal structure of STL and some of the deeper mechanisms and techniques of C++, a question that every programmer must face suddenly emerged.</p>
-<p><strong>Why Programming in C++?</strong></p>
-<p>Why should I choose C++ over the simple and pure C, or the flexible and comprehensive JAVA and C#?</p>
-<p>Browsing through various technical forums and blogs of experts, everyone is arguing for their favorite language. C#/JAVA programmers say: don&rsquo;t reinvent the wheel, with a good language platform and rich comprehensive libraries, you can focus on more important aspects like architecture and software engineering. Why be obsessed with the surface foundations of the language? The C++ standard doesn&rsquo;t even have basic GUI libraries and network libraries. Even BJ, the creator of C++, wants to develop C++ into a platform.</p></div><div class="post-footer">
-        <a href="/posts/cppblog/2009-12-20-random-thoughts-series-1-cpp-thoughts-en/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/original/">Original</a></div></div>
-</article><ul class="pagination"><li class="page-item ">
+</article>
+<ul class="pagination"><li class="page-item ">
                     <span class="page-link">
                         <a href="/">1</a>
                     </span>
@@ -274,9 +294,13 @@ Try compiling it to see if it passes?</p>
                     <span class="page-link">
                         <a href="/page/4/">4</a>
                     </span>
+                </li><li class="page-item ">
+                    <span class="page-link">
+                        <a href="/page/5/">5</a>
+                    </span>
                 </li></ul></div></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Guanlan Dai | CC BY-NC 4.0</div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2009 - 2026</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span></div>
+        <div class="footer-container"><div class="footer-line">Guanlan Dai | CC BY-NC 4.0</div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2009 - 2026</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Guanlan Dai</a></span></div>
         </div>
     </footer></div>
 

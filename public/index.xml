@@ -15,21 +15,34 @@
 <p>After Claude Code’s source leaked, I read through its security layer line by line. What I found was both impressive and clarifying: Claude Code is a very strong local security system, and it also shows exactly where that model starts to break. Once agents begin acting with real identities and causing real side effects, the problem is no longer just shell safety.</p>]]></description>
 </item>
 <item>
-    <title>Agent Infrastructure Needs New Primitives</title>
-    <link>https://rmmod.com/posts/agent-infrastructure-needs-new-primitives/</link>
-    <pubDate>Sun, 29 Mar 2026 00:00:00 &#43;0000</pubDate>
+    <title>In the Age of Agentic, the CPU is the New Bottleneck</title>
+    <link>https://rmmod.com/posts/agent/agentic-cpu-bottleneck/</link>
+    <pubDate>Fri, 27 Mar 2026 00:00:00 &#43;0000</pubDate>
     <author>guanlan</author>
-    <guid>https://rmmod.com/posts/agent-infrastructure-needs-new-primitives/</guid>
+    <guid>https://rmmod.com/posts/agent/agentic-cpu-bottleneck/</guid>
+    <description><![CDATA[<p>For the last three years, the center of gravity in AI felt obvious. Bigger models. More GPUs. Faster inference. Almost every serious conversation in the industry eventually collapsed back to the same axis.</p>
+<p>Walking into SAP Center, I expected Jensen Huang to keep pushing the familiar story: more tokens, more throughput, more chips. Instead, he put Vera Rubin at the center of the stage.</p>
+<a class="lightgallery" href="/posts/agent/agentic-cpu-bottleneck/IMG_4411.jpg" title="Jensen Huang presenting Vera Rubin at SAP Center" data-thumbnail="/posts/agent/agentic-cpu-bottleneck/IMG_4411.jpg" rel="agentic-cpu-bottleneck-gallery">
+        
+    </a>
+<p>What stood out was the framing. The pitch was no longer that AI simply needs more compute. It was that once AI starts behaving like agents, the hard part is no longer the model alone. It is the system around the model: the runtime, the orchestration layer, the tool chain, the data movement, and the handoff between components.</p>]]></description>
+</item>
+<item>
+    <title>Agent Infrastructure Needs New Primitives</title>
+    <link>https://rmmod.com/posts/agent/agent-infrastructure-needs-new-primitives/</link>
+    <pubDate>Sun, 08 Feb 2026 00:00:00 &#43;0000</pubDate>
+    <author>guanlan</author>
+    <guid>https://rmmod.com/posts/agent/agent-infrastructure-needs-new-primitives/</guid>
     <description><![CDATA[<p>I’ve been thinking about agent infrastructure for a while, and one thing keeps coming back: the biggest shift is not what agents can do, but how they run.</p>
 <p>That sounds subtle, but I think it matters a lot. The bottleneck is starting to move from model capability to execution. And most of the stack we use today was not built for that.</p>
 <p>I had a long conversation with Mitchell Hashimoto recently that helped sharpen this for me. We came at it from different directions, but kept circling back to the same conclusions. A lot of this clicked into place in that discussion, and I’m grateful he let me share some of it here.</p>]]></description>
 </item>
 <item>
     <title>From a Napkin Offer to a Global Engineering Team: My 8-Year Journey Building Kong</title>
-    <link>https://rmmod.com/posts/journey-in-kong/</link>
+    <link>https://rmmod.com/posts/kong/journey-in-kong/</link>
     <pubDate>Wed, 22 Oct 2025 00:00:00 &#43;0000</pubDate>
     <author>guanlan</author>
-    <guid>https://rmmod.com/posts/journey-in-kong/</guid>
+    <guid>https://rmmod.com/posts/kong/journey-in-kong/</guid>
     <description><![CDATA[<p><em>How a café chat and a Napkin offer in San Francisco turned into an eight-year adventure building world-class infrastructure.</em></p>
 <h3 id="the-beginning"><strong>The Beginning</strong></h3>
 <p>I never thought I would stay at one company for eight years.</p>
@@ -37,10 +50,10 @@
 </item>
 <item>
     <title>Deep Dive into Kong Gateway&#39;s New Rust-Based Router</title>
-    <link>https://rmmod.com/posts/rust-based-router-kong-gateway/</link>
+    <link>https://rmmod.com/posts/kong/rust-based-router-kong-gateway/</link>
     <pubDate>Thu, 18 Jul 2024 00:00:00 &#43;0000</pubDate>
     <author>guanlan</author>
-    <guid>https://rmmod.com/posts/rust-based-router-kong-gateway/</guid>
+    <guid>https://rmmod.com/posts/kong/rust-based-router-kong-gateway/</guid>
     <description><![CDATA[<h2 id="what-is-the-expressions-router">What is the Expressions Router?</h2>
 <p>The router component in the Kong Gateway is a crucial element for traffic handling, allowing the definition of specific matching rules to identify and process client requests. As a core component of the gateway, the router plays a vital role in ensuring the functionality, flexibility, security as well as performance of the gateway.</p>
 <p></p>
@@ -48,10 +61,10 @@
 </item>
 <item>
     <title>Protecting Services With Kong Gateway Rate Limiting</title>
-    <link>https://rmmod.com/posts/kong-gateway-rate-limiting/</link>
+    <link>https://rmmod.com/posts/kong/kong-gateway-rate-limiting/</link>
     <pubDate>Tue, 18 May 2021 00:00:00 &#43;0000</pubDate>
     <author>guanlan</author>
-    <guid>https://rmmod.com/posts/kong-gateway-rate-limiting/</guid>
+    <guid>https://rmmod.com/posts/kong/kong-gateway-rate-limiting/</guid>
     <description><![CDATA[<p>The Kong Gateway Rate Limiting <a href="https://docs.konghq.com/hub/kong-inc/rate-limiting" target="_blank" rel="noopener noreffer">plugin</a>
  is one of our most popular traffic control add-ons. You can configure the plugin with a policy for what constitutes &ldquo;similar requests&rdquo; (requests coming from the same IP address, for example), and you can set your limits (limit to 10 requests per minute, for example). This tutorial will walk through how simple it is to enable rate limiting in your <a href="https://konghq.com/kong" target="_blank" rel="noopener noreffer">Kong Gateway</a>
 .</p>
@@ -60,10 +73,10 @@
 </item>
 <item>
     <title>How to Design a Scalable Rate Limiting Algorithm</title>
-    <link>https://rmmod.com/posts/how-to-design-a-scalable-rate-limiting-algorithm/</link>
+    <link>https://rmmod.com/posts/kong/how-to-design-a-scalable-rate-limiting-algorithm/</link>
     <pubDate>Fri, 15 Jan 2021 12:19:18 &#43;0800</pubDate>
     <author>guanlan</author>
-    <guid>https://rmmod.com/posts/how-to-design-a-scalable-rate-limiting-algorithm/</guid>
+    <guid>https://rmmod.com/posts/kong/how-to-design-a-scalable-rate-limiting-algorithm/</guid>
     <description><![CDATA[<h2 id="what-is-rate-limiting">What is rate limiting?</h2>
 <p>Rate limiting protects your APIs from inadvertent or malicious overuse by limiting how often each user can call the API. Without rate limiting, each user may make a request as often as they like, leading to &ldquo;spikes&rdquo; of requests that starve other consumers. Once enabled, rate limiting can only perform a fixed number of requests per second. A rate limiting algorithm helps automate the process.</p>
 <p></p>]]></description>
@@ -111,52 +124,6 @@
 </ol>
 <p>  The programming experts from other languages also know we need use immutable data as more as possible: Joshua Bloch,the author of Effective Java, said, “If an object is immutable, it can be in only one state, and you win big.You never have to worry about what state the object is in, and you can share it freely, with no need for synchronization.” Scott Meyers, Effective C++, Item 3: <a href="http://codeidol.com/cpp/effective-cpp/Accustoming-Yourself-to-C/Item-3-Use-const-whenever-possible/" target="_blank" rel="noopener noreffer">Use <em>const</em> whenever possible</a>
 . Other languages also use immutable data frequently, such like Python, the number/string/tuple types are immutable data, the String build-in class in Java is immutable too. But immutable data is inconvenient in some situation:</p>]]></description>
-</item>
-<item>
-    <title>How to use Python like Lisp</title>
-    <link>https://rmmod.com/posts/how-to-use-python-like-lisp/</link>
-    <pubDate>Mon, 19 Nov 2012 00:00:00 &#43;0000</pubDate>
-    <author>guanlan</author>
-    <guid>https://rmmod.com/posts/how-to-use-python-like-lisp/</guid>
-    <description><![CDATA[<p>Lisp has some very effective way to get jobs done, this article give you a direct way to use Python like Lisp.</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">cons</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">el</span><span class="p">,</span> <span class="n">lst</span><span class="p">:</span> <span class="p">(</span><span class="n">el</span><span class="p">,</span> <span class="n">lst</span><span class="p">)</span> 
-</span></span><span class="line"><span class="cl"><span class="n">mklist</span> <span class="o">=</span> <span class="k">lambda</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">reduce</span><span class="p">(</span><span class="k">lambda</span> <span class="n">lst</span><span class="p">,</span> <span class="n">el</span><span class="p">:</span> <span class="n">cons</span><span class="p">(</span><span class="n">el</span><span class="p">,</span> <span class="n">lst</span><span class="p">),</span> <span class="nb">reversed</span><span class="p">(</span><span class="n">args</span><span class="p">),</span> <span class="kc">None</span><span class="p">)</span> 
-</span></span><span class="line"><span class="cl"><span class="n">car</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">lst</span><span class="p">:</span> <span class="n">lst</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="n">lst</span> <span class="k">else</span> <span class="n">lst</span> 
-</span></span><span class="line"><span class="cl"><span class="n">cdr</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">lst</span><span class="p">:</span> <span class="n">lst</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="k">if</span> <span class="n">lst</span> <span class="k">else</span> <span class="n">lst</span> 
-</span></span><span class="line"><span class="cl"><span class="n">nth</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">n</span><span class="p">,</span> <span class="n">lst</span><span class="p">:</span> <span class="n">nth</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">cdr</span><span class="p">(</span><span class="n">lst</span><span class="p">))</span> <span class="k">if</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="k">else</span> <span class="n">car</span><span class="p">(</span><span class="n">lst</span><span class="p">)</span> 
-</span></span><span class="line"><span class="cl"><span class="n">length</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">lst</span><span class="p">,</span> <span class="n">count</span><span class="o">=</span><span class="mi">0</span><span class="p">:</span> <span class="n">length</span><span class="p">(</span><span class="n">cdr</span><span class="p">(</span><span class="n">lst</span><span class="p">),</span> <span class="n">count</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="k">if</span> <span class="n">lst</span> <span class="k">else</span> <span class="n">count</span>
-</span></span><span class="line"><span class="cl"><span class="n">begin</span> <span class="o">=</span> <span class="k">lambda</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">args</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> 
-</span></span><span class="line"><span class="cl"><span class="n">display</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">lst</span><span class="p">:</span> <span class="n">begin</span><span class="p">(</span><span class="n">w</span><span class="p">(</span><span class="s2">&#34;</span><span class="si">%s</span><span class="s2"> &#34;</span> <span class="o">%</span> <span class="n">car</span><span class="p">(</span><span class="n">lst</span><span class="p">)),</span> <span class="n">display</span><span class="p">(</span><span class="n">cdr</span><span class="p">(</span><span class="n">lst</span><span class="p">)))</span> <span class="k">if</span> <span class="n">lst</span> <span class="k">else</span> <span class="n">w</span><span class="p">(</span><span class="s2">&#34;nil</span><span class="se">\n</span><span class="s2">&#34;</span><span class="p">)</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>where <code>w = sys.stdout.write</code></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">foldr</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">f</span><span class="p">,</span> <span class="n">i</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">reduce</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="n">foldl</span> <span class="o">=</span> <span class="n">reduce</span>
-</span></span><span class="line"><span class="cl"><span class="n">mapcar</span> <span class="o">=</span> <span class="nb">map</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>Pay attention about the speed when you use Python, here is a benchmarks for 5 languages:</p>
-<p> from <a href="http://www.bagley.org/~doug/shootout/" target="_blank" rel="noopener noreffer">The Great Computer Language Shootout</a>
-.</p>]]></description>
 </item>
 </channel>
 </rss>

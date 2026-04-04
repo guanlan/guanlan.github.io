@@ -16,10 +16,17 @@
       <description>&lt;p&gt;Imagine this: a normal curl command is running in your terminal, sending runtime logs to a monitoring webhook. To a rule-based classifier, this looks routine. But what if the command was triggered by a hidden file in the codebase, one laced with a malicious prompt?&lt;/p&gt;&#xA;&lt;p&gt;After Claude Code’s source leaked, I read through its security layer line by line. What I found was both impressive and clarifying: Claude Code is a very strong local security system, and it also shows exactly where that model starts to break. Once agents begin acting with real identities and causing real side effects, the problem is no longer just shell safety.&lt;/p&gt;</description>
     </item>
     <item>
+      <title>In the Age of Agentic, the CPU is the New Bottleneck</title>
+      <link>https://rmmod.com/posts/agent/agentic-cpu-bottleneck/</link>
+      <pubDate>Fri, 27 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>https://rmmod.com/posts/agent/agentic-cpu-bottleneck/</guid>
+      <description>&lt;p&gt;For the last three years, the center of gravity in AI felt obvious. Bigger models. More GPUs. Faster inference. Almost every serious conversation in the industry eventually collapsed back to the same axis.&lt;/p&gt;&#xA;&lt;p&gt;Walking into SAP Center, I expected Jensen Huang to keep pushing the familiar story: more tokens, more throughput, more chips. Instead, he put Vera Rubin at the center of the stage.&lt;/p&gt;&#xA;&lt;a class=&#34;lightgallery&#34; href=&#34;https://rmmod.com/posts/agent/agentic-cpu-bottleneck/IMG_4411.jpg&#34; title=&#34;Jensen Huang presenting Vera Rubin at SAP Center&#34; data-thumbnail=&#34;/posts/agent/agentic-cpu-bottleneck/IMG_4411.jpg&#34; rel=&#34;agentic-cpu-bottleneck-gallery&#34;&gt;&#xA;        &lt;img&#xA;            class=&#34;lazyload&#34;&#xA;            src=&#34;https://rmmod.com/svg/loading.min.svg&#34;&#xA;            data-src=&#34;https://rmmod.com/posts/agent/agentic-cpu-bottleneck/IMG_4411.jpg&#34;&#xA;            data-srcset=&#34;https://rmmod.com/posts/agent/agentic-cpu-bottleneck/IMG_4411.jpg, https://rmmod.com/posts/agent/agentic-cpu-bottleneck/IMG_4411.jpg 1.5x, https://rmmod.com/posts/agent/agentic-cpu-bottleneck/IMG_4411.jpg 2x&#34;&#xA;            data-sizes=&#34;auto&#34;&#xA;            alt=&#34;Jensen Huang presenting Vera Rubin at SAP Center&#34; width=&#34;4618&#34; height=&#34;3464&#34; /&gt;&#xA;    &lt;/a&gt;&#xA;&lt;p&gt;What stood out was the framing. The pitch was no longer that AI simply needs more compute. It was that once AI starts behaving like agents, the hard part is no longer the model alone. It is the system around the model: the runtime, the orchestration layer, the tool chain, the data movement, and the handoff between components.&lt;/p&gt;</description>
+    </item>
+    <item>
       <title>Agent Infrastructure Needs New Primitives</title>
-      <link>https://rmmod.com/posts/agent-infrastructure-needs-new-primitives/</link>
-      <pubDate>Sun, 29 Mar 2026 00:00:00 +0000</pubDate>
-      <guid>https://rmmod.com/posts/agent-infrastructure-needs-new-primitives/</guid>
+      <link>https://rmmod.com/posts/agent/agent-infrastructure-needs-new-primitives/</link>
+      <pubDate>Sun, 08 Feb 2026 00:00:00 +0000</pubDate>
+      <guid>https://rmmod.com/posts/agent/agent-infrastructure-needs-new-primitives/</guid>
       <description>&lt;p&gt;I’ve been thinking about agent infrastructure for a while, and one thing keeps coming back: the biggest shift is not what agents can do, but how they run.&lt;/p&gt;&#xA;&lt;p&gt;That sounds subtle, but I think it matters a lot. The bottleneck is starting to move from model capability to execution. And most of the stack we use today was not built for that.&lt;/p&gt;&#xA;&lt;p&gt;I had a long conversation with Mitchell Hashimoto recently that helped sharpen this for me. We came at it from different directions, but kept circling back to the same conclusions. A lot of this clicked into place in that discussion, and I’m grateful he let me share some of it here.&lt;/p&gt;</description>
     </item>
   </channel>

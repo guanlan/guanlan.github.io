@@ -22,7 +22,10 @@
     {
         "@context": "http://schema.org",
         "@type": "WebSite",
-        "url": "https:\/\/rmmod.com\/","inLanguage": "en-us","description": "This is my cool site","name": "Guanlan Dai"
+        "url": "https:\/\/rmmod.com\/","inLanguage": "en-us","author": {
+                "@type": "Person",
+                "name": "Guanlan Dai"
+            },"description": "This is my cool site","name": "Guanlan Dai"
     }
     </script></head>
     <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
@@ -67,6 +70,22 @@
 <a href="/index.xml" title="RSS" target="_blank" rel="noopener noreffer me"><i class="fas fa-rss fa-fw" aria-hidden="true"></i></a>
 </div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/kong/how-to-design-a-scalable-rate-limiting-algorithm/">How to Design a Scalable Rate Limiting Algorithm</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>guanlan</a>
+</span>&nbsp;<span class="post-publish">published on <time datetime="2021-01-15">2021-01-15</time></span></div><div class="content"><h2 id="what-is-rate-limiting">What is rate limiting?</h2>
+<p>Rate limiting protects your APIs from inadvertent or malicious overuse by limiting how often each user can call the API. Without rate limiting, each user may make a request as often as they like, leading to &ldquo;spikes&rdquo; of requests that starve other consumers. Once enabled, rate limiting can only perform a fixed number of requests per second. A rate limiting algorithm helps automate the process.</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/img/01-rate-limit-kong.png"
+        data-srcset="/img/01-rate-limit-kong.png, /img/01-rate-limit-kong.png 1.5x, /img/01-rate-limit-kong.png 2x"
+        data-sizes="auto"
+        alt="/img/01-rate-limit-kong.png"
+        title="rate limiting enabled at 2 requests/min" /></p></div><div class="post-footer">
+        <a href="/posts/kong/how-to-design-a-scalable-rate-limiting-algorithm/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/kong/">Kong</a>,&nbsp;<a href="/tags/rate-limiting/">Rate Limiting</a></div></div>
+</article>
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/posts/effective-web-crawler/">Practical Tips on Writing an Effective Web Crawler</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>guanlan</a>
 </span>&nbsp;<span class="post-publish">published on <time datetime="2021-01-15">2021-01-15</time></span></div><div class="content"><p>A web crawler is a hard-working bot to gather information or index the pages on the Internet. It starts at some seeds URLs and finds every hyperlink on each page, and then crawler will visit those hyperlinks recursively.</p>
@@ -78,7 +97,8 @@
 </strong></em>, an <strong>event-driven networking engine.</strong>  </p></div><div class="post-footer">
         <a href="/posts/effective-web-crawler/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/networking/">Networking</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+</article>
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/posts/snippets-for-racket-language/">Snippets for Racket Language</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>guanlan</a>
 </span>&nbsp;<span class="post-publish">published on <time datetime="2013-02-03">2013-02-03</time></span></div><div class="content"><p>In the CS 5010 - Programming Design Paradigm course, we need write tons of documents,  repeat ourselves again and again, so I develop this snippet to save us time. If you using vim, you need install <a href="http://www.vim.org/scripts/script.php?script_id=2540" target="_blank" rel="noopener noreffer">snipMate</a>
@@ -88,7 +108,8 @@
 .</p></div><div class="post-footer">
         <a href="/posts/snippets-for-racket-language/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/lisp/">Lisp</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+</article>
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/posts/rethink-in-functional-languages/">Rethink in Functional Languages</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>guanlan</a>
 </span>&nbsp;<span class="post-publish">published on <time datetime="2013-01-09">2013-01-09</time></span></div><div class="content"><p>After about 3 months to learn and using Racket (a programming language in Lisp/Scheme family),  I learning lots of concepts of programming. The most important thing in FL(functional languages) is: <strong>&quot;<em>All data are immutable. All functions are pure.</em>&quot;</strong>  </p>
@@ -104,7 +125,8 @@
 . Other languages also use immutable data frequently, such like Python, the number/string/tuple types are immutable data, the String build-in class in Java is immutable too. But immutable data is inconvenient in some situation:</p></div><div class="post-footer">
         <a href="/posts/rethink-in-functional-languages/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/lisp/">Lisp</a>,&nbsp;<a href="/tags/python/">Python</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+</article>
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/posts/how-to-use-python-like-lisp/">How to use Python like Lisp</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>guanlan</a>
 </span>&nbsp;<span class="post-publish">published on <time datetime="2012-11-19">2012-11-19</time></span></div><div class="content"><p>Lisp has some very effective way to get jobs done, this article give you a direct way to use Python like Lisp.</p>
@@ -148,7 +170,8 @@
 .</p></div><div class="post-footer">
         <a href="/posts/how-to-use-python-like-lisp/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/lisp/">Lisp</a>,&nbsp;<a href="/tags/python/">Python</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+</article>
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/posts/cppblog/2011-07-21-python-basic-objects-learning-notes-en/">Python Basic Objects Learning Notes</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>guanlan</a>
 </span>&nbsp;<span class="post-publish">published on <time datetime="2011-07-21">2011-07-21</time></span>&nbsp;<span class="post-category">included in <a href="/categories/python/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Python</a></span></div><div class="content"><p>Recently revisiting the book &ldquo;Python Source Code Analysis&rdquo;, I&rsquo;ve recorded the key points about Python basic objects as follows:</p>
@@ -173,21 +196,8 @@
 <p>Small integer objects are completely cached in memory, other integer objects take turns using a block of memory space</p></div><div class="post-footer">
         <a href="/posts/cppblog/2011-07-21-python-basic-objects-learning-notes-en/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/original/">Original</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/cppblog/2010-10-24-look-at-this-years-programmers-problem-solving-sequence-en/">[Essay] Look at This Year&#39;s Programmers&#39; Problem-Solving Sequence</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>guanlan</a>
-</span>&nbsp;<span class="post-publish">published on <time datetime="2010-10-24">2010-10-24</time></span></div><div class="content"><p>2010 developer&rsquo;s problem solving sequence:</p>
-<p>from:<a href="http://twitter.com/#%21/activa" title="Philippe Leybaert" target="_blank" rel="noopener noreffer">@activa</a>
-</p>
-<p>1.Google<br>
-For technical problems, definitely check Google and Wikipedia. Use Baidu more if you want to see adult product ads.</p>
-<p>2.Coworkers<br>
-Ask coworkers for help. If your colleagues are helpful, technically skilled, and have encountered similar problems, their advice can be very valuable and might solve the problem immediately.</p>
-<p>3.StackOverflow<br>
-Search for answers on programming help websites, or post questions if you can&rsquo;t find answers. There are quite a lot of helpful people, but it seems this site has more Java/.Net questions.</p></div><div class="post-footer">
-        <a href="/posts/cppblog/2010-10-24-look-at-this-years-programmers-problem-solving-sequence-en/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/essay/">Essay</a></div></div>
-</article><ul class="pagination"><li class="page-item ">
+</article>
+<ul class="pagination"><li class="page-item ">
                     <span class="page-link">
                         <a href="/">1</a>
                     </span>
@@ -203,9 +213,13 @@ Search for answers on programming help websites, or post questions if you can&rs
                     <span class="page-link">
                         <a href="/page/4/">4</a>
                     </span>
+                </li><li class="page-item ">
+                    <span class="page-link">
+                        <a href="/page/5/">5</a>
+                    </span>
                 </li></ul></div></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Guanlan Dai | CC BY-NC 4.0</div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2009 - 2026</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span></div>
+        <div class="footer-container"><div class="footer-line">Guanlan Dai | CC BY-NC 4.0</div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2009 - 2026</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Guanlan Dai</a></span></div>
         </div>
     </footer></div>
 

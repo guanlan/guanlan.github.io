@@ -10,6 +10,9 @@ enableEmoji = true
   dateFormat = "2006-01-02"
   rss = true
 
+  [params.author]
+    name = "Guanlan Dai"
+
   [params.app]
     title = "Guanlan Dai"
     svgFavicon = "/favicon.svg"
@@ -37,6 +40,9 @@ enableEmoji = true
 
   [params.page]
     lightgallery = true
+
+    [params.page.seo.publisher]
+      name = "Guanlan Dai"
 
 [menu]
   [[menu.main]]
