@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>Protecting Services With Kong Gateway Rate Limiting - Guanlan Dai</title><meta name="Description" content="This is my cool site"><meta property="og:url" content="https://rmmod.com/posts/kong-gateway-rate-limiting/">
+        <title>Protecting Services With Kong Gateway Rate Limiting - Guanlan Dai</title><meta name="Description" content="This is my cool site"><meta property="og:url" content="https://rmmod.com/posts/kong/kong-gateway-rate-limiting/">
   <meta property="og:site_name" content="Guanlan Dai">
   <meta property="og:title" content="Protecting Services With Kong Gateway Rate Limiting">
   <meta property="og:description" content="The Kong Gateway Rate Limiting plugin is one of our most popular traffic control add-ons. You can configure the plugin with a policy for what constitutes “similar requests” (requests coming from the same IP address, for example), and you can set your limits (limit to 10 requests per minute, for example). This tutorial will walk through how simple it is to enable rate limiting in your Kong Gateway .
@@ -23,7 +23,7 @@ Rate Limiting: Protecting Your Server 101 Let’s take a step back and go over t
 Rate Limiting: Protecting Your Server 101 Let’s take a step back and go over the concept of rate limiting for those who aren’t familiar.">
       <meta name="twitter:site" content="@guanlandai">
 <meta name="application-name" content="Guanlan Dai">
-<meta name="apple-mobile-web-app-title" content="Guanlan Dai"><meta name="theme-color" content="#0f172a"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/favicon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#67e8f9"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://rmmod.com/posts/kong-gateway-rate-limiting/" /><link rel="prev" href="https://rmmod.com/posts/how-to-design-a-scalable-rate-limiting-algorithm/" /><link rel="next" href="https://rmmod.com/posts/rust-based-router-kong-gateway/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"><script type="application/ld+json">
+<meta name="apple-mobile-web-app-title" content="Guanlan Dai"><meta name="theme-color" content="#0f172a"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/favicon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#67e8f9"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://rmmod.com/posts/kong/kong-gateway-rate-limiting/" /><link rel="prev" href="https://rmmod.com/posts/kong/how-to-design-a-scalable-rate-limiting-algorithm/" /><link rel="next" href="https://rmmod.com/posts/kong/rust-based-router-kong-gateway/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
@@ -31,11 +31,11 @@ Rate Limiting: Protecting Your Server 101 Let’s take a step back and go over t
         "inLanguage": "en-us",
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "https:\/\/rmmod.com\/posts\/kong-gateway-rate-limiting\/"
+            "@id": "https:\/\/rmmod.com\/posts\/kong\/kong-gateway-rate-limiting\/"
         },"genre": "posts","keywords": "Kong, Rate Limiting","wordcount":  1942 ,
-        "url": "https:\/\/rmmod.com\/posts\/kong-gateway-rate-limiting\/","datePublished": "2021-05-18T00:00:00+00:00","dateModified": "2021-05-18T00:00:00+00:00","publisher": {
+        "url": "https:\/\/rmmod.com\/posts\/kong\/kong-gateway-rate-limiting\/","datePublished": "2021-05-18T00:00:00+00:00","dateModified": "2021-05-18T00:00:00+00:00","publisher": {
             "@type": "Organization",
-            "name": ""},"author": {
+            "name": "Guanlan Dai"},"author": {
                 "@type": "Person",
                 "name": "guanlan"
             },"description": ""
@@ -477,7 +477,7 @@ Rate Limiting: Protecting Your Server 101 Let’s take a step back and go over t
         <div class="post-info-line">
             <div class="post-info-md"></div>
             <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://rmmod.com/posts/kong-gateway-rate-limiting/" data-title="Protecting Services With Kong Gateway Rate Limiting" data-via="guanlandai" data-hashtags="Kong,Rate Limiting"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://rmmod.com/posts/kong-gateway-rate-limiting/" data-hashtag="Kong"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://rmmod.com/posts/kong-gateway-rate-limiting/" data-title="Protecting Services With Kong Gateway Rate Limiting"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://rmmod.com/posts/kong-gateway-rate-limiting/" data-title="Protecting Services With Kong Gateway Rate Limiting"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@6.20.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://rmmod.com/posts/kong-gateway-rate-limiting/" data-title="Protecting Services With Kong Gateway Rate Limiting"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://rmmod.com/posts/kong/kong-gateway-rate-limiting/" data-title="Protecting Services With Kong Gateway Rate Limiting" data-via="guanlandai" data-hashtags="Kong,Rate Limiting"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://rmmod.com/posts/kong/kong-gateway-rate-limiting/" data-hashtag="Kong"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://rmmod.com/posts/kong/kong-gateway-rate-limiting/" data-title="Protecting Services With Kong Gateway Rate Limiting"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://rmmod.com/posts/kong/kong-gateway-rate-limiting/" data-title="Protecting Services With Kong Gateway Rate Limiting"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@6.20.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://rmmod.com/posts/kong/kong-gateway-rate-limiting/" data-title="Protecting Services With Kong Gateway Rate Limiting"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
             </div>
         </div>
     </div>
@@ -489,12 +489,12 @@ Rate Limiting: Protecting Your Server 101 Let’s take a step back and go over t
         </section>
     </div>
 
-    <div class="post-nav"><a href="/posts/how-to-design-a-scalable-rate-limiting-algorithm/" class="prev" rel="prev" title="How to Design a Scalable Rate Limiting Algorithm"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>How to Design a Scalable Rate Limiting Algorithm</a>
-            <a href="/posts/rust-based-router-kong-gateway/" class="next" rel="next" title="Deep Dive into Kong Gateway&#39;s New Rust-Based Router">Deep Dive into Kong Gateway&#39;s New Rust-Based Router<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+    <div class="post-nav"><a href="/posts/kong/how-to-design-a-scalable-rate-limiting-algorithm/" class="prev" rel="prev" title="How to Design a Scalable Rate Limiting Algorithm"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>How to Design a Scalable Rate Limiting Algorithm</a>
+            <a href="/posts/kong/rust-based-router-kong-gateway/" class="next" rel="next" title="Deep Dive into Kong Gateway&#39;s New Rust-Based Router">Deep Dive into Kong Gateway&#39;s New Rust-Based Router<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
 </div>
 </article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Guanlan Dai | CC BY-NC 4.0</div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2009 - 2026</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span></div>
+        <div class="footer-container"><div class="footer-line">Guanlan Dai | CC BY-NC 4.0</div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2009 - 2026</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Guanlan Dai</a></span></div>
         </div>
     </footer></div>
 

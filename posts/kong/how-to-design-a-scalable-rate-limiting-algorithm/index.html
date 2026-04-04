@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="noodp" />
-        <title>How to Design a Scalable Rate Limiting Algorithm - Guanlan Dai</title><meta name="Description" content="This is my cool site"><meta property="og:url" content="https://rmmod.com/posts/how-to-design-a-scalable-rate-limiting-algorithm/">
+        <title>How to Design a Scalable Rate Limiting Algorithm - Guanlan Dai</title><meta name="Description" content="This is my cool site"><meta property="og:url" content="https://rmmod.com/posts/kong/how-to-design-a-scalable-rate-limiting-algorithm/">
   <meta property="og:site_name" content="Guanlan Dai">
   <meta property="og:title" content="How to Design a Scalable Rate Limiting Algorithm">
   <meta property="og:description" content="What is rate limiting? Rate limiting protects your APIs from inadvertent or malicious overuse by limiting how often each user can call the API. Without rate limiting, each user may make a request as often as they like, leading to “spikes” of requests that starve other consumers. Once enabled, rate limiting can only perform a fixed number of requests per second. A rate limiting algorithm helps automate the process.">
@@ -21,7 +21,7 @@
   <meta name="twitter:description" content="What is rate limiting? Rate limiting protects your APIs from inadvertent or malicious overuse by limiting how often each user can call the API. Without rate limiting, each user may make a request as often as they like, leading to “spikes” of requests that starve other consumers. Once enabled, rate limiting can only perform a fixed number of requests per second. A rate limiting algorithm helps automate the process.">
       <meta name="twitter:site" content="@guanlandai">
 <meta name="application-name" content="Guanlan Dai">
-<meta name="apple-mobile-web-app-title" content="Guanlan Dai"><meta name="theme-color" content="#0f172a"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/favicon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#67e8f9"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://rmmod.com/posts/how-to-design-a-scalable-rate-limiting-algorithm/" /><link rel="prev" href="https://rmmod.com/posts/effective-web-crawler/" /><link rel="next" href="https://rmmod.com/posts/kong-gateway-rate-limiting/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"><script type="application/ld+json">
+<meta name="apple-mobile-web-app-title" content="Guanlan Dai"><meta name="theme-color" content="#0f172a"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/favicon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#67e8f9"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://rmmod.com/posts/kong/how-to-design-a-scalable-rate-limiting-algorithm/" /><link rel="prev" href="https://rmmod.com/posts/effective-web-crawler/" /><link rel="next" href="https://rmmod.com/posts/kong/kong-gateway-rate-limiting/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "BlogPosting",
@@ -29,11 +29,11 @@
         "inLanguage": "en-us",
         "mainEntityOfPage": {
             "@type": "WebPage",
-            "@id": "https:\/\/rmmod.com\/posts\/how-to-design-a-scalable-rate-limiting-algorithm\/"
+            "@id": "https:\/\/rmmod.com\/posts\/kong\/how-to-design-a-scalable-rate-limiting-algorithm\/"
         },"genre": "posts","keywords": "Kong, Rate Limiting","wordcount":  2499 ,
-        "url": "https:\/\/rmmod.com\/posts\/how-to-design-a-scalable-rate-limiting-algorithm\/","datePublished": "2021-01-15T12:19:18+08:00","dateModified": "2021-01-15T12:19:18+08:00","publisher": {
+        "url": "https:\/\/rmmod.com\/posts\/kong\/how-to-design-a-scalable-rate-limiting-algorithm\/","datePublished": "2021-01-15T12:19:18+08:00","dateModified": "2021-01-15T12:19:18+08:00","publisher": {
             "@type": "Organization",
-            "name": ""},"author": {
+            "name": "Guanlan Dai"},"author": {
                 "@type": "Person",
                 "name": "guanlan"
             },"description": ""
@@ -392,7 +392,7 @@
         <div class="post-info-line">
             <div class="post-info-md"></div>
             <div class="post-info-share">
-                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://rmmod.com/posts/how-to-design-a-scalable-rate-limiting-algorithm/" data-title="How to Design a Scalable Rate Limiting Algorithm" data-via="guanlandai" data-hashtags="Kong,Rate Limiting"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://rmmod.com/posts/how-to-design-a-scalable-rate-limiting-algorithm/" data-hashtag="Kong"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://rmmod.com/posts/how-to-design-a-scalable-rate-limiting-algorithm/" data-title="How to Design a Scalable Rate Limiting Algorithm"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://rmmod.com/posts/how-to-design-a-scalable-rate-limiting-algorithm/" data-title="How to Design a Scalable Rate Limiting Algorithm"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@6.20.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://rmmod.com/posts/how-to-design-a-scalable-rate-limiting-algorithm/" data-title="How to Design a Scalable Rate Limiting Algorithm"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://rmmod.com/posts/kong/how-to-design-a-scalable-rate-limiting-algorithm/" data-title="How to Design a Scalable Rate Limiting Algorithm" data-via="guanlandai" data-hashtags="Kong,Rate Limiting"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://rmmod.com/posts/kong/how-to-design-a-scalable-rate-limiting-algorithm/" data-hashtag="Kong"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://rmmod.com/posts/kong/how-to-design-a-scalable-rate-limiting-algorithm/" data-title="How to Design a Scalable Rate Limiting Algorithm"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://rmmod.com/posts/kong/how-to-design-a-scalable-rate-limiting-algorithm/" data-title="How to Design a Scalable Rate Limiting Algorithm"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@6.20.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://rmmod.com/posts/kong/how-to-design-a-scalable-rate-limiting-algorithm/" data-title="How to Design a Scalable Rate Limiting Algorithm"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
             </div>
         </div>
     </div>
@@ -405,11 +405,11 @@
     </div>
 
     <div class="post-nav"><a href="/posts/effective-web-crawler/" class="prev" rel="prev" title="Practical Tips on Writing an Effective Web Crawler"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Practical Tips on Writing an Effective Web Crawler</a>
-            <a href="/posts/kong-gateway-rate-limiting/" class="next" rel="next" title="Protecting Services With Kong Gateway Rate Limiting">Protecting Services With Kong Gateway Rate Limiting<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+            <a href="/posts/kong/kong-gateway-rate-limiting/" class="next" rel="next" title="Protecting Services With Kong Gateway Rate Limiting">Protecting Services With Kong Gateway Rate Limiting<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
 </div>
 </article></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Guanlan Dai | CC BY-NC 4.0</div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2009 - 2026</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span></div>
+        <div class="footer-container"><div class="footer-line">Guanlan Dai | CC BY-NC 4.0</div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2009 - 2026</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Guanlan Dai</a></span></div>
         </div>
     </footer></div>
 

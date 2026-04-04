@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>In the Age of Agentic, the CPU is the New Bottleneck - Guanlan Dai</title><meta name="Description" content="In the agent era, the real bottleneck is no longer just GPU inference, but the runtime, orchestration, tools, and control layer around it. At GTC 2026, NVIDIA signaled a shift from models to execution."><meta property="og:url" content="https://rmmod.com/posts/agent/agentic-cpu-bottleneck/">
+  <meta property="og:site_name" content="Guanlan Dai">
+  <meta property="og:title" content="In the Age of Agentic, the CPU is the New Bottleneck">
+  <meta property="og:description" content="In the agent era, the real bottleneck is no longer just GPU inference, but the runtime, orchestration, tools, and control layer around it. At GTC 2026, NVIDIA signaled a shift from models to execution.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2026-03-27T00:00:00+00:00">
+    <meta property="article:modified_time" content="2026-03-27T00:00:00+00:00">
+    <meta property="article:tag" content="Agent">
+    <meta property="article:tag" content="Infra">
+    <meta property="og:image" content="https://rmmod.com/posts/agent/agentic-cpu-bottleneck/cover.jpeg">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://rmmod.com/posts/agent/agentic-cpu-bottleneck/cover.jpeg">
+  <meta name="twitter:title" content="In the Age of Agentic, the CPU is the New Bottleneck">
+  <meta name="twitter:description" content="In the agent era, the real bottleneck is no longer just GPU inference, but the runtime, orchestration, tools, and control layer around it. At GTC 2026, NVIDIA signaled a shift from models to execution.">
+      <meta name="twitter:site" content="@guanlandai">
+<meta name="application-name" content="Guanlan Dai">
+<meta name="apple-mobile-web-app-title" content="Guanlan Dai"><meta name="theme-color" content="#0f172a"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/favicon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#67e8f9"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://rmmod.com/posts/agent/agentic-cpu-bottleneck/" /><link rel="prev" href="https://rmmod.com/posts/agent/agent-infrastructure-needs-new-primitives/" /><link rel="next" href="https://rmmod.com/posts/agent/claude-code-security/" /><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "In the Age of Agentic, the CPU is the New Bottleneck",
+        "inLanguage": "en-us",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/rmmod.com\/posts\/agent\/agentic-cpu-bottleneck\/"
+        },"genre": "posts","keywords": "Agent, Infra","wordcount":  2280 ,
+        "url": "https:\/\/rmmod.com\/posts\/agent\/agentic-cpu-bottleneck\/","datePublished": "2026-03-27T00:00:00+00:00","dateModified": "2026-03-27T00:00:00+00:00","publisher": {
+            "@type": "Organization",
+            "name": "Guanlan Dai"},"author": {
+                "@type": "Person",
+                "name": "guanlan"
+            },"description": "In the agent era, the real bottleneck is no longer just GPU inference, but the runtime, orchestration, tools, and control layer around it. At GTC 2026, NVIDIA signaled a shift from models to execution."
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Guanlan Dai">Guanlan Dai</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/"> Home </a><a class="menu-item" href="/about/"> About </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Guanlan Dai">Guanlan Dai</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/" title="">Home</a><a class="menu-item" href="/about/" title="">About</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">Contents</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animate__animated animate__flipInX">In the Age of Agentic, the CPU is the New Bottleneck</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>guanlan</a>
+</span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw" aria-hidden="true"></i>&nbsp;<time datetime="2026-03-27">2026-03-27</time>&nbsp;<i class="fas fa-pencil-alt fa-fw" aria-hidden="true"></i>&nbsp;2280 words&nbsp;
+                <i class="far fa-clock fa-fw" aria-hidden="true"></i>&nbsp;11 minutes&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  data-kept="">
+                <div class="details-summary toc-title">
+                    <span>Contents</span>
+                    <span><i class="details-icon fas fa-angle-right" aria-hidden="true"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents"></nav></div>
+            </div><div class="content" id="content"><p>For the last three years, the center of gravity in AI felt obvious. Bigger models. More GPUs. Faster inference. Almost every serious conversation in the industry eventually collapsed back to the same axis.</p>
+<p>Walking into SAP Center, I expected Jensen Huang to keep pushing the familiar story: more tokens, more throughput, more chips. Instead, he put Vera Rubin at the center of the stage.</p>
+<a class="lightgallery" href="/posts/agent/agentic-cpu-bottleneck/IMG_4411.jpg" title="Jensen Huang presenting Vera Rubin at SAP Center" data-thumbnail="/posts/agent/agentic-cpu-bottleneck/IMG_4411.jpg" rel="agentic-cpu-bottleneck-gallery">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/posts/agent/agentic-cpu-bottleneck/IMG_4411.jpg"
+            data-srcset="/posts/agent/agentic-cpu-bottleneck/IMG_4411.jpg, /posts/agent/agentic-cpu-bottleneck/IMG_4411.jpg 1.5x, /posts/agent/agentic-cpu-bottleneck/IMG_4411.jpg 2x"
+            data-sizes="auto"
+            alt="Jensen Huang presenting Vera Rubin at SAP Center" width="4618" height="3464" />
+    </a>
+<p>What stood out was the framing. The pitch was no longer that AI simply needs more compute. It was that once AI starts behaving like agents, the hard part is no longer the model alone. It is the system around the model: the runtime, the orchestration layer, the tool chain, the data movement, and the handoff between components.</p>
+<p>In that world, the CPU matters again.</p>
+<p>A chatbot has a clean loop. A user sends a prompt, the model runs, and a response comes back. In that flow, the GPU is usually the bottleneck, and the rest of the system mostly exists to keep the GPU busy.</p>
+<p>A production agent is different. It takes a task, pulls context, calls the model, parses the output, decides what to do next, invokes a tool, waits on I/O, handles the result, prepares the next prompt, and calls the model again. Then it repeats. Sometimes a few times. Sometimes hundreds.</p>
+<p>Once that loop becomes the real workload, model inference is no longer the whole story. It becomes one stage inside a larger execution cycle. Everything around it starts to matter: tool execution, retrieval, serialization, scheduling, sandboxing, retries, context assembly, and state persistence. Most of that work lives on the CPU.</p>
+<a class="lightgallery" href="/posts/agent/agentic-cpu-bottleneck/CPU-GPU-en.png" title="CPU-GPU responsibilities in agentic systems" data-thumbnail="/posts/agent/agentic-cpu-bottleneck/CPU-GPU-en.png" rel="agentic-cpu-bottleneck-gallery">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/posts/agent/agentic-cpu-bottleneck/CPU-GPU-en.png"
+            data-srcset="/posts/agent/agentic-cpu-bottleneck/CPU-GPU-en.png, /posts/agent/agentic-cpu-bottleneck/CPU-GPU-en.png 1.5x, /posts/agent/agentic-cpu-bottleneck/CPU-GPU-en.png 2x"
+            data-sizes="auto"
+            alt="Diagram comparing CPU and GPU responsibilities in agentic systems" width="8192" height="1058" />
+    </a>
+<p>That is where the old bottleneck story starts to break.</p>
+<h1 id="the-old-bottleneck-story-is-starting-to-break"><strong>The old bottleneck story is starting to break</strong></h1>
+<p>We are starting to see it in the data.</p>
+<p>Late last year, Georgia Tech and Intel published a paper (A CPU-Centric Perspective on Agentic AI, <a href="https://arxiv.org/abs/2511.00739" target="_blank" rel="noopener noreffer">arXiv:2511.00739</a>
+) that profiled five typical agent workflows. Their conclusion: tool processing on the CPU accounts for 50% to 90.6% of total latency. In RAG scenarios, retrieval is the bottleneck. In coding agents, executing bash and Python is the bottleneck. In research agents, waiting for and parsing literature search APIs is the bottleneck.</p>
+<p><a href="https://vllm.ai/blog/perf-update" target="_blank" rel="noopener noreffer">vLLM&rsquo;s own data</a>
+ paints an even starker picture. When running Llama 3 8B on a single H100 GPU, HTTP services accounted for 33% of execution time, and scheduling plus input preparation took 29%. Actual GPU computation was only 38%. With the Blackwell generation making GPUs even faster, this has only gotten worse. As vLLM engineers put it: the GPU is simply too fast, and the CPU cannot feed it data quickly enough. They recently optimized HTTP/gRPC serialization and got a 57% performance boost at 1024 concurrency. That entire 57% gap had been eaten by CPU-side serialization overhead.</p>
+<p>This is the most noteworthy shift at GTC this year. NVIDIA is no longer framing the problem simply as models needing more GPUs. They are emphasizing execution-layer components: agentic responses, runtime engines, orchestration services, tooling, and analytics pipelines. The product narrative behind Vera is that the future value of AI systems will come not just from faster compute, but from highly efficient execution synergy between the CPU and GPU.</p>
+<h1 id="why-the-logic-of-the-agent-era-is-different"><strong>Why the logic of the agent era is different</strong></h1>
+<p>Training and inference are compute-bound tasks naturally suited for the GPU&rsquo;s massively parallel architecture. Agent execution logic is entirely different.</p>
+<p>An agent is a long-running state machine. Every step involves conditional logic, branching, external I/O, and state persistence. These operations are serial, I/O-bound, and involve moving large amounts of small data rather than massive matrix math. This is what the CPU is built for, and also where it easily bottlenecks.</p>
+<p>Think of it through <a href="https://en.wikipedia.org/wiki/Amdahl%27s_law" target="_blank" rel="noopener noreffer">Amdahl&rsquo;s Law</a>
+. As GPU inference speeds up by an order of magnitude, the percentage of time spent on GPU compute in the overall pipeline shrinks. The remaining serial tasks, CPU scheduling, data preprocessing, tool calling, and context management, become the dominant source of latency. The faster the GPU gets, the more obvious the CPU bottleneck becomes.</p>
+<p>Software architecture amplifies this. Python-based agent frameworks like LangChain and LlamaIndex consume 5x more memory, use 2-3x more CPU, and have cold starts 14-34x slower than their Rust-based equivalents (per <a href="https://dev.to/saivishwak/benchmarking-ai-agent-frameworks-in-2026-autoagents-rust-vs-langchain-langgraph-llamaindex-338f" target="_blank" rel="noopener noreffer">Saivishwak&rsquo;s benchmark</a>
+). Multi-agent systems are worse. Token duplication rates across mainstream frameworks sit between 53% and 86%, and coordination overhead grows at O(n²) with the number of agents. <a href="https://www.oreilly.com/radar/why-multi-agent-systems-need-memory-engineering/" target="_blank" rel="noopener noreffer">O&rsquo;Reilly&rsquo;s analysis</a>
+ shows that a multi-agent system consumes roughly 15 times the tokens of a single agent, with most of that budget going to coordination, not inference.</p>
+<p><strong>The GPU is the thinking engine. The CPU is the execution and scheduling hub. The industry has bet almost everything on the thinking engine, but the scheduling hub is dragging the system down.</strong></p>
+<h1 id="what-vera-is-actually-betting-on"><strong>What Vera is actually betting on</strong></h1>
+<a class="lightgallery" href="/posts/agent/agentic-cpu-bottleneck/NVIDIA-Rubin-AI-Platform-_6-scaled.png" title="NVIDIA Rubin AI platform Photo Credit: Nvidia.com" data-thumbnail="/posts/agent/agentic-cpu-bottleneck/NVIDIA-Rubin-AI-Platform-_6-scaled.png" rel="agentic-cpu-bottleneck-gallery">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/posts/agent/agentic-cpu-bottleneck/NVIDIA-Rubin-AI-Platform-_6-scaled.png"
+            data-srcset="/posts/agent/agentic-cpu-bottleneck/NVIDIA-Rubin-AI-Platform-_6-scaled.png, /posts/agent/agentic-cpu-bottleneck/NVIDIA-Rubin-AI-Platform-_6-scaled.png 1.5x, /posts/agent/agentic-cpu-bottleneck/NVIDIA-Rubin-AI-Platform-_6-scaled.png 2x"
+            data-sizes="auto"
+            alt="NVIDIA Rubin AI platform slide" width="2560" height="1486" />
+    </a>
+<p>Seen through that lens, Vera starts to make a lot more sense.</p>
+<p>On paper, some of the raw specs can look counterintuitive. Vera has 88 custom Olympus cores built on ARM v9.2, using TSMC 3nm, on a monolithic die. That is fewer cores than AMD Turin’s 192 or Intel Granite Rapids’ 128.</p>
+<p>But the point is not maximal core count.</p>
+<p>NVIDIA is claiming around 1.5x the IPC of Grace’s Neoverse V2, which would put Vera far ahead on single-thread performance. That matters because agent workloads don&rsquo;t behave like neat, embarrassingly parallel cloud jobs. They spend a lot of time in branchy control flow, waiting on tools, serializing state, handling I/O, and preparing the next step. In those moments, the question is how fast one thread can move when the rest of the pipeline is waiting on it.</p>
+<p>Jensen made this point clearly in his interview with Ben Thompson. Over the last decade, CPUs were largely optimized for hyperscale cloud economics. Cloud providers made money by renting out lots of cores, so the architecture rewarded density. But in an agent system, the economics look different. If a GPU is sitting idle while a tool call crawls back through the stack, what matters is how quickly the serial path can clear.</p>
+<p>That also helps explain Vera’s monolithic die design. AMD’s chiplet strategy is great for core count economics, but cross-die NUMA latency is not a friendly fit for the bursty, unpredictable behavior of agent workloads. NVIDIA is making a different tradeoff here, one that favors latency consistency over raw scale.</p>
+<p>The same logic shows up in Spatial Multithreading. Instead of relying on traditional time-sliced hyperthreading, Vera physically isolates core resources to keep latency more deterministic. If the target world is thousands of concurrent agent runtimes, sandboxes, and tool chains, jitter starts to matter.</p>
+<p>The memory subsystem follows the same pattern. LPDDR5X, up to 1.2 TB/s of bandwidth and 1.5 TB of capacity, works out to roughly 14 GB/s per core. That is far above typical x86 server memory bandwidth per core. It also uses about half the power of DDR5, which helps explain NVIDIA’s pitch that a Vera-based rack can be far more power-efficient than a comparable x86 setup.</p>
+<p>But the real architectural bet is NVLink-C2C.</p>
+<p>Vera talks to the GPU over a coherent 1.8 TB/s bidirectional interconnect. That is dramatically beyond PCIe Gen5 or Gen6 in both bandwidth and latency. The CPU and GPU share unified page tables, so data can move at cache-line granularity without explicit cudaMemcpy gymnastics.</p>
+<p>For classic AI training, that is nice. For agents, it is more than nice.</p>
+<p>It means a KV cache can spill to CPU-side memory without turning into a copy-and-marshaling nightmare. It means tool execution results can come back and feed the next inference step with much less handoff overhead. It means the system starts to behave less like two separate machines passing messages through a narrow pipe, and more like one execution substrate with two different compute domains.</p>
+<p>That is the deeper idea behind Vera. Tighter coupling between reasoning and execution.</p>
+<h1 id="the-industry-is-validating-the-bet"><strong>The industry is validating the bet</strong></h1>
+<p>Intel was already positioning Xeon as the orchestration layer for AI systems, leaning into the fact that agentic workloads need CPU capacity even as GPUs stay scarce. AMD has been telling a similar story around EPYC, with Lisa Su pointing to rising demand from AI orchestration and mixed CPU-GPU deployments.</p>
+<p>The market data is also starting to move. Server CPU prices are up. Lead times are stretching. Some projections now have the server CPU market growing from around $27B in 2025 to roughly $60B by 2030. It means the rest of the stack is finally being repriced.</p>
+<p>Even the open-source and developer ecosystem is reflecting this.</p>
+<figure><a class="lightgallery" href="/posts/agent/agentic-cpu-bottleneck/IMG_4366.jpg" title="Peter Steinberger at the pre-show" data-thumbnail="/posts/agent/agentic-cpu-bottleneck/IMG_4366.jpg" data-sub-html="<h2>Peter Steinberger at the pre-show</h2><p>Peter Steinberger at the pre-show</p>" rel="agentic-cpu-bottleneck-gallery">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/posts/agent/agentic-cpu-bottleneck/IMG_4366.jpg"
+            data-srcset="/posts/agent/agentic-cpu-bottleneck/IMG_4366.jpg, /posts/agent/agentic-cpu-bottleneck/IMG_4366.jpg 1.5x, /posts/agent/agentic-cpu-bottleneck/IMG_4366.jpg 2x"
+            data-sizes="auto"
+            alt="Peter Steinberger at the pre-show" width="4032" height="3024" />
+    </a><figcaption class="image-caption">Peter Steinberger at the pre-show</figcaption>
+    </figure>
+<p>During his keynote, Jensen spent real time on OpenClaw and framed it as part of the operating system for the agentic computer. NVIDIA also introduced NemoClaw as a more enterprise-ready reference stack, and brought founder Peter Steinberger on stage in the pre-show.</p>
+<p>That was a very intentional choice. OpenClaw completes the story that Vera needs. If the hardware pitch is that agent workloads deserve a purpose-built execution platform, then the software story has to show that those workloads are real, growing, and operationally painful enough to justify new infrastructure.</p>
+<p>The Hacker News reaction was predictably split. Some people dismissed Vera as another AI-branded CPU, with agentic slapped on top because it is 2026 and everything needs the word agent in the title. But the rebuttal is not hard to see. Features like FP8 support and a 1.8 TB/s coherent CPU-GPU interconnect are direct responses to AI system behavior.</p>
+<p>Purpose-built is the right word.</p>
+<h1 id="hardware-is-only-half-the-answer"><strong>Hardware is only half the answer</strong></h1>
+<p>Still, I don&rsquo;t think the long-term opportunity here is mainly in hardware.</p>
+<p>Vera validates the premise. It doesn&rsquo;t solve the whole problem.</p>
+<p>If vLLM can recover 57% just by fixing serialization overhead, if Python-based agent stacks are wildly less efficient than leaner runtimes, and if multi-agent frameworks are wasting huge amounts of tokens on coordination, then there is still a massive software gap sitting in plain sight.</p>
+<p>That gap matters because the current stack was not built for agents.</p>
+<p>Kubernetes schedules containers. It doesn&rsquo;t understand long-running, stateful, partially completed agent executions. Temporal gives durable workflows, but its persistence boundaries sit at the wrong level for adversarial or high-trust tool interactions. LangChain optimized for developer convenience and composability, not for tight control over runtime behavior, failure semantics, or effect isolation.</p>
+<p>All of these tools are useful. None of them are the right native abstraction.</p>
+<p>Agents need an execution layer that understands their actual semantics: state persistence, recovery after partial failure, control over real-world side effects, etc. Stitching together older infrastructure gets you part of the way, but not the whole way. It is the same mistake as bolting together a file system, a process scheduler, and a network stack and pretending an operating system has magically appeared.</p>
+<p>The missing layer is runtime infrastructure that treats agent execution as a first-class systems problem.</p>
+<h1 id="security-is-part-of-execution"><strong>Security is part of execution</strong></h1>
+<p>Security breaks in the same place.</p>
+<p>Once an agent can touch private data, consume untrusted inputs, and call out to the world, prompt injection stops being an edge case and starts becoming an execution problem. Most of the industry still responds to that with prompt filtering, which is nowhere near enough.</p>
+<p>The real issue is that the trust boundary is in the wrong place.</p>
+<p>My team built an open-source project called ClawShell (<a href="https://github.com/clawshell" target="_blank" rel="noopener noreffer">github.com/clawshell</a>
+) around this idea. The basic design is simple: put a secure proxy layer between the agent and external services, and use operating-system-level boundaries to separate what the agent can see from what the system can actually do. The agent holds only virtual credentials. Real API key exchange, DLP checks, email filtering, and policy enforcement all happen inside the gateway.</p>
+<figure><a class="lightgallery" href="/posts/agent/agentic-cpu-bottleneck/openshell_vs_clawshell.png" title="ClawShell vs. OpenShell Security Architecture" data-thumbnail="/posts/agent/agentic-cpu-bottleneck/openshell_vs_clawshell.png" data-sub-html="<h2>ClawShell vs. OpenShell Security Architecture</h2><p>ClawShell vs. OpenShell Security Architecture</p>" rel="agentic-cpu-bottleneck-gallery">
+        <img
+            class="lazyload"
+            src="/svg/loading.min.svg"
+            data-src="/posts/agent/agentic-cpu-bottleneck/openshell_vs_clawshell.png"
+            data-srcset="/posts/agent/agentic-cpu-bottleneck/openshell_vs_clawshell.png, /posts/agent/agentic-cpu-bottleneck/openshell_vs_clawshell.png 1.5x, /posts/agent/agentic-cpu-bottleneck/openshell_vs_clawshell.png 2x"
+            data-sizes="auto"
+            alt="ClawShell vs. OpenShell security architecture" width="3364" height="1758" />
+    </a><figcaption class="image-caption">ClawShell vs. OpenShell Security Architecture</figcaption>
+    </figure>
+<p>After we released it, NVIDIA’s investment arm reached out to talk. Then at GTC, NVIDIA introduced OpenShell inside the NemoClaw stack. Different implementation, same underlying direction: gateway-enforced trust boundaries, policy execution, strong authentication, tighter control over external effects.</p>
+<p>I don&rsquo;t want to overstate the parallel. But the convergence matters.</p>
+<p>It suggests that agent security is starting to mature in the right direction, as execution governance sitting around the model.</p>
+<h1 id="what-vera-doesn"><strong>What Vera doesn&rsquo;t solve</strong></h1>
+<p>GTC 2026 made that shift harder to ignore. NVIDIA is now designing around agent execution as a real systems workload, not as a footnote to GPU compute.</p>
+<p>But naming the problem is not the same as solving it.</p>
+<p>Vera addresses the hardware side. A faster CPU, a tighter interconnect, better memory bandwidth per core. These are necessary conditions. They are not sufficient ones. If the software layer between the model and the real world is still stitched together from tools that were designed for a different era, then faster hardware just means you hit the same architectural ceilings at higher clock speeds.</p>
+<p>This is what my team is building. Our bet is that agent execution needs a small number of new primitives at the runtime layer: durable state that survives partial failure, a capability gateway that governs what the agent can actually touch, and fork-and-recover semantics that let you roll back real-world side effects when things go wrong. Not a framework. Not an orchestrator. An execution substrate that treats the agent&rsquo;s lifecycle as the unit of work.</p>
+<p>I could be wrong about the specific primitives. But I am fairly confident about the shape of the problem. The gap between what agents need and what existing infrastructure provides is not going to close by itself, and it is not going to be closed by the model providers or the chip makers.</p>
+<p>It will be closed by whoever builds the runtime that makes agent execution boring and reliable, the way Linux made process scheduling boring and reliable.</p>
+<p>That is what we are working on.</p>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>Updated on 2026-03-27</span>
+            </div></div>
+        <div class="post-info-line">
+            <div class="post-info-md"></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="Share on Twitter" data-sharer="twitter" data-url="https://rmmod.com/posts/agent/agentic-cpu-bottleneck/" data-title="In the Age of Agentic, the CPU is the New Bottleneck" data-via="guanlandai" data-hashtags="Agent,Infra"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Facebook" data-sharer="facebook" data-url="https://rmmod.com/posts/agent/agentic-cpu-bottleneck/" data-hashtag="Agent"><i class="fab fa-facebook-square fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Hacker News" data-sharer="hackernews" data-url="https://rmmod.com/posts/agent/agentic-cpu-bottleneck/" data-title="In the Age of Agentic, the CPU is the New Bottleneck"><i class="fab fa-hacker-news fa-fw" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on Line" data-sharer="line" data-url="https://rmmod.com/posts/agent/agentic-cpu-bottleneck/" data-title="In the Age of Agentic, the CPU is the New Bottleneck"><i data-svg-src="https://cdn.jsdelivr.net/npm/simple-icons@6.20.0/icons/line.svg" aria-hidden="true"></i></a><a href="javascript:void(0);" title="Share on 微博" data-sharer="weibo" data-url="https://rmmod.com/posts/agent/agentic-cpu-bottleneck/" data-title="In the Age of Agentic, the CPU is the New Bottleneck"><i class="fab fa-weibo fa-fw" aria-hidden="true"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/agent/">Agent</a>,&nbsp;<a href="/tags/infra/">Infra</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">Back</a></span>&nbsp;|&nbsp;<span><a href="/">Home</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/agent/agent-infrastructure-needs-new-primitives/" class="prev" rel="prev" title="Agent Infrastructure Needs New Primitives"><i class="fas fa-angle-left fa-fw" aria-hidden="true"></i>Agent Infrastructure Needs New Primitives</a>
+            <a href="/posts/agent/claude-code-security/" class="next" rel="next" title="I Read Claude Code’s Leaked Source. It Exposes the Limits of Shell-First Safety.">I Read Claude Code’s Leaked Source. It Exposes the Limits of Shell-First Safety.<i class="fas fa-angle-right fa-fw" aria-hidden="true"></i></a></div>
+</div>
+</article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Guanlan Dai | CC BY-NC 4.0</div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2009 - 2026</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Guanlan Dai</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.4.0/css/lightgallery-bundle.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.1/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.4.0/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.4.0/plugins/thumbnail/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.4.0/plugins/zoom/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"comment":{},"lightgallery":true};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
