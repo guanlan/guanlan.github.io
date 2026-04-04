@@ -7,41 +7,33 @@ tags: ['fun']
 author: "guanlan"
 ---
 
-  
-Can Emacs Really Make Coffee? by [guanlan](http://www.cppblog.com/xguru)   
 
-  
+
+
 ![](/img/467px-Vacpot3.jpg) |   
-|   
-|   
-|   
-|   
-|   
-|   
-|   
-|  There's a saying that goes: "Emacs can do anything, even make coffee!"  
-  
+There's a saying that goes: "Emacs can do anything, even make coffee!"  
+
 What does making coffee mean? This aroused my curiosity for investigation.  
-  
+
 After searching online, I came up with several preliminary conclusions:  
-  
+
 1. This is just a fun saying, used to describe Emacs's all-encompassing functionality.   
   
 2. Java's logo is a cup of coffee, used to figuratively represent writing code  
-![](/img/java.png)  
+  ![](/img/java.png)  
   
-3. Emacs does indeed [have a coffee-making function](http://people.ku.edu/%7Esyliu/shredderyin/emacs_power.html), with scripts that can control automatic coffee machines.   
----|---|---|---|---|---|---|---|---|---  
-  
+3. Emacs does indeed [have a coffee-making function](http://people.ku.edu/%7Esyliu/shredderyin/emacs_power.html), with scripts that can control automatic coffee machines.  
 
-  
+
+
 The first explanation seems more logical; the second seems a bit abrupt, after all, Emacs was written by [Richard Stallman](http://en.wikipedia.org/wiki/Richard_Stallman "Richard Stallman") (GNU founder), while Java was completed by [Bill Joy](http://en.wikipedia.org/wiki/Bill_Joy) (vi author) and others. These two camps almost escalated to religious conflict, so this explanation seems a bit unsatisfactory; the third would be very interesting if true.  
-  
-  
+
+
 So I began investigating. First, I traced back to the [source](http://emarsden.chez.com/downloads/coffee.el) of this script code. I found the address was no longer valid, but finally found a [copy](http://archive.debian.net/zh-cn/woody/all/emacs-goodies-el/download) in a Debian [package](http://archive.debian.net/zh-cn/woody/editors/emacs-goodies-el). This is a package of commonly used Emacs scripts.  
-  
+
 The code is as follows:  
 
+```lisp
 1 ;;; coffee.el --- Submit a BREW request to an RFC2324-compliant coffee device  
 2 ;;;  
 3 ;;; Author: Eric Marsden <emarsden@laas.fr>  
@@ -153,20 +145,23 @@ The code is as follows:
 109 (provide 'coffee)  
 110   
 111 ;; coffee.el ends here
+```
 
-  
+
+
+
 This script looks quite serious, mentioning "Submit a BREW request to an RFC2324-compliant coffee device"  
-  
+
 It can submit BREW requests to coffee devices compatible with the [RFC2324](http://www.ietf.org/rfc/rfc2324.txt) protocol, i.e., compatible with the Hyper Text Coffee Pot Control Protocol (HTCPCP/1.0). Hyper Text Coffee Pot Protocol - just the name is amusing enough, but this protocol is written very formally, without showing any flaws. A careful friend shrek.wang reminded me to note the date:  
-  
+
 
 Network Working Group L. Masinter  
 Request for Comments: 2324 1 April 1998  
 
-  
+
 April 1, 1998 - April Fool's Day! This raises questions.  
 By checking wiki, I discovered that the [Internet Engineering Task Force](http://zh.wikipedia.org/zh-cn/%E4%BA%92%E8%81%94%E7%BD%91%E5%B7%A5%E7%A8%8B%E5%B7%A5%E4%BD%9C%E5%B0%8F%E7%BB%84 "Internet Engineering Task Force") are also talented pranksters.  
-  
+
 Here are some fun examples:  
 
   *     * In 2001, [RFC 1149](http://tools.ietf.org/html/rfc1149) was implemented by members of the Norwegian Linux User Group. They transmitted 9 packets to a location about 5 kilometers away, each packet carried by a different [pigeon](http://zh.wikipedia.org/zh-cn/%E9%B8%BD%E5%AD%90 "pigeon"), with an ICMP echo request packet ([ping](http://zh.wikipedia.org/zh-cn/Ping "Ping")). They received 4 responses, with a packet loss rate of 55% and response times of 3000 to 6000 seconds. [[1]](http://www.blug.linux.no/rfc1149/)
@@ -174,22 +169,22 @@ Here are some fun examples:
     * [RFC 3091](http://tools.ietf.org/html/rfc3091) — **[Pi](http://zh.wikipedia.org/zh-cn/%E5%9C%86%E5%91%A8%E7%8E%87 "Pi") Digit Generation Protocol** . H. Kennedy [2001](http://zh.wikipedia.org/zh-cn/2001%E5%B9%B4 "2001")
 
 More can be found on [this wiki](http://zh.wikipedia.org/zh-cn/%E6%81%B6%E6%90%9ERFC).  
-  
-  
+
+
 We can boldly conclude that this protocol is just a good-natured joke by the **IETF**, and coffee.el's author Eric Marsden is also a humorous programmer who made a script compatible with RFC2324. He never intended to actually control a coffee machine, so this whole thing stems from programmers' dry humor.  
 ![](/img/coffee.jpg)   
 However, remote control of coffee machines is still possible. Here's an [open source coffee maker](http://hardware.slashdot.org/article.pl?sid=08/12/10/1838233); and here's a [network-controllable coffee maker](http://www.engadget.com/2007/09/13/the-internet-enabled-coffee-maker/) (supposedly RFC2324 compatible).  
 I bet the IETF never dreamed that their joke would actually be made into real products. The geeks abroad really have too much time on their hands. It shows that geeks are quite humorous indeed.  
 Friends, do you have the answer in your heart? Do you want such a coffee machine?  
+
   
+
   
+
   
-  
-  
-  
-  
+
 PS. I have to complain about CPPBLOG's editor here - it's really terrible. When I clicked save while writing halfway through the article, it actually published it!  
-  
+
 ![Creative commons license](/img/88x31.png)  
 
 by [guanlan](http://www.cppblog.com/xguru) is licensed under a [Creative Commons Attribution-NonCommercial-ShareAlike 2.5 China Mainland License](http://creativecommons.org/licenses/by-nc-sa/2.5/cn/).   

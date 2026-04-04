@@ -10,8 +10,8 @@ author: "guanlan"
 Everyone finds it frustrating that Linux has numerous compression formats, and each format corresponds to different commands, which is quite a headache.  
 Let me introduce a method to you:  
 Add this to your bashrc:  
-  
 
+```
 ex () {  
 if [ -f $1 ] ; then  
 case $1 in  
@@ -32,11 +32,14 @@ else
 echo "'$1' is not a valid file!"  
 fi  
 }  
+```
 
-  
-![](/img/ex.png)  
-  
+
+
 To decompress files, simply type "ex [compressed file]". If you have other compressed file formats, you can add them yourself.  
+
+![ex](ex.png)
+
 Say goodbye to annoying various decompression commands from now on.  
 
 

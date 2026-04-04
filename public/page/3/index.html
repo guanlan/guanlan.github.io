@@ -90,35 +90,60 @@ Search for answers on programming help websites, or post questions if you can&rs
 </span>&nbsp;<span class="post-publish">published on <time datetime="2010-10-07">2010-10-07</time></span>&nbsp;<span class="post-category">included in <a href="/categories/linux/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Linux</a></span></div><div class="content"><p>Everyone finds it frustrating that Linux has numerous compression formats, and each format corresponds to different commands, which is quite a headache.<br>
 Let me introduce a method to you:<br>
 Add this to your bashrc:</p>
-<p>ex () {<br>
-if [ -f $1 ] ; then<br>
-case $1 in<br>
-*.tar.bz2) tar xjf $1 ;;<br>
-*.tar.gz) tar xzf $1 ;;<br>
-*.bz2) bunzip2 $1 ;;<br>
-*.rar) rar x $1 ;;<br>
-*.gz) gunzip $1 ;;<br>
-*.tar) tar xf $1 ;;<br>
-*.tbz2) tar xjf $1 ;;<br>
-*.tgz) tar xzf $1 ;;<br>
-*.zip) unzip $1 ;;<br>
-*.Z) uncompress $1 ;;<br>
-*.7z) 7z x $1 ;;<br>
-*) echo &ldquo;Unable to extract &lsquo;$1&rsquo; file!!&rdquo; ;;<br>
-esac<br>
-else<br>
-echo &ldquo;&rsquo;$1&rsquo; is not a valid file!&rdquo;<br>
-fi<br>
-}</p></div><div class="post-footer">
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">ex () {  
+</span></span><span class="line"><span class="cl">if [ -f $1 ] ; then  
+</span></span><span class="line"><span class="cl">case $1 in  
+</span></span><span class="line"><span class="cl">*.tar.bz2) tar xjf $1 ;;  
+</span></span><span class="line"><span class="cl">*.tar.gz) tar xzf $1 ;;  
+</span></span><span class="line"><span class="cl">*.bz2) bunzip2 $1 ;;  
+</span></span><span class="line"><span class="cl">*.rar) rar x $1 ;;  
+</span></span><span class="line"><span class="cl">*.gz) gunzip $1 ;;  
+</span></span><span class="line"><span class="cl">*.tar) tar xf $1 ;;  
+</span></span><span class="line"><span class="cl">*.tbz2) tar xjf $1 ;;  
+</span></span><span class="line"><span class="cl">*.tgz) tar xzf $1 ;;  
+</span></span><span class="line"><span class="cl">*.zip) unzip $1 ;;  
+</span></span><span class="line"><span class="cl">*.Z) uncompress $1 ;;  
+</span></span><span class="line"><span class="cl">*.7z) 7z x $1 ;;  
+</span></span><span class="line"><span class="cl">*) echo &#34;Unable to extract &#39;$1&#39; file!!&#34; ;;  
+</span></span><span class="line"><span class="cl">esac  
+</span></span><span class="line"><span class="cl">else  
+</span></span><span class="line"><span class="cl">echo &#34;&#39;$1&#39; is not a valid file!&#34;  
+</span></span><span class="line"><span class="cl">fi  
+</span></span><span class="line"><span class="cl">}  
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>To decompress files, simply type &ldquo;ex [compressed file]&rdquo;. If you have other compressed file formats, you can add them yourself.</p></div><div class="post-footer">
         <a href="/posts/cppblog/2010-10-07-linux-command-line-decompression-tips-en/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/tips/">Tips</a></div></div>
 </article>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/posts/cppblog/2010-07-27-can-emacs-really-make-coffee-en/">[Fun] Can Emacs Really Make Coffee?</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>guanlan</a>
-</span>&nbsp;<span class="post-publish">published on <time datetime="2010-07-27">2010-07-27</time></span></div><div class="content"><p>Can Emacs Really Make Coffee? by <a href="http://www.cppblog.com/xguru" target="_blank" rel="noopener noreffer">guanlan</a>
-</p>
-<p><img
+</span>&nbsp;<span class="post-publish">published on <time datetime="2010-07-27">2010-07-27</time></span></div><div class="content"><p><img
         class="lazyload"
         src="/svg/loading.min.svg"
         data-src="/img/467px-Vacpot3.jpg"
@@ -126,19 +151,23 @@ fi<br>
         data-sizes="auto"
         alt="/img/467px-Vacpot3.jpg"
         title="/img/467px-Vacpot3.jpg" /> |<br>
-|<br>
-|<br>
-|<br>
-|<br>
-|<br>
-|<br>
-|<br>
-|  There&rsquo;s a saying that goes: &ldquo;Emacs can do anything, even make coffee!&rdquo;</p>
+There&rsquo;s a saying that goes: &ldquo;Emacs can do anything, even make coffee!&rdquo;</p>
 <p>What does making coffee mean? This aroused my curiosity for investigation.</p>
 <p>After searching online, I came up with several preliminary conclusions:</p>
 <ol>
 <li>
-<p>This is just a fun saying, used to describe Emacs&rsquo;s all-encompassing functionality.</p></div><div class="post-footer">
+<p>This is just a fun saying, used to describe Emacs&rsquo;s all-encompassing functionality.</p>
+</li>
+<li>
+<p>Java&rsquo;s logo is a cup of coffee, used to figuratively represent writing code<br>
+<img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/img/java.png"
+        data-srcset="/img/java.png, /img/java.png 1.5x, /img/java.png 2x"
+        data-sizes="auto"
+        alt="/img/java.png"
+        title="/img/java.png" /></p></div><div class="post-footer">
         <a href="/posts/cppblog/2010-07-27-can-emacs-really-make-coffee-en/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/fun/">Fun</a></div></div>
 </article>
@@ -350,10 +379,6 @@ The following add-ons are my personal favorites, and I recommend them to everyon
                 </li><li class="page-item ">
                     <span class="page-link">
                         <a href="/page/4/">4</a>
-                    </span>
-                </li><li class="page-item ">
-                    <span class="page-link">
-                        <a href="/page/5/">5</a>
                     </span>
                 </li></ul></div></div>
             </main><footer class="footer">
