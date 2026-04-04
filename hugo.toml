@@ -13,6 +13,23 @@ enableEmoji = true
   [params.author]
     name = "Guanlan Dai"
 
+  [params.home]
+    rss = 10
+
+    [params.home.profile]
+      enable = true
+      gravatarEmail = "hackertian@gmail.com"
+      avatarURL = ""
+      title = "Guanlan Dai"
+      subtitle = ""
+      typeit = true
+      social = true
+      disclaimer = ""
+
+    [params.home.posts]
+      enable = true
+      paginate = 6
+
   [params.app]
     title = "Guanlan Dai"
     svgFavicon = "/favicon.svg"
@@ -35,7 +52,10 @@ enableEmoji = true
     since = 2009
 
   [params.social]
+    GitHub = "guanlan"
+    Linkedin = "guanlandai"
     RSS = true
+    Twitter = "guanlandai"
     Instagram = ""
 
   [params.page]
