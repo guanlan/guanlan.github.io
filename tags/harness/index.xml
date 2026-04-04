@@ -1,2 +1,19 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Harness on Guanlan Dai</title><link>https://rmmod.com/tags/harness/</link><description>Recent content in Harness on Guanlan Dai</description><generator>Hugo</generator><language>en-us</language><lastBuildDate>Thu, 02 Apr 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://rmmod.com/tags/harness/index.xml" rel="self" type="application/rss+xml"/><item><title>I Read Claude Code's Security Source Code. Here's What It Can't Solve.</title><link>https://rmmod.com/posts/agent/claude-code-security/</link><pubDate>Thu, 02 Apr 2026 00:00:00 +0000</pubDate><guid>https://rmmod.com/posts/agent/claude-code-security/</guid><description>&lt;p&gt;Imagine this scenario: a perfectly ordinary &lt;code&gt;curl&lt;/code&gt; command is running in your terminal, about to dispatch a batch of runtime logs to an external monitoring system via webhook. To every rule-based security classifier, this is a textbook-compliant, utterly routine operation. But what if the command was triggered by a hidden file in the codebase, one laced with a malicious prompt?&lt;/p&gt;
-&lt;p&gt;Over the past few days, I spent considerable time dismantling the security layer source code of Claude Code, line by line.&lt;/p&gt;</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Harness on Guanlan Dai</title>
+    <link>https://rmmod.com/tags/harness/</link>
+    <description>Recent content in Harness on Guanlan Dai</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 02 Apr 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://rmmod.com/tags/harness/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>I Read Claude Code’s Leaked Source. It Exposes the Limits of Shell-First Safety.</title>
+      <link>https://rmmod.com/posts/agent/claude-code-security/</link>
+      <pubDate>Thu, 02 Apr 2026 00:00:00 +0000</pubDate>
+      <guid>https://rmmod.com/posts/agent/claude-code-security/</guid>
+      <description>&lt;p&gt;Imagine this: a normal curl command is running in your terminal, sending runtime logs to a monitoring webhook. To a rule-based classifier, this looks routine. But what if the command was triggered by a hidden file in the codebase, one laced with a malicious prompt?&lt;/p&gt;&#xA;&lt;p&gt;After Claude Code’s source leaked, I read through its security layer line by line. What I found was both impressive and clarifying: Claude Code is a very strong local security system, and it also shows exactly where that model starts to break. Once agents begin acting with real identities and causing real side effects, the problem is no longer just shell safety.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

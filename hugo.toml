@@ -10,6 +10,12 @@ enableEmoji = true
   dateFormat = "2006-01-02"
   rss = true
 
+  [params.app]
+    title = "Guanlan Dai"
+    svgFavicon = "/favicon.svg"
+    themeColor = "#0f172a"
+    iconColor = "#67e8f9"
+
   [params.header]
     desktopMode = "fixed"
     mobileMode = "auto"

@@ -1,92 +1,363 @@
-<!doctype html><html lang=en-us><head><meta name=generator content="Hugo 0.155.3"><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><title>Guanlan Dai</title><meta name=Description content="This is my cool site"><meta property="og:url" content="https://rmmod.com/"><meta property="og:site_name" content="Guanlan Dai"><meta property="og:title" content="Guanlan Dai"><meta property="og:description" content="This is my cool site"><meta property="og:locale" content="en_us"><meta property="og:type" content="website"><meta name=twitter:card content="summary"><meta name=twitter:title content="Guanlan Dai"><meta name=twitter:description content="This is my cool site"><meta name=twitter:site content="@guanlandai"><meta name=application-name content="My cool site"><meta name=apple-mobile-web-app-title content="My cool site"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://rmmod.com/><link rel=alternate href=/index.xml type=application/rss+xml title="Guanlan Dai"><link rel=feed href=/index.xml type=application/rss+xml title="Guanlan Dai"><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"WebSite","url":"https:\/\/rmmod.com\/","inLanguage":"en-us","description":"This is my cool site","name":"Guanlan Dai"}</script></head><body data-header-desktop=fixed data-header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem("theme")?localStorage.getItem("theme")==="dark":"auto"==="auto"?window.matchMedia("(prefers-color-scheme: dark)").matches:"auto"==="dark")&&document.body.setAttribute("theme","dark")</script><div id=mask></div><div class=wrapper><header class=desktop id=header-desktop><div class=header-wrapper><div class=header-title><a href=/ title="Guanlan Dai">Guanlan Dai</a></div><div class=menu><div class=menu-inner><a class="menu-item active" href=/>Home </a><a class=menu-item href=/about/>About </a><span class="menu-item delimiter"></span><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme">
-<i class="fas fa-adjust fa-fw" aria-hidden=true></i></a></div></div></div></header><header class=mobile id=header-mobile><div class=header-container><div class=header-wrapper><div class=header-title><a href=/ title="Guanlan Dai">Guanlan Dai</a></div><div class=menu-toggle id=menu-toggle-mobile><span></span><span></span><span></span></div></div><div class=menu id=menu-mobile><a class=menu-item href=/ title>Home</a><a class=menu-item href=/about/ title>About</a><a href=javascript:void(0); class="menu-item theme-switch" title="Switch Theme">
-<i class="fas fa-adjust fa-fw" aria-hidden=true></i></a></div></div></header><main class=main><div class=container><div class="page home" data-home=posts><div class=home-profile><div class=home-avatar><a href=/ title=Home><img class=lazyload src=/svg/loading.min.svg data-src="https://www.gravatar.com/avatar/a1a5f762bca516ff1fe40d39ac1e4f67?s=240&amp;d=mp" data-srcset="https://www.gravatar.com/avatar/a1a5f762bca516ff1fe40d39ac1e4f67?s=240&amp;d=mp, https://www.gravatar.com/avatar/a1a5f762bca516ff1fe40d39ac1e4f67?s=240&amp;d=mp 1.5x, https://www.gravatar.com/avatar/a1a5f762bca516ff1fe40d39ac1e4f67?s=240&amp;d=mp 2x" data-sizes=auto alt="https://www.gravatar.com/avatar/a1a5f762bca516ff1fe40d39ac1e4f67?s=240&amp;d=mp" title="https://www.gravatar.com/avatar/a1a5f762bca516ff1fe40d39ac1e4f67?s=240&amp;d=mp"></a></div><h1 class=home-title>Guanlan Dai</h1><div class=links><a href=https://github.com/guanlan title=GitHub target=_blank rel="noopener noreffer me"><i class="fab fa-github-alt fa-fw" aria-hidden=true></i></a>
-<a href=https://linkedin.com/in/guanlandai title=LinkedIn target=_blank rel="noopener noreffer me"><i class="fab fa-linkedin fa-fw" aria-hidden=true></i></a>
-<a href=https://twitter.com/guanlandai title=Twitter target=_blank rel="noopener noreffer me"><i class="fab fa-twitter fa-fw" aria-hidden=true></i></a>
-<a href=https://www.instagram.com/xgzero title=Instagram target=_blank rel="noopener noreffer me"><i class="fab fa-instagram fa-fw" aria-hidden=true></i></a>
-<a href=/index.xml title=RSS target=_blank rel="noopener noreffer me"><i class="fas fa-rss fa-fw" aria-hidden=true></i></a></div></div><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline"><a href=/posts/cppblog/2010-10-07-linux-command-line-decompression-tips-en/>[Tips] Linux Command Line Decompression Tips</a></h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw" aria-hidden=true></i>guanlan</a>
-</span>&nbsp;<span class=post-publish>published on <time datetime=2010-10-07>2010-10-07</time></span>&nbsp;<span class=post-category>included in <a href=/categories/linux/><i class="far fa-folder fa-fw" aria-hidden=true></i>Linux</a></span></div><div class=content><p>Everyone finds it frustrating that Linux has numerous compression formats, and each format corresponds to different commands, which is quite a headache.<br>Let me introduce a method to you:<br>Add this to your bashrc:</p><p>ex () {<br>if [ -f $1 ] ; then<br>case $1 in<br>*.tar.bz2) tar xjf $1 ;;<br>*.tar.gz) tar xzf $1 ;;<br>*.bz2) bunzip2 $1 ;;<br>*.rar) rar x $1 ;;<br>*.gz) gunzip $1 ;;<br>*.tar) tar xf $1 ;;<br>*.tbz2) tar xjf $1 ;;<br>*.tgz) tar xzf $1 ;;<br>*.zip) unzip $1 ;;<br>*.Z) uncompress $1 ;;<br>*.7z) 7z x $1 ;;<br>*) echo &ldquo;Unable to extract &lsquo;$1&rsquo; file!!&rdquo; ;;<br>esac<br>else<br>echo &ldquo;&rsquo;$1&rsquo; is not a valid file!&rdquo;<br>fi<br>}</p></div><div class=post-footer><a href=/posts/cppblog/2010-10-07-linux-command-line-decompression-tips-en/>Read More</a><div class=post-tags><i class="fas fa-tags fa-fw" aria-hidden=true></i>&nbsp;<a href=/tags/tips/>Tips</a></div></div></article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline"><a href=/posts/cppblog/2010-07-27-can-emacs-really-make-coffee-en/>[Fun] Can Emacs Really Make Coffee?</a></h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw" aria-hidden=true></i>guanlan</a>
-</span>&nbsp;<span class=post-publish>published on <time datetime=2010-07-27>2010-07-27</time></span></div><div class=content><p>Can Emacs Really Make Coffee? by <a href=http://www.cppblog.com/xguru target=_blank rel="noopener noreffer">guanlan</a></p><p><img class=lazyload src=/svg/loading.min.svg data-src=/img/467px-Vacpot3.jpg data-srcset="/img/467px-Vacpot3.jpg, /img/467px-Vacpot3.jpg 1.5x, /img/467px-Vacpot3.jpg 2x" data-sizes=auto alt=/img/467px-Vacpot3.jpg title=/img/467px-Vacpot3.jpg> |<br>|<br>|<br>|<br>|<br>|<br>|<br>|<br>| There&rsquo;s a saying that goes: &ldquo;Emacs can do anything, even make coffee!&rdquo;</p><p>What does making coffee mean? This aroused my curiosity for investigation.</p><p>After searching online, I came up with several preliminary conclusions:</p><ol><li><p>This is just a fun saying, used to describe Emacs&rsquo;s all-encompassing functionality.</p></div><div class=post-footer><a href=/posts/cppblog/2010-07-27-can-emacs-really-make-coffee-en/>Read More</a><div class=post-tags><i class="fas fa-tags fa-fw" aria-hidden=true></i>&nbsp;<a href=/tags/fun/>Fun</a></div></div></article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline"><a href=/posts/cppblog/2010-06-28-my-favorite-nine-firefox-addons-en/>My Favorite Nine Firefox Add-ons in 2010</a></h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw" aria-hidden=true></i>guanlan</a>
-</span>&nbsp;<span class=post-publish>published on <time datetime=2010-06-28>2010-06-28</time></span></div><div class=content><h2 id=doubans-firefox-group-says>Douban&rsquo;s <a href=http://www.douban.com/group/Firefox/ target=_blank rel="noopener noreffer">Firefox Group</a>
-says:</h2><p>Firefox is not perfect, not the most stable, not without vulnerabilities, and not the fastest, but it can be yours.</p><p>I really like this quote. It&rsquo;s because of the rich and colorful add-ons that Firefox has become so popular.<br>The following add-ons are my personal favorites, and I recommend them to everyone!</p><h2 id=1colorfultabs>1.ColorfulTabs</h2><p>People can distinguish colors much faster than text. This add-on generates tab colors based on the page&rsquo;s main color scheme, making your tabs colorful. Not only is it pleasing to the eye, but it also makes it easier to switch to the tab you want.</p></div><div class=post-footer><a href=/posts/cppblog/2010-06-28-my-favorite-nine-firefox-addons-en/>Read More</a><div class=post-tags><i class="fas fa-tags fa-fw" aria-hidden=true></i>&nbsp;<a href=/tags/original/>Original</a></div></div></article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline"><a href=/posts/cppblog/2010-06-28-nginx-startup-shutdown-configuration-script-en/>nginx Startup, Shutdown and Configuration Script</a></h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw" aria-hidden=true></i>guanlan</a>
-</span>&nbsp;<span class=post-publish>published on <time datetime=2010-06-28>2010-06-28</time></span>&nbsp;<span class=post-category>included in <a href=/categories/nginx/><i class="far fa-folder fa-fw" aria-hidden=true></i>Nginx</a></span></div><div class=content><pre><code class=bash>################################################
-#!/bin/bash
-# v.0.0.3
-# create by jackbillow at 2007.10.15
-# redevelop by XGuru at 2010.6.28
-# On Ubuntu 10.04
-# nginx - This shell script takes care of starting and stopping nginx.
-#
-# description: nginx [engine x] is light http web/proxy server
-# that answers incoming ftp service requests.
-###############################################
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+	<meta name="generator" content="Hugo 0.155.3">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <title>Guanlan Dai</title><meta name="Description" content="This is my cool site"><meta property="og:url" content="https://rmmod.com/">
+  <meta property="og:site_name" content="Guanlan Dai">
+  <meta property="og:title" content="Guanlan Dai">
+  <meta property="og:description" content="This is my cool site">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="website">
 
-nginx_path=&#34;/usr/local/nginx&#34;
-nginx_pid=&#34;/usr/local/nginx/logs/nginx.pid&#34;
-prog=&#34;nginx&#34;
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Guanlan Dai">
+  <meta name="twitter:description" content="This is my cool site">
+      <meta name="twitter:site" content="@guanlandai">
+<meta name="application-name" content="Guanlan Dai">
+<meta name="apple-mobile-web-app-title" content="Guanlan Dai"><meta name="theme-color" content="#0f172a"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/favicon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#67e8f9"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://rmmod.com/" /><link rel="alternate" href="/index.xml" type="application/rss+xml" title="Guanlan Dai">
+    <link rel="feed" href="/index.xml" type="application/rss+xml" title="Guanlan Dai"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "WebSite",
+        "url": "https:\/\/rmmod.com\/","inLanguage": "en-us","description": "This is my cool site","name": "Guanlan Dai"
+    }
+    </script></head>
+    <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
 
-RETVAL=0
-
-
-start() {
-# Start daemons.
-        if [ -e $nginx_path/conf/nginx.conf ];then
-          echo -n $&#34;Starting $prog: &#34;
-          $nginx_path/sbin/nginx -c $nginx_path/conf/nginx.conf &amp;
-          RETVAL=$?
-        [ $RETVAL -eq 0 ] &amp;&amp; {
-        echo Start &#34;$prog&#34; successfully!
-        }
-        else
-        RETVAL=1
-        fi
-        return $RETVAL
-}
-# Stop daemons.
-stop() {
-        echo -n $&#34;Stopping $prog\n&#34;
-        sudo killall -9 nginx
-        RETVAL=$?
-}
-# See how we were called.
-
-conf(){
-        gvim &#34;$nginx_path/conf/nginx.conf&#34;
-}
-case &#34;$1&#34; in
-start)
-        start
-        ;;
-stop)
-        stop
-        ;;
-conf)
-        conf
-        ;;        
-restart)
-        stop
-        start
-        ;;
-*)
-        echo $&#34;Usage: $0 {start|stop|conf|restart}&#34;
-        echo $&#34;Your may need root privilege to execute this script!&#34;
-        exit 1
-esac
-exit $RETVAL</code></pre><hr><p><em>Original link: <a href=http://www.cppblog.com/xguru/archive/2010/06/28/118868.html target=_blank rel="noopener noreffer">http://www.cppblog.com/xguru/archive/2010/06/28/118868.html</a></em></p></div><div class=post-footer><a href=/posts/cppblog/2010-06-28-nginx-startup-shutdown-configuration-script-en/>Read More</a><div class=post-tags><i class="fas fa-tags fa-fw" aria-hidden=true></i>&nbsp;<a href=/tags/original/>Original</a></div></div></article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline"><a href=/posts/cppblog/2010-06-25-libevent-analysis-notes-3-io-multiplexing-mechanism-determination-en/>Libevent Analysis Notes (3) - Determining I/O Multiplexing Mechanism</a></h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw" aria-hidden=true></i>guanlan</a>
-</span>&nbsp;<span class=post-publish>published on <time datetime=2010-06-25>2010-06-25</time></span>&nbsp;<span class=post-category>included in <a href=/categories/libevent/><i class="far fa-folder fa-fw" aria-hidden=true></i>Libevent</a></span></div><div class=content><p>Libevent&rsquo;s original intention was to design a cross-platform lightweight I/O framework. Due to historical issues, the I/O multiplexing mechanisms across different platforms are difficult to unify. Therefore, the methods for handling cross-platform compatibility deserve special attention.</p><p>eventop is defined in the source code as follows:</p><pre><code class=cpp>static const struct eventop *eventops[]={
-
-#ifdef HAVE_EVENT_PORTS
-
-         &amp;evportops,
-
-#endif 
-
-…
-
-}</code></pre><p>As can be seen, libevent uses macros to find available multiplexing mechanisms at compile time.</p></div><div class=post-footer><a href=/posts/cppblog/2010-06-25-libevent-analysis-notes-3-io-multiplexing-mechanism-determination-en/>Read More</a><div class=post-tags><i class="fas fa-tags fa-fw" aria-hidden=true></i>&nbsp;<a href=/tags/original/>Original</a></div></div></article><article class="single summary" itemscope itemtype=http://schema.org/Article><h1 class=single-title itemprop="name headline"><a href=/posts/cppblog/2010-06-24-libevent-analysis-notes-1-installation-and-usage-en/>Libevent Analysis Notes (1) - Installation and Usage</a></h1><div class=post-meta><span class=post-author><a href=/ title=Author rel=author class=author><i class="fas fa-user-circle fa-fw" aria-hidden=true></i>guanlan</a>
-</span>&nbsp;<span class=post-publish>published on <time datetime=2010-06-24>2010-06-24</time></span>&nbsp;<span class=post-category>included in <a href=/categories/libevent/><i class="far fa-folder fa-fw" aria-hidden=true></i>Libevent</a></span></div><div class=content><p>Introduction to Libevent</p><p><img class=lazyload src=/svg/loading.min.svg data-src=/img/None.gif data-srcset="/img/None.gif, /img/None.gif 1.5x, /img/None.gif 2x" data-sizes=auto alt=/img/None.gif title=/img/None.gif>The libevent API provides a mechanism to execute a callback function when a specific event occurs on a file descriptor or after a timeout has been reached. Furthermore, libevent also support callbacks due to signals or regular timeouts.</p><pre><code>The libevent API provides such a mechanism:  
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Guanlan Dai">Guanlan Dai</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item active" href="/"> Home </a><a class="menu-item" href="/about/"> About </a><span class="menu-item delimiter"></span><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Guanlan Dai">Guanlan Dai</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><a class="menu-item" href="/" title="">Home</a><a class="menu-item" href="/about/" title="">About</a><a href="javascript:void(0);" class="menu-item theme-switch" title="Switch Theme">
+                <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+            </a></div>
+    </div>
+</header><main class="main">
+                <div class="container"><div class="page home" data-home="posts"><div class="home-profile"><div class="home-avatar"><a href="/" title="Home"><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="https://www.gravatar.com/avatar/a1a5f762bca516ff1fe40d39ac1e4f67?s=240&amp;d=mp"
+        data-srcset="https://www.gravatar.com/avatar/a1a5f762bca516ff1fe40d39ac1e4f67?s=240&amp;d=mp, https://www.gravatar.com/avatar/a1a5f762bca516ff1fe40d39ac1e4f67?s=240&amp;d=mp 1.5x, https://www.gravatar.com/avatar/a1a5f762bca516ff1fe40d39ac1e4f67?s=240&amp;d=mp 2x"
+        data-sizes="auto"
+        alt="https://www.gravatar.com/avatar/a1a5f762bca516ff1fe40d39ac1e4f67?s=240&amp;d=mp"
+        title="https://www.gravatar.com/avatar/a1a5f762bca516ff1fe40d39ac1e4f67?s=240&amp;d=mp" /></a></div><h1 class="home-title">Guanlan Dai</h1><div class="links"><a href="https://github.com/guanlan" title="GitHub" target="_blank" rel="noopener noreffer me"><i class="fab fa-github-alt fa-fw" aria-hidden="true"></i></a>
+<a href="https://linkedin.com/in/guanlandai" title="LinkedIn" target="_blank" rel="noopener noreffer me"><i class="fab fa-linkedin fa-fw" aria-hidden="true"></i></a>
+<a href="https://twitter.com/guanlandai" title="Twitter" target="_blank" rel="noopener noreffer me"><i class="fab fa-twitter fa-fw" aria-hidden="true"></i></a>
+<a href="/index.xml" title="RSS" target="_blank" rel="noopener noreffer me"><i class="fas fa-rss fa-fw" aria-hidden="true"></i></a>
+</div></div>
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/cppblog/2010-10-07-linux-command-line-decompression-tips-en/">[Tips] Linux Command Line Decompression Tips</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>guanlan</a>
+</span>&nbsp;<span class="post-publish">published on <time datetime="2010-10-07">2010-10-07</time></span>&nbsp;<span class="post-category">included in <a href="/categories/linux/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Linux</a></span></div><div class="content"><p>Everyone finds it frustrating that Linux has numerous compression formats, and each format corresponds to different commands, which is quite a headache.<br>
+Let me introduce a method to you:<br>
+Add this to your bashrc:</p>
+<p>ex () {<br>
+if [ -f $1 ] ; then<br>
+case $1 in<br>
+*.tar.bz2) tar xjf $1 ;;<br>
+*.tar.gz) tar xzf $1 ;;<br>
+*.bz2) bunzip2 $1 ;;<br>
+*.rar) rar x $1 ;;<br>
+*.gz) gunzip $1 ;;<br>
+*.tar) tar xf $1 ;;<br>
+*.tbz2) tar xjf $1 ;;<br>
+*.tgz) tar xzf $1 ;;<br>
+*.zip) unzip $1 ;;<br>
+*.Z) uncompress $1 ;;<br>
+*.7z) 7z x $1 ;;<br>
+*) echo &ldquo;Unable to extract &lsquo;$1&rsquo; file!!&rdquo; ;;<br>
+esac<br>
+else<br>
+echo &ldquo;&rsquo;$1&rsquo; is not a valid file!&rdquo;<br>
+fi<br>
+}</p></div><div class="post-footer">
+        <a href="/posts/cppblog/2010-10-07-linux-command-line-decompression-tips-en/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/tips/">Tips</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/cppblog/2010-07-27-can-emacs-really-make-coffee-en/">[Fun] Can Emacs Really Make Coffee?</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>guanlan</a>
+</span>&nbsp;<span class="post-publish">published on <time datetime="2010-07-27">2010-07-27</time></span></div><div class="content"><p>Can Emacs Really Make Coffee? by <a href="http://www.cppblog.com/xguru" target="_blank" rel="noopener noreffer">guanlan</a>
+</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/img/467px-Vacpot3.jpg"
+        data-srcset="/img/467px-Vacpot3.jpg, /img/467px-Vacpot3.jpg 1.5x, /img/467px-Vacpot3.jpg 2x"
+        data-sizes="auto"
+        alt="/img/467px-Vacpot3.jpg"
+        title="/img/467px-Vacpot3.jpg" /> |<br>
+|<br>
+|<br>
+|<br>
+|<br>
+|<br>
+|<br>
+|<br>
+|  There&rsquo;s a saying that goes: &ldquo;Emacs can do anything, even make coffee!&rdquo;</p>
+<p>What does making coffee mean? This aroused my curiosity for investigation.</p>
+<p>After searching online, I came up with several preliminary conclusions:</p>
+<ol>
+<li>
+<p>This is just a fun saying, used to describe Emacs&rsquo;s all-encompassing functionality.</p></div><div class="post-footer">
+        <a href="/posts/cppblog/2010-07-27-can-emacs-really-make-coffee-en/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/fun/">Fun</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/cppblog/2010-06-28-my-favorite-nine-firefox-addons-en/">My Favorite Nine Firefox Add-ons in 2010</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>guanlan</a>
+</span>&nbsp;<span class="post-publish">published on <time datetime="2010-06-28">2010-06-28</time></span></div><div class="content"><h2 id="doubans-firefox-group-says">Douban&rsquo;s <a href="http://www.douban.com/group/Firefox/" target="_blank" rel="noopener noreffer">Firefox Group</a>
+ says:</h2>
+<p>Firefox is not perfect, not the most stable, not without vulnerabilities, and not the fastest, but it can be yours.</p>
+<p>I really like this quote. It&rsquo;s because of the rich and colorful add-ons that Firefox has become so popular.<br>
+The following add-ons are my personal favorites, and I recommend them to everyone!</p>
+<h2 id="1colorfultabs">1.ColorfulTabs</h2>
+<p>People can distinguish colors much faster than text. This add-on generates tab colors based on the page&rsquo;s main color scheme, making your tabs colorful. Not only is it pleasing to the eye, but it also makes it easier to switch to the tab you want.</p></div><div class="post-footer">
+        <a href="/posts/cppblog/2010-06-28-my-favorite-nine-firefox-addons-en/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/original/">Original</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/cppblog/2010-06-28-nginx-startup-shutdown-configuration-script-en/">nginx Startup, Shutdown and Configuration Script</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>guanlan</a>
+</span>&nbsp;<span class="post-publish">published on <time datetime="2010-06-28">2010-06-28</time></span>&nbsp;<span class="post-category">included in <a href="/categories/nginx/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Nginx</a></span></div><div class="content"><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1">################################################</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#!/bin/bash</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># v.0.0.3</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># create by jackbillow at 2007.10.15</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># redevelop by XGuru at 2010.6.28</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># On Ubuntu 10.04</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># nginx - This shell script takes care of starting and stopping nginx.</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># description: nginx [engine x] is light http web/proxy server</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># that answers incoming ftp service requests.</span>
+</span></span><span class="line"><span class="cl"><span class="c1">###############################################</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">nginx_path</span><span class="o">=</span><span class="s2">&#34;/usr/local/nginx&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">nginx_pid</span><span class="o">=</span><span class="s2">&#34;/usr/local/nginx/logs/nginx.pid&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nv">prog</span><span class="o">=</span><span class="s2">&#34;nginx&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">RETVAL</span><span class="o">=</span><span class="m">0</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">start<span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Start daemons.</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="o">[</span> -e <span class="nv">$nginx_path</span>/conf/nginx.conf <span class="o">]</span><span class="p">;</span><span class="k">then</span>
+</span></span><span class="line"><span class="cl">          <span class="nb">echo</span> -n $<span class="s2">&#34;Starting </span><span class="nv">$prog</span><span class="s2">: &#34;</span>
+</span></span><span class="line"><span class="cl">          <span class="nv">$nginx_path</span>/sbin/nginx -c <span class="nv">$nginx_path</span>/conf/nginx.conf <span class="p">&amp;</span>
+</span></span><span class="line"><span class="cl">          <span class="nv">RETVAL</span><span class="o">=</span><span class="nv">$?</span>
+</span></span><span class="line"><span class="cl">        <span class="o">[</span> <span class="nv">$RETVAL</span> -eq <span class="m">0</span> <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">echo</span> Start <span class="s2">&#34;</span><span class="nv">$prog</span><span class="s2">&#34;</span> successfully!
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        <span class="k">else</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">RETVAL</span><span class="o">=</span><span class="m">1</span>
+</span></span><span class="line"><span class="cl">        <span class="k">fi</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="nv">$RETVAL</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Stop daemons.</span>
+</span></span><span class="line"><span class="cl">stop<span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">echo</span> -n $<span class="s2">&#34;Stopping </span><span class="nv">$prog</span><span class="s2">\n&#34;</span>
+</span></span><span class="line"><span class="cl">        sudo killall -9 nginx
+</span></span><span class="line"><span class="cl">        <span class="nv">RETVAL</span><span class="o">=</span><span class="nv">$?</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># See how we were called.</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">conf<span class="o">(){</span>
+</span></span><span class="line"><span class="cl">        gvim <span class="s2">&#34;</span><span class="nv">$nginx_path</span><span class="s2">/conf/nginx.conf&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="k">case</span> <span class="s2">&#34;</span><span class="nv">$1</span><span class="s2">&#34;</span> in
+</span></span><span class="line"><span class="cl">start<span class="o">)</span>
+</span></span><span class="line"><span class="cl">        start
+</span></span><span class="line"><span class="cl">        <span class="p">;;</span>
+</span></span><span class="line"><span class="cl">stop<span class="o">)</span>
+</span></span><span class="line"><span class="cl">        stop
+</span></span><span class="line"><span class="cl">        <span class="p">;;</span>
+</span></span><span class="line"><span class="cl">conf<span class="o">)</span>
+</span></span><span class="line"><span class="cl">        conf
+</span></span><span class="line"><span class="cl">        <span class="p">;;</span>        
+</span></span><span class="line"><span class="cl">restart<span class="o">)</span>
+</span></span><span class="line"><span class="cl">        stop
+</span></span><span class="line"><span class="cl">        start
+</span></span><span class="line"><span class="cl">        <span class="p">;;</span>
+</span></span><span class="line"><span class="cl">*<span class="o">)</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">echo</span> $<span class="s2">&#34;Usage: </span><span class="nv">$0</span><span class="s2"> {start|stop|conf|restart}&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">echo</span> <span class="s2">$&#34;Your may need root privilege to execute this script!&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="nb">exit</span> <span class="m">1</span>
+</span></span><span class="line"><span class="cl"><span class="k">esac</span>
+</span></span><span class="line"><span class="cl"><span class="nb">exit</span> <span class="nv">$RETVAL</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><hr>
+<p><em>Original link: <a href="http://www.cppblog.com/xguru/archive/2010/06/28/118868.html" target="_blank" rel="noopener noreffer">http://www.cppblog.com/xguru/archive/2010/06/28/118868.html</a>
+</em></p></div><div class="post-footer">
+        <a href="/posts/cppblog/2010-06-28-nginx-startup-shutdown-configuration-script-en/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/original/">Original</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/cppblog/2010-06-25-libevent-analysis-notes-3-io-multiplexing-mechanism-determination-en/">Libevent Analysis Notes (3) - Determining I/O Multiplexing Mechanism</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>guanlan</a>
+</span>&nbsp;<span class="post-publish">published on <time datetime="2010-06-25">2010-06-25</time></span>&nbsp;<span class="post-category">included in <a href="/categories/libevent/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Libevent</a></span></div><div class="content"><p>Libevent&rsquo;s original intention was to design a cross-platform lightweight I/O framework. Due to historical issues, the I/O multiplexing mechanisms across different platforms are difficult to unify. Therefore, the methods for handling cross-platform compatibility deserve special attention.</p>
+<p>eventop is defined in the source code as follows:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">static</span> <span class="k">const</span> <span class="k">struct</span> <span class="nc">eventop</span> <span class="o">*</span><span class="n">eventops</span><span class="p">[]</span><span class="o">=</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cp">#ifdef HAVE_EVENT_PORTS
+</span></span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">         <span class="o">&amp;</span><span class="n">evportops</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="cp">#endif 
+</span></span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="err">…</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>As can be seen, libevent uses macros to find available multiplexing mechanisms at compile time.</p></div><div class="post-footer">
+        <a href="/posts/cppblog/2010-06-25-libevent-analysis-notes-3-io-multiplexing-mechanism-determination-en/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/original/">Original</a></div></div>
+</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/cppblog/2010-06-24-libevent-analysis-notes-1-installation-and-usage-en/">Libevent Analysis Notes (1) - Installation and Usage</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>guanlan</a>
+</span>&nbsp;<span class="post-publish">published on <time datetime="2010-06-24">2010-06-24</time></span>&nbsp;<span class="post-category">included in <a href="/categories/libevent/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Libevent</a></span></div><div class="content"><p>Introduction to Libevent</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/img/None.gif"
+        data-srcset="/img/None.gif, /img/None.gif 1.5x, /img/None.gif 2x"
+        data-sizes="auto"
+        alt="/img/None.gif"
+        title="/img/None.gif" />The libevent API provides a mechanism to execute a callback function when a specific event occurs on a file descriptor or after a timeout has been reached. Furthermore, libevent also support callbacks due to signals or regular timeouts.</p>
+<pre><code>The libevent API provides such a mechanism:  
 Execute a specified callback function when a specific event occurs in a specified file descriptor, or when a timeout is reached.  
 Additionally, libevent callback functionality also supports triggering by signals or regular timeouts.  
 Note that its license is a BSD-style license, which can be used in commercial products without having to open source.  
-</code></pre><p>​</p></div><div class=post-footer><a href=/posts/cppblog/2010-06-24-libevent-analysis-notes-1-installation-and-usage-en/>Read More</a><div class=post-tags><i class="fas fa-tags fa-fw" aria-hidden=true></i>&nbsp;<a href=/tags/original/>Original</a></div></div></article><ul class=pagination><li class=page-item><span class=page-link><a href=/>1</a></span></li><li class=page-item><span class=page-link><a href=/page/2/>2</a></span></li><li class="page-item active"><span class=page-link><a href=/page/3/>3</a></span></li><li class=page-item><span class=page-link><a href=/page/4/>4</a></span></li></ul></div></div></main><footer class=footer><div class=footer-container><div class=footer-line>Guanlan Dai | CC BY-NC 4.0</div><div class=footer-line itemscope itemtype=http://schema.org/CreativeWork><i class="far fa-copyright fa-fw" aria-hidden=true></i><span itemprop=copyrightYear>2009 - 2026</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=/ target=_blank></a></span></div></div></footer></div><div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title="Back to Top"><i class="fas fa-arrow-up fa-fw" aria-hidden=true></i>
-</a><a href=# id=view-comments class=fixed-button title="View Comments"><i class="fas fa-comment fa-fw" aria-hidden=true></i></a></div><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/lightgallery@2.4.0/css/lightgallery-bundle.min.css><link rel=stylesheet href=/css/_code-highlight.scss><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lazysizes@5.3.1/lazysizes.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lightgallery@2.4.0/lightgallery.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lightgallery@2.4.0/plugins/thumbnail/lg-thumbnail.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/lightgallery@2.4.0/plugins/zoom/lg-zoom.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js></script><script type=text/javascript src=https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js></script><script type=text/javascript>window.config={code:{copyTitle:"Copy to clipboard",maxShownLines:50},lightgallery:!0}</script><script type=text/javascript src=/js/theme.min.js></script></body></html>
+</code></pre>
+<p>​</p></div><div class="post-footer">
+        <a href="/posts/cppblog/2010-06-24-libevent-analysis-notes-1-installation-and-usage-en/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/original/">Original</a></div></div>
+</article><ul class="pagination"><li class="page-item ">
+                    <span class="page-link">
+                        <a href="/">1</a>
+                    </span>
+                </li><li class="page-item ">
+                    <span class="page-link">
+                        <a href="/page/2/">2</a>
+                    </span>
+                </li><li class="page-item active">
+                    <span class="page-link">
+                        <a href="/page/3/">3</a>
+                    </span>
+                </li><li class="page-item ">
+                    <span class="page-link">
+                        <a href="/page/4/">4</a>
+                    </span>
+                </li></ul></div></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">Guanlan Dai | CC BY-NC 4.0</div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2009 - 2026</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="Back to Top">
+                <i class="fas fa-arrow-up fa-fw" aria-hidden="true"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
+                <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
+            </a>
+        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.4.0/css/lightgallery-bundle.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.1/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.4.0/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.4.0/plugins/thumbnail/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.4.0/plugins/zoom/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"lightgallery":true};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>
