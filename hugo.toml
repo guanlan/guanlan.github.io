@@ -36,6 +36,9 @@ enableEmoji = true
   dateFormat = "2006-01-02"
   rss = true
 
+  [params.cdn]
+    data = ""
+
   [params.author]
     name = "Guanlan Dai"
 
