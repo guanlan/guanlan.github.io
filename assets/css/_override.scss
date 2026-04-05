@@ -144,21 +144,139 @@
 
 [theme=dark] .single .content .highlight {
   > .chroma {
-    background-color: #f6f8fa !important;
-    color: #24292f !important;
+    background-color: #0d1117 !important;
+    color: #c9d1d9 !important;
 
     pre,
     code,
     table,
     tr,
     td {
-      background-color: #f6f8fa !important;
-      color: #24292f !important;
+      background-color: #0d1117 !important;
+      color: #c9d1d9 !important;
     }
 
     .code-header {
-      background-color: #eef2f6 !important;
-      color: #57606a !important;
+      background-color: #161b22 !important;
+      color: #8b949e !important;
+      border-bottom: 1px solid #30363d !important;
+    }
+  }
+
+  .chroma {
+    .ln,
+    .lnt {
+      color: #6e7681 !important;
+    }
+
+    .p,
+    .n,
+    .nb,
+    .bp,
+    .ni,
+    .nl,
+    .nn,
+    .py,
+    .nv,
+    .vc,
+    .vg,
+    .vi,
+    .vm,
+    .w {
+      color: #c9d1d9 !important;
+    }
+
+    .k,
+    .kc,
+    .kd,
+    .kp,
+    .kr,
+    .kt,
+    .ow {
+      color: #ff7b72 !important;
+    }
+
+    .kn,
+    .nt,
+    .o {
+      color: #d2a8ff !important;
+    }
+
+    .na,
+    .nc,
+    .nd,
+    .ne,
+    .nf,
+    .fm,
+    .nx,
+    .m,
+    .mb,
+    .mf,
+    .mh,
+    .mi,
+    .il,
+    .mo,
+    .l {
+      color: #79c0ff !important;
+    }
+
+    .no {
+      color: #ffa657 !important;
+    }
+
+    .s,
+    .s1,
+    .s2,
+    .sa,
+    .sb,
+    .sc,
+    .dl,
+    .sd,
+    .se,
+    .sh,
+    .si,
+    .sr,
+    .ss,
+    .sx,
+    .ld {
+      color: #a5d6ff !important;
+    }
+
+    .c,
+    .c1,
+    .cm,
+    .cp,
+    .cpf,
+    .cs,
+    .ch,
+    .gu {
+      color: #8b949e !important;
+      font-style: italic !important;
+    }
+
+    .err {
+      color: #f85149 !important;
+      background-color: #2d1117 !important;
+    }
+
+    .gd,
+    .gr,
+    .gt {
+      color: #ff7b72 !important;
+    }
+
+    .gi {
+      color: #3fb950 !important;
+    }
+
+    .gh,
+    .gp,
+    .go {
+      color: #8b949e !important;
+    }
+
+    .hl {
+      background-color: #1f2937 !important;
     }
   }
 }
@@ -171,6 +289,7 @@
 }
 
 [theme=dark] .single .content code:not(.chroma code) {
-  background-color: #f6f8fa !important;
-  color: #b42318 !important;
+  background-color: #161b22 !important;
+  color: #ff7b72 !important;
+  border-color: #30363d !important;
 }
