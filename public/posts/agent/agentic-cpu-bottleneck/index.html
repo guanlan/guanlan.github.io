@@ -110,6 +110,7 @@
 <p>A chatbot has a clean loop. A user sends a prompt, the model runs, and a response comes back. In that flow, the GPU is usually the bottleneck, and the rest of the system mostly exists to keep the GPU busy.</p>
 <p>A production agent is different. It takes a task, pulls context, calls the model, parses the output, decides what to do next, invokes a tool, waits on I/O, handles the result, prepares the next prompt, and calls the model again. Then it repeats. Sometimes a few times. Sometimes hundreds.</p>
 <p>Once that loop becomes the real workload, model inference is no longer the whole story. It becomes one stage inside a larger execution cycle. Everything around it starts to matter: tool execution, retrieval, serialization, scheduling, sandboxing, retries, context assembly, and state persistence. Most of that work lives on the CPU.</p>
+<div class="mobile-scroll-image">
 <a class="lightgallery" href="/posts/agent/agentic-cpu-bottleneck/CPU-GPU-en.png" title="CPU-GPU responsibilities in agentic systems" data-thumbnail="/posts/agent/agentic-cpu-bottleneck/CPU-GPU-en.png" rel="agentic-cpu-bottleneck-gallery">
         <img
             class="lazyload"
@@ -119,6 +120,8 @@
             data-sizes="auto"
             alt="Diagram comparing CPU and GPU responsibilities in agentic systems" width="8192" height="1058" />
     </a>
+</div>
+
 <p>That is where the old bottleneck story starts to break.</p>
 <h2 id="the-old-bottleneck-story-is-starting-to-break"><strong>The old bottleneck story is starting to break</strong></h2>
 <p>We are starting to see it in the data.</p>

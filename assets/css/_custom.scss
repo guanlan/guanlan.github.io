@@ -132,6 +132,24 @@
 }
 
 @media (max-width: 768px) {
+  .single .content .mobile-scroll-image {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    margin: 0.75rem 0;
+  }
+
+  .single .content .mobile-scroll-image > a {
+    display: inline-block;
+    max-width: none;
+  }
+
+  .single .content .mobile-scroll-image img.mobile-scroll-image__img {
+    display: block;
+    width: 42rem;
+    max-width: none;
+    min-width: 42rem;
+  }
+
   .single .content .highlight {
     margin-left: -0.25rem !important;
     margin-right: -0.25rem !important;

@@ -23,7 +23,9 @@ A production agent is different. It takes a task, pulls context, calls the model
 
 Once that loop becomes the real workload, model inference is no longer the whole story. It becomes one stage inside a larger execution cycle. Everything around it starts to matter: tool execution, retrieval, serialization, scheduling, sandboxing, retries, context assembly, and state persistence. Most of that work lives on the CPU.
 
-{{< image src="CPU-GPU-en.png" alt="Diagram comparing CPU and GPU responsibilities in agentic systems" title="CPU-GPU responsibilities in agentic systems" rel="agentic-cpu-bottleneck-gallery" >}}
+{{< div class="mobile-scroll-image" >}}
+{{< image src="CPU-GPU-en.png" alt="Diagram comparing CPU and GPU responsibilities in agentic systems" title="CPU-GPU responsibilities in agentic systems" class="mobile-scroll-image__img" rel="agentic-cpu-bottleneck-gallery" >}}
+{{< /div >}}
 
 That is where the old bottleneck story starts to break.
 
