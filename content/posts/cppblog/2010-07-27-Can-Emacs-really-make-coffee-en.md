@@ -1,5 +1,5 @@
 ---
-title: "[Fun] Can Emacs Really Make Coffee?"
+title: "Can Emacs Really Make Coffee?"
 date: 2010-07-27 00:00:00+08:00
 draft: false
 categories: []

@@ -82,10 +82,6 @@ The process of selecting and initializing a mechanism is very simple:
 It traverses the eventops array storing mechanisms, trying to initialize them in order. Once a mechanism is successfully initialized, it immediately exits the loop. Of course, you don't need to worry about all the trivial details of detecting available mechanisms in the system environment, choosing which mechanism is more suitable, or how to use specific multiplexing mechanisms. When using it, you just need to call the event_init() function. Libevent's clever encapsulation of various multiplexing mechanisms saves developers from the trouble of dealing with mechanism selection when handling cross-platform issues in large-scale architectures. 
 
 
-
-
-
-
 ---
 
 *Original link: [http://www.cppblog.com/xguru/archive/2010/06/25/118722.html](http://www.cppblog.com/xguru/archive/2010/06/25/118722.html)*

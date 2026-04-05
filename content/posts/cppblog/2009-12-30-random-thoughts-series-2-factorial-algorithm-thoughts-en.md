@@ -30,10 +30,10 @@ Or you think recursion isn't as efficient as [tail recursion](http://en.wikipedi
 ![](/img/InBlock.gif) return fact_iter(1, 1, n);   
 ![](/img/ExpandedBlockEnd.gif)}
 
-  
+
 Or maybe you've read in "Code Complete": "If a programmer working for me used recursion to calculate factorial, I'd rather replace them."  
 Using recursion to calculate factorial is slow, unpredictable in terms of memory usage during runtime, and difficult to understand. So you change the recursion to a loop statement.  
-  
+
 
 ![](/img/None.gif)int factorial(int n)  
 ![](/img/ExpandedBlockStart.gif)![](/img/ContractedBlock.gif)![](/img/dot.gif){  
@@ -46,9 +46,9 @@ Using recursion to calculate factorial is slow, unpredictable in terms of memory
 ![](/img/ExpandedBlockEnd.gif)}
 
 When you write this code, don't you feel something is missing?  
-  
+
 Testing on my 32-bit environment, it overflows when calculating 33!, so you say, well that's because int is too small, so you switch to long double. Test it again - what is this? It still doesn't work when the numbers get a bit larger.  
-  
+
 Then let's use linked lists or arrays instead. Linked lists are too slow, so let's use arrays.[](http://topic.csdn.net/t/20030916/20/2267097.html)
 
 ![](/img/None.gif)int factorial2(int n,int a[])  
@@ -77,18 +77,18 @@ Then let's use linked lists or arrays instead. Linked lists are too slow, so let
 This algorithm simulates the manual calculation process, saves the result in array a, and returns the number of digits in the result.
 
 Are you feeling light-headed at this point? Please hold on for a moment.  
-  
+
 What if I need a scientific notation expression for a large number above 100,000? Or ask you, what is the third digit from the left of N! at the 100,000 level? Uh, isn't this a mathematician's job? Cheer up and challenge yourself! What real programmers need is this spirit of getting to the bottom of things.  
 Let's try mathematical analysis methods. James Stirling, a Scottish mathematician, gave this limit formula more than 280 years ago:
 
 ![](/img/1.JPG)
 
 This formula can calculate the approximate value of n! at extremely fast speed, and can also be used to infinitely approach the exact result. Detailed introduction and proof process is [here](http://mathworld.wolfram.com/StirlingsApproximation.html) or [here](http://zh.straightworldbank.com/wiki/%E6%96%AF%E7%89%B9%E6%9E%97%E5%85%AC%E5%BC%8F).  
-  
+
 **Stirling Series Formula**
 
 ![](/img/2.png)  
-  
+
 The following code calculates the scientific notation representation of large number N!  
 
 ![](/img/None.gif)struct bigNum   
@@ -112,7 +112,7 @@ The following code calculates the scientific notation representation of large nu
 ![](/img/ExpandedBlockEnd.gif)}
 
   
-  
+
 The following is the asymptotic expansion of the logarithm of factorial  
 ![](/img/3.png)  
 
@@ -150,10 +150,10 @@ This calculates an approximate number of digits, or you can improve it by using 
 ![](/img/InBlock.gif) return (int)ceil((N*log(N)-N+log(2*N*PI)/2)/log(10));  
 ![](/img/ExpandedBlockEnd.gif)}
 
-  
+
 At this point, you can't help but exclaim: the **most brilliant, most essential, most fundamental** thing in computer science is still **mathematics**!  
-  
-  
+
+
 ![](/img/800px-Mandelpart2.jpg)  
 [Mandelbrot set](http://en.wikipedia.org/wiki/Mandelbrot_set) boundary  
 Finally, let me end this essay with Russell's words:  
@@ -162,7 +162,9 @@ Mathematics, rightly viewed, possesses not only truth, but supreme beauty — a 
 References  
 1.[Tom M. Apostol. "Mathematical Analysis"  
 ](http://www.verycd.com/topics/2786508/)2[.Steve McConnell. "CODE COMPLETE, Second Edition"  
-](http://www.verycd.com/topics/147539/)3.<http://en.wikipedia.org/wiki/Stirling_approximation#History>  
+](http://www.verycd.com/topics/147539/)
+
+3.<http://en.wikipedia.org/wiki/Stirling_approximation#History>  
 4.<http://mathworld.wolfram.com/StirlingsApproximation.html>  
 5.<http://zh.straightworldbank.com/wiki/%E6%96%AF%E7%89%B9%E6%9E%97%E5%85%AC%E5%BC%8F>
 

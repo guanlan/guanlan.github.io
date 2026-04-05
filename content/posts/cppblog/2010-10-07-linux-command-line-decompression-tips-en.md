@@ -1,5 +1,5 @@
 ---
-title: "[Tips] Linux Command Line Decompression Tips"
+title: "Linux Command Line Decompression Tips"
 date: 2010-10-07 00:00:00+08:00
 draft: false
 categories: ['Linux']
