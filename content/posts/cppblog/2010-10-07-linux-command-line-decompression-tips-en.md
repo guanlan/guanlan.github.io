@@ -38,7 +38,7 @@ fi
 
 To decompress files, simply type "ex [compressed file]". If you have other compressed file formats, you can add them yourself.  
 
-![ex](ex.png)
+![ex](/posts/cppblog/ex.png)
 
 Say goodbye to annoying various decompression commands from now on.  
 
