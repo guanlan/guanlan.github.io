@@ -1,25 +1,25 @@
 <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
     <channel>
         <title>Guanlan Dai</title>
-        <link>https://rmmod.com/</link>
+        <link>http://localhost:1313/</link>
         <description>This is my cool site</description>
         <generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Thu, 02 Apr 2026 00:00:00 &#43;0000</lastBuildDate>
-            <atom:link href="https://rmmod.com/index.xml" rel="self" type="application/rss+xml" />
+            <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
         <item>
     <title>I Read Claude Code’s Leaked Source. It Exposes the Limits of Shell-First Safety.</title>
-    <link>https://rmmod.com/posts/agent/claude-code-security/</link>
+    <link>http://localhost:1313/posts/agent/claude-code-security/</link>
     <pubDate>Thu, 02 Apr 2026 00:00:00 &#43;0000</pubDate>
     <author>guanlan</author>
-    <guid>https://rmmod.com/posts/agent/claude-code-security/</guid>
+    <guid>http://localhost:1313/posts/agent/claude-code-security/</guid>
     <description><![CDATA[<p>Imagine this: a normal curl command is running in your terminal, sending runtime logs to a monitoring webhook. To a rule-based classifier, this looks routine. But what if the command was triggered by a hidden file in the codebase, one laced with a malicious prompt?</p>
 <p>After Claude Code’s source leaked, I read through its security layer line by line. What I found was both impressive and clarifying: Claude Code is a very strong local security system, and it also shows exactly where that model starts to break. Once agents begin acting with real identities and causing real side effects, the problem is no longer just shell safety.</p>]]></description>
 </item>
 <item>
     <title>In the Age of Agentic, the CPU is the New Bottleneck</title>
-    <link>https://rmmod.com/posts/agent/agentic-cpu-bottleneck/</link>
+    <link>http://localhost:1313/posts/agent/agentic-cpu-bottleneck/</link>
     <pubDate>Fri, 27 Mar 2026 00:00:00 &#43;0000</pubDate>
     <author>guanlan</author>
-    <guid>https://rmmod.com/posts/agent/agentic-cpu-bottleneck/</guid>
+    <guid>http://localhost:1313/posts/agent/agentic-cpu-bottleneck/</guid>
     <description><![CDATA[<p>For the last three years, the center of gravity in AI felt obvious. Bigger models. More GPUs. Faster inference. Almost every serious conversation in the industry eventually collapsed back to the same axis.</p>
 <p>Walking into SAP Center, I expected Jensen Huang to keep pushing the familiar story: more tokens, more throughput, more chips. Instead, he put Vera Rubin at the center of the stage.</p>
 <a class="lightgallery" href="/posts/agent/agentic-cpu-bottleneck/IMG_4411.jpg" title="Jensen Huang presenting Vera Rubin at SAP Center" data-thumbnail="/posts/agent/agentic-cpu-bottleneck/IMG_4411.jpg" rel="agentic-cpu-bottleneck-gallery">
@@ -29,20 +29,20 @@
 </item>
 <item>
     <title>Agent Infrastructure Needs New Primitives</title>
-    <link>https://rmmod.com/posts/agent/agent-infrastructure-needs-new-primitives/</link>
+    <link>http://localhost:1313/posts/agent/agent-infrastructure-needs-new-primitives/</link>
     <pubDate>Sun, 08 Feb 2026 00:00:00 &#43;0000</pubDate>
     <author>guanlan</author>
-    <guid>https://rmmod.com/posts/agent/agent-infrastructure-needs-new-primitives/</guid>
+    <guid>http://localhost:1313/posts/agent/agent-infrastructure-needs-new-primitives/</guid>
     <description><![CDATA[<p>I’ve been thinking about agent infrastructure for a while, and one thing keeps coming back: the biggest shift is not what agents can do, but how they run.</p>
 <p>That sounds subtle, but I think it matters a lot. The bottleneck is starting to move from model capability to execution. And most of the stack we use today was not built for that.</p>
 <p>I had a long conversation with Mitchell Hashimoto recently that helped sharpen this for me. We came at it from different directions, but kept circling back to the same conclusions. A lot of this clicked into place in that discussion, and I’m grateful he let me share some of it here.</p>]]></description>
 </item>
 <item>
     <title>From a Napkin Offer to a Global Engineering Team: My 8-Year Journey Building Kong</title>
-    <link>https://rmmod.com/posts/kong/journey-in-kong/</link>
+    <link>http://localhost:1313/posts/kong/journey-in-kong/</link>
     <pubDate>Wed, 22 Oct 2025 00:00:00 &#43;0000</pubDate>
     <author>guanlan</author>
-    <guid>https://rmmod.com/posts/kong/journey-in-kong/</guid>
+    <guid>http://localhost:1313/posts/kong/journey-in-kong/</guid>
     <description><![CDATA[<p><em>How a café chat and a Napkin offer in San Francisco turned into an eight-year adventure building world-class infrastructure.</em></p>
 <h3 id="the-beginning"><strong>The Beginning</strong></h3>
 <p>I never thought I would stay at one company for eight years.</p>
@@ -50,10 +50,10 @@
 </item>
 <item>
     <title>Deep Dive into Kong Gateway&#39;s New Rust-Based Router</title>
-    <link>https://rmmod.com/posts/kong/rust-based-router-kong-gateway/</link>
+    <link>http://localhost:1313/posts/kong/rust-based-router-kong-gateway/</link>
     <pubDate>Thu, 18 Jul 2024 00:00:00 &#43;0000</pubDate>
     <author>guanlan</author>
-    <guid>https://rmmod.com/posts/kong/rust-based-router-kong-gateway/</guid>
+    <guid>http://localhost:1313/posts/kong/rust-based-router-kong-gateway/</guid>
     <description><![CDATA[<h2 id="what-is-the-expressions-router">What is the Expressions Router?</h2>
 <p>The router component in the Kong Gateway is a crucial element for traffic handling, allowing the definition of specific matching rules to identify and process client requests. As a core component of the gateway, the router plays a vital role in ensuring the functionality, flexibility, security as well as performance of the gateway.</p>
 <p></p>
@@ -61,10 +61,10 @@
 </item>
 <item>
     <title>Protecting Services With Kong Gateway Rate Limiting</title>
-    <link>https://rmmod.com/posts/kong/kong-gateway-rate-limiting/</link>
+    <link>http://localhost:1313/posts/kong/kong-gateway-rate-limiting/</link>
     <pubDate>Tue, 18 May 2021 00:00:00 &#43;0000</pubDate>
     <author>guanlan</author>
-    <guid>https://rmmod.com/posts/kong/kong-gateway-rate-limiting/</guid>
+    <guid>http://localhost:1313/posts/kong/kong-gateway-rate-limiting/</guid>
     <description><![CDATA[<p>The Kong Gateway Rate Limiting <a href="https://docs.konghq.com/hub/kong-inc/rate-limiting" target="_blank" rel="noopener noreffer">plugin</a>
  is one of our most popular traffic control add-ons. You can configure the plugin with a policy for what constitutes &ldquo;similar requests&rdquo; (requests coming from the same IP address, for example), and you can set your limits (limit to 10 requests per minute, for example). This tutorial will walk through how simple it is to enable rate limiting in your <a href="https://konghq.com/kong" target="_blank" rel="noopener noreffer">Kong Gateway</a>
 .</p>
@@ -73,20 +73,20 @@
 </item>
 <item>
     <title>How to Design a Scalable Rate Limiting Algorithm</title>
-    <link>https://rmmod.com/posts/kong/how-to-design-a-scalable-rate-limiting-algorithm/</link>
+    <link>http://localhost:1313/posts/kong/how-to-design-a-scalable-rate-limiting-algorithm/</link>
     <pubDate>Fri, 15 Jan 2021 12:19:18 &#43;0800</pubDate>
     <author>guanlan</author>
-    <guid>https://rmmod.com/posts/kong/how-to-design-a-scalable-rate-limiting-algorithm/</guid>
+    <guid>http://localhost:1313/posts/kong/how-to-design-a-scalable-rate-limiting-algorithm/</guid>
     <description><![CDATA[<h2 id="what-is-rate-limiting">What is rate limiting?</h2>
 <p>Rate limiting protects your APIs from inadvertent or malicious overuse by limiting how often each user can call the API. Without rate limiting, each user may make a request as often as they like, leading to &ldquo;spikes&rdquo; of requests that starve other consumers. Once enabled, rate limiting can only perform a fixed number of requests per second. A rate limiting algorithm helps automate the process.</p>
 <p></p>]]></description>
 </item>
 <item>
     <title>Practical Tips on Writing an Effective Web Crawler</title>
-    <link>https://rmmod.com/posts/effective-web-crawler/</link>
+    <link>http://localhost:1313/posts/effective-web-crawler/</link>
     <pubDate>Fri, 15 Jan 2021 00:00:00 &#43;0000</pubDate>
     <author>guanlan</author>
-    <guid>https://rmmod.com/posts/effective-web-crawler/</guid>
+    <guid>http://localhost:1313/posts/effective-web-crawler/</guid>
     <description><![CDATA[<p>A web crawler is a hard-working bot to gather information or index the pages on the Internet. It starts at some seeds URLs and finds every hyperlink on each page, and then crawler will visit those hyperlinks recursively.</p>
 <h3 id="1-choose-an-ideal-programming-language">1. Choose an Ideal Programming Language</h3>
 <p>Based on the ranking of popular languages on developing web crawlers (based on result numbers of relative repositories host on Github on February, 2013). Python or Ruby probably is a wise choice, the mainly speed limit of web crawler is network latency not CPU, so choose Python or Ruby as a language to develop a web crawler will make life easier. Python provide some standard libraries, they are very useful, such like urllib, httplib and regex, those libraries can handle lots of work. Python also has plenty of valuable third-party libraries worth a try: <strong><a href="http://scrapy.org/" target="_blank" rel="noopener noreffer">scrapy</a>
@@ -97,10 +97,10 @@
 </item>
 <item>
     <title>Snippets for Racket Language</title>
-    <link>https://rmmod.com/posts/snippets-for-racket-language/</link>
+    <link>http://localhost:1313/posts/snippets-for-racket-language/</link>
     <pubDate>Sun, 03 Feb 2013 00:00:00 &#43;0000</pubDate>
     <author>guanlan</author>
-    <guid>https://rmmod.com/posts/snippets-for-racket-language/</guid>
+    <guid>http://localhost:1313/posts/snippets-for-racket-language/</guid>
     <description><![CDATA[<p>In the CS 5010 - Programming Design Paradigm course, we need write tons of documents,  repeat ourselves again and again, so I develop this snippet to save us time. If you using vim, you need install <a href="http://www.vim.org/scripts/script.php?script_id=2540" target="_blank" rel="noopener noreffer">snipMate</a>
  first, You can get the snippet on my Github: <a href="https://github.com/guanlan/snippet-for-racket" target="_blank" rel="noopener noreffer">https://github.com/guanlan/snippet-for-racket</a>
  download the snippet file and put in ~/.vim/snippets/ You can <a href="http://www.youtube.com/watch?v=upGPM9jN25Y" target="_blank" rel="noopener noreffer">watch demo here</a>
@@ -109,10 +109,10 @@
 </item>
 <item>
     <title>Rethink in Functional Languages</title>
-    <link>https://rmmod.com/posts/rethink-in-functional-languages/</link>
+    <link>http://localhost:1313/posts/rethink-in-functional-languages/</link>
     <pubDate>Wed, 09 Jan 2013 00:00:00 &#43;0000</pubDate>
     <author>guanlan</author>
-    <guid>https://rmmod.com/posts/rethink-in-functional-languages/</guid>
+    <guid>http://localhost:1313/posts/rethink-in-functional-languages/</guid>
     <description><![CDATA[<p>After about 3 months to learn and using Racket (a programming language in Lisp/Scheme family),  I learning lots of concepts of programming. The most important thing in FL(functional languages) is: <strong>&quot;<em>All data are immutable. All functions are pure.</em>&quot;</strong>  </p>
 <h2 id="immutable-data"> Immutable Data</h2>
 <p>Immutable data cannot be modified after being created. It has many advantages:</p>

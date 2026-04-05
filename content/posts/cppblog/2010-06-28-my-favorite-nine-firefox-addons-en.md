@@ -7,12 +7,9 @@ tags: ['original']
 author: "guanlan"
 ---
 
-## Douban's [Firefox Group](http://www.douban.com/group/Firefox/) says:
-
+Douban's [Firefox Group](http://www.douban.com/group/Firefox/) says:
 
 Firefox is not perfect, not the most stable, not without vulnerabilities, and not the fastest, but it can be yours.   
-
-
 
 I really like this quote. It's because of the rich and colorful add-ons that Firefox has become so popular.  
 The following add-ons are my personal favorites, and I recommend them to everyone!  
@@ -61,8 +58,6 @@ After makeover:
 
 [Add-on link](https://addons.mozilla.org/zh-CN/firefox/addon/46442/)  
 
-  
-
 ##   
 
 ## 5.Tab Popup 
@@ -97,16 +92,12 @@ Change Firefox skins whenever you want! Create a personalized Firefox
 [Add-on link](https://addons.mozilla.org/zh-CN/firefox/addon/10900/)  
 
 
-
-
 ##   
 
 ## 9.Integrated Gmail
 
 
 ![](/img/all_in_gmail1.png)  
-
-
 
 A must-have for Google enthusiasts, integrating other Google features into Gmail. All your Google Needs in One Place!   
 [Add-on link](https://addons.mozilla.org/zh-CN/firefox/addon/9457/)  

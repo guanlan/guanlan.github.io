@@ -10,8 +10,6 @@ author: "guanlan"
 Introduction to Libevent
 
 ![](/img/None.gif)The libevent API provides a mechanism to execute a callback function when a specific event occurs on a file descriptor or after a timeout has been reached. Furthermore, libevent also support callbacks due to signals or regular timeouts. 
-    
-    
     The libevent API provides such a mechanism:  
     Execute a specified callback function when a specific event occurs in a specified file descriptor, or when a timeout is reached.  
     Additionally, libevent callback functionality also supports triggering by signals or regular timeouts.  
@@ -24,13 +22,12 @@ Introduction to Libevent
 
 ## 1. Compilation and Installation
 ​    In Ubuntu, you can install directly using apt:
-   
+
 
     ~$  sudo apt-get install libevent
 
 
 ​    Or use:
-​    
 
 
 ```bash
