@@ -20,7 +20,7 @@ After searching online, I came up with several preliminary conclusions:
 1. This is just a fun saying, used to describe Emacs's all-encompassing functionality.   
   
 2. Java's logo is a cup of coffee, used to figuratively represent writing code  
-  ![](/img/java.png)  
+  ![](/img/java.png?v=20260404)  
   
 3. Emacs does indeed [have a coffee-making function](http://people.ku.edu/%7Esyliu/shredderyin/emacs_power.html), with scripts that can control automatic coffee machines.  
 
@@ -172,7 +172,7 @@ More can be found on [this wiki](http://zh.wikipedia.org/zh-cn/%E6%81%B6%E6%90%9
 
 
 We can boldly conclude that this protocol is just a good-natured joke by the **IETF**, and coffee.el's author Eric Marsden is also a humorous programmer who made a script compatible with RFC2324. He never intended to actually control a coffee machine, so this whole thing stems from programmers' dry humor.  
-![](/img/coffee.jpg)   
+![](/img/coffee.jpg?v=20260404)   
 However, remote control of coffee machines is still possible. Here's an [open source coffee maker](http://hardware.slashdot.org/article.pl?sid=08/12/10/1838233); and here's a [network-controllable coffee maker](http://www.engadget.com/2007/09/13/the-internet-enabled-coffee-maker/) (supposedly RFC2324 compatible).  
 I bet the IETF never dreamed that their joke would actually be made into real products. The geeks abroad really have too much time on their hands. It shows that geeks are quite humorous indeed.  
 Friends, do you have the answer in your heart? Do you want such a coffee machine?  
