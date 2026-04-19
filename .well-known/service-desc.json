@@ -1,0 +1,13 @@
+{
+  "name": "Guanlan Dai",
+  "kind": "website",
+  "url": "https://rmmod.com/",
+  "description": "Personal site with essays on AI agent infrastructure, distributed systems, API platforms, and software engineering.",
+  "resources": {
+    "about": "https://rmmod.com/about/",
+    "posts": "https://rmmod.com/posts/",
+    "rss": "https://rmmod.com/index.xml",
+    "sitemap": "https://rmmod.com/sitemap.xml",
+    "robots": "https://rmmod.com/robots.txt"
+  }
+}

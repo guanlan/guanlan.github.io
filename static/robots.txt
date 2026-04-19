@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+Allow: /about/
+Allow: /posts/
+Disallow: /tags/
+Disallow: /categories/
+Disallow: /search/
+Disallow: /404.html
+
+Sitemap: https://rmmod.com/sitemap.xml
