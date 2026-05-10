@@ -9,6 +9,9 @@ description: "LLM inference is only 30 to 40 percent of agent latency. Peak-to-a
 
 We are using $40,000 H100s to wait on the cheapest possible disk I/O. That was the sentence I could not get out of my head after AgenticOS Workshop at ASPLOS 2026. GTC had the industry staring upward at bigger GPU stacks. AgenticOS forced the opposite question: what exactly are those GPUs waiting on?
 
+The obvious counter is that modern deployments already separate inference and tool execution. GPU clusters are pooled, and while one agent is waiting on its tools, the GPU is free to serve another request. In theory, the H100 never actually sits idle.
+In practice it is messier. Agent sessions accumulate a lot of KV cache across turns, so switching a GPU between agents means offloading and swapping that cache, which is itself an expensive operation. This is not stateless HTTP request pooling. It is stateful context switching. Even under separated deployment, the GPU side carries its own state-management cost, and inference cannot be treated as a stateless service you can opportunistically slot work into.
+
 The Eunomia-bpf team brought hard profiling data. They ran 144 SWE-bench tasks through Claude Code with full OS-level instrumentation:
 
 {{< image src="image.png" alt="AgentCgroup resource profile" caption="*[AgentCgroup](https://os-for-agent.github.io/papers/AgenticOS_2026_paper_10.pdf): Understanding and Controlling OS Resources of AI Agents, by Yusheng Zheng, Jiakun Fan et al.*" >}}
