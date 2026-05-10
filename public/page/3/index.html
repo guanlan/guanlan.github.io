@@ -70,6 +70,32 @@
 <a href="/index.xml" title="RSS" target="_blank" rel="noopener noreffer me"><i class="fas fa-rss fa-fw" aria-hidden="true"></i></a>
 </div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/cppblog/2011-07-21-python-basic-objects-learning-notes-en/">Python Basic Objects Learning Notes</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>guanlan</a>
+</span>&nbsp;<span class="post-publish">published on <time datetime="2011-07-21">2011-07-21</time></span>&nbsp;<span class="post-category">included in <a href="/categories/python/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Python</a></span></div><div class="content"><p>Recently revisiting the book &ldquo;Python Source Code Analysis&rdquo;, I&rsquo;ve recorded the key points about Python basic objects as follows:</p>
+<p>​    <strong>Python Integer Objects</strong></p>
+<ol>
+<li>Python integers use C language&rsquo;s long type for storage</li>
+<li>Python int addition checks if the result overflows, and automatically converts to pyLongObject if it does</li>
+<li>Documentation in Python is seamlessly integrated into the language implementation</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">a</span> <span class="o">=</span> <span class="mi">11</span>  
+</span></span><span class="line"><span class="cl"><span class="nb">print</span> <span class="n">a</span><span class="o">.</span><span class="vm">__doc__</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="4">
+<li>
+<p>Small integer objects are completely cached in memory, other integer objects take turns using a block of memory space</p></div><div class="post-footer">
+        <a href="/posts/cppblog/2011-07-21-python-basic-objects-learning-notes-en/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/original/">Original</a></div></div>
+</article>
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/posts/cppblog/2010-10-24-look-at-this-years-programmers-problem-solving-sequence-en/"> Look at This Year&#39;s Programmers&#39; Problem-Solving Sequence</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>guanlan</a>
 </span>&nbsp;<span class="post-publish">published on <time datetime="2010-10-24">2010-10-24</time></span></div><div class="content"><p>2010 developer&rsquo;s problem solving sequence:</p>
@@ -325,43 +351,6 @@ The following add-ons are my personal favorites, and I recommend them to everyon
         <a href="/posts/cppblog/2010-06-28-nginx-startup-shutdown-configuration-script-en/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/original/">Original</a></div></div>
 </article>
-<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/cppblog/2010-06-25-libevent-analysis-notes-3-io-multiplexing-mechanism-determination-en/">Libevent Analysis Notes (3) - Determining I/O Multiplexing Mechanism</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>guanlan</a>
-</span>&nbsp;<span class="post-publish">published on <time datetime="2010-06-25">2010-06-25</time></span>&nbsp;<span class="post-category">included in <a href="/categories/libevent/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Libevent</a></span></div><div class="content"><p>Libevent&rsquo;s original intention was to design a cross-platform lightweight I/O framework. Due to historical issues, the I/O multiplexing mechanisms across different platforms are difficult to unify. Therefore, the methods for handling cross-platform compatibility deserve special attention.</p>
-<p>eventop is defined in the source code as follows:</p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-cpp" data-lang="cpp"><span class="line"><span class="cl"><span class="k">static</span> <span class="k">const</span> <span class="k">struct</span> <span class="nc">eventop</span> <span class="o">*</span><span class="n">eventops</span><span class="p">[]</span><span class="o">=</span><span class="p">{</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="cp">#ifdef HAVE_EVENT_PORTS
-</span></span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">         <span class="o">&amp;</span><span class="n">evportops</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="cp">#endif 
-</span></span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="err">…</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="p">}</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><p>As can be seen, libevent uses macros to find available multiplexing mechanisms at compile time.</p></div><div class="post-footer">
-        <a href="/posts/cppblog/2010-06-25-libevent-analysis-notes-3-io-multiplexing-mechanism-determination-en/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/original/">Original</a></div></div>
-</article>
 <ul class="pagination"><li class="page-item ">
                     <span class="page-link">
                         <a href="/">1</a>
@@ -377,6 +366,10 @@ The following add-ons are my personal favorites, and I recommend them to everyon
                 </li><li class="page-item ">
                     <span class="page-link">
                         <a href="/page/4/">4</a>
+                    </span>
+                </li><li class="page-item ">
+                    <span class="page-link">
+                        <a href="/page/5/">5</a>
                     </span>
                 </li></ul></div></div>
             </main><footer class="footer">

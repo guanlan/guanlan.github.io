@@ -2,13 +2,15 @@
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:xhtml="http://www.w3.org/1999/xhtml"
     ><url>
-            <loc>https://rmmod.com/tags/agent/</loc><lastmod>2026-04-02T00:00:00&#43;00:00</lastmod></url><url>
-            <loc>https://rmmod.com/</loc><lastmod>2026-04-02T00:00:00&#43;00:00</lastmod></url><url>
+            <loc>https://rmmod.com/tags/agent/</loc><lastmod>2026-05-10T00:00:00&#43;00:00</lastmod></url><url>
+            <loc>https://rmmod.com/tags/execution/</loc><lastmod>2026-05-10T00:00:00&#43;00:00</lastmod></url><url>
+            <loc>https://rmmod.com/</loc><lastmod>2026-05-10T00:00:00&#43;00:00</lastmod></url><url>
+            <loc>https://rmmod.com/tags/infra/</loc><lastmod>2026-05-10T00:00:00&#43;00:00</lastmod></url><url>
+            <loc>https://rmmod.com/posts/</loc><lastmod>2026-05-10T00:00:00&#43;00:00</lastmod></url><url>
+            <loc>https://rmmod.com/tags/</loc><lastmod>2026-05-10T00:00:00&#43;00:00</lastmod></url><url>
+            <loc>https://rmmod.com/posts/agent/agenticos-workshop/</loc><lastmod>2026-05-10T00:00:00&#43;00:00</lastmod></url><url>
             <loc>https://rmmod.com/tags/harness/</loc><lastmod>2026-04-02T00:00:00&#43;00:00</lastmod></url><url>
             <loc>https://rmmod.com/posts/agent/claude-code-security/</loc><lastmod>2026-04-02T00:00:00&#43;00:00</lastmod></url><url>
-            <loc>https://rmmod.com/tags/infra/</loc><lastmod>2026-04-02T00:00:00&#43;00:00</lastmod></url><url>
-            <loc>https://rmmod.com/posts/</loc><lastmod>2026-04-02T00:00:00&#43;00:00</lastmod></url><url>
-            <loc>https://rmmod.com/tags/</loc><lastmod>2026-04-02T00:00:00&#43;00:00</lastmod></url><url>
             <loc>https://rmmod.com/posts/agent/agentic-cpu-bottleneck/</loc><lastmod>2026-03-27T00:00:00&#43;00:00</lastmod></url><url>
             <loc>https://rmmod.com/posts/agent/agent-infrastructure-needs-new-primitives/</loc><lastmod>2026-02-08T00:00:00&#43;00:00</lastmod></url><url>
             <loc>https://rmmod.com/posts/kong/journey-in-kong/</loc><lastmod>2025-10-22T00:00:00&#43;00:00</lastmod></url><url>

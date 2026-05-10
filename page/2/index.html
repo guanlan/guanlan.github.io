@@ -18,11 +18,14 @@
       <meta name="twitter:site" content="@guanlandai">
 <meta name="application-name" content="Guanlan Dai">
 <meta name="apple-mobile-web-app-title" content="Guanlan Dai"><meta name="theme-color" content="#0f172a"><meta name="msapplication-TileColor" content="#da532c"><link rel="icon" href="/favicon.svg"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#67e8f9"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://rmmod.com/" /><link rel="alternate" href="/index.xml" type="application/rss+xml" title="Guanlan Dai">
-    <link rel="feed" href="/index.xml" type="application/rss+xml" title="Guanlan Dai"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/normalize.css@8.0.1/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.1.1/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css"><script type="application/ld+json">
+    <link rel="feed" href="/index.xml" type="application/rss+xml" title="Guanlan Dai"><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
     {
         "@context": "http://schema.org",
         "@type": "WebSite",
-        "url": "https:\/\/rmmod.com\/","inLanguage": "en-us","description": "This is my cool site","name": "Guanlan Dai"
+        "url": "https:\/\/rmmod.com\/","inLanguage": "en-us","author": {
+                "@type": "Person",
+                "name": "Guanlan Dai"
+            },"description": "This is my cool site","name": "Guanlan Dai"
     }
     </script></head>
     <body data-header-desktop="fixed" data-header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
@@ -67,6 +70,33 @@
 <a href="/index.xml" title="RSS" target="_blank" rel="noopener noreffer me"><i class="fas fa-rss fa-fw" aria-hidden="true"></i></a>
 </div></div>
 <article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/kong/kong-gateway-rate-limiting/">Protecting Services With Kong Gateway Rate Limiting</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>guanlan</a>
+</span>&nbsp;<span class="post-publish">published on <time datetime="2021-05-18">2021-05-18</time></span></div><div class="content"><p>The Kong Gateway Rate Limiting <a href="https://docs.konghq.com/hub/kong-inc/rate-limiting" target="_blank" rel="noopener noreffer">plugin</a>
+ is one of our most popular traffic control add-ons. You can configure the plugin with a policy for what constitutes &ldquo;similar requests&rdquo; (requests coming from the same IP address, for example), and you can set your limits (limit to 10 requests per minute, for example). This tutorial will walk through how simple it is to enable rate limiting in your <a href="https://konghq.com/kong" target="_blank" rel="noopener noreffer">Kong Gateway</a>
+.</p>
+<h2 id="rate-limiting-protecting-your-server-101">Rate Limiting: Protecting Your Server 101</h2>
+<p>Let&rsquo;s take a step back and go over the concept of rate limiting for those who aren&rsquo;t familiar.</p></div><div class="post-footer">
+        <a href="/posts/kong/kong-gateway-rate-limiting/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/kong/">Kong</a>,&nbsp;<a href="/tags/rate-limiting/">Rate Limiting</a></div></div>
+</article>
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+        <a href="/posts/kong/how-to-design-a-scalable-rate-limiting-algorithm/">How to Design a Scalable Rate Limiting Algorithm</a>
+    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>guanlan</a>
+</span>&nbsp;<span class="post-publish">published on <time datetime="2021-01-15">2021-01-15</time></span></div><div class="content"><h2 id="what-is-rate-limiting">What is rate limiting?</h2>
+<p>Rate limiting protects your APIs from inadvertent or malicious overuse by limiting how often each user can call the API. Without rate limiting, each user may make a request as often as they like, leading to &ldquo;spikes&rdquo; of requests that starve other consumers. Once enabled, rate limiting can only perform a fixed number of requests per second. A rate limiting algorithm helps automate the process.</p>
+<p><img
+        class="lazyload"
+        src="/svg/loading.min.svg"
+        data-src="/img/01-rate-limit-kong.png"
+        data-srcset="/img/01-rate-limit-kong.png, /img/01-rate-limit-kong.png 1.5x, /img/01-rate-limit-kong.png 2x"
+        data-sizes="auto"
+        alt="/img/01-rate-limit-kong.png"
+        title="rate limiting enabled at 2 requests/min" /></p></div><div class="post-footer">
+        <a href="/posts/kong/how-to-design-a-scalable-rate-limiting-algorithm/">Read More</a><div class="post-tags">
+                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/kong/">Kong</a>,&nbsp;<a href="/tags/rate-limiting/">Rate Limiting</a></div></div>
+</article>
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/posts/effective-web-crawler/">Practical Tips on Writing an Effective Web Crawler</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>guanlan</a>
 </span>&nbsp;<span class="post-publish">published on <time datetime="2021-01-15">2021-01-15</time></span></div><div class="content"><p>A web crawler is a hard-working bot to gather information or index the pages on the Internet. It starts at some seeds URLs and finds every hyperlink on each page, and then crawler will visit those hyperlinks recursively.</p>
@@ -78,7 +108,8 @@
 </strong></em>, an <strong>event-driven networking engine.</strong>  </p></div><div class="post-footer">
         <a href="/posts/effective-web-crawler/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/networking/">Networking</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+</article>
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/posts/snippets-for-racket-language/">Snippets for Racket Language</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>guanlan</a>
 </span>&nbsp;<span class="post-publish">published on <time datetime="2013-02-03">2013-02-03</time></span></div><div class="content"><p>In the CS 5010 - Programming Design Paradigm course, we need write tons of documents,  repeat ourselves again and again, so I develop this snippet to save us time. If you using vim, you need install <a href="http://www.vim.org/scripts/script.php?script_id=2540" target="_blank" rel="noopener noreffer">snipMate</a>
@@ -88,7 +119,8 @@
 .</p></div><div class="post-footer">
         <a href="/posts/snippets-for-racket-language/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/lisp/">Lisp</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+</article>
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/posts/rethink-in-functional-languages/">Rethink in Functional Languages</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>guanlan</a>
 </span>&nbsp;<span class="post-publish">published on <time datetime="2013-01-09">2013-01-09</time></span></div><div class="content"><p>After about 3 months to learn and using Racket (a programming language in Lisp/Scheme family),  I learning lots of concepts of programming. The most important thing in FL(functional languages) is: <strong>&quot;<em>All data are immutable. All functions are pure.</em>&quot;</strong>  </p>
@@ -104,7 +136,8 @@
 . Other languages also use immutable data frequently, such like Python, the number/string/tuple types are immutable data, the String build-in class in Java is immutable too. But immutable data is inconvenient in some situation:</p></div><div class="post-footer">
         <a href="/posts/rethink-in-functional-languages/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/lisp/">Lisp</a>,&nbsp;<a href="/tags/python/">Python</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
+</article>
+<article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
         <a href="/posts/how-to-use-python-like-lisp/">How to use Python like Lisp</a>
     </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>guanlan</a>
 </span>&nbsp;<span class="post-publish">published on <time datetime="2012-11-19">2012-11-19</time></span></div><div class="content"><p>Lisp has some very effective way to get jobs done, this article give you a direct way to use Python like Lisp.</p>
@@ -148,46 +181,8 @@
 .</p></div><div class="post-footer">
         <a href="/posts/how-to-use-python-like-lisp/">Read More</a><div class="post-tags">
                 <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/lisp/">Lisp</a>,&nbsp;<a href="/tags/python/">Python</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/cppblog/2011-07-21-python-basic-objects-learning-notes-en/">Python Basic Objects Learning Notes</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>guanlan</a>
-</span>&nbsp;<span class="post-publish">published on <time datetime="2011-07-21">2011-07-21</time></span>&nbsp;<span class="post-category">included in <a href="/categories/python/"><i class="far fa-folder fa-fw" aria-hidden="true"></i>Python</a></span></div><div class="content"><p>Recently revisiting the book &ldquo;Python Source Code Analysis&rdquo;, I&rsquo;ve recorded the key points about Python basic objects as follows:</p>
-<p>​    <strong>Python Integer Objects</strong></p>
-<ol>
-<li>Python integers use C language&rsquo;s long type for storage</li>
-<li>Python int addition checks if the result overflows, and automatically converts to pyLongObject if it does</li>
-<li>Documentation in Python is seamlessly integrated into the language implementation</li>
-</ol>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="n">a</span> <span class="o">=</span> <span class="mi">11</span>  
-</span></span><span class="line"><span class="cl"><span class="nb">print</span> <span class="n">a</span><span class="o">.</span><span class="vm">__doc__</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><ol start="4">
-<li>
-<p>Small integer objects are completely cached in memory, other integer objects take turns using a block of memory space</p></div><div class="post-footer">
-        <a href="/posts/cppblog/2011-07-21-python-basic-objects-learning-notes-en/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/original/">Original</a></div></div>
-</article><article class="single summary" itemscope itemtype="http://schema.org/Article"><h1 class="single-title" itemprop="name headline">
-        <a href="/posts/cppblog/2010-10-24-look-at-this-years-programmers-problem-solving-sequence-en/">[Essay] Look at This Year&#39;s Programmers&#39; Problem-Solving Sequence</a>
-    </h1><div class="post-meta"><span class="post-author"><a href="/" title="Author" rel=" author" class="author"><i class="fas fa-user-circle fa-fw" aria-hidden="true"></i>guanlan</a>
-</span>&nbsp;<span class="post-publish">published on <time datetime="2010-10-24">2010-10-24</time></span></div><div class="content"><p>2010 developer&rsquo;s problem solving sequence:</p>
-<p>from:<a href="http://twitter.com/#%21/activa" title="Philippe Leybaert" target="_blank" rel="noopener noreffer">@activa</a>
-</p>
-<p>1.Google<br>
-For technical problems, definitely check Google and Wikipedia. Use Baidu more if you want to see adult product ads.</p>
-<p>2.Coworkers<br>
-Ask coworkers for help. If your colleagues are helpful, technically skilled, and have encountered similar problems, their advice can be very valuable and might solve the problem immediately.</p>
-<p>3.StackOverflow<br>
-Search for answers on programming help websites, or post questions if you can&rsquo;t find answers. There are quite a lot of helpful people, but it seems this site has more Java/.Net questions.</p></div><div class="post-footer">
-        <a href="/posts/cppblog/2010-10-24-look-at-this-years-programmers-problem-solving-sequence-en/">Read More</a><div class="post-tags">
-                <i class="fas fa-tags fa-fw" aria-hidden="true"></i>&nbsp;<a href="/tags/essay/">Essay</a></div></div>
-</article><ul class="pagination"><li class="page-item ">
+</article>
+<ul class="pagination"><li class="page-item ">
                     <span class="page-link">
                         <a href="/">1</a>
                     </span>
@@ -203,9 +198,13 @@ Search for answers on programming help websites, or post questions if you can&rs
                     <span class="page-link">
                         <a href="/page/4/">4</a>
                     </span>
+                </li><li class="page-item ">
+                    <span class="page-link">
+                        <a href="/page/5/">5</a>
+                    </span>
                 </li></ul></div></div>
             </main><footer class="footer">
-        <div class="footer-container"><div class="footer-line">Guanlan Dai | CC BY-NC 4.0</div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2009 - 2026</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank"></a></span></div>
+        <div class="footer-container"><div class="footer-line">Guanlan Dai | CC BY-NC 4.0</div><div class="footer-line" itemscope itemtype="http://schema.org/CreativeWork"><i class="far fa-copyright fa-fw" aria-hidden="true"></i><span itemprop="copyrightYear">2009 - 2026</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="/" target="_blank">Guanlan Dai</a></span></div>
         </div>
     </footer></div>
 
@@ -214,5 +213,5 @@ Search for answers on programming help websites, or post questions if you can&rs
             </a><a href="#" id="view-comments" class="fixed-button" title="View Comments">
                 <i class="fas fa-comment fa-fw" aria-hidden="true"></i>
             </a>
-        </div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@2.4.0/css/lightgallery-bundle.min.css"><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lazysizes@5.3.1/lazysizes.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.4.0/lightgallery.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.4.0/plugins/thumbnail/lg-thumbnail.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lightgallery@2.4.0/plugins/zoom/lg-zoom.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/clipboard@2.0.11/dist/clipboard.min.js"></script><script type="text/javascript" src="https://cdn.jsdelivr.net/npm/sharer.js@0.5.1/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"lightgallery":true};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+        </div><link rel="stylesheet" href="/lib/lightgallery/lightgallery.min.css"><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/lightgallery/lightgallery.min.js"></script><script type="text/javascript" src="/lib/lightgallery/plugins/lg-thumbnail.min.js"></script><script type="text/javascript" src="/lib/lightgallery/plugins/lg-zoom.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/sharer/sharer.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"Copy to clipboard","maxShownLines":50},"lightgallery":true};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
 </html>

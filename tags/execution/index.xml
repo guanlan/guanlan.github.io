@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Execution on Guanlan Dai</title>
+    <link>https://rmmod.com/tags/execution/</link>
+    <description>Recent content in Execution on Guanlan Dai</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 10 May 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://rmmod.com/tags/execution/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The Agent Stack Was Designed for the Wrong Workload</title>
+      <link>https://rmmod.com/posts/agent/agenticos-workshop/</link>
+      <pubDate>Sun, 10 May 2026 00:00:00 +0000</pubDate>
+      <guid>https://rmmod.com/posts/agent/agenticos-workshop/</guid>
+      <description>&lt;p&gt;We are using $40,000 H100s to wait on the cheapest possible disk I/O. That was the sentence I could not get out of my head after AgenticOS Workshop at ASPLOS 2026. GTC had the industry staring upward at bigger GPU stacks. AgenticOS forced the opposite question: what exactly are those GPUs waiting on?&lt;/p&gt;&#xA;&lt;p&gt;The Eunomia-bpf team brought hard profiling data. They ran 144 SWE-bench tasks through Claude Code with full OS-level instrumentation:&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
