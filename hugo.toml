@@ -93,6 +93,10 @@ enableEmoji = true
     [params.page.seo.publisher]
       name = "Guanlan Dai"
 
+    [params.page.share]
+      Line = false
+      Weibo = false
+
 [menu]
   [[menu.main]]
     weight = 1
