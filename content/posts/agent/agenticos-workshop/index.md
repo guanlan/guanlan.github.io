@@ -7,10 +7,10 @@ images: ["cover.png"]
 description: "LLM inference is only 30 to 40 percent of agent latency. Peak-to-average resource ratio hits 15x. We are running $40,000 GPUs to wait on disk I/O, and that is just the surface of why the infrastructure agents run on today was built for the wrong workload."
 ---
 
-"**We are using $40,000 H100s to wait on the cheapest possible disk I/O".** That was the sentence I could not get out of my head after AgenticOS Workshop at ASPLOS 2026. GTC had the industry staring upward at bigger GPU stacks. AgenticOS forced the opposite question: what exactly are those GPUs waiting on?
+*We are using $40,000 H100s to wait on the cheapest possible disk I/O*. That was the sentence I could not get out of my head after AgenticOS Workshop at ASPLOS 2026. GTC had the industry staring upward at bigger GPU stacks. AgenticOS forced the opposite question: what exactly are those GPUs waiting on?
 
 The obvious counter is that modern deployments already separate inference and tool execution. GPU clusters are pooled, and while one agent is waiting on its tools, the GPU is free to serve another request. In theory, the H100 never actually sits idle.
-In practice it is messier. Agent sessions accumulate a lot of KV cache across turns, so switching a GPU between agents means offloading and swapping that cache, which is itself an expensive operation. This is not stateless HTTP request pooling. It is stateful context switching. Even under separated deployment, the GPU side carries its own state-management cost, and inference cannot be treated as a stateless service you can opportunistically slot work into.
+In practice it is messier. Agent sessions accumulate a lot of KV cache across turns, so switching a GPU between agents means offloading and swapping that cache, which is itself an expensive operation. This is not stateless HTTP request pooling. It is stateful context switching. Even under separated deployment, the GPU side carries its own state-management cost. You can't treat inference as a stateless service to opportunistically slot work into.
 
 The Eunomia-bpf team brought hard profiling data. They ran 144 SWE-bench tasks through Claude Code with full OS-level instrumentation:
 
@@ -18,7 +18,7 @@ The Eunomia-bpf team brought hard profiling data. They ran 144 SWE-bench tasks t
 
 Run the same task three times, and execution time varies by 1.8x. The three runs produced different solutions, different code changes, different files altogether. LLM inference accounts for only 30% to 40% of end-to-end latency. The other 60% to 70% goes into tool execution and environment setup: running tests, installing dependencies, executing scripts. Average CPU utilization stays under 13%. Memory peaks at 4GB. Peak-to-average ratio: 15.4x. For comparison, serverless is around 1.5x, microservices 2 to 3x.
 
-The numbers changed the framing for me. What the numbers really showed is that agents don't behave like the workloads we have infrastructure for. They branch, they have side effects, and they spike unpredictably.
+The numbers reframed it for me. Agents don't behave like the workloads we have infrastructure for. They branch, they have side effects, and they spike unpredictably.
 
 ### Branching isn't just state isolation
 
@@ -30,7 +30,7 @@ BranchContext goes after state management during parallel exploration. When an a
 
 Their abstraction is the *branch context*: a copy-on-write filesystem view plus a controlled process group, with a fork/explore/commit lifecycle and first-committer-wins semantics. One design trade-off I liked: while branches exist, the parent process becomes read-only, a *frozen origin*. This rules out merge conflicts by construction, at the cost of the parent doing nothing during the wait. For agent workloads I think this trade-off is fine, because the parent isn't really doing useful work anyway. It is just waiting to see which branch produces something worth committing.
 
-The Q&A turned out to be more interesting than the paper itself. One question was about how to decide which branch to commit. Today it relies on external scoring: in Best-of-N mode each branch gets a score and the highest wins; in beam-search mode you can use hierarchical feedback from the tree structure. The authors acknowledged scoring has no good general answer. I went in thinking BranchContext was about state isolation. The live discussion changed my mind. BranchContext is not mainly a filesystem primitive. It is a token-budget primitive hiding behind a filesystem primitive. Branch exploration is speculative execution, except the scarce resource is not CPU. It is tokens, wall-clock time, and permissioned side effects. Without an economically aware execution layer, parallel exploration will burn tokens at a rate you can't control.
+One question from Q&A was about how to decide which branch to commit. Today it relies on external scoring: in Best-of-N mode each branch gets a score and the highest wins; in beam-search mode you can use hierarchical feedback from the tree structure. The authors acknowledged scoring has no good general answer. I went in thinking BranchContext was about state isolation. The live discussion changed my mind. BranchContext is not mainly a filesystem primitive. It is a token-budget primitive hiding behind a filesystem primitive. Branch exploration is speculative execution, except the scarce resource is not CPU. It is tokens, wall-clock time, and permissioned side effects. Without an economically aware execution layer, parallel exploration will burn tokens at a rate you can't control.
 
 They use these primitives to express seven exploration patterns: parallel speculation, BestOfN, Reflexion, TreeOfThoughts, BeamSearch, Tournament, Cascaded. Reflexion as a special case of single-branch sequential retry is the one I keep coming back to. The same branch primitive can describe both parallel exploration and sequential retry-with-rollback.
 
@@ -52,7 +52,7 @@ Grimlock, from Roblox, pushes infrastructure downward. eBPF intercepts every net
 
 VibeWAF takes the online-learning path: an LLM evolves WAF rules in real time. A fast rule engine handles known patterns; unmatched traffic goes to the LLM, which analyzes it and generates new rules; over time the LLM gets offloaded as the rule set grows. The feedback loop does converge, with hit rate climbing from 0% to 88%.
 
-Allowlist rules converge well, because attack patterns share structure. Blocklist rules barely converge, because normal traffic is too diverse. More dangerously, an allow-rule generated early can silently pass malicious traffic when a new attack appears. The request gets matched by the rule engine, so the LLM never sees it, and never gets a chance to correct itself.
+Blocklist rules converge well, because attack patterns share structure. Allowlist rules barely converge, because normal traffic is too diverse. More dangerously, an allow-rule generated early can silently pass malicious traffic when a new attack appears. The request gets matched by the rule engine, so the LLM never sees it, and never gets a chance to correct itself.
 
 I am not bullish on online-learning for allow rules because of this: you are exposing the learning interface itself to the attacker. Every allow rule the system learns becomes a potential future channel an attacker can walk through. Once those rules get cached in the rule engine, even the chance to self-correct disappears. I am not ready to put that mechanism at the foundation.
 
@@ -88,7 +88,7 @@ Just as virtualization gave rise to the hypervisor, and containerization gave ri
 
 The forcing function for the hypervisor was hardware-assisted virtualization maturing. The forcing function for Kubernetes was the Docker ecosystem exploding. Both were a single clear technical inflection point. The forcing function for the agent execution layer is different. It is several pressures tightening at the same time: tasks are getting longer and more branched; tokens are not yet cheap enough to throw around freely; once real permissions are in play, the cost of a single security incident climbs sharply.
 
-Stack those three on top of each other, and continuing to patch Linux locally will quickly become more expensive than building one coordinating layer.
+Once those three pressures tighten together, continuing to patch Linux locally quickly becomes more expensive than building one coordinating layer.
 
 Academia is doing the right thing here: proving the local primitives. But a product has to own the coordination between them. From BranchContext to Grimlock to DMI, every paper proves the agent execution layer needs to support some specific capability, and in the same breath, proves that you can't stitch a complete system together from the implicit coordination between papers.
 
