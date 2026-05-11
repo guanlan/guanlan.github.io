@@ -7,7 +7,7 @@ images: ["cover.png"]
 description: "LLM inference is only 30 to 40 percent of agent latency. Peak-to-average resource ratio hits 15x. We are running $40,000 GPUs to wait on disk I/O, and that is just the surface of why the infrastructure agents run on today was built for the wrong workload."
 ---
 
-We are using $40,000 H100s to wait on the cheapest possible disk I/O. That was the sentence I could not get out of my head after AgenticOS Workshop at ASPLOS 2026. GTC had the industry staring upward at bigger GPU stacks. AgenticOS forced the opposite question: what exactly are those GPUs waiting on?
+**We are using $40,000 H100s to wait on the cheapest possible disk I/O.** That was the sentence I could not get out of my head after AgenticOS Workshop at ASPLOS 2026. GTC had the industry staring upward at bigger GPU stacks. AgenticOS forced the opposite question: what exactly are those GPUs waiting on?
 
 The obvious counter is that modern deployments already separate inference and tool execution. GPU clusters are pooled, and while one agent is waiting on its tools, the GPU is free to serve another request. In theory, the H100 never actually sits idle.
 In practice it is messier. Agent sessions accumulate a lot of KV cache across turns, so switching a GPU between agents means offloading and swapping that cache, which is itself an expensive operation. This is not stateless HTTP request pooling. It is stateful context switching. Even under separated deployment, the GPU side carries its own state-management cost, and inference cannot be treated as a stateless service you can opportunistically slot work into.
@@ -26,7 +26,7 @@ Traditional infrastructure assumes workloads are roughly predictable, and that h
 
 BranchContext goes after state management during parallel exploration. When an agent tries three different ways to fix the same bug, each path modifies files, installs packages, runs tests. You need to isolate the side effects, then atomically commit the one that wins.
 
-{{< image src="image%201.png" alt="BranchContext fork explore commit" caption="*[Fork, Explore, Commit](https://os-for-agent.github.io/papers/AgenticOS_2026_paper_8.pdf): OS Primitives for Agentic Exploration, by Cong Wang and Yusheng Zheng*" >}}
+{{< image src="image-1.png" alt="BranchContext fork explore commit" caption="*[Fork, Explore, Commit](https://os-for-agent.github.io/papers/AgenticOS_2026_paper_8.pdf): OS Primitives for Agentic Exploration, by Cong Wang and Yusheng Zheng*" >}}
 
 Their abstraction is the *branch context*: a copy-on-write filesystem view plus a controlled process group, with a fork/explore/commit lifecycle and first-committer-wins semantics. One design trade-off I liked: while branches exist, the parent process becomes read-only, a *frozen origin*. This rules out merge conflicts by construction, at the cost of the parent doing nothing during the wait. For agent workloads I think this trade-off is fine, because the parent isn't really doing useful work anyway. It is just waiting to see which branch produces something worth committing.
 
@@ -38,23 +38,23 @@ They use these primitives to express seven exploration patterns: parallel specul
 
 Once agents can touch real systems, capability can no longer live inside the agent process.
 
-{{< image src="image%202.png" alt="Execute-Only Agents architecture" caption="*[Execute-Only Agents](https://os-for-agent.github.io/papers/AgenticOS_2026_paper_21.pdf), by Rahul Tiwari and Dan Williams*" >}}
+{{< image src="image-2.png" alt="Execute-Only Agents architecture" caption="*[Execute-Only Agents](https://os-for-agent.github.io/papers/AgenticOS_2026_paper_21.pdf), by Rahul Tiwari and Dan Williams*" >}}
 
 Execute-Only Agents takes the most radical line: the LLM never touches untrusted data. The LLM only generates scripts; the scripts run in a sandbox and interact with the data; results go directly to the user. They found that 78% of AgentDojo tasks can be completed without the LLM ever seeing the data. That removes prompt injection from the attack surface at the architecture level.
 
 I don't think this pattern covers every agent workload. But it is a useful extreme: if the model does not need to see the data, don't let it see the data.
 
-{{< image src="image%203.png" alt="Grimlock eBPF and attested channels" caption="*[Grimlock](https://os-for-agent.github.io/papers/AgenticOS_2026_paper_23.pdf): Guarding High-Agency Systems with eBPF and Attested Channels, by Qiancheng Wu, Wenhui Zhang et al.*" >}}
+{{< image src="image-3.png" alt="Grimlock eBPF and attested channels" caption="*[Grimlock](https://os-for-agent.github.io/papers/AgenticOS_2026_paper_23.pdf): Guarding High-Agency Systems with eBPF and Attested Channels, by Qiancheng Wu, Wenhui Zhang et al.*" >}}
 
 Grimlock, from Roblox, pushes infrastructure downward. eBPF intercepts every network request at the sandbox boundary, forces it through mTLS, and authorizes it with short-lived scoped tokens backed by TEE remote attestation. The security boundary moves out of application code and into infrastructure the agent can't bypass. In the Q&A the authors drew a useful line. Hard boundaries, like no root or no access to certain resources, are independent of what the agent intends, and can be defined cleanly. Soft boundaries, where permissions adjust dynamically based on what the agent is currently doing, still have no good solution.
 
-{{< image src="image%204.png" alt="LLM-driven rule generation" caption="*[Toward LLM-Driven Rule Generation for Enforcement Systems](https://os-for-agent.github.io/papers/AgenticOS_2026_paper_24.pdf), by Quanzhi Fu and Dan Williams*" >}}
+{{< image src="image-4.png" alt="LLM-driven rule generation" caption="*[Toward LLM-Driven Rule Generation for Enforcement Systems](https://os-for-agent.github.io/papers/AgenticOS_2026_paper_24.pdf), by Quanzhi Fu and Dan Williams*" >}}
 
 VibeWAF takes the online-learning path: an LLM evolves WAF rules in real time. A fast rule engine handles known patterns; unmatched traffic goes to the LLM, which analyzes it and generates new rules; over time the LLM gets offloaded as the rule set grows. The feedback loop does converge, with hit rate climbing from 0% to 88%.
 
 Blacklist rules converge well, because attack patterns share structure. Whitelist rules barely converge, because normal traffic is too diverse. More dangerously, an allow-rule generated early can silently pass malicious traffic when a new attack appears. The request gets matched by the rule engine, so the LLM never sees it, and never gets a chance to correct itself.
 
-I am not bullish on online-learning for allow rules because of this: **you are exposing the learning interface itself to the attacker.** Every allow rule the system learns becomes a potential future channel an attacker can walk through. Once those rules get cached in the rule engine, even the chance to self-correct disappears. I am not ready to put that mechanism at the foundation.
+I am not bullish on online-learning for allow rules because of this: you are exposing the learning interface itself to the attacker. Every allow rule the system learns becomes a potential future channel an attacker can walk through. Once those rules get cached in the rule engine, even the chance to self-correct disappears. I am not ready to put that mechanism at the foundation.
 
 Hard boundaries should stay deny-by-default and be enforced at the infrastructure layer. Soft boundaries can be explored, but the fallback should still be deny. Don't expect the agent to converge to a safe boundary on its own.
 
@@ -70,11 +70,11 @@ Long-running tasks fit checkpoint. Early-stage exploration fits fork-and-retry. 
 
 ### Prompts are the wrong place to hide mechanisms
 
-{{< image src="image%205.png" alt="Declarative model interface" caption="*[Rethinking OS Interfaces for LLM Agents](https://os-for-agent.github.io/papers/AgenticOS_2026_paper_9.pdf), by Yuan Wang, Mingyu Li and Haibo Chen*" >}}
+{{< image src="image-5.png" alt="Declarative model interface" caption="*[Rethinking OS Interfaces for LLM Agents](https://os-for-agent.github.io/papers/AgenticOS_2026_paper_9.pdf), by Yuan Wang, Mingyu Li and Haibo Chen*" >}}
 
 The Declarative Model Interface paper from the Institute of Software, CAS gives this idea a clean quantitative validation. They design a declarative OS interface for LLM agents that models GUI navigation as a deterministic graph. The LLM only declares the target state; the DMI layer handles navigation and interaction. On Microsoft Office tasks, success rate goes from 44.4% to 74.1%, steps drop by 43.5%, and 61% of successful tasks finish in a single LLM call.
 
-A lot of what we cram into the prompt today should not actually be left for the model to guess. **The model is better at semantic decisions. But navigation, interaction, state transitions, once pulled out of the prompt and exposed as explicit system interfaces, make the whole system lighter and more stable.**
+A lot of what we cram into the prompt today should not actually be left for the model to guess. The model is better at semantic decisions. But navigation, interaction, state transitions, once pulled out of the prompt and exposed as explicit system interfaces, make the whole system lighter and more stable.
 
 IBM Research's FMOS paper points in the same direction: take part of the context, policy, and reasoning scheduling out of the prompt and turn them into well-defined system interfaces. Whether FMOS is closer to an OS or to a framework was actually disputed in the room. But it makes the same point in a different way: the less mechanism we leave for the model to guess, the more efficient and controllable the system becomes.
 
@@ -82,13 +82,13 @@ IBM Research's FMOS paper points in the same direction: take part of the context
 
 Across the workshop, almost every piece of work sits inside the Linux ecosystem: eBPF, cgroup v2, sched_ext, FUSE. Linux as a substrate for low-level mechanisms is still very strong. Processes, networking, isolation, resource control, the basic building blocks have not aged out.
 
-What is missing between these projects is a shared coordination layer. BranchContext creates parallel universes at the filesystem level, but the scoped tokens Grimlock issues have no concept of branches. Once a branch is abandoned, how do you immediately revoke its permissions? Branch exploration and capability authorization are completely disconnected. When a scoped token needs to talk to the scheduling policy to decide whether to checkpoint, the coordination cost itself becomes the bottleneck. Under a 15x peak-to-average load with completely divergent paths, piling local patches onto Linux will not close these gaps. **These patches need a native execution layer to coordinate them.**
+What is missing between these projects is a shared coordination layer. BranchContext creates parallel universes at the filesystem level, but the scoped tokens Grimlock issues have no concept of branches. Once a branch is abandoned, how do you immediately revoke its permissions? Branch exploration and capability authorization are completely disconnected. When a scoped token needs to talk to the scheduling policy to decide whether to checkpoint, the coordination cost itself becomes the bottleneck. Under a 15x peak-to-average load with completely divergent paths, piling local patches onto Linux will not close these gaps. These patches need a native execution layer to coordinate them.
 
 Just as virtualization gave rise to the hypervisor, and containerization gave rise to Kubernetes, agent workloads need a system substrate that natively understands non-deterministic branching and semantic-level security.
 
-The forcing function for the hypervisor was hardware-assisted virtualization maturing. The forcing function for Kubernetes was the Docker ecosystem exploding. Both were a single clear technical inflection point. The forcing function for the agent execution layer is different. It is several pressures tightening at the same time: **tasks are getting longer and more branched; tokens are not yet cheap enough to throw around freely; once real permissions are in play, the cost of a single security incident climbs sharply.**
+The forcing function for the hypervisor was hardware-assisted virtualization maturing. The forcing function for Kubernetes was the Docker ecosystem exploding. Both were a single clear technical inflection point. The forcing function for the agent execution layer is different. It is several pressures tightening at the same time: tasks are getting longer and more branched; tokens are not yet cheap enough to throw around freely; once real permissions are in play, the cost of a single security incident climbs sharply.
 
-**Stack those three on top of each other, and continuing to patch Linux locally will quickly become more expensive than building one coordinating layer.**
+Stack those three on top of each other, and continuing to patch Linux locally will quickly become more expensive than building one coordinating layer.
 
 Academia is doing the right thing here: proving the local primitives. But a product has to own the coordination between them. From BranchContext to Grimlock to DMI, every paper proves the agent execution layer needs to support some specific capability, and in the same breath, proves that you can't stitch a complete system together from the implicit coordination between papers.
 
