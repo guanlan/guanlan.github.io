@@ -52,7 +52,7 @@ Grimlock, from Roblox, pushes infrastructure downward. eBPF intercepts every net
 
 VibeWAF takes the online-learning path: an LLM evolves WAF rules in real time. A fast rule engine handles known patterns; unmatched traffic goes to the LLM, which analyzes it and generates new rules; over time the LLM gets offloaded as the rule set grows. The feedback loop does converge, with hit rate climbing from 0% to 88%.
 
-Blacklist rules converge well, because attack patterns share structure. Whitelist rules barely converge, because normal traffic is too diverse. More dangerously, an allow-rule generated early can silently pass malicious traffic when a new attack appears. The request gets matched by the rule engine, so the LLM never sees it, and never gets a chance to correct itself.
+Allowlist rules converge well, because attack patterns share structure. Blocklist rules barely converge, because normal traffic is too diverse. More dangerously, an allow-rule generated early can silently pass malicious traffic when a new attack appears. The request gets matched by the rule engine, so the LLM never sees it, and never gets a chance to correct itself.
 
 I am not bullish on online-learning for allow rules because of this: you are exposing the learning interface itself to the attacker. Every allow rule the system learns becomes a potential future channel an attacker can walk through. Once those rules get cached in the rule engine, even the chance to self-correct disappears. I am not ready to put that mechanism at the foundation.
 
