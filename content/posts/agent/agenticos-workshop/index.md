@@ -7,7 +7,7 @@ images: ["cover.png"]
 description: "LLM inference is only 30 to 40 percent of agent latency. Peak-to-average resource ratio hits 15x. We are running $40,000 GPUs to wait on disk I/O, and that is just the surface of why the infrastructure agents run on today was built for the wrong workload."
 ---
 
-**We are using $40,000 H100s to wait on the cheapest possible disk I/O.** That was the sentence I could not get out of my head after AgenticOS Workshop at ASPLOS 2026. GTC had the industry staring upward at bigger GPU stacks. AgenticOS forced the opposite question: what exactly are those GPUs waiting on?
+"**We are using $40,000 H100s to wait on the cheapest possible disk I/O".** That was the sentence I could not get out of my head after AgenticOS Workshop at ASPLOS 2026. GTC had the industry staring upward at bigger GPU stacks. AgenticOS forced the opposite question: what exactly are those GPUs waiting on?
 
 The obvious counter is that modern deployments already separate inference and tool execution. GPU clusters are pooled, and while one agent is waiting on its tools, the GPU is free to serve another request. In theory, the H100 never actually sits idle.
 In practice it is messier. Agent sessions accumulate a lot of KV cache across turns, so switching a GPU between agents means offloading and swapping that cache, which is itself an expensive operation. This is not stateless HTTP request pooling. It is stateful context switching. Even under separated deployment, the GPU side carries its own state-management cost, and inference cannot be treated as a stateless service you can opportunistically slot work into.
